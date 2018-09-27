@@ -2,12 +2,18 @@
   "name": "nebula",
   "version": "0.1.0",
   "private": true,
+  "module": "dist/nebula-ui.esm.js",
   "scripts": {
+    "docs:dev": "vuepress dev docs",
+    "docs:build": "vuepress build docs",
     "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build",
+    "build": "vue-cli-service build --target lib --name nebula-ui ./src/index.ts",
+    "rollup": "rollup --config ./build/rollup.config.js",
     "lint": "vue-cli-service lint",
     "test:unit": "vue-cli-service test:unit",
-    "test:e2e": "vue-cli-service test:e2e"
+    "test:e2e": "vue-cli-service test:e2e",
+    "prepublish": "npm run build && gulp compileNebulaUi && npm run rollup",
+    "publish": "npm run docs:build"
   },
   "dependencies": {
     "vue": "^2.5.17",
@@ -26,12 +32,17 @@
     "@vue/eslint-config-typescript": "^3.0.3",
     "@vue/test-utils": "^1.0.0-beta.20",
     "babel-core": "7.0.0-bridge.0",
+    "gulp": "^3.9.1",
+    "gulp-less": "^4.0.1",
     "less": "^3.0.4",
     "less-loader": "^4.1.0",
     "lint-staged": "^7.2.2",
+    "rollup": "^0.66.2",
+    "rollup-plugin-commonjs": "^9.1.8",
     "ts-jest": "^23.0.0",
     "typescript": "^3.0.0",
-    "vue-template-compiler": "^2.5.17"
+    "vue-template-compiler": "^2.5.17",
+    "vuepress": "^0.14.4"
   },
   "gitHooks": {
     "pre-commit": "lint-staged"

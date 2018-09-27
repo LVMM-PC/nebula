@@ -1,0 +1,30 @@
+<template>
+  <main>
+    <section>
+      <NebulaButton
+        type="primary"
+        shape="circle"
+        icon="search"/>
+      <NebulaButton
+        type="primary"
+        icon="search">Search</NebulaButton>
+      <NebulaButton
+        shape="circle"
+        icon="search"/>
+      <NebulaButton icon="search">Search</NebulaButton>
+    </section>
+    <section>
+      <NebulaButton
+        shape="circle"
+        icon="search"/>
+      <NebulaButton icon="search">Search</NebulaButton>
+      <NebulaButton
+        type="dashed"
+        shape="circle"
+        icon="search"/>
+      <NebulaButton
+        type="dashed"
+        icon="search">Search</NebulaButton>
+    </section>
+  </main>
+</template>
