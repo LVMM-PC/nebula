@@ -211,19 +211,20 @@ export default class NebulaButton extends Vue {
     };
 
     const iconNode = iconType ? <NebulaIcon {...iconProps} /> : "";
+    const kids = this.children ? <span>{this.children}</span> : "";
     switch (this.component) {
       case "a":
         return (
           <a {...buttonProps}>
             {iconNode}
-            <span>{this.children}</span>
+            {kids}
           </a>
         );
       case "button":
         return (
           <button {...buttonProps}>
             {iconNode}
-            <span>{this.children}</span>
+            {kids}
           </button>
         );
     }
