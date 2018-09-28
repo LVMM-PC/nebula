@@ -4,7 +4,7 @@ module.exports = {
   title: "Nebula UI",
   description: "Based on the Ant Design",
   themeConfig: {
-    nav: [{ text: "Gitlab", link: "http://gitlab.em2046.com/root/ui" }],
+    nav: [{ text: "GitHub", link: "https://github.com/LVMM-PC/nebula" }],
     sidebar: sidebar,
     lastUpdated: true,
     sidebarDepth: 2,

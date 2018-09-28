@@ -1,7 +1,17 @@
 {
-  "name": "nebula",
-  "version": "0.1.0",
-  "private": true,
+  "name": "nebula-ui",
+  "description": "UI Components Based on Ant Design",
+  "version": "0.1.1",
+  "author": {
+    "name": "em2046",
+    "email": "em2046@qq.com"
+  },
+  "keywords": [
+    "nebula",
+    "nebula-ui"
+  ],
+  "license": "MIT",
+  "main": "dist/nebula-ui.umd.js",
   "module": "dist/nebula-ui.esm.js",
   "scripts": {
     "docs:dev": "vuepress dev docs",
@@ -15,6 +25,14 @@
     "prepublish": "npm run build && gulp compileNebulaUi && npm run rollup",
     "publish": "npm run docs:build"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/LVMM-PC/nebula"
+  },
+  "bugs": {
+    "url": "https://github.com/LVMM-PC/nebula/issues"
+  },
+  "homepage": "http://nebula.em2046.com/",
   "dependencies": {
     "vue": "^2.5.17",
     "vue-class-component": "^6.0.0",
