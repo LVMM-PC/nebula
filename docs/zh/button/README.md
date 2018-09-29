@@ -78,7 +78,7 @@
 
 ^^^ @/docs/.vuepress/components/Button/Ghost.vue
 
-### Block
+### Block 按钮
 
 `block`属性将使按钮适合其父宽度。
 
