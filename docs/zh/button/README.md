@@ -68,7 +68,7 @@
 
 <Button-Group/>
 
-^^^ @/docs/.vuepress/components/Button/ButtonGroup.vue
+^^^ @/docs/.vuepress/components/Button/Group.vue
 
 ### 幽灵按钮
 

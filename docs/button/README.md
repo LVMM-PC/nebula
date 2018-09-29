@@ -52,7 +52,7 @@ A loading indicator can be added to a button by setting the `loading` property o
 
 ^^^ @/docs/.vuepress/components/Button/Loading.vue
 
-### Multiple
+### Multiple Button
 
 If you need several buttons, we recommend that you use 1 primary button + n secondary buttons, and if there are more than three operations, you can group some of them into `NebulaDropdownButton`.
 
@@ -60,7 +60,7 @@ If you need several buttons, we recommend that you use 1 primary button + n seco
 
 ^^^ @/docs/.vuepress/components/Button/Multiple.vue
 
-### ButtonGroup
+### Button Group
 
 NebulaButtons can be grouped by placing multiple `NebulaButton` components into a `NebulaButtonGroup`.
 
@@ -68,9 +68,9 @@ The `size` can be set to `large`, `small` or left unset resulting in a default s
 
 <Button-Group/>
 
-^^^ @/docs/.vuepress/components/Button/ButtonGroup.vue
+^^^ @/docs/.vuepress/components/Button/Group.vue
 
-### Ghost
+### Ghost Button
 
 `ghost` property will make button's background transparent, it is common used in colored background.
 
@@ -78,7 +78,7 @@ The `size` can be set to `large`, `small` or left unset resulting in a default s
 
 ^^^ @/docs/.vuepress/components/Button/Ghost.vue
 
-### Block
+### Block Button
 
 `block` property will make the button fit to its parent width.
 
