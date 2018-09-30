@@ -4,7 +4,9 @@
       alt="Vue logo"
       src="./assets/logo.png">
     <HelloWorld msg="Welcome to Your Vue.js + TypeScript App"/>
-    <NebulaButton>Click me</NebulaButton>
+    <NebulaButton 
+      :label="buttonLabel" 
+      @click="handlerButtonClick">Click me</NebulaButton>
   </div>
 </template>
 
@@ -17,7 +19,16 @@ import HelloWorld from "./components/HelloWorld.vue";
     HelloWorld
   }
 })
-export default class App extends Vue {}
+export default class App extends Vue {
+  public buttonLabel = "按钮";
+  handlerButtonClick() {
+    if (this.buttonLabel === "按钮") {
+      this.buttonLabel = "大按钮";
+    } else {
+      this.buttonLabel = "按钮";
+    }
+  }
+}
 </script>
 
 <style lang="less">

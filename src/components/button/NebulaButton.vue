@@ -143,15 +143,26 @@ export default class NebulaButton extends Vue {
   }
 
   get children() {
+    let label = this.label;
+    if (label) {
+      if (NebulaButton.isTwoCNChar(label)) {
+        this.hasTwoCNChar = true;
+        return label.split("").join(" ");
+      } else {
+        this.hasTwoCNChar = false;
+        return label;
+      }
+    }
+
     let twoCNChar = NebulaButton.getTwoCNChar(this.$slots.default);
 
     if (twoCNChar && !this.iconType) {
       this.hasTwoCNChar = true;
       return twoCNChar.split("").join(" ");
+    } else {
+      this.hasTwoCNChar = false;
+      return this.$slots.default;
     }
-
-    this.hasTwoCNChar = false;
-    return this.$slots.default;
   }
 
   get component() {
