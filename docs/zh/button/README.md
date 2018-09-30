@@ -12,9 +12,9 @@
 
 按钮有四种类型：主按钮、次按钮、虚线按钮、危险按钮。主按钮在同一个操作区域最多出现一次。
 
-<Button-Basic/>
+<demo-button-basic/>
 
-^^^ @/docs/.vuepress/components/Button/Basic.vue
+^^^ @/docs/.vuepress/components/demo/button/basic.vue
 
 ### 图标按钮
 
@@ -22,9 +22,9 @@
 
 如果想控制 `Icon` 具体的位置，只能直接使用 `Icon` 组件，而非 `icon` 属性。
 
-<Button-Icon/>
+<demo-button-icon/>
 
-^^^ @/docs/.vuepress/components/Button/Icon.vue
+^^^ @/docs/.vuepress/components/demo/button/icon.vue
 
 ### 按钮尺寸
 
@@ -32,33 +32,33 @@
 
 通过设置 `size` 为 `large` `small` 分别把按钮设为大、小尺寸。若不设置 `size`，则尺寸为中。
 
-<Button-Size/>
+<demo-button-size/>
 
-^^^ @/docs/.vuepress/components/Button/Size.vue
+^^^ @/docs/.vuepress/components/demo/button/size.vue
 
 ### 不可用状态
 
 添加 `disabled` 属性即可让按钮处于不可用状态，同时按钮样式也会改变。
 
-<Button-Disabled/>
+<demo-button-disabled/>
 
-^^^ @/docs/.vuepress/components/Button/Disabled.vue
+^^^ @/docs/.vuepress/components/demo/button/disabled.vue
 
 ### 加载中状态
 
 添加 `loading` 属性即可让按钮处于加载状态，最后两个按钮演示点击后进入加载状态。
 
-<Button-Loading/>
+<demo-button-loading/>
 
-^^^ @/docs/.vuepress/components/Button/Loading.vue
+^^^ @/docs/.vuepress/components/demo/button/loading.vue
 
 ### 多个按钮组合
 
 按钮组合使用时，推荐使用 1 个主操作 + n 个次操作，3 个以上操作时把更多操作放到 `Dropdown.Button` 中组合使用。
 
-<Button-Multiple/>
+<demo-button-multiple/>
 
-^^^ @/docs/.vuepress/components/Button/Multiple.vue
+^^^ @/docs/.vuepress/components/demo/button/multiple.vue
 
 ### 按钮组合
 
@@ -66,25 +66,25 @@
 
 通过设置 `size` 为 `large` `small` 分别把按钮组合设为大、小尺寸。若不设置 `size`，则尺寸为中。
 
-<Button-Group/>
+<demo-button-group/>
 
-^^^ @/docs/.vuepress/components/Button/Group.vue
+^^^ @/docs/.vuepress/components/demo/button/group.vue
 
 ### 幽灵按钮
 
 幽灵按钮将按钮的内容反色，背景变为透明，常用在有色背景上。
 
-<Button-Ghost/>
+<demo-button-ghost/>
 
-^^^ @/docs/.vuepress/components/Button/Ghost.vue
+^^^ @/docs/.vuepress/components/demo/button/ghost.vue
 
 ### Block 按钮
 
 `block`属性将使按钮适合其父宽度。
 
-<Button-Block/>
+<demo-button-block/>
 
-^^^ @/docs/.vuepress/components/Button/Block.vue
+^^^ @/docs/.vuepress/components/demo/button/block.vue
 
 ## API
 

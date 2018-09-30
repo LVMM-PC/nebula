@@ -4,16 +4,16 @@ Semantic vector graphics.
 
 ## Direction
 
-<Icon-Set category="direction"/>
+<demo-icon-set category="direction"/>
 
 ## Suggestion
 
-<Icon-Set category="suggestion"/>
+<demo-icon-set category="suggestion"/>
 
 ## Logo
 
-<Icon-Set category="logo"/>
+<demo-icon-set category="logo"/>
 
 ## Other
 
-<Icon-Set category="other"/>
+<demo-icon-set category="other"/>
