@@ -12,9 +12,9 @@ A button means an operation (or a series of operations). Clicking a button will 
 
 There are `primary` button, `default` button, `dashed` button and `danger` button in antd.
 
-<Button-Basic/>
+<demo-button-basic/>
 
-^^^ @/docs/.vuepress/components/Button/Basic.vue
+^^^ @/docs/.vuepress/components/demo/button/basic.vue
 
 ### Icon
 
@@ -22,9 +22,9 @@ There are `primary` button, `default` button, `dashed` button and `danger` butto
 
 If you want specific control over the positioning and placement of the `NebulaIcon`, then that should be done by placing the `NebulaIcon` component within the `NebulaButton` rather than using the `icon` property.
 
-<Button-Icon/>
+<demo-button-icon/>
 
-^^^ @/docs/.vuepress/components/Button/Icon.vue
+^^^ @/docs/.vuepress/components/demo/button/icon.vue
 
 ### Size
 
@@ -32,59 +32,59 @@ Ant Design supports a default button size as well as a large and small size.
 
 If a large or small button is desired, set the `size` property to either `large` or `small` respectively. Omit the `size` property for a button with the default size.
 
-<Button-Size/>
+<demo-button-size/>
 
-^^^ @/docs/.vuepress/components/Button/Size.vue
+^^^ @/docs/.vuepress/components/demo/button/size.vue
 
 ### Disabled
 
 To mark a button as disabled, add the `disabled` property to the `NebulaButton`.
 
-<Button-Disabled/>
+<demo-button-disabled/>
 
-^^^ @/docs/.vuepress/components/Button/Disabled.vue
+^^^ @/docs/.vuepress/components/demo/button/disabled.vue
 
 ### Loading
 
 A loading indicator can be added to a button by setting the `loading` property on the `NebulaButton`.
 
-<Button-Loading/>
+<demo-button-loading/>
 
-^^^ @/docs/.vuepress/components/Button/Loading.vue
+^^^ @/docs/.vuepress/components/demo/button/loading.vue
 
-### Multiple
+### Multiple Button
 
 If you need several buttons, we recommend that you use 1 primary button + n secondary buttons, and if there are more than three operations, you can group some of them into `NebulaDropdownButton`.
 
-<Button-Multiple/>
+<demo-button-multiple/>
 
-^^^ @/docs/.vuepress/components/Button/Multiple.vue
+^^^ @/docs/.vuepress/components/demo/button/multiple.vue
 
-### ButtonGroup
+### Button Group
 
 NebulaButtons can be grouped by placing multiple `NebulaButton` components into a `NebulaButtonGroup`.
 
 The `size` can be set to `large`, `small` or left unset resulting in a default size.
 
-<Button-Group/>
+<demo-button-group/>
 
-^^^ @/docs/.vuepress/components/Button/ButtonGroup.vue
+^^^ @/docs/.vuepress/components/demo/button/group.vue
 
-### Ghost
+### Ghost Button
 
 `ghost` property will make button's background transparent, it is common used in colored background.
 
-<Button-Ghost/>
+<demo-button-ghost/>
 
-^^^ @/docs/.vuepress/components/Button/Ghost.vue
+^^^ @/docs/.vuepress/components/demo/button/ghost.vue
 
-### Block
+### Block Button
 
 `block` property will make the button fit to its parent width.
 
-<Button-Block/>
+<demo-button-block/>
 
-^^^ @/docs/.vuepress/components/Button/Block.vue
+^^^ @/docs/.vuepress/components/demo/button/block.vue
 
 ## API
 

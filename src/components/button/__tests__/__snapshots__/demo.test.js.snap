@@ -1,0 +1,85 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders ./docs/.vuepress/components/demo/button/basic.vue correctly 1`] = `<main><button type="button" class="nebula-btn nebula-btn-primary"><span>Primary</span></button> <button type="button" class="nebula-btn"><span>Default</span></button> <button type="button" class="nebula-btn nebula-btn-dashed"><span>Dashed</span></button> <button type="button" class="nebula-btn nebula-btn-danger"><span>Danger</span></button></main>`;
+
+exports[`renders ./docs/.vuepress/components/demo/button/block.vue correctly 1`] = `<main><button type="button" class="nebula-btn nebula-btn-primary nebula-btn-block"><span>Primary</span></button> <button type="button" class="nebula-btn nebula-btn-block"><span>Default</span></button> <button type="button" class="nebula-btn nebula-btn-dashed nebula-btn-block"><span>Dashed</span></button> <button type="button" class="nebula-btn nebula-btn-danger nebula-btn-block"><span>danger</span></button></main>`;
+
+exports[`renders ./docs/.vuepress/components/demo/button/disabled.vue correctly 1`] = `
+<main>
+  <section><button type="button" class="nebula-btn nebula-btn-primary"><span>Primary</span></button> <button type="button" disabled="disabled" class="nebula-btn nebula-btn-primary"><span>Primary(disabled)</span></button></section>
+  <section><button type="button" class="nebula-btn"><span>Default</span></button> <button type="button" disabled="disabled" class="nebula-btn"><span>Default(disabled)</span></button></section>
+  <section><button type="button" class="nebula-btn nebula-btn-dashed"><span>Dashed</span></button> <button type="button" disabled="disabled" class="nebula-btn nebula-btn-dashed"><span>Dashed(disabled)</span></button></section>
+  <section style="padding: 8px 8px 0px 8px; background: rgb(190, 200, 200);"><button type="button" class="nebula-btn nebula-btn-background-ghost"><span>Ghost</span></button> <button type="button" disabled="disabled" class="nebula-btn nebula-btn-background-ghost"><span>Ghost(disabled)</span></button></section>
+</main>
+`;
+
+exports[`renders ./docs/.vuepress/components/demo/button/ghost.vue correctly 1`] = `<main style="background: rgb(190, 200, 200); padding: 26px 16px 16px;"><button type="button" class="nebula-btn nebula-btn-primary nebula-btn-background-ghost"><span>Primary</span></button> <button type="button" class="nebula-btn nebula-btn-background-ghost"><span>Default</span></button> <button type="button" class="nebula-btn nebula-btn-dashed nebula-btn-background-ghost"><span>Dashed</span></button> <button type="button" class="nebula-btn nebula-btn-danger nebula-btn-background-ghost"><span>danger</span></button></main>`;
+
+exports[`renders ./docs/.vuepress/components/demo/button/group.vue correctly 1`] = `
+<main>
+  <h4>Basic</h4>
+  <section>
+    <div class="nebula-btn-group"><button type="button" class="nebula-btn"><span>Cancel</span></button> <button type="button" class="nebula-btn"><span>OK</span></button></div>
+    <div class="nebula-btn-group"><button type="button" disabled="disabled" class="nebula-btn"><span>L</span></button> <button type="button" disabled="disabled" class="nebula-btn"><span>M</span></button> <button type="button" disabled="disabled" class="nebula-btn"><span>R</span></button></div>
+    <div class="nebula-btn-group"><button type="button" class="nebula-btn"><span>L</span></button> <button type="button" class="nebula-btn"><span>M</span></button> <button type="button" class="nebula-btn"><span>R</span></button></div>
+  </section>
+  <h4>With Icon</h4>
+  <section>
+    <div class="nebula-btn-group"><button type="button" class="nebula-btn nebula-btn-primary"><span><span class="nebula-icon nebula-icon-left"></span>
+        Go back
+        </span></button> <button type="button" class="nebula-btn nebula-btn-primary"><span>
+        Go forward
+        <span class="nebula-icon nebula-icon-right"></span></span></button></div>
+    <div class="nebula-btn-group"><button type="button" class="nebula-btn nebula-btn-primary nebula-btn-icon-only"><span class="nebula-icon nebula-icon-cloud"></span></button> <button type="button" class="nebula-btn nebula-btn-primary nebula-btn-icon-only"><span class="nebula-icon nebula-icon-cloud-download"></span></button></div>
+  </section>
+</main>
+`;
+
+exports[`renders ./docs/.vuepress/components/demo/button/icon.vue correctly 1`] = `
+<main>
+  <section><button type="button" class="nebula-btn nebula-btn-circle nebula-btn-primary nebula-btn-icon-only"><span class="nebula-icon nebula-icon-search"></span></button> <button type="button" class="nebula-btn nebula-btn-primary"><span class="nebula-icon nebula-icon-search"></span><span>Search</span></button> <button type="button" class="nebula-btn nebula-btn-circle nebula-btn-icon-only"><span class="nebula-icon nebula-icon-search"></span></button> <button type="button" class="nebula-btn"><span class="nebula-icon nebula-icon-search"></span><span>Search</span></button></section>
+  <section><button type="button" class="nebula-btn nebula-btn-circle nebula-btn-icon-only"><span class="nebula-icon nebula-icon-search"></span></button> <button type="button" class="nebula-btn"><span class="nebula-icon nebula-icon-search"></span><span>Search</span></button> <button type="button" class="nebula-btn nebula-btn-circle nebula-btn-dashed nebula-btn-icon-only"><span class="nebula-icon nebula-icon-search"></span></button> <button type="button" class="nebula-btn nebula-btn-dashed"><span class="nebula-icon nebula-icon-search"></span><span>Search</span></button></section>
+</main>
+`;
+
+exports[`renders ./docs/.vuepress/components/demo/button/loading.vue correctly 1`] = `
+<main>
+  <section><button type="button" class="nebula-btn nebula-btn-primary nebula-btn-loading"><span class="nebula-icon nebula-icon-loading nebula-icon-spin"></span><span>
+      Loading
+    </span></button> <button type="button" class="nebula-btn nebula-btn-sm nebula-btn-primary nebula-btn-loading"><span class="nebula-icon nebula-icon-loading nebula-icon-spin"></span><span>
+      Loading
+    </span></button></section>
+  <section><button type="button" class="nebula-btn nebula-btn-primary"><span>
+      Click me!
+    </span></button> <button type="button" class="nebula-btn nebula-btn-primary"><span class="nebula-icon nebula-icon-poweroff"></span><span>
+      Click me!
+    </span></button></section>
+  <section><button type="button" class="nebula-btn nebula-btn-circle nebula-btn-loading"><span class="nebula-icon nebula-icon-loading nebula-icon-spin"></span></button> <button type="button" class="nebula-btn nebula-btn-circle nebula-btn-primary nebula-btn-loading"><span class="nebula-icon nebula-icon-loading nebula-icon-spin"></span></button></section>
+</main>
+`;
+
+exports[`renders ./docs/.vuepress/components/demo/button/multiple.vue correctly 1`] = `
+<main><button type="button" class="nebula-btn nebula-btn-primary"><span>primary</span></button> <button type="button" class="nebula-btn"><span>secondary</span></button> <button type="button" class="nebula-btn"><span>
+    Actions
+    <span class="nebula-icon nebula-icon-down"></span></span></button></main>
+`;
+
+exports[`renders ./docs/.vuepress/components/demo/button/size.vue correctly 1`] = `
+<main>
+  <section>
+    <div class="nebula-btn-group" value="large"><button value="large" type="button" class="nebula-btn nebula-btn-primary"><span>Large
+      </span></button> <button value="default" type="button" class="nebula-btn"><span>Default
+      </span></button> <button value="small" type="button" class="nebula-btn"><span>Small
+      </span></button></div>
+  </section>
+  <section><button type="button" class="nebula-btn nebula-btn-lg nebula-btn-primary"><span>Primary</span></button> <button type="button" class="nebula-btn nebula-btn-lg"><span>Normal</span></button> <button type="button" class="nebula-btn nebula-btn-lg nebula-btn-dashed"><span>Dashed</span></button> <button type="button" class="nebula-btn nebula-btn-lg nebula-btn-danger"><span>Danger</span></button></section>
+  <section><button type="button" class="nebula-btn nebula-btn-circle nebula-btn-lg nebula-btn-primary nebula-btn-icon-only"><span class="nebula-icon nebula-icon-download"></span></button> <button type="button" class="nebula-btn nebula-btn-lg nebula-btn-primary"><span class="nebula-icon nebula-icon-download"></span><span>Download</span></button></section>
+  <section>
+    <div class="nebula-btn-group nebula-btn-group-lg"><button type="button" class="nebula-btn nebula-btn-primary"><span><span class="nebula-icon nebula-icon-left"></span>
+        Backward
+        </span></button> <button type="button" class="nebula-btn nebula-btn-primary"><span>
+        Forward
+        <span class="nebula-icon nebula-icon-right"></span></span></button></div>
+  </section>
+</main>
+`;

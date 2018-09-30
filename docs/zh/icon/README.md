@@ -4,16 +4,16 @@
 
 ## 方向
 
-<Icon-Set category="direction"/>
+<demo-icon-set category="direction"/>
 
 ## 提示
 
-<Icon-Set category="suggestion"/>
+<demo-icon-set category="suggestion"/>
 
 ## 标识
 
-<Icon-Set category="logo"/>
+<demo-icon-set category="logo"/>
 
 ## 其他
 
-<Icon-Set category="other"/>
+<demo-icon-set category="other"/>

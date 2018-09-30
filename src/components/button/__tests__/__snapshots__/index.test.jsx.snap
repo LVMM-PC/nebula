@@ -2,7 +2,7 @@
 
 exports[`Button renders Chinese characters correctly 1`] = `<button type="button" class="nebula-btn nebula-btn-two-chinese-chars"><span>按 钮</span></button>`;
 
-exports[`Button renders Chinese characters correctly 2`] = `<button type="button" class="nebula-btn"><span>search按钮</span></button>`;
+exports[`Button renders Chinese characters correctly 2`] = `<button type="button" class="nebula-btn"><span class="nebula-icon nebula-icon-search"></span><span>按钮</span></button>`;
 
 exports[`Button renders Chinese characters correctly 3`] = `<button type="button" class="nebula-btn"><span><span class="nebula-icon nebula-icon-search"></span>按钮</span></button>`;
 
@@ -12,4 +12,4 @@ exports[`Button renders Chinese characters correctly 5`] = `<button type="button
 
 exports[`Button renders correctly 1`] = `<button type="button" class="nebula-btn"><span>Follow</span></button>`;
 
-exports[`Button should support link button 1`] = `<a target="_blank" href="http://nebula.em2046.com/" type="button" class="nebula-btn"><span>Link button</span></a>`;
+exports[`Button should support link button 1`] = `<a href="http://nebula.em2046.com/" target="_blank" type="button" class="nebula-btn"><span>Link button</span></a>`;
