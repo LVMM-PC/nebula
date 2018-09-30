@@ -1,10 +1,10 @@
-import { shallowMount, mount } from "@vue/test-utils";
+import { mount } from "@vue/test-utils";
 import NebulaButton from "../NebulaButton.vue";
 import NebulaIcon from "../../icon/NebulaIcon.vue";
 
 describe("Button", () => {
   it("renders correctly", () => {
-    const buttonWrapper = shallowMount({
+    const buttonWrapper = mount({
       render() {
         return <NebulaButton>Follow</NebulaButton>;
       }
@@ -13,7 +13,7 @@ describe("Button", () => {
   });
 
   it("renders Chinese characters correctly", () => {
-    const buttonWrapper1 = mount(NebulaButton, {
+    const buttonWrapper1 = mount({
       render() {
         return <NebulaButton>按钮</NebulaButton>;
       }
