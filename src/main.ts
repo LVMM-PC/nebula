@@ -5,7 +5,7 @@ import "./components/nebula-ui.less";
 // @ts-ignore
 import { NebulaButton, NebulaIcon, NebulaButtonGroup } from "./index.ts";
 
-import router from './router'
+import router from "./router";
 
 Vue.component("NebulaButton", NebulaButton);
 Vue.component("NebulaIcon", NebulaIcon);
