@@ -32,13 +32,13 @@ export default class NebulaButton extends Vue {
   @Prop({ default: null, type: Boolean })
   private ghost?: boolean;
 
-  @Prop({ default: false, type: Boolean })
+  @Prop({ default: null, type: Boolean })
   private disabled?: boolean;
 
   @Prop({ default: null, type: [Boolean, Object] })
   private loading?: boolean | { delay: number };
 
-  @Prop({ default: false, type: Boolean })
+  @Prop({ default: null, type: Boolean })
   private block?: boolean;
 
   @Prop({ default: "button", type: String })

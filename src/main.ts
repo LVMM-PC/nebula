@@ -6,7 +6,8 @@ import {
   NebulaButton,
   NebulaButtonGroup,
   NebulaCheckbox,
-  NebulaIcon
+  NebulaIcon,
+  NebulaCheckboxGroup
 } from "./index";
 
 import router from "./router";
@@ -15,6 +16,7 @@ Vue.component("NebulaButton", NebulaButton);
 Vue.component("NebulaIcon", NebulaIcon);
 Vue.component("NebulaButtonGroup", NebulaButtonGroup);
 Vue.component("NebulaCheckbox", NebulaCheckbox);
+Vue.component("NebulaCheckboxGroup", NebulaCheckboxGroup);
 Vue.config.productionTip = false;
 
 new Vue({

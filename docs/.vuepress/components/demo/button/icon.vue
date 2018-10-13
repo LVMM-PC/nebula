@@ -2,29 +2,31 @@
   <main>
     <section>
       <NebulaButton
-        type="primary"
+        icon="search"
         shape="circle"
-        icon="search"/>
+        type="primary"/>
       <NebulaButton
-        type="primary"
-        icon="search">Search</NebulaButton>
+        icon="search"
+        type="primary">Search
+      </NebulaButton>
       <NebulaButton
-        shape="circle"
-        icon="search"/>
+        icon="search"
+        shape="circle"/>
       <NebulaButton icon="search">Search</NebulaButton>
     </section>
     <section>
       <NebulaButton
-        shape="circle"
-        icon="search"/>
+        icon="search"
+        shape="circle"/>
       <NebulaButton icon="search">Search</NebulaButton>
       <NebulaButton
-        type="dashed"
+        icon="search"
         shape="circle"
-        icon="search"/>
+        type="dashed"/>
       <NebulaButton
-        type="dashed"
-        icon="search">Search</NebulaButton>
+        icon="search"
+        type="dashed">Search
+      </NebulaButton>
     </section>
   </main>
 </template>

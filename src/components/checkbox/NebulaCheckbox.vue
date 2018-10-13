@@ -3,16 +3,18 @@ import { Component, Prop, Vue, Watch } from "vue-property-decorator";
 
 @Component
 export default class NebulaCheckbox extends Vue {
-  @Prop({ default: false, type: Boolean })
+  public prefixCls: string = "nebula-checkbox";
+
+  @Prop({ default: null, type: Boolean })
   private checked?: boolean;
 
-  @Prop({ default: false, type: Boolean })
+  @Prop({ default: null, type: Boolean })
   private defaultChecked?: boolean;
 
-  @Prop({ default: false, type: Boolean })
+  @Prop({ default: null, type: Boolean })
   private disabled?: boolean;
 
-  @Prop({ default: false, type: Boolean })
+  @Prop({ default: null, type: Boolean })
   private indeterminate?: boolean;
 
   @Watch("checked")
@@ -20,10 +22,8 @@ export default class NebulaCheckbox extends Vue {
     this.stateChecked = val;
   }
 
-  public prefixCls: string = "nebula-checkbox";
-
   get labelClasses() {
-    let prefixCls = this.prefixCls;
+    let prefixCls = this.prefixCls || "nebula-checkbox";
     return [
       {
         [`${prefixCls}-wrapper`]: true
@@ -33,11 +33,9 @@ export default class NebulaCheckbox extends Vue {
 
   get checkboxClasses() {
     let prefixCls = this.prefixCls;
-    let stateIndeterminate = this.getIndeterminate;
     return [
       {
-        [`${prefixCls}-input`]: true,
-        [`${prefixCls}-indeterminate`]: stateIndeterminate
+        [`${prefixCls}-input`]: true
       }
     ];
   }
@@ -50,11 +48,13 @@ export default class NebulaCheckbox extends Vue {
     let prefixCls = this.prefixCls;
     let stateChecked = this.stateChecked;
     let stateDisabled = this.getDisabled;
+    let stateIndeterminate = this.getIndeterminate;
     return [
       prefixCls,
       {
         [`${prefixCls}-checked`]: stateChecked,
-        [`${prefixCls}-disabled`]: stateDisabled
+        [`${prefixCls}-disabled`]: stateDisabled,
+        [`${prefixCls}-indeterminate`]: stateIndeterminate
       }
     ];
   }
@@ -62,10 +62,9 @@ export default class NebulaCheckbox extends Vue {
   public stateChecked?: boolean = false;
 
   created() {
-    let $attrs = this.$attrs;
     let checked = this.checked;
     let defaultChecked = this.defaultChecked;
-    this.stateChecked = "checked" in $attrs ? checked : defaultChecked;
+    this.stateChecked = typeof checked === "boolean" ? checked : defaultChecked;
   }
 
   get getDisabled() {
@@ -79,8 +78,18 @@ export default class NebulaCheckbox extends Vue {
   handleChange(event: { target: HTMLInputElement }) {
     let targetChecked = event.target.checked;
     this.stateChecked = targetChecked;
-    this.$emit("change", event);
     this.$emit("input", targetChecked);
+    this.$emit("change", event);
+  }
+
+  public focus() {
+    let input: HTMLInputElement = this.$refs.input as HTMLInputElement;
+    input.focus();
+  }
+
+  public blur() {
+    let input: HTMLInputElement = this.$refs.input as HTMLInputElement;
+    input.blur();
   }
 
   render() {
@@ -94,8 +103,7 @@ export default class NebulaCheckbox extends Vue {
     } = this;
     const checkboxProps = {
       attrs: {
-        ...$attrs,
-        defaultChecked: true
+        ...$attrs
       },
       class: checkboxClasses,
       on: {
@@ -114,6 +122,7 @@ export default class NebulaCheckbox extends Vue {
             type="checkbox"
             checked={stateChecked}
             disabled={getDisabled}
+            ref="input"
             {...checkboxProps}
           />
           <span class={innerClass} />

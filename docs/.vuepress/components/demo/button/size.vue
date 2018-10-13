@@ -4,43 +4,47 @@
       <NebulaButtonGroup :value="size">
         <NebulaButton
           :type="(size === 'large') ? 'primary' : ''"
-          value="large"
-          @click="handleSwitchSize('large')">Large
+          @click="handleSwitchSize('large')"
+          value="large">Large
         </NebulaButton>
         <NebulaButton
           :type="(size === 'default') ? 'primary' : ''"
-          value="default"
-          @click="handleSwitchSize('default')">Default
+          @click="handleSwitchSize('default')"
+          value="default">Default
         </NebulaButton>
         <NebulaButton
           :type="(size === 'small') ? 'primary' : ''"
-          value="small"
-          @click="handleSwitchSize('small')">Small
+          @click="handleSwitchSize('small')"
+          value="small">Small
         </NebulaButton>
       </NebulaButtonGroup>
     </section>
     <section>
       <NebulaButton
         :size="size"
-        type="primary">Primary</NebulaButton>
+        type="primary">Primary
+      </NebulaButton>
       <NebulaButton :size="size">Normal</NebulaButton>
       <NebulaButton
         :size="size"
-        type="dashed">Dashed</NebulaButton>
+        type="dashed">Dashed
+      </NebulaButton>
       <NebulaButton
         :size="size"
-        type="danger">Danger</NebulaButton>
+        type="danger">Danger
+      </NebulaButton>
     </section>
     <section>
       <NebulaButton
         :size="size"
-        type="primary"
+        icon="download"
         shape="circle"
-        icon="download"/>
+        type="primary"/>
       <NebulaButton
         :size="size"
-        type="primary"
-        icon="download">Download</NebulaButton>
+        icon="download"
+        type="primary">Download
+      </NebulaButton>
     </section>
     <section>
       <NebulaButtonGroup :size="size">

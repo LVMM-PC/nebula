@@ -31,6 +31,22 @@ Communicated with other components.
 
 ^^^ @/docs/.vuepress/components/demo/checkbox/controller.vue
 
+### Checkbox Group
+
+Generate a group of checkboxes from an array.
+
+<demo-checkbox-group/>
+
+^^^ @/docs/.vuepress/components/demo/checkbox/group.vue
+
+### Check all
+
+The `indeterminate` property can help you to achieve a 'check all' effect.
+
+<demo-checkbox-check-all/>
+
+^^^ @/docs/.vuepress/components/demo/checkbox/check-all.vue
+
 ## API
 
 ### Props
@@ -39,7 +55,7 @@ Communicated with other components.
 
 | Property       | Description                                                           | Type              | Default |
 | -------------- | --------------------------------------------------------------------- | ----------------- | ------- |
-| autoFocus      | get focus when component mounted                                      | boolean           | `false` |
+| autofocus      | get focus when component mounted                                      | boolean           | `false` |
 | checked        | Specifies whether the checkbox is selected.                           | boolean           | `false` |
 | defaultChecked | Specifies the initial state: whether or not the checkbox is selected. | boolean           | `false` |
 | disabled       | Disable checkbox                                                      | boolean           | `false` |
