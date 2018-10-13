@@ -1,4 +1,4 @@
-let sidebar = ["/", "/installation/", "/button/", "/icon/"];
+let sidebar = ["/", "/installation/", "/button/", "/icon/", "/checkbox/"];
 
 module.exports = {
   title: "Nebula UI",
@@ -10,7 +10,7 @@ module.exports = {
     sidebarDepth: 2,
     locales: {
       "/zh/": {
-        label: '简体中文',
+        label: "简体中文",
         sidebar: sidebar.map(x => {
           return "/zh" + x;
         })
@@ -27,7 +27,7 @@ module.exports = {
       lang: "en-US"
     },
     "/zh/": {
-      lang: 'zh-CN',
+      lang: "zh-CN",
       description: "基于 Ant Design 的组件库"
     }
   },

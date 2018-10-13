@@ -4,9 +4,18 @@
       <NebulaButton>Follow</NebulaButton>
     </section>
     <section id="hoc">
-      <NebulaButton 
-        :label="hocLabel" 
+      <NebulaButton
+        :label="hocLabel"
         @click="handleHocClick"/>
+    </section>
+    <section>
+      <NebulaButton @click="handleClick">{{ label }}</NebulaButton>
+    </section>
+    <section>
+      <NebulaButton
+        type="primary"
+        shape="circle"
+        icon="search"/>
     </section>
   </div>
 </template>
@@ -16,6 +25,7 @@ export default {
   name: "Button",
   data() {
     return {
+      label: "按钮",
       hocLabel: "按钮"
     };
   },
@@ -25,6 +35,13 @@ export default {
         this.hocLabel = "大按钮";
       } else {
         this.hocLabel = "按钮";
+      }
+    },
+    handleClick() {
+      if (this.label === "按钮") {
+        this.label = "大按钮";
+      } else {
+        this.label = "按钮";
       }
     }
   }
