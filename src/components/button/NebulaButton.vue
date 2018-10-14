@@ -14,6 +14,8 @@ export type ButtonHTMLType = "submit" | "button" | "reset";
   }
 })
 export default class NebulaButton extends Vue {
+  static __NEBULA_BUTTON: boolean = true;
+
   @Prop({ default: null, type: String })
   private label?: string;
 

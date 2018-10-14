@@ -17,12 +17,38 @@
         shape="circle"
         icon="search"/>
     </section>
+    <section>
+      <DefaultButton/>
+    </section>
   </div>
 </template>
 
 <script>
+import NebulaButton from "../components/button/NebulaButton";
+import Vue from "vue";
+const DefaultButton = {
+  data() {
+    return {
+      loading: false
+    };
+  },
+  methods: {
+    enterLoading() {
+      this.loading = true;
+    }
+  },
+  render() {
+    return <NebulaButton loading={this.loading} onClick={this.enterLoading} />;
+  }
+};
+
+Vue.component("DefaultButton", DefaultButton);
+
 export default {
   name: "Button",
+  component: {
+    DefaultButton
+  },
   data() {
     return {
       label: "按钮",
