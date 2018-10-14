@@ -1,15 +1,20 @@
 <template>
   <div>
+    <section>
+      <FalseButton/>
+    </section>
     <section id="renderCorrectly">
       <NebulaButton>Follow</NebulaButton>
     </section>
     <section id="hoc">
       <NebulaButton
-        :label="hocLabel"
-        @click="handleHocClick"/>
+        @click="handleHocClick">{{ hocLabel }}</NebulaButton>
     </section>
     <section>
       <NebulaButton @click="handleClick">{{ label }}</NebulaButton>
+    </section>
+    <section>
+      <NebulaButton @click="handleClick"><span>{{ label }}</span></NebulaButton>
     </section>
     <section>
       <NebulaButton
@@ -42,7 +47,14 @@ const DefaultButton = {
   }
 };
 
+const FalseButton = {
+  render() {
+    return <NebulaButton>{false}</NebulaButton>;
+  }
+};
+
 Vue.component("DefaultButton", DefaultButton);
+Vue.component("FalseButton", FalseButton);
 
 export default {
   name: "Button",

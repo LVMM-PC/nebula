@@ -28,6 +28,8 @@ export default class NebulaCheckbox extends Vue {
     this.stateChecked = val;
   }
 
+  public stateChecked?: boolean = false;
+
   get labelClasses() {
     let prefixCls = this.prefixCls || "nebula-checkbox";
     return [
@@ -65,14 +67,6 @@ export default class NebulaCheckbox extends Vue {
     ];
   }
 
-  public stateChecked?: boolean = false;
-
-  created() {
-    let checked = this.checked;
-    let defaultChecked = this.defaultChecked;
-    this.stateChecked = typeof checked === "boolean" ? checked : defaultChecked;
-  }
-
   get getDisabled() {
     return this.disabled;
   }
@@ -81,18 +75,17 @@ export default class NebulaCheckbox extends Vue {
     return this.indeterminate;
   }
 
+  created() {
+    let checked = this.checked;
+    let defaultChecked = this.defaultChecked;
+    this.stateChecked = typeof checked === "boolean" ? checked : defaultChecked;
+  }
+
   mounted() {
     if (this.autofocus) {
       let input: HTMLInputElement = this.$refs.input as HTMLInputElement;
       input.focus();
     }
-  }
-
-  handleChange(event: { target: HTMLInputElement }) {
-    let targetChecked = event.target.checked;
-    this.stateChecked = targetChecked;
-    this.$emit("input", targetChecked);
-    this.$emit("change", event);
   }
 
   public focus() {
@@ -103,6 +96,13 @@ export default class NebulaCheckbox extends Vue {
   public blur() {
     let input: HTMLInputElement = this.$refs.input as HTMLInputElement;
     input.blur();
+  }
+
+  public handleChange(event: { target: HTMLInputElement }) {
+    let targetChecked = event.target.checked;
+    this.stateChecked = targetChecked;
+    this.$emit("input", targetChecked);
+    this.$emit("change", event);
   }
 
   render() {

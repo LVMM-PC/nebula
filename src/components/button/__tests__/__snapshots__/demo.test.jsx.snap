@@ -38,11 +38,11 @@ exports[`renders ./docs/.vuepress/components/demo/button/group.vue correctly 1`]
   </section>
   <h4>With Icon</h4>
   <section>
-    <div class="nebula-btn-group"><button type="button" class="nebula-btn nebula-btn-primary"><span><span class="nebula-icon nebula-icon-left"></span>
+    <div class="nebula-btn-group"><button type="button" class="nebula-btn nebula-btn-primary"><span class="nebula-icon nebula-icon-left"></span><span>
         Go back
-        </span></button> <button type="button" class="nebula-btn nebula-btn-primary"><span>
+      </span></button> <button type="button" class="nebula-btn nebula-btn-primary"><span>
         Go forward
-        <span class="nebula-icon nebula-icon-right"></span></span></button></div>
+        </span><span class="nebula-icon nebula-icon-right"></span></button></div>
     <div class="nebula-btn-group"><button type="button" class="nebula-btn nebula-btn-primary nebula-btn-icon-only"><span class="nebula-icon nebula-icon-cloud"></span></button> <button type="button" class="nebula-btn nebula-btn-primary nebula-btn-icon-only"><span class="nebula-icon nebula-icon-cloud-download"></span></button></div>
   </section>
 </main>
@@ -76,7 +76,7 @@ exports[`renders ./docs/.vuepress/components/demo/button/loading.vue correctly 1
 exports[`renders ./docs/.vuepress/components/demo/button/multiple.vue correctly 1`] = `
 <main><button type="button" class="nebula-btn nebula-btn-primary"><span>primary</span></button> <button type="button" class="nebula-btn"><span>secondary</span></button> <button type="button" class="nebula-btn"><span>
     Actions
-    <span class="nebula-icon nebula-icon-down"></span></span></button></main>
+    </span><span class="nebula-icon nebula-icon-down"></span></button></main>
 `;
 
 exports[`renders ./docs/.vuepress/components/demo/button/size.vue correctly 1`] = `
@@ -94,11 +94,11 @@ exports[`renders ./docs/.vuepress/components/demo/button/size.vue correctly 1`] 
   <section><button type="button" class="nebula-btn nebula-btn-circle nebula-btn-lg nebula-btn-primary nebula-btn-icon-only"><span class="nebula-icon nebula-icon-download"></span></button> <button type="button" class="nebula-btn nebula-btn-lg nebula-btn-primary"><span class="nebula-icon nebula-icon-download"></span><span>Download
     </span></button></section>
   <section>
-    <div class="nebula-btn-group nebula-btn-group-lg"><button type="button" class="nebula-btn nebula-btn-primary"><span><span class="nebula-icon nebula-icon-left"></span>
+    <div class="nebula-btn-group nebula-btn-group-lg"><button type="button" class="nebula-btn nebula-btn-primary"><span class="nebula-icon nebula-icon-left"></span><span>
         Backward
-        </span></button> <button type="button" class="nebula-btn nebula-btn-primary"><span>
+      </span></button> <button type="button" class="nebula-btn nebula-btn-primary"><span>
         Forward
-        <span class="nebula-icon nebula-icon-right"></span></span></button></div>
+        </span><span class="nebula-icon nebula-icon-right"></span></button></div>
   </section>
 </main>
 `;
