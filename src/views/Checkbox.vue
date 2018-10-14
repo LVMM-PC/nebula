@@ -1,17 +1,27 @@
 <template>
   <div>
     <section>
-      <NebulaCheckbox autofocus/>
+      <NebulaCheckbox 
+        autofocus 
+        @focus="handleFocus"/>
     </section>
     <section>
       <NebulaCheckbox default-checked/>
     </section>
     <section>
       <NebulaCheckbox
+        @mouseenter="handleMouseEnter"
+        @mouseleave="handleMouseLeave">
+        Label
+      </NebulaCheckbox>
+    </section>
+    <section>
+      <NebulaCheckbox
         ref="third"
         :checked="checked"
         :disabled="disabled"
-        @change="handleSingleChange">Checkbox</NebulaCheckbox>
+        @change="handleSingleChange">Checkbox
+      </NebulaCheckbox>
       <NebulaButton @click="handleCheck">Check</NebulaButton>
       <NebulaButton @click="handleUnCheck">UnCheck</NebulaButton>
       <NebulaButton @click="handleDisable">Disable</NebulaButton>
@@ -117,6 +127,15 @@ export default {
     },
     handleChange(checkedValues) {
       console.log("checked = ", checkedValues);
+    },
+    handleMouseEnter() {
+      console.log("mouseenter");
+    },
+    handleMouseLeave() {
+      console.log("mouseleave");
+    },
+    handleFocus() {
+      console.log("focus");
     }
   }
 };

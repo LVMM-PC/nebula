@@ -1,6 +1,8 @@
 <script lang="tsx">
 import { Component, Prop, Vue, Watch } from "vue-property-decorator";
 
+function noop() {}
+
 @Component
 export default class NebulaCheckbox extends Vue {
   public prefixCls: string = "nebula-checkbox";
@@ -10,6 +12,9 @@ export default class NebulaCheckbox extends Vue {
 
   @Prop({ default: null, type: Boolean })
   private defaultChecked?: boolean;
+
+  @Prop({ default: null, type: Boolean })
+  private autofocus?: boolean;
 
   @Prop({ default: null, type: Boolean })
   private disabled?: boolean;
@@ -75,6 +80,13 @@ export default class NebulaCheckbox extends Vue {
     return this.indeterminate;
   }
 
+  mounted() {
+    if (this.autofocus) {
+      let input: HTMLInputElement = this.$refs.input as HTMLInputElement;
+      input.focus();
+    }
+  }
+
   handleChange(event: { target: HTMLInputElement }) {
     let targetChecked = event.target.checked;
     this.stateChecked = targetChecked;
@@ -101,13 +113,18 @@ export default class NebulaCheckbox extends Vue {
       handleChange,
       stateChecked
     } = this;
+    const {
+      mouseenter = noop,
+      mouseleave = noop,
+      ...restListeners
+    } = $listeners;
     const checkboxProps = {
       attrs: {
         ...$attrs
       },
       class: checkboxClasses,
       on: {
-        ...$listeners,
+        ...restListeners,
         change: handleChange
       }
     };
@@ -115,13 +132,19 @@ export default class NebulaCheckbox extends Vue {
     let spanClasses = this.spanClasses;
     let innerClass = this.innerClass;
     let children = this.$slots.default;
+    let autofocus = this.autofocus;
     return (
-      <label class={labelClasses}>
+      <label
+        class={labelClasses}
+        onMouseenter={mouseenter}
+        onMouseleave={mouseleave}
+      >
         <span class={spanClasses}>
           <input
             type="checkbox"
             checked={stateChecked}
             disabled={getDisabled}
+            autofocus={autofocus}
             ref="input"
             {...checkboxProps}
           />
