@@ -1,8 +1,9 @@
 <template>
   <div>
     <section>
-      <NebulaCheckbox 
-        autofocus 
+      <NebulaCheckbox
+        prefix-cls="my-checkbox"
+        autofocus
         @focus="handleFocus"/>
     </section>
     <section>
@@ -40,6 +41,7 @@
       <NebulaCheckboxGroup
         :options="plainOptions"
         :value="checkedList"
+        prefix-cls="my-checkbox"
         @change="handleGroupChange"/>
     </section>
     <section>

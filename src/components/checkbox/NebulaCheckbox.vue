@@ -5,7 +5,8 @@ function noop() {}
 
 @Component
 export default class NebulaCheckbox extends Vue {
-  public prefixCls: string = "nebula-checkbox";
+  @Prop({ default: "nebula-checkbox", type: String })
+  private prefixCls?: string;
 
   @Prop({ default: null, type: Boolean })
   private checked?: boolean;
