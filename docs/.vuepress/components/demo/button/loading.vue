@@ -3,14 +3,12 @@
     <section>
       <NebulaButton
         loading
-        type="primary">
-        Loading
+        type="primary">Loading
       </NebulaButton>
       <NebulaButton
         loading
         size="small"
-        type="primary">
-        Loading
+        type="primary">Loading
       </NebulaButton>
     </section>
     <section>
@@ -24,8 +22,7 @@
         :loading="iconLoading"
         @click="enterIconLoading"
         icon="poweroff"
-        type="primary">
-        Click me!
+        type="primary">Click me!
       </NebulaButton>
     </section>
     <section>

@@ -24,8 +24,7 @@
           <NebulaIcon type="left"/>
           Go back
         </NebulaButton>
-        <NebulaButton type="primary">
-          Go forward
+        <NebulaButton type="primary">Go forward
           <NebulaIcon type="right"/>
         </NebulaButton>
       </NebulaButtonGroup>

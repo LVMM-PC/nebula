@@ -5,8 +5,7 @@
         :indeterminate="indeterminate"
         @change="handleCheckAllChange"
         :checked="checkAll"
-      >
-        Check all
+      >Check all
       </NebulaCheckbox>
     </section>
     <section>

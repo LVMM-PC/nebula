@@ -5,8 +5,7 @@
         :checked="checked"
         :disabled="disabled"
         @change="handleChange"
-      >
-        {{label}}
+      >{{label}}
       </NebulaCheckbox>
     </section>
     <section>
@@ -14,16 +13,14 @@
         type="primary"
         size="small"
         @click="handleToggleChecked"
-      >
-        {{checkLabel}}
+      >{{checkLabel}}
       </NebulaButton>
       <NebulaButton
         :style="{marginLeft:'10px'}"
         type="primary"
         size="small"
         @click="handleToggleDisable"
-      >
-        {{checkDisabled}}
+      >{{checkDisabled}}
       </NebulaButton>
     </section>
   </main>
