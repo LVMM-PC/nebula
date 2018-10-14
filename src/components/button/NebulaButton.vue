@@ -108,7 +108,7 @@ export default class NebulaButton extends Vue {
     this.fixTwoCNChar();
   }
 
-  update() {
+  updated() {
     this.fixTwoCNChar();
   }
 

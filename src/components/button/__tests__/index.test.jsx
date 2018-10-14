@@ -64,7 +64,56 @@ describe("Button", () => {
     expect(buttonWrapper5.html()).toMatchSnapshot();
   });
 
-  //TODO renders Chinese characters correctly in HOC
+  it("renders Chinese characters correctly in HOC", async () => {
+    const Text = {
+      props: {
+        label: {
+          type: String
+        }
+      },
+      render() {
+        return <span>{this.label}</span>;
+      }
+    };
+
+    const wrapper = mount({
+      data() {
+        return {
+          label: "按钮"
+        };
+      },
+      render() {
+        return (
+          <NebulaButton>
+            <Text label={this.label}>按钮</Text>
+          </NebulaButton>
+        );
+      }
+    });
+
+    await flushPromises();
+    expect(
+      wrapper.find(".nebula-btn").classes("nebula-btn-two-chinese-chars")
+    ).toBe(true);
+
+    wrapper.setData({
+      label: "大按钮"
+    });
+
+    await flushPromises();
+    expect(
+      wrapper.find(".nebula-btn").classes("nebula-btn-two-chinese-chars")
+    ).toBe(false);
+
+    wrapper.setData({
+      label: "按钮"
+    });
+
+    await flushPromises();
+    expect(
+      wrapper.find(".nebula-btn").classes("nebula-btn-two-chinese-chars")
+    ).toBe(true);
+  });
 
   it("have static property for type detecting", () => {
     expect(NebulaButton.__NEBULA_BUTTON).toBe(true);
@@ -149,7 +198,6 @@ describe("Button", () => {
       }
     });
     expect(wrapper1.html()).toMatchSnapshot();
-    //FIXME
     const wrapper2 = mount({
       render() {
         return <NebulaButton>{false}</NebulaButton>;
