@@ -137,20 +137,20 @@ describe("Button", () => {
   });
 
   it("fixbug renders {0} , 0 and {false}", () => {
-    const wrapper = render({
+    const wrapper = mount({
       render() {
         return <NebulaButton>{0}</NebulaButton>;
       }
     });
     expect(wrapper.html()).toMatchSnapshot();
-    const wrapper1 = render({
+    const wrapper1 = mount({
       render() {
         return <NebulaButton>0</NebulaButton>;
       }
     });
     expect(wrapper1.html()).toMatchSnapshot();
     //FIXME
-    const wrapper2 = render({
+    const wrapper2 = mount({
       render() {
         return <NebulaButton>{false}</NebulaButton>;
       }

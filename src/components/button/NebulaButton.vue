@@ -3,6 +3,17 @@ import { Component, Prop, Vue, Watch } from "vue-property-decorator";
 import { VNode } from "vue";
 import NebulaIcon from "../icon/NebulaIcon.vue";
 
+const rxTwoCNChar = /^[\u4e00-\u9fa5]{2}$/;
+const isTwoCNChar = (str: any) => {
+  if (typeof str !== "string") {
+    return;
+  }
+  return rxTwoCNChar.test(str);
+};
+const isString = (str: any) => {
+  return typeof str === "string";
+};
+
 export type ButtonType = "default" | "primary" | "ghost" | "dashed" | "danger";
 export type ButtonShape = "circle" | "circle-outline";
 export type ButtonSize = "small" | "default" | "large";
@@ -15,9 +26,6 @@ export type ButtonHTMLType = "submit" | "button" | "reset";
 })
 export default class NebulaButton extends Vue {
   static __NEBULA_BUTTON: boolean = true;
-
-  @Prop({ default: null, type: String })
-  private label?: string;
 
   @Prop({ default: null, type: String })
   private icon?: string;
@@ -71,37 +79,21 @@ export default class NebulaButton extends Vue {
 
   public delayTimeout: any;
 
+  mounted() {
+    this.fixTwoCNChar();
+  }
+
+  update() {
+    this.fixTwoCNChar();
+  }
+
   beforeDestroy() {
     if (this.delayTimeout) {
       clearTimeout(this.delayTimeout);
     }
   }
 
-  static isTwoCNChar(str: string) {
-    const rxTwoCNChar = /^[\u4e00-\u9fa5]{2}$/;
-    return rxTwoCNChar.test(str);
-  }
-
-  static getTwoCNChar(slot: VNode[]) {
-    let tempVNode = null;
-
-    if (slot && slot.length === 1) {
-      tempVNode = slot[0];
-      if (tempVNode && tempVNode.children && tempVNode.children.length === 1) {
-        tempVNode = tempVNode.children[0];
-      }
-    }
-
-    if (
-      tempVNode &&
-      tempVNode.text &&
-      NebulaButton.isTwoCNChar(tempVNode.text)
-    ) {
-      return tempVNode.text;
-    }
-  }
-
-  get classes() {
+  public classes() {
     let block = this.block;
     let children = this.children();
     let ghost = this.ghost;
@@ -144,29 +136,6 @@ export default class NebulaButton extends Vue {
     return sizeCls;
   }
 
-  public children() {
-    let label = this.label;
-    if (label) {
-      if (NebulaButton.isTwoCNChar(label)) {
-        this.hasTwoCNChar = true;
-        return label.split("").join(" ");
-      } else {
-        this.hasTwoCNChar = false;
-        return label;
-      }
-    }
-
-    let twoCNChar = NebulaButton.getTwoCNChar(this.$slots.default);
-
-    if (twoCNChar && !this.iconType) {
-      this.hasTwoCNChar = true;
-      return twoCNChar.split("").join(" ");
-    } else {
-      this.hasTwoCNChar = false;
-      return this.$slots.default;
-    }
-  }
-
   get component() {
     if (this.$attrs["href"]) {
       return "a";
@@ -183,7 +152,36 @@ export default class NebulaButton extends Vue {
     }
   }
 
-  handleClick(event: Event) {
+  public insertSpace(child: VNode, needInserted: boolean) {
+    if (child == null) {
+      return;
+    }
+    const SPACE = needInserted ? " " : "";
+    let childText =
+      child.children && child.children[0] && child.children[0].text;
+    if (
+      typeof child !== "string" &&
+      typeof child !== "number" &&
+      isString(child.tag) &&
+      child.children &&
+      child.children.length === 1 &&
+      childText &&
+      isString(childText) &&
+      isTwoCNChar(childText)
+    ) {
+      return childText.split("").join(SPACE);
+    }
+    let text = child.text;
+    if (typeof text === "string") {
+      if (isTwoCNChar(text)) {
+        text = text.split("").join(SPACE);
+      }
+      return <span>{text}</span>;
+    }
+    return child;
+  }
+
+  public handleClick(event: Event) {
     if (this.ghost) {
       event.preventDefault();
       event.stopPropagation();
@@ -193,16 +191,37 @@ export default class NebulaButton extends Vue {
     }
   }
 
+  public isNeedInserted() {
+    const { iconType, $slots } = this;
+    return $slots.default && $slots.default.length === 1 && !iconType;
+  }
+
+  public fixTwoCNChar() {
+    const node = this.$el as HTMLElement;
+    const buttonText = node.textContent || node.innerText;
+    if (this.isNeedInserted() && isTwoCNChar(buttonText)) {
+      if (!this.hasTwoCNChar) {
+        this.hasTwoCNChar = true;
+      }
+    } else if (this.hasTwoCNChar) {
+      this.hasTwoCNChar = false;
+    }
+  }
+
+  public children() {
+    return this.$slots.default;
+  }
+
   render() {
     const {
       $attrs,
       $listeners,
-      classes,
       disabled,
       handleClick,
       htmlType,
       iconType
     } = this;
+    let classes = this.classes();
     const buttonProps = {
       props: {},
       attrs: {
@@ -224,7 +243,12 @@ export default class NebulaButton extends Vue {
     };
     const iconNode = iconType ? <NebulaIcon {...iconProps} /> : "";
     let children = this.children();
-    const kids = children ? <span>{children}</span> : "";
+    const kids = children
+      ? children.map(child => {
+          return this.insertSpace(child, this.isNeedInserted());
+        })
+      : null;
+
     switch (this.component) {
       case "a":
         return (
