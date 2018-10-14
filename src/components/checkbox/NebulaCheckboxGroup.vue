@@ -12,8 +12,6 @@ export interface CheckboxOptionType {
 
 @Component
 export default class NebulaCheckboxGroup extends Vue {
-  public stateValue: Array<CheckboxValueType> = [];
-
   @Prop({ default: "nebula-checkbox", type: String })
   private prefixCls?: string;
 
@@ -43,18 +41,20 @@ export default class NebulaCheckboxGroup extends Vue {
     this.stateValue = val;
   }
 
-  created() {
-    let value = this.value;
-    let defaultValue = this.defaultValue;
-    this.stateValue = value && value.length ? value : defaultValue || [];
-  }
+  public stateValue: Array<CheckboxValueType> = [];
 
   get groupClass() {
     let prefixCls = this.prefixCls;
     return `${prefixCls}-group`;
   }
 
-  private getOptions() {
+  created() {
+    let value = this.value;
+    let defaultValue = this.defaultValue;
+    this.stateValue = value && value.length ? value : defaultValue || [];
+  }
+
+  public getOptions() {
     const options = this.options;
     if (!options) {
       return [];
@@ -70,7 +70,7 @@ export default class NebulaCheckboxGroup extends Vue {
     });
   }
 
-  private toggleOption(option: any) {
+  public toggleOption(option: any) {
     const optionIndex = this.stateValue.indexOf(option.value);
     const value = [...this.stateValue];
 

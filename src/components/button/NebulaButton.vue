@@ -71,54 +71,6 @@ export default class NebulaButton extends Vue {
     }
   }
 
-  public prefixCls: string = "nebula-btn";
-
-  public hasTwoCNChar: boolean = false;
-
-  public stateLoading: boolean = !!this.loading;
-
-  public delayTimeout: any;
-
-  mounted() {
-    this.fixTwoCNChar();
-  }
-
-  update() {
-    this.fixTwoCNChar();
-  }
-
-  beforeDestroy() {
-    if (this.delayTimeout) {
-      clearTimeout(this.delayTimeout);
-    }
-  }
-
-  public classes() {
-    let block = this.block;
-    let children = this.children();
-    let ghost = this.ghost;
-    let hasTwoCNChar = this.hasTwoCNChar;
-    let icon = this.icon;
-    let loading = this.stateLoading;
-    let prefixCls = this.prefixCls;
-    let shape = this.shape;
-    let sizeCls = this.sizeCls;
-    let type = this.type;
-    return [
-      prefixCls,
-      {
-        [`${prefixCls}-${shape}`]: shape,
-        [`${prefixCls}-${sizeCls}`]: sizeCls,
-        [`${prefixCls}-${type}`]: type,
-        [`${prefixCls}-background-ghost`]: ghost,
-        [`${prefixCls}-block`]: block,
-        [`${prefixCls}-icon-only`]: !children && icon,
-        [`${prefixCls}-loading`]: loading,
-        [`${prefixCls}-two-chinese-chars`]: hasTwoCNChar
-      }
-    ];
-  }
-
   get sizeCls() {
     // large => lg
     // small => sm
@@ -150,6 +102,54 @@ export default class NebulaButton extends Vue {
     } else {
       return this.icon;
     }
+  }
+
+  mounted() {
+    this.fixTwoCNChar();
+  }
+
+  update() {
+    this.fixTwoCNChar();
+  }
+
+  beforeDestroy() {
+    if (this.delayTimeout) {
+      clearTimeout(this.delayTimeout);
+    }
+  }
+
+  public prefixCls: string = "nebula-btn";
+
+  public hasTwoCNChar: boolean = false;
+
+  public stateLoading: boolean = !!this.loading;
+
+  public delayTimeout: any;
+
+  public classes() {
+    let block = this.block;
+    let children = this.children();
+    let ghost = this.ghost;
+    let hasTwoCNChar = this.hasTwoCNChar;
+    let icon = this.icon;
+    let loading = this.stateLoading;
+    let prefixCls = this.prefixCls;
+    let shape = this.shape;
+    let sizeCls = this.sizeCls;
+    let type = this.type;
+    return [
+      prefixCls,
+      {
+        [`${prefixCls}-${shape}`]: shape,
+        [`${prefixCls}-${sizeCls}`]: sizeCls,
+        [`${prefixCls}-${type}`]: type,
+        [`${prefixCls}-background-ghost`]: ghost,
+        [`${prefixCls}-block`]: block,
+        [`${prefixCls}-icon-only`]: !children && icon,
+        [`${prefixCls}-loading`]: loading,
+        [`${prefixCls}-two-chinese-chars`]: hasTwoCNChar
+      }
+    ];
   }
 
   public insertSpace(child: VNode, needInserted: boolean) {
