@@ -2,40 +2,40 @@
   <main>
     <section>
       <NebulaButton
-        type="primary"
-        loading>
+        loading
+        type="primary">
         Loading
       </NebulaButton>
       <NebulaButton
-        type="primary"
+        loading
         size="small"
-        loading>
+        type="primary">
         Loading
       </NebulaButton>
     </section>
     <section>
       <NebulaButton
         :loading="loading"
-        type="primary"
-        @click="enterLoading">
+        @click="enterLoading"
+        type="primary">
         Click me!
       </NebulaButton>
       <NebulaButton
         :loading="iconLoading"
-        type="primary"
+        @click="enterIconLoading"
         icon="poweroff"
-        @click="enterIconLoading">
+        type="primary">
         Click me!
       </NebulaButton>
     </section>
     <section>
       <NebulaButton
-        shape="circle"
-        loading/>
+        loading
+        shape="circle"/>
       <NebulaButton
-        type="primary"
+        loading
         shape="circle"
-        loading/>
+        type="primary"/>
     </section>
   </main>
 </template>

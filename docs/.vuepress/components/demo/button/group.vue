@@ -31,11 +31,11 @@
       </NebulaButtonGroup>
       <NebulaButtonGroup>
         <NebulaButton
-          type="primary"
-          icon="cloud"/>
+          icon="cloud"
+          type="primary"/>
         <NebulaButton
-          type="primary"
-          icon="cloud-download"/>
+          icon="cloud-download"
+          type="primary"/>
       </NebulaButtonGroup>
     </section>
   </main>

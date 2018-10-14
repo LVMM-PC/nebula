@@ -1,12 +1,18 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`Button fixbug renders {0} , 0 and {false} 1`] = `<span>0</span>`;
+
+exports[`Button fixbug renders {0} , 0 and {false} 2`] = `<span>0</span>`;
+
+exports[`Button fixbug renders {0} , 0 and {false} 3`] = `""`;
+
 exports[`Button renders Chinese characters correctly 1`] = `<button type="button" class="nebula-btn nebula-btn-two-chinese-chars"><span>按 钮</span></button>`;
 
 exports[`Button renders Chinese characters correctly 2`] = `<button type="button" class="nebula-btn"><span class="nebula-icon nebula-icon-search"></span><span>按钮</span></button>`;
 
-exports[`Button renders Chinese characters correctly 3`] = `<button type="button" class="nebula-btn"><span><span class="nebula-icon nebula-icon-search"></span>按钮</span></button>`;
+exports[`Button renders Chinese characters correctly 3`] = `<button type="button" class="nebula-btn"><span class="nebula-icon nebula-icon-search"></span><span>按钮</span></button>`;
 
-exports[`Button renders Chinese characters correctly 4`] = `<button type="button" class="nebula-btn nebula-btn-loading"><span class="nebula-icon nebula-icon-loading nebula-icon-spin"></span><span><span class="nebula-icon nebula-icon-search"></span>按钮</span></button>`;
+exports[`Button renders Chinese characters correctly 4`] = `<button type="button" class="nebula-btn nebula-btn-loading"><span class="nebula-icon nebula-icon-loading nebula-icon-spin"></span><span>按钮</span></button>`;
 
 exports[`Button renders Chinese characters correctly 5`] = `<button type="button" class="nebula-btn nebula-btn-loading"><span class="nebula-icon nebula-icon-loading nebula-icon-spin"></span><span>按钮</span></button>`;
 

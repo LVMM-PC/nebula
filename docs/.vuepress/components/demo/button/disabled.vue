@@ -3,8 +3,9 @@
     <section>
       <NebulaButton type="primary">Primary</NebulaButton>
       <NebulaButton
-        type="primary"
-        disabled>Primary(disabled)</NebulaButton>
+        disabled
+        type="primary">Primary(disabled)
+      </NebulaButton>
     </section>
     <section>
       <NebulaButton>Default</NebulaButton>
@@ -13,14 +14,16 @@
     <section>
       <NebulaButton type="dashed">Dashed</NebulaButton>
       <NebulaButton
-        type="dashed"
-        disabled>Dashed(disabled)</NebulaButton>
+        disabled
+        type="dashed">Dashed(disabled)
+      </NebulaButton>
     </section>
     <section :style="{ padding: '8px 8px 0 8px', background: 'rgb(190, 200, 200)' }">
       <NebulaButton ghost>Ghost</NebulaButton>
       <NebulaButton
-        ghost
-        disabled>Ghost(disabled)</NebulaButton>
+        disabled
+        ghost>Ghost(disabled)
+      </NebulaButton>
     </section>
   </main>
 </template>

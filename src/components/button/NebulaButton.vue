@@ -14,6 +14,8 @@ export type ButtonHTMLType = "submit" | "button" | "reset";
   }
 })
 export default class NebulaButton extends Vue {
+  static __NEBULA_BUTTON: boolean = true;
+
   @Prop({ default: null, type: String })
   private label?: string;
 
@@ -32,13 +34,13 @@ export default class NebulaButton extends Vue {
   @Prop({ default: null, type: Boolean })
   private ghost?: boolean;
 
-  @Prop({ default: false, type: Boolean })
+  @Prop({ default: null, type: Boolean })
   private disabled?: boolean;
 
   @Prop({ default: null, type: [Boolean, Object] })
   private loading?: boolean | { delay: number };
 
-  @Prop({ default: false, type: Boolean })
+  @Prop({ default: null, type: Boolean })
   private block?: boolean;
 
   @Prop({ default: "button", type: String })
@@ -52,10 +54,10 @@ export default class NebulaButton extends Vue {
       clearTimeout(this.delayTimeout);
     }
 
-    if (typeof val === "object" && val && val["delay"]) {
+    if (typeof val === "object" && val && val.delay) {
       this.delayTimeout = setTimeout(() => {
         this.stateLoading = true;
-      }, val["delay"]);
+      }, val.delay);
     } else if (typeof val === "boolean") {
       this.stateLoading = val;
     }
@@ -101,7 +103,7 @@ export default class NebulaButton extends Vue {
 
   get classes() {
     let block = this.block;
-    let children = this.children;
+    let children = this.children();
     let ghost = this.ghost;
     let hasTwoCNChar = this.hasTwoCNChar;
     let icon = this.icon;
@@ -142,7 +144,7 @@ export default class NebulaButton extends Vue {
     return sizeCls;
   }
 
-  get children() {
+  public children() {
     let label = this.label;
     if (label) {
       if (NebulaButton.isTwoCNChar(label)) {
@@ -220,9 +222,9 @@ export default class NebulaButton extends Vue {
         type: iconType
       }
     };
-
     const iconNode = iconType ? <NebulaIcon {...iconProps} /> : "";
-    const kids = this.children ? <span>{this.children}</span> : "";
+    let children = this.children();
+    const kids = children ? <span>{children}</span> : "";
     switch (this.component) {
       case "a":
         return (

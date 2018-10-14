@@ -1,14 +1,17 @@
 <template>
   <main>
     <NebulaButton
-      type="primary"
-      block>Primary</NebulaButton>
+      block
+      type="primary">Primary
+    </NebulaButton>
     <NebulaButton block>Default</NebulaButton>
     <NebulaButton
-      type="dashed"
-      block>Dashed</NebulaButton>
+      block
+      type="dashed">Dashed
+    </NebulaButton>
     <NebulaButton
-      type="danger"
-      block>danger</NebulaButton>
+      block
+      type="danger">danger
+    </NebulaButton>
   </main>
 </template>
