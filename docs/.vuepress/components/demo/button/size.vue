@@ -52,8 +52,7 @@
           <NebulaIcon type="left"/>
           Backward
         </NebulaButton>
-        <NebulaButton type="primary">
-          Forward
+        <NebulaButton type="primary">Forward
           <NebulaIcon type="right"/>
         </NebulaButton>
       </NebulaButtonGroup>

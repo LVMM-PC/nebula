@@ -2,8 +2,7 @@
   <main>
     <NebulaButton type="primary">primary</NebulaButton>
     <NebulaButton>secondary</NebulaButton>
-    <NebulaButton>
-      Actions
+    <NebulaButton>Actions
       <NebulaIcon type="down"/>
     </NebulaButton>
   </main>

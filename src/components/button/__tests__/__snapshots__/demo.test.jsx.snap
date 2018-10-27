@@ -40,8 +40,7 @@ exports[`renders ./docs/.vuepress/components/demo/button/group.vue correctly 1`]
   <section>
     <div class="nebula-btn-group"><button type="button" class="nebula-btn nebula-btn-primary"><span class="nebula-icon nebula-icon-left"></span><span>
         Go back
-      </span></button> <button type="button" class="nebula-btn nebula-btn-primary"><span>
-        Go forward
+      </span></button> <button type="button" class="nebula-btn nebula-btn-primary"><span>Go forward
         </span><span class="nebula-icon nebula-icon-right"></span></button></div>
     <div class="nebula-btn-group"><button type="button" class="nebula-btn nebula-btn-primary nebula-btn-icon-only"><span class="nebula-icon nebula-icon-cloud"></span></button> <button type="button" class="nebula-btn nebula-btn-primary nebula-btn-icon-only"><span class="nebula-icon nebula-icon-cloud-download"></span></button></div>
   </section>
@@ -59,23 +58,19 @@ exports[`renders ./docs/.vuepress/components/demo/button/icon.vue correctly 1`] 
 
 exports[`renders ./docs/.vuepress/components/demo/button/loading.vue correctly 1`] = `
 <main>
-  <section><button type="button" class="nebula-btn nebula-btn-primary nebula-btn-loading"><span class="nebula-icon nebula-icon-loading nebula-icon-spin"></span><span>
-      Loading
-    </span></button> <button type="button" class="nebula-btn nebula-btn-sm nebula-btn-primary nebula-btn-loading"><span class="nebula-icon nebula-icon-loading nebula-icon-spin"></span><span>
-      Loading
+  <section><button type="button" class="nebula-btn nebula-btn-primary nebula-btn-loading"><span class="nebula-icon nebula-icon-loading nebula-icon-spin"></span><span>Loading
+    </span></button> <button type="button" class="nebula-btn nebula-btn-sm nebula-btn-primary nebula-btn-loading"><span class="nebula-icon nebula-icon-loading nebula-icon-spin"></span><span>Loading
     </span></button></section>
   <section><button type="button" class="nebula-btn nebula-btn-primary"><span>
       Click me!
-    </span></button> <button type="button" class="nebula-btn nebula-btn-primary"><span class="nebula-icon nebula-icon-poweroff"></span><span>
-      Click me!
+    </span></button> <button type="button" class="nebula-btn nebula-btn-primary"><span class="nebula-icon nebula-icon-poweroff"></span><span>Click me!
     </span></button></section>
   <section><button type="button" class="nebula-btn nebula-btn-circle nebula-btn-loading"><span class="nebula-icon nebula-icon-loading nebula-icon-spin"></span></button> <button type="button" class="nebula-btn nebula-btn-circle nebula-btn-primary nebula-btn-loading"><span class="nebula-icon nebula-icon-loading nebula-icon-spin"></span></button></section>
 </main>
 `;
 
 exports[`renders ./docs/.vuepress/components/demo/button/multiple.vue correctly 1`] = `
-<main><button type="button" class="nebula-btn nebula-btn-primary"><span>primary</span></button> <button type="button" class="nebula-btn"><span>secondary</span></button> <button type="button" class="nebula-btn"><span>
-    Actions
+<main><button type="button" class="nebula-btn nebula-btn-primary"><span>primary</span></button> <button type="button" class="nebula-btn"><span>secondary</span></button> <button type="button" class="nebula-btn"><span>Actions
     </span><span class="nebula-icon nebula-icon-down"></span></button></main>
 `;
 
@@ -96,8 +91,7 @@ exports[`renders ./docs/.vuepress/components/demo/button/size.vue correctly 1`] 
   <section>
     <div class="nebula-btn-group nebula-btn-group-lg"><button type="button" class="nebula-btn nebula-btn-primary"><span class="nebula-icon nebula-icon-left"></span><span>
         Backward
-      </span></button> <button type="button" class="nebula-btn nebula-btn-primary"><span>
-        Forward
+      </span></button> <button type="button" class="nebula-btn nebula-btn-primary"><span>Forward
         </span><span class="nebula-icon nebula-icon-right"></span></button></div>
   </section>
 </main>

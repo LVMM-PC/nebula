@@ -4,13 +4,12 @@
       <NebulaCheckbox
         :indeterminate="indeterminate"
         @change="handleCheckAllChange"
-        :checked="checkAll"
-      >
-        Check all
+        v-model="checkAll"
+      >Check all
       </NebulaCheckbox>
     </section>
     <section>
-      <NebulaCheckboxGroup :options="plainOptions" :value="checkedList" @change="handleChange"/>
+      <NebulaCheckboxGroup :options="plainOptions" v-model="checkedList" @change="handleChange"/>
     </section>
   </main>
 </template>
@@ -29,10 +28,10 @@ export default {
     };
   },
   methods: {
-    handleCheckAllChange(e) {
-      this.checkedList = e.target.checked ? plainOptions : [];
+    handleCheckAllChange(checked) {
+      this.checkedList = checked ? plainOptions : [];
       this.indeterminate = false;
-      this.checkAll = e.target.checked;
+      this.checkAll = checked;
     },
     handleChange(checkedList) {
       this.checkedList = checkedList;

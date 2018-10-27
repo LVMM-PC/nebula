@@ -1,6 +1,6 @@
 <script lang="tsx">
 import NebulaCheckbox from "./NebulaCheckbox.vue";
-import { Component, Prop, Vue, Watch } from "vue-property-decorator";
+import { Component, Model, Prop, Vue, Watch } from "vue-property-decorator";
 
 export type CheckboxValueType = string | number | boolean;
 
@@ -12,6 +12,9 @@ export interface CheckboxOptionType {
 
 @Component
 export default class NebulaCheckboxGroup extends Vue {
+  @Model("change", { default: () => [], type: Array })
+  value?: Array<CheckboxValueType>;
+
   @Prop({ default: "nebula-checkbox", type: String })
   private prefixCls?: string;
 
@@ -29,12 +32,6 @@ export default class NebulaCheckboxGroup extends Vue {
     type: Array
   })
   private options?: Array<CheckboxOptionType | string>;
-
-  @Prop({
-    default: () => [],
-    type: Array
-  })
-  private value?: Array<CheckboxValueType>;
 
   @Watch("value")
   onValueChanged(val: any) {
