@@ -40,7 +40,7 @@
     <section>
       <NebulaCheckboxGroup
         :options="plainOptions"
-        :value="checkedList"
+        v-model="checkedList"
         prefix-cls="my-checkbox"
         @change="handleGroupChange"/>
     </section>

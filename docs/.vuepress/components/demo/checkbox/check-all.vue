@@ -9,7 +9,7 @@
       </NebulaCheckbox>
     </section>
     <section>
-      <NebulaCheckboxGroup :options="plainOptions" :value="checkedList" @change="handleChange"/>
+      <NebulaCheckboxGroup :options="plainOptions" v-model="checkedList" @change="handleChange"/>
     </section>
   </main>
 </template>
