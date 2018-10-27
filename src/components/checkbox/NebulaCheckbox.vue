@@ -1,15 +1,15 @@
 <script lang="tsx">
-import { Component, Prop, Vue, Watch } from "vue-property-decorator";
+import { Component, Model, Prop, Vue, Watch } from "vue-property-decorator";
 
 function noop() {}
 
 @Component
 export default class NebulaCheckbox extends Vue {
+  @Model("change", { default: null, type: Boolean })
+  checked!: boolean;
+
   @Prop({ default: "nebula-checkbox", type: String })
   private prefixCls?: string;
-
-  @Prop({ default: null, type: Boolean })
-  private checked?: boolean;
 
   @Prop({ default: null, type: Boolean })
   private defaultChecked?: boolean;
@@ -101,8 +101,7 @@ export default class NebulaCheckbox extends Vue {
   public handleChange(event: { target: HTMLInputElement }) {
     let targetChecked = event.target.checked;
     this.stateChecked = targetChecked;
-    this.$emit("input", targetChecked);
-    this.$emit("change", event);
+    this.$emit("change", targetChecked);
   }
 
   render() {

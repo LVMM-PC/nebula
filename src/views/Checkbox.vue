@@ -19,7 +19,7 @@
     <section>
       <NebulaCheckbox
         ref="third"
-        :checked="checked"
+        v-model="checked"
         :disabled="disabled"
         @change="handleSingleChange">Checkbox
       </NebulaCheckbox>
@@ -31,7 +31,7 @@
     <section :style="{borderBottom: '1px solid #E9E9E9'}">
       <NebulaCheckbox
         :indeterminate="indeterminate"
-        :checked="checkAll"
+        v-model="checkAll"
         @change="handleGroupCheckAllChange"
       >
         Check all
@@ -63,6 +63,10 @@
         disabled
         @change="handleChange"/>
     </section>
+    <section>
+      <NebulaCheckbox v-model="stateChecked"/>
+      <NebulaButton @click="toggleStateChecked">{{ stateChecked? "UnCheck":"Check" }}</NebulaButton>
+    </section>
   </div>
 </template>
 
@@ -91,7 +95,8 @@ export default {
       indeterminate: true,
       checkAll: false,
       options: options,
-      optionsWithDisabled: optionsWithDisabled
+      optionsWithDisabled: optionsWithDisabled,
+      stateChecked: false
     };
   },
   mounted() {
@@ -113,13 +118,13 @@ export default {
     handleUnDisable() {
       this.disabled = false;
     },
-    handleSingleChange(e) {
-      this.checked = e.target.checked;
+    handleSingleChange(checked) {
+      this.checked = checked;
     },
-    handleGroupCheckAllChange(e) {
-      this.checkedList = e.target.checked ? plainOptions : [];
+    handleGroupCheckAllChange(checked) {
+      this.checkedList = checked ? plainOptions : [];
       this.indeterminate = false;
-      this.checkAll = e.target.checked;
+      this.checkAll = checked;
     },
     handleGroupChange(checkedList) {
       this.checkedList = checkedList;
@@ -138,6 +143,9 @@ export default {
     },
     handleFocus() {
       console.log("focus");
+    },
+    toggleStateChecked() {
+      this.stateChecked = !this.stateChecked;
     }
   }
 };

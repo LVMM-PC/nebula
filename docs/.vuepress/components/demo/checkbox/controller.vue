@@ -2,7 +2,7 @@
   <main>
     <section :style="{marginBottom:'20px'}">
       <NebulaCheckbox
-        :checked="checked"
+        v-model="checked"
         :disabled="disabled"
         @change="handleChange"
       >{{label}}
@@ -48,8 +48,8 @@ export default {
     }
   },
   methods: {
-    handleChange(event) {
-      this.checked = event.target.checked;
+    handleChange(checked) {
+      this.checked = checked;
     },
     handleToggleChecked() {
       this.checked = !this.checked;

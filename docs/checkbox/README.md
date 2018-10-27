@@ -53,14 +53,14 @@ The `indeterminate` property can help you to achieve a 'check all' effect.
 
 #### Checkbox
 
-| Property       | Description                                                           | Type              | Default |
-| -------------- | --------------------------------------------------------------------- | ----------------- | ------- |
-| autofocus      | get focus when component mounted                                      | boolean           | `false` |
-| checked        | Specifies whether the checkbox is selected.                           | boolean           | `false` |
-| defaultChecked | Specifies the initial state: whether or not the checkbox is selected. | boolean           | `false` |
-| disabled       | Disable checkbox                                                      | boolean           | `false` |
-| indeterminate  | indeterminate checked state of checkbox                               | boolean           | `false` |
-| onChange       | The callback function that is triggered when the state changes.       | Function(e:Event) | -       |
+| Property       | Description                                                           | Type                   | Default |
+| -------------- | --------------------------------------------------------------------- | ---------------------- | ------- |
+| autofocus      | get focus when component mounted                                      | boolean                | `false` |
+| checked        | Specifies whether the checkbox is selected.                           | boolean                | `false` |
+| defaultChecked | Specifies the initial state: whether or not the checkbox is selected. | boolean                | `false` |
+| disabled       | Disable checkbox                                                      | boolean                | `false` |
+| indeterminate  | indeterminate checked state of checkbox                               | boolean                | `false` |
+| onChange       | The callback function that is triggered when the state changes.       | Function(checkedValue) | -       |
 
 #### Checkbox Group
 
