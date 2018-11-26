@@ -2,16 +2,11 @@ import Vue from "vue";
 import App from "./App.vue";
 import "./components/nebula-ui.less";
 
-import {
-  NebulaButton,
-  NebulaButtonGroup,
-  NebulaCheckbox,
-  NebulaIcon,
-  NebulaCheckboxGroup
-} from "./index";
+import {NebulaButton, NebulaButtonGroup, NebulaCheckbox, NebulaCheckboxGroup, NebulaIcon, VueCheckbox} from "./index";
 
 import router from "./router";
 
+Vue.component("VueCheckbox", VueCheckbox);
 Vue.component("NebulaButton", NebulaButton);
 Vue.component("NebulaIcon", NebulaIcon);
 Vue.component("NebulaButtonGroup", NebulaButtonGroup);
