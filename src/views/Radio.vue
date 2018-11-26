@@ -1,5 +1,6 @@
 <template>
   <div>
+    <NebulaRadio/>
     <VueCheckbox
       id="myVueCheckbox1"
       :checked="true"

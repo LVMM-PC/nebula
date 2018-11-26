@@ -4,6 +4,7 @@ import NebulaButtonGroup from "./components/button/NebulaButtonGroup.vue";
 import NebulaIcon from "./components/icon/NebulaIcon.vue";
 import NebulaCheckbox from "./components/checkbox/NebulaCheckbox.vue";
 import NebulaCheckboxGroup from "./components/checkbox/NebulaCheckboxGroup.vue";
+import NebulaRadio from "./components/radio/NebulaRadio.vue";
 
 export {
   VueCheckbox,
@@ -11,5 +12,6 @@ export {
   NebulaButtonGroup,
   NebulaIcon,
   NebulaCheckbox,
-  NebulaCheckboxGroup
+  NebulaCheckboxGroup,
+  NebulaRadio
 };
