@@ -3,7 +3,7 @@ import { Component, Model, Prop, Vue, Watch } from "vue-property-decorator";
 
 @Component
 export default class VueCheckbox extends Vue {
-  @Model("change", { default: null, type: Boolean })
+  @Model("change", { default: null })
   checked!: boolean;
 
   @Prop({ default: "vue-checkbox" })
@@ -22,9 +22,6 @@ export default class VueCheckbox extends Vue {
   private defaultChecked?: boolean;
 
   @Prop({ default: null })
-  private checked?: boolean;
-
-  @Prop({ default: null })
   private disabled?: boolean;
 
   @Prop({ default: null })
@@ -33,7 +30,7 @@ export default class VueCheckbox extends Vue {
   @Prop({ default: null })
   private readOnly?: boolean;
 
-  @Prop({ default: null, type: Boolean })
+  @Prop({ default: null })
   private autoFocus?: boolean;
 
   @Prop({ default: null })
@@ -89,6 +86,14 @@ export default class VueCheckbox extends Vue {
       value,
       $attrs
     } = this;
+
+    const classString = [
+      prefixCls,
+      {
+        [`${prefixCls}-checked`]: stateChecked,
+        [`${prefixCls}-disabled`]: disabled
+      }
+    ];
 
     return (
       <span class={classString}>

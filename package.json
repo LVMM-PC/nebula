@@ -21,7 +21,6 @@
     "rollup": "rollup --config ./build/rollup.config.js",
     "lint": "vue-cli-service lint",
     "test:unit": "vue-cli-service test:unit",
-    "test:e2e": "vue-cli-service test:e2e",
     "prepublish": "npm run lint && npm run build && gulp compileNebulaUi && npm run rollup",
     "publish": "npm run docs:build"
   },
@@ -42,7 +41,6 @@
   "devDependencies": {
     "@types/jest": "^23.1.4",
     "@vue/cli-plugin-babel": "^3.0.4",
-    "@vue/cli-plugin-e2e-cypress": "^3.0.4",
     "@vue/cli-plugin-eslint": "^3.0.4",
     "@vue/cli-plugin-typescript": "^3.0.4",
     "@vue/cli-plugin-unit-jest": "^3.0.4",
