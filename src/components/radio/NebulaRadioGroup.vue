@@ -1,7 +1,16 @@
 <script lang="tsx">
-import { Component, Model, Prop, Vue, Watch } from "vue-property-decorator";
+import {
+  Component,
+  Model,
+  Prop,
+  Provide,
+  Vue,
+  Watch
+} from "vue-property-decorator";
 import NebulaRadio from "./NebulaRadio";
-import { filterEmpty, getOptionProps } from "../_util/props-util";
+import hasProp, { filterEmpty, getOptionProps } from "../_util/props-util";
+
+function noop() {}
 
 export type CheckboxValueType = string | number | boolean;
 
@@ -51,6 +60,9 @@ export default class NebulaRadioGroup extends Vue {
     this.stateValue = val;
   }
 
+  @Provide()
+  radioGroupContext = this;
+
   public stateValue: any = [];
 
   created() {
@@ -79,7 +91,20 @@ export default class NebulaRadioGroup extends Vue {
     };
   }
 
+  onRadioChange(event) {
+    const lastValue = this.stateValue;
+    const { value } = event.target;
+    if (!hasProp(this, "value")) {
+      this.stateValue = value;
+    }
+    if (value !== lastValue) {
+      this.$emit("input", value);
+      this.$emit("change", event);
+    }
+  }
+
   render() {
+    const { mouseenter = noop, mouseleave = noop } = this.$listeners;
     const props = getOptionProps(this);
     const { prefixCls, options, buttonStyle } = props;
     const groupPrefixCls = `${prefixCls}-group`;
@@ -102,6 +127,7 @@ export default class NebulaRadioGroup extends Vue {
               prefixCls={prefixCls}
               disabled={props.disabled}
               value={option}
+              onChange={this.onRadioChange}
               checked={this.stateValue === option}
             >
               {option}
@@ -114,6 +140,7 @@ export default class NebulaRadioGroup extends Vue {
               prefixCls={prefixCls}
               disabled={option.disabled || props.disabled}
               value={option.value}
+              onChange={this.onRadioChange}
               checked={this.stateValue === option.value}
             >
               {option.label}
@@ -123,7 +150,15 @@ export default class NebulaRadioGroup extends Vue {
       });
     }
 
-    return <div class={classString}>{children}</div>;
+    return (
+      <div
+        class={classString}
+        onMouseEnter={mouseenter}
+        onMouseLeave={mouseleave}
+      >
+        {children}
+      </div>
+    );
   }
 }
 </script>

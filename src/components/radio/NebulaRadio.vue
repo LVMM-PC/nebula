@@ -1,11 +1,13 @@
 <script lang="tsx">
-import { Component, Model, Prop, Vue } from "vue-property-decorator";
+import { Component, Inject, Model, Prop, Vue } from "vue-property-decorator";
 import VueCheckbox from "@/components/vue-checkbox/VueCheckbox.vue";
-import { getOptionProps } from "../_util/props-util";
+import { getAttrs, getOptionProps } from "../_util/props-util";
+
+function noop() {}
 
 @Component
 export default class NebulaRadio extends Vue {
-  @Model("change")
+  @Model("change", { default: undefined, type: Boolean })
   checked!: boolean;
 
   @Prop({ default: "nebula-radio", type: String })
@@ -35,30 +37,61 @@ export default class NebulaRadio extends Vue {
   @Prop({ default: "radio" })
   private type?: string;
 
+  @Inject({ default: undefined })
+  radioGroupContext!: any;
+
+  handleChange(event) {
+    const targetChecked = event.target.checked;
+    this.$emit("input", targetChecked);
+    this.$emit("change", event);
+  }
+
+  focus() {
+    this.$refs.vueCheckbox.focus();
+  }
+  blur() {
+    this.$refs.vueCheckbox.blur();
+  }
+
   render() {
-    const { $slots, $listeners } = this;
+    const { $slots, $listeners, radioGroupContext: radioGroup } = this;
     const props = getOptionProps(this);
     const children = $slots.default;
-    const { ...restListeners } = $listeners;
+    const {
+      mouseenter = noop,
+      mouseleave = noop,
+      ...restListeners
+    } = $listeners;
     const { prefixCls, ...restProps } = props;
     const radioProps = {
-      props: {
-        ...restProps,
-        prefixCls
-      },
+      props: { ...restProps, prefixCls },
       on: restListeners,
-      attrs: this.$attrs
+      attrs: getAttrs(this)
     };
+
+    if (radioGroup) {
+      radioProps.props.name = radioGroup.name;
+      radioProps.on.change = radioGroup.onRadioChange;
+      radioProps.props.checked = props.value === radioGroup.stateValue;
+      radioProps.props.disabled = props.disabled === radioGroup.disabled;
+    } else {
+      radioProps.on.change = this.handleChange;
+    }
+
     const wrapperClassString = [
       {
         [`${prefixCls}-wrapper`]: true,
-        [`${prefixCls}-wrapper-checked`]: this.checked,
-        [`${prefixCls}-wrapper-disabled`]: this.disabled
+        [`${prefixCls}-wrapper-checked`]: radioProps.props.checked,
+        [`${prefixCls}-wrapper-disabled`]: radioProps.props.disabled
       }
     ];
     return (
-      <label class={wrapperClassString}>
-        <VueCheckbox {...radioProps} />
+      <label
+        class={wrapperClassString}
+        onMouseEnter={mouseenter}
+        onMouseLeave={mouseleave}
+      >
+        <VueCheckbox {...radioProps} ref="vueCheckbox" />
         {children !== undefined ? <span>{children}</span> : null}
       </label>
     );

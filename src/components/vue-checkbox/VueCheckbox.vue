@@ -1,6 +1,6 @@
 <script lang="tsx">
 import { Component, Model, Prop, Vue, Watch } from "vue-property-decorator";
-import { getOptionProps, hasProp } from "../_util/props-util";
+import { getAttrs, getOptionProps, hasProp } from "../_util/props-util";
 
 @Component
 export default class VueCheckbox extends Vue {
@@ -68,9 +68,33 @@ export default class VueCheckbox extends Vue {
   }
 
   public handleChange(event: { target: HTMLInputElement }) {
-    let targetChecked = event.target.checked;
-    this.stateChecked = targetChecked;
-    this.$emit("change", targetChecked);
+    const props = getOptionProps(this);
+    if (props.disabled) {
+      return;
+    }
+    if (!("checked" in props)) {
+      this.stateChecked = event.target.checked;
+    }
+    this.$forceUpdate();
+    this.$emit("change", {
+      target: {
+        ...props,
+        checked: event.target.checked
+      },
+      stopPropagation() {
+        event.stopPropgation();
+      },
+      preventDefault() {
+        event.preventDefault();
+      },
+      nativeEvent: { ...event, shiftKey: this.eventShiftKey }
+    });
+    this.eventShiftKey = false;
+  }
+
+  public onClick(e) {
+    this.$emit("click", e);
+    this.eventShiftKey = e.shiftKey;
   }
 
   render() {
@@ -86,7 +110,7 @@ export default class VueCheckbox extends Vue {
       value,
       ...others
     } = getOptionProps(this);
-    const $attrs = this.$attrs;
+    const $attrs = getAttrs(this);
     const globalProps = Object.keys({ ...others, ...$attrs }).reduce(
       (prev: any, key) => {
         let prefix = key.substr(0, 5);
@@ -97,7 +121,8 @@ export default class VueCheckbox extends Vue {
       },
       {}
     );
-    let stateChecked = this.stateChecked;
+
+    const { stateChecked } = this;
     const classString = [
       prefixCls,
       {
@@ -116,7 +141,7 @@ export default class VueCheckbox extends Vue {
           disabled={disabled}
           tabIndex={tabIndex}
           class={`${prefixCls}-input`}
-          checked={stateChecked}
+          checked={!!stateChecked}
           autoFocus={autoFocus}
           ref="input"
           value={value}
@@ -126,7 +151,8 @@ export default class VueCheckbox extends Vue {
             },
             on: {
               ...this.$listeners,
-              change: this.handleChange
+              change: this.handleChange,
+              click: this.onClick
             }
           }}
         />

@@ -18,6 +18,14 @@ function getType(fn: any) {
   return match ? match[1] : "";
 }
 
+const getAttrs = (ele: any) => {
+  let data = ele.data;
+  if (ele.$vnode) {
+    data = ele.$vnode.data;
+  }
+  return data ? data.attrs || {} : {};
+};
+
 const getOptionProps = (instance: any) => {
   if (instance.componentOptions) {
     const componentOptions = instance.componentOptions;
@@ -47,6 +55,6 @@ const hasProp = (instance: any, prop: string) => {
   return prop in propsData;
 };
 
-export { hasProp, filterProps, getOptionProps };
+export { hasProp, filterProps, getAttrs, getOptionProps };
 
 export default hasProp;
