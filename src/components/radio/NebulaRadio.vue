@@ -1,14 +1,14 @@
 <script lang="tsx">
 import { Component, Model, Prop, Vue } from "vue-property-decorator";
 import VueCheckbox from "@/components/vue-checkbox/VueCheckbox.vue";
-import { getProps } from "../_util/props-util";
+import { getOptionProps } from "../_util/props-util";
 
 @Component
 export default class NebulaRadio extends Vue {
   @Model("change")
   checked!: boolean;
 
-  @Prop({ default: "nebula-radio" })
+  @Prop({ default: "nebula-radio", type: String })
   private prefixCls?: string;
 
   @Prop({ type: Boolean })
@@ -37,8 +37,7 @@ export default class NebulaRadio extends Vue {
 
   render() {
     const { $slots, $listeners } = this;
-    const props = getProps(this);
-    console.log(props);
+    const props = getOptionProps(this);
     const children = $slots.default;
     const { ...restListeners } = $listeners;
     const { prefixCls, ...restProps } = props;

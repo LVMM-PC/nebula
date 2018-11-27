@@ -1,28 +1,52 @@
-import Vue from "vue";
-
-// @ts-ignore
-const filterProps = (props, propsData = {}) => {
-  const res = {};
+const filterProps = (props: any, propsData = {}) => {
+  const res: any = {};
   Object.keys(props).forEach(k => {
     if (k in propsData || props[k] !== undefined) {
-      // @ts-ignore
       res[k] = props[k];
     }
   });
   return res;
 };
 
-const getProps = (instance: Vue) => {
+export function filterEmpty(children = []) {
+  // @ts-ignore
+  return children.filter(c => c.tag || (c.text && c.text.trim() !== ""));
+}
+
+function getType(fn: any) {
+  const match = fn && fn.toString().match(/^\s*function (\w+)/);
+  return match ? match[1] : "";
+}
+
+const getOptionProps = (instance: any) => {
+  if (instance.componentOptions) {
+    const componentOptions = instance.componentOptions;
+    const { propsData = {}, Ctor = {} } = componentOptions;
+    const props = (Ctor.options || {}).props || {};
+    const res: any = {};
+    for (const [k, v] of Object.entries(props)) {
+      // @ts-ignore
+      const def = v.default;
+      if (def !== undefined) {
+        res[k] =
+          // @ts-ignore
+          typeof def === "function" && getType(v.type) !== "Function"
+            ? def.call(instance)
+            : def;
+      }
+    }
+    return { ...res, ...propsData };
+  }
   const { $options = {}, $props = {} } = instance;
   return filterProps($props);
 };
 
-const hasProp = (instance: Vue, prop: string) => {
+const hasProp = (instance: any, prop: string) => {
   const $options = instance.$options || {};
   const propsData = $options.propsData || {};
   return prop in propsData;
 };
 
-export { hasProp, filterProps, getProps };
+export { hasProp, filterProps, getOptionProps };
 
 export default hasProp;

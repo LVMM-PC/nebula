@@ -1,6 +1,6 @@
 <script lang="tsx">
 import { Component, Model, Prop, Vue, Watch } from "vue-property-decorator";
-import { getProps, hasProp } from "../_util/props-util";
+import { getOptionProps, hasProp } from "../_util/props-util";
 
 @Component
 export default class VueCheckbox extends Vue {
@@ -47,8 +47,6 @@ export default class VueCheckbox extends Vue {
   created() {
     let checked = this.checked;
     let defaultChecked = this.defaultChecked;
-    console.log("hasProp checked", hasProp(this, "checked"));
-    console.log(checked, defaultChecked);
     this.stateChecked = hasProp(this, "checked") ? checked : defaultChecked;
   }
 
@@ -87,10 +85,10 @@ export default class VueCheckbox extends Vue {
       autoFocus,
       value,
       ...others
-    } = getProps(this);
+    } = getOptionProps(this);
     const $attrs = this.$attrs;
     const globalProps = Object.keys({ ...others, ...$attrs }).reduce(
-      (prev, key) => {
+      (prev: any, key) => {
         let prefix = key.substr(0, 5);
         if (prefix === "aria-" || prefix === "data-" || key === "role") {
           prev[key] = others[key];
@@ -100,7 +98,6 @@ export default class VueCheckbox extends Vue {
       {}
     );
     let stateChecked = this.stateChecked;
-    console.log(stateChecked);
     const classString = [
       prefixCls,
       {

@@ -8,8 +8,10 @@ import {
   NebulaCheckbox,
   NebulaCheckboxGroup,
   NebulaIcon,
-  VueCheckbox,
-  NebulaRadio
+  NebulaRadio,
+  NebulaRadioButton,
+  NebulaRadioGroup,
+  VueCheckbox
 } from "./index";
 
 import router from "./router";
@@ -21,6 +23,8 @@ Vue.component("NebulaButtonGroup", NebulaButtonGroup);
 Vue.component("NebulaCheckbox", NebulaCheckbox);
 Vue.component("NebulaCheckboxGroup", NebulaCheckboxGroup);
 Vue.component("NebulaRadio", NebulaRadio);
+Vue.component("NebulaRadioButton", NebulaRadioButton);
+Vue.component("NebulaRadioGroup", NebulaRadioGroup);
 Vue.config.productionTip = false;
 
 new Vue({
