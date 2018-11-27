@@ -1,52 +1,65 @@
 <script lang="tsx">
 import { Component, Model, Prop, Vue } from "vue-property-decorator";
 import VueCheckbox from "@/components/vue-checkbox/VueCheckbox.vue";
+import { getProps } from "../_util/props-util";
 
 @Component
 export default class NebulaRadio extends Vue {
-  @Model("change", { default: null })
+  @Model("change")
   checked!: boolean;
-
-  @Prop({ default: null })
-  private disabled?: boolean;
 
   @Prop({ default: "nebula-radio" })
   private prefixCls?: string;
+
+  @Prop({ type: Boolean })
+  private defaultChecked?: boolean;
+
+  @Prop({ type: Boolean })
+  private disabled?: boolean;
+
+  @Prop({ type: Boolean })
+  private isGroup?: boolean;
+
+  @Prop({})
+  private value?: any;
+
+  @Prop({ type: String })
+  private name?: string;
+
+  @Prop({ type: String })
+  private id?: string;
+
+  @Prop({ type: Boolean })
+  private autoFocus?: boolean;
 
   @Prop({ default: "radio" })
   private type?: string;
 
   render() {
-    const {
-      $slots,
-      $listeners,
-      checked,
-      disabled,
-      prefixCls,
-      $attrs,
-      ...restProps
-    } = this;
+    const { $slots, $listeners } = this;
+    const props = getProps(this);
+    console.log(props);
     const children = $slots.default;
     const { ...restListeners } = $listeners;
+    const { prefixCls, ...restProps } = props;
     const radioProps = {
       props: {
         ...restProps,
         prefixCls
       },
       on: restListeners,
-      attrs: $attrs
+      attrs: this.$attrs
     };
     const wrapperClassString = [
       {
         [`${prefixCls}-wrapper`]: true,
-        [`${prefixCls}-wrapper-checked`]: checked,
-        [`${prefixCls}-wrapper-disabled`]: disabled
+        [`${prefixCls}-wrapper-checked`]: this.checked,
+        [`${prefixCls}-wrapper-disabled`]: this.disabled
       }
     ];
-
     return (
       <label class={wrapperClassString}>
-        <VueCheckbox type="radio" {...radioProps} />
+        <VueCheckbox {...radioProps} />
         {children !== undefined ? <span>{children}</span> : null}
       </label>
     );

@@ -1,6 +1,24 @@
 <template>
   <div>
     <NebulaRadio/>
+
+    <div>
+      <NebulaRadio 
+        :default-checked="true" 
+        :disabled="disabled">Disabled</NebulaRadio>
+      <br>
+      <NebulaRadio 
+        :disabled="disabled" 
+        default-checked>Disabled</NebulaRadio>
+      <div :style="{ marginTop: 20 }">
+        <NebulaButton 
+          type="primary" 
+          @click="toggleDisabled">
+          Toggle disabled
+        </NebulaButton>
+      </div>
+    </div>
+
     <VueCheckbox
       id="myVueCheckbox1"
       :checked="true"
@@ -36,7 +54,17 @@
 
 <script>
 export default {
-  name: "Radio"
+  name: "Radio",
+  data() {
+    return {
+      disabled: false
+    };
+  },
+  methods: {
+    toggleDisabled() {
+      this.disabled = !this.disabled;
+    }
+  }
 };
 </script>
 

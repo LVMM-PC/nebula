@@ -1,52 +1,55 @@
 <script lang="tsx">
 import { Component, Model, Prop, Vue, Watch } from "vue-property-decorator";
+import { getProps, hasProp } from "../_util/props-util";
 
 @Component
 export default class VueCheckbox extends Vue {
-  @Model("change", { default: null })
-  checked!: boolean;
+  @Model("change", { type: [Boolean, Number] })
+  checked!: boolean | number;
 
-  @Prop({ default: "vue-checkbox" })
+  @Prop({ default: "vue-checkbox", type: String })
   private prefixCls?: string;
 
-  @Prop({ default: null })
+  @Prop({ type: String })
   private name?: string;
 
-  @Prop({ default: null })
+  @Prop({ type: String })
   private id?: string;
 
   @Prop({ default: "checkbox" })
   private type?: string;
 
-  @Prop({ default: null })
-  private defaultChecked?: boolean;
+  @Prop({ type: [Boolean, Number] })
+  private defaultChecked?: boolean | number;
 
-  @Prop({ default: null })
+  @Prop({ type: Boolean })
   private disabled?: boolean;
 
-  @Prop({ default: null })
-  private tabIndex?: boolean;
+  @Prop({ type: String })
+  private tabIndex?: string;
 
-  @Prop({ default: null })
+  @Prop({ type: Boolean })
   private readOnly?: boolean;
 
-  @Prop({ default: null })
+  @Prop({ type: Boolean })
   private autoFocus?: boolean;
 
-  @Prop({ default: null })
+  @Prop({})
   private value?: any;
 
   @Watch("checked")
-  onCheckedChanged(val: boolean) {
+  onCheckedChanged(val: boolean | number) {
     this.stateChecked = val;
   }
 
-  public stateChecked?: boolean = false;
+  public stateChecked?: boolean | number = false;
 
   created() {
     let checked = this.checked;
     let defaultChecked = this.defaultChecked;
-    this.stateChecked = typeof checked === "boolean" ? checked : defaultChecked;
+    console.log("hasProp checked", hasProp(this, "checked"));
+    console.log(checked, defaultChecked);
+    this.stateChecked = hasProp(this, "checked") ? checked : defaultChecked;
   }
 
   mounted() {
@@ -74,7 +77,6 @@ export default class VueCheckbox extends Vue {
 
   render() {
     const {
-      stateChecked,
       prefixCls,
       name,
       id,
@@ -84,9 +86,21 @@ export default class VueCheckbox extends Vue {
       tabIndex,
       autoFocus,
       value,
-      $attrs
-    } = this;
-
+      ...others
+    } = getProps(this);
+    const $attrs = this.$attrs;
+    const globalProps = Object.keys({ ...others, ...$attrs }).reduce(
+      (prev, key) => {
+        let prefix = key.substr(0, 5);
+        if (prefix === "aria-" || prefix === "data-" || key === "role") {
+          prev[key] = others[key];
+        }
+        return prev;
+      },
+      {}
+    );
+    let stateChecked = this.stateChecked;
+    console.log(stateChecked);
     const classString = [
       prefixCls,
       {
@@ -111,7 +125,7 @@ export default class VueCheckbox extends Vue {
           value={value}
           {...{
             attrs: {
-              ...$attrs
+              ...globalProps
             },
             on: {
               ...this.$listeners,
