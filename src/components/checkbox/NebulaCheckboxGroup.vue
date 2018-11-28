@@ -1,5 +1,5 @@
 <script lang="tsx">
-import NebulaCheckbox from "./NebulaCheckbox";
+import NebulaCheckbox from "./NebulaCheckbox.vue";
 import hasProp from "../_util/props-util";
 import { Component, Model, Prop, Vue, Watch } from "vue-property-decorator";
 
@@ -23,7 +23,7 @@ export default class NebulaCheckboxGroup extends Vue {
   value?: Array<CheckboxValueType>;
 
   @Prop({ default: "nebula-checkbox", type: String })
-  private prefixCls?: string;
+  public prefixCls?: string;
 
   @Prop({ default: null, type: Boolean })
   private disabled?: boolean;

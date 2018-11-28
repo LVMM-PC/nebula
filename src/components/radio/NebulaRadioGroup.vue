@@ -1,6 +1,6 @@
 <script lang="tsx">
 import { Component, Model, Prop, Vue, Watch } from "vue-property-decorator";
-import NebulaRadio from "./NebulaRadio";
+import NebulaRadio from "./NebulaRadio.vue";
 import { filterEmpty, getOptionProps, hasProp } from "../_util/props-util";
 
 function noop() {}
@@ -25,7 +25,7 @@ export default class NebulaRadioGroup extends Vue {
   value?: any;
 
   @Prop({ default: "nebula-radio", type: String })
-  private prefixCls?: string;
+  public prefixCls?: string;
 
   @Prop({})
   private defaultValue?: any;

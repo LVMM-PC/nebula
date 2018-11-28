@@ -1,5 +1,5 @@
 <script lang="tsx">
-import VueCheckbox from "../vue-checkbox/VueCheckbox";
+import VueCheckbox from "../vue-checkbox/VueCheckbox.vue";
 import { getAttrs, getOptionProps } from "../_util/props-util";
 import { Component, Model, Prop, Vue } from "vue-property-decorator";
 
@@ -15,7 +15,7 @@ export default class NebulaCheckbox extends Vue {
   checked!: boolean;
 
   @Prop({ default: "nebula-checkbox", type: String })
-  private prefixCls?: string;
+  public prefixCls?: string;
 
   @Prop({ type: Boolean })
   private defaultChecked?: boolean;
@@ -44,7 +44,7 @@ export default class NebulaCheckbox extends Vue {
   @Prop({ type: Boolean })
   private autoFocus?: boolean;
 
-  handleChange(event) {
+  handleChange(event: { target: HTMLInputElement }) {
     const targetChecked = event.target.checked;
     this.$emit("input", targetChecked);
     this.$emit("change", event);
@@ -61,6 +61,7 @@ export default class NebulaCheckbox extends Vue {
   }
 
   render() {
+    // @ts-ignore
     const { checkboxGroupContext: checkboxGroup, $listeners, $slots } = this;
     const props = getOptionProps(this);
     const children = $slots.default;

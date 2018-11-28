@@ -8,7 +8,7 @@ export default class VueCheckbox extends Vue {
   checked!: boolean | number;
 
   @Prop({ default: "vue-checkbox", type: String })
-  private prefixCls?: string;
+  public prefixCls?: string;
 
   @Prop({ type: String })
   private name?: string;
@@ -70,7 +70,11 @@ export default class VueCheckbox extends Vue {
     input.blur();
   }
 
-  public handleChange(event) {
+  public handleChange(event: {
+    target: HTMLInputElement;
+    stopPropagation;
+    preventDefault;
+  }) {
     const props = getOptionProps(this);
     if (props.disabled) {
       return;

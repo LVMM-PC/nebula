@@ -1,10 +1,10 @@
 <script lang="tsx">
 import { Component, Prop } from "vue-property-decorator";
-import NebulaRadio from "./NebulaRadio";
+import NebulaRadio from "./NebulaRadio.vue";
 
 @Component
 export default class NebulaRadioButton extends NebulaRadio {
   @Prop({ default: "nebula-radio-button", type: String })
-  private prefixCls?: string;
+  public prefixCls?: string;
 }
 </script>
