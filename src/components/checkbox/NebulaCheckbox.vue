@@ -1,155 +1,110 @@
 <script lang="tsx">
-import { Component, Model, Prop, Vue, Watch } from "vue-property-decorator";
+import VueCheckbox from "../vue-checkbox/VueCheckbox";
+import { getAttrs, getOptionProps } from "../_util/props-util";
+import { Component, Model, Prop, Vue } from "vue-property-decorator";
 
 function noop() {}
 
-@Component
+@Component({
+  inject: {
+    checkboxGroupContext: { default: null }
+  }
+})
 export default class NebulaCheckbox extends Vue {
-  @Model("change", { default: null, type: Boolean })
+  @Model("change", { default: undefined })
   checked!: boolean;
 
   @Prop({ default: "nebula-checkbox", type: String })
   private prefixCls?: string;
 
-  @Prop({ default: null, type: Boolean })
+  @Prop({ type: Boolean })
   private defaultChecked?: boolean;
 
-  @Prop({ default: null, type: Boolean })
-  private autofocus?: boolean;
-
-  @Prop({ default: null, type: Boolean })
+  @Prop({ type: Boolean })
   private disabled?: boolean;
 
-  @Prop({ default: null, type: Boolean })
+  @Prop({ type: Boolean })
+  private isGroup?: boolean;
+
+  @Prop({})
+  private value?: any;
+
+  @Prop({ type: String })
+  private name?: string;
+
+  @Prop({ type: String })
+  private id?: string;
+
+  @Prop({ type: Boolean })
   private indeterminate?: boolean;
 
-  @Watch("checked")
-  onCheckedChanged(val: boolean) {
-    this.stateChecked = val;
+  @Prop({ default: "checkbox" })
+  private type?: string;
+
+  @Prop({ type: Boolean })
+  private autoFocus?: boolean;
+
+  handleChange(event) {
+    const targetChecked = event.target.checked;
+    this.$emit("input", targetChecked);
+    this.$emit("change", event);
   }
 
-  public stateChecked?: boolean = false;
-
-  get labelClasses() {
-    let prefixCls = this.prefixCls || "nebula-checkbox";
-    return [
-      {
-        [`${prefixCls}-wrapper`]: true
-      }
-    ];
+  focus() {
+    let vueCheckbox = this.$refs.vueCheckbox as HTMLInputElement;
+    vueCheckbox.focus();
   }
 
-  get checkboxClasses() {
-    let prefixCls = this.prefixCls;
-    return [
-      {
-        [`${prefixCls}-input`]: true
-      }
-    ];
-  }
-
-  get innerClass() {
-    return this.prefixCls + "-inner";
-  }
-
-  get spanClasses() {
-    let prefixCls = this.prefixCls;
-    let stateChecked = this.stateChecked;
-    let stateDisabled = this.getDisabled;
-    let stateIndeterminate = this.getIndeterminate;
-    return [
-      prefixCls,
-      {
-        [`${prefixCls}-checked`]: stateChecked,
-        [`${prefixCls}-disabled`]: stateDisabled,
-        [`${prefixCls}-indeterminate`]: stateIndeterminate
-      }
-    ];
-  }
-
-  get getDisabled() {
-    return this.disabled;
-  }
-
-  get getIndeterminate() {
-    return this.indeterminate;
-  }
-
-  created() {
-    let checked = this.checked;
-    let defaultChecked = this.defaultChecked;
-    this.stateChecked = typeof checked === "boolean" ? checked : defaultChecked;
-  }
-
-  mounted() {
-    if (this.autofocus) {
-      let input: HTMLInputElement = this.$refs.input as HTMLInputElement;
-      input.focus();
-    }
-  }
-
-  public focus() {
-    let input: HTMLInputElement = this.$refs.input as HTMLInputElement;
-    input.focus();
-  }
-
-  public blur() {
-    let input: HTMLInputElement = this.$refs.input as HTMLInputElement;
-    input.blur();
-  }
-
-  public handleChange(event: { target: HTMLInputElement }) {
-    let targetChecked = event.target.checked;
-    this.stateChecked = targetChecked;
-    this.$emit("change", targetChecked);
+  blur() {
+    let vueCheckbox = this.$refs.vueCheckbox as HTMLInputElement;
+    vueCheckbox.blur();
   }
 
   render() {
-    const {
-      $attrs,
-      $listeners,
-      getDisabled,
-      checkboxClasses,
-      handleChange,
-      stateChecked
-    } = this;
+    const { checkboxGroupContext: checkboxGroup, $listeners, $slots } = this;
+    const props = getOptionProps(this);
+    const children = $slots.default;
     const {
       mouseenter = noop,
       mouseleave = noop,
       ...restListeners
     } = $listeners;
+    const { prefixCls, indeterminate, ...restProps } = props;
     const checkboxProps = {
-      attrs: {
-        ...$attrs
-      },
-      class: checkboxClasses,
-      on: {
-        ...restListeners,
-        change: handleChange
-      }
+      props: { ...restProps, prefixCls },
+      on: restListeners,
+      attrs: getAttrs(this)
     };
-    let labelClasses = this.labelClasses;
-    let spanClasses = this.spanClasses;
-    let innerClass = this.innerClass;
-    let children = this.$slots.default;
-    let autofocus = this.autofocus;
+    if (checkboxGroup) {
+      checkboxProps.on.change = () =>
+        checkboxGroup.toggleOption({ label: children, value: props.value });
+      checkboxProps.props.checked =
+        checkboxGroup.stateValue.indexOf(props.value) !== -1;
+      checkboxProps.props.disabled = props.disabled || checkboxGroup.disabled;
+    } else {
+      checkboxProps.on.change = this.handleChange;
+    }
+    const classString = [
+      {
+        [`${prefixCls}-wrapper`]: true
+      }
+    ];
+    const checkboxClass = [
+      {
+        [`${prefixCls}-indeterminate`]: indeterminate
+      }
+    ];
     return (
       <label
-        class={labelClasses}
+        class={classString}
         onMouseenter={mouseenter}
         onMouseleave={mouseleave}
       >
-        <span class={spanClasses}>
-          <input
-            type="checkbox"
-            checked={stateChecked}
-            disabled={getDisabled}
-            autofocus={autofocus}
-            ref="input"
-            {...checkboxProps}
-          />
-          <span class={innerClass} />
-        </span>
+        <VueCheckbox
+          {...checkboxProps}
+          class={checkboxClass}
+          ref="vueCheckbox"
+        />
         {children !== undefined ? <span>{children}</span> : null}
       </label>
     );

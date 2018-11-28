@@ -1,14 +1,7 @@
 <script lang="tsx">
-import {
-  Component,
-  Model,
-  Prop,
-  Provide,
-  Vue,
-  Watch
-} from "vue-property-decorator";
+import { Component, Model, Prop, Vue, Watch } from "vue-property-decorator";
 import NebulaRadio from "./NebulaRadio";
-import hasProp, { filterEmpty, getOptionProps } from "../_util/props-util";
+import { filterEmpty, getOptionProps, hasProp } from "../_util/props-util";
 
 function noop() {}
 
@@ -20,9 +13,15 @@ export interface CheckboxOptionType {
   disabled?: boolean;
 }
 
-@Component
+@Component({
+  provide() {
+    return {
+      radioGroupContext: this
+    };
+  }
+})
 export default class NebulaRadioGroup extends Vue {
-  @Model("change", {})
+  @Model("input", {})
   value?: any;
 
   @Prop({ default: "nebula-radio", type: String })
@@ -60,15 +59,11 @@ export default class NebulaRadioGroup extends Vue {
     this.stateValue = val;
   }
 
-  @Provide()
-  radioGroupContext = this;
-
   public stateValue: any = [];
 
   created() {
-    let value = this.value;
-    let defaultValue = this.defaultValue;
-    this.stateValue = value && value.length ? value : defaultValue || [];
+    const { value, defaultValue } = this;
+    this.stateValue = value === undefined ? defaultValue : value;
   }
 
   radioOptions() {
@@ -153,8 +148,8 @@ export default class NebulaRadioGroup extends Vue {
     return (
       <div
         class={classString}
-        onMouseEnter={mouseenter}
-        onMouseLeave={mouseleave}
+        onMouseenter={mouseenter}
+        onMouseleave={mouseleave}
       >
         {children}
       </div>

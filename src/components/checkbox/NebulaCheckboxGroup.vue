@@ -1,5 +1,6 @@
 <script lang="tsx">
-import NebulaCheckbox from "./NebulaCheckbox.vue";
+import NebulaCheckbox from "./NebulaCheckbox";
+import hasProp from "../_util/props-util";
 import { Component, Model, Prop, Vue, Watch } from "vue-property-decorator";
 
 export type CheckboxValueType = string | number | boolean;
@@ -10,7 +11,13 @@ export interface CheckboxOptionType {
   disabled?: boolean;
 }
 
-@Component
+@Component({
+  provide() {
+    return {
+      checkboxGroupContext: this
+    };
+  }
+})
 export default class NebulaCheckboxGroup extends Vue {
   @Model("change", { default: () => [], type: Array })
   value?: Array<CheckboxValueType>;
@@ -40,77 +47,60 @@ export default class NebulaCheckboxGroup extends Vue {
 
   public stateValue: Array<CheckboxValueType> = [];
 
-  get groupClass() {
-    let prefixCls = this.prefixCls;
-    return `${prefixCls}-group`;
-  }
-
   created() {
-    let value = this.value;
-    let defaultValue = this.defaultValue;
-    this.stateValue = value && value.length ? value : defaultValue || [];
+    const { value, defaultValue } = this;
+    this.stateValue = value || defaultValue || [];
   }
 
   public getOptions() {
-    const options = this.options;
-    if (!options) {
-      return [];
-    }
+    const { options } = this.$props;
     return options.map(option => {
       if (typeof option === "string") {
         return {
           label: option,
           value: option
-        } as CheckboxOptionType;
+        };
       }
       return option;
     });
   }
 
-  public toggleOption(option: any) {
+  public toggleOption(option) {
     const optionIndex = this.stateValue.indexOf(option.value);
     const value = [...this.stateValue];
-
     if (optionIndex === -1) {
       value.push(option.value);
     } else {
       value.splice(optionIndex, 1);
     }
-    this.stateValue = value;
+    if (!hasProp(this, "value")) {
+      this.stateValue = value;
+    }
     this.$emit("input", value);
     this.$emit("change", value);
   }
 
-  render(h: any) {
-    let children = this.getOptions().map(option => {
-      let disabled = this.disabled || option.disabled;
-      let checked = this.stateValue.indexOf(option.value) !== -1;
-      let prefixCls = this.prefixCls;
-      let value = option.value;
-      let change = () => {
-        this.toggleOption(option);
-      };
-      let className = `${this.groupClass}-item`;
-      //TODO Using TSX rewrite
-      return h(
-        "NebulaCheckbox",
-        {
-          class: className,
-          props: {
-            disabled,
-            checked,
-            prefixCls,
-            value
-          },
-          on: {
-            change: change
-          }
-        },
-        [value]
-      );
-    });
-    let groupClasses = this.groupClass;
-    return <div class={groupClasses}>{children}</div>;
+  render() {
+    const { $props: props, $data: state, $slots } = this;
+    const { prefixCls, options } = props;
+    let children = $slots.default;
+    const groupPrefixCls = `${prefixCls}-group`;
+    if (options && options.length > 0) {
+      children = this.getOptions().map(option => (
+        <NebulaCheckbox
+          prefixCls={prefixCls}
+          key={option.value.toString()}
+          disabled={"disabled" in option ? option.disabled : props.disabled}
+          value={option.value}
+          checked={state.stateValue.indexOf(option.value) !== -1}
+          onChange={() => this.toggleOption(option)}
+          class={`${groupPrefixCls}-item`}
+        >
+          {option.label}
+        </NebulaCheckbox>
+      ));
+    }
+    return <div class={groupPrefixCls}>{children}</div>;
   }
 }
 </script>

@@ -4,7 +4,7 @@ import { getAttrs, getOptionProps, hasProp } from "../_util/props-util";
 
 @Component
 export default class VueCheckbox extends Vue {
-  @Model("change", { type: [Boolean, Number] })
+  @Model("change")
   checked!: boolean | number;
 
   @Prop({ default: "vue-checkbox", type: String })
@@ -19,7 +19,7 @@ export default class VueCheckbox extends Vue {
   @Prop({ default: "checkbox" })
   private type?: string;
 
-  @Prop({ type: [Boolean, Number] })
+  @Prop({ default: false, type: [Boolean, Number] })
   private defaultChecked?: boolean | number;
 
   @Prop({ type: Boolean })
@@ -43,6 +43,7 @@ export default class VueCheckbox extends Vue {
   }
 
   public stateChecked?: boolean | number = false;
+  public eventShiftKey = false;
 
   created() {
     let checked = this.checked;
@@ -51,10 +52,12 @@ export default class VueCheckbox extends Vue {
   }
 
   mounted() {
-    if (this.autoFocus) {
-      let input: HTMLInputElement = this.$refs.input as HTMLInputElement;
-      input.focus();
-    }
+    this.$nextTick(() => {
+      if (this.autoFocus) {
+        let input: HTMLInputElement = this.$refs.input as HTMLInputElement;
+        input.focus();
+      }
+    });
   }
 
   public focus() {
@@ -67,7 +70,7 @@ export default class VueCheckbox extends Vue {
     input.blur();
   }
 
-  public handleChange(event: { target: HTMLInputElement }) {
+  public handleChange(event) {
     const props = getOptionProps(this);
     if (props.disabled) {
       return;
@@ -75,14 +78,13 @@ export default class VueCheckbox extends Vue {
     if (!("checked" in props)) {
       this.stateChecked = event.target.checked;
     }
-    this.$forceUpdate();
     this.$emit("change", {
       target: {
         ...props,
         checked: event.target.checked
       },
       stopPropagation() {
-        event.stopPropgation();
+        event.stopPropagation();
       },
       preventDefault() {
         event.preventDefault();
@@ -92,9 +94,9 @@ export default class VueCheckbox extends Vue {
     this.eventShiftKey = false;
   }
 
-  public onClick(e) {
-    this.$emit("click", e);
-    this.eventShiftKey = e.shiftKey;
+  public onClick(event) {
+    this.$emit("click", event);
+    this.eventShiftKey = event.shiftKey;
   }
 
   render() {
@@ -110,11 +112,14 @@ export default class VueCheckbox extends Vue {
       value,
       ...others
     } = getOptionProps(this);
-    const $attrs = getAttrs(this);
-    const globalProps = Object.keys({ ...others, ...$attrs }).reduce(
-      (prev: any, key) => {
-        let prefix = key.substr(0, 5);
-        if (prefix === "aria-" || prefix === "data-" || key === "role") {
+    const attrs = getAttrs(this);
+    const globalProps = Object.keys({ ...others, ...attrs }).reduce(
+      (prev, key) => {
+        if (
+          key.substr(0, 5) === "aria-" ||
+          key.substr(0, 5) === "data-" ||
+          key === "role"
+        ) {
           prev[key] = others[key];
         }
         return prev;
@@ -146,9 +151,7 @@ export default class VueCheckbox extends Vue {
           ref="input"
           value={value}
           {...{
-            attrs: {
-              ...globalProps
-            },
+            attrs: globalProps,
             on: {
               ...this.$listeners,
               change: this.handleChange,
