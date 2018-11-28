@@ -11,6 +11,10 @@ function noop() {}
   }
 })
 export default class NebulaRadio extends Vue {
+  constructor(props: any) {
+    super(props);
+  }
+
   @Model("change", { default: undefined })
   checked!: boolean;
 
@@ -57,7 +61,7 @@ export default class NebulaRadio extends Vue {
     vueCheckbox.blur();
   }
 
-  render() {
+  render(h: any): any {
     // @ts-ignore
     const { $slots, $listeners, radioGroupContext: radioGroup } = this;
     const props = getOptionProps(this);

@@ -4,6 +4,10 @@ import { getAttrs, getOptionProps, hasProp } from "../_util/props-util";
 
 @Component
 export default class VueCheckbox extends Vue {
+  constructor(props: any) {
+    super(props);
+  }
+
   @Model("change")
   checked!: boolean | number;
 
@@ -103,7 +107,7 @@ export default class VueCheckbox extends Vue {
     this.eventShiftKey = event.shiftKey;
   }
 
-  render() {
+  render(h: any): any {
     const {
       prefixCls,
       name,

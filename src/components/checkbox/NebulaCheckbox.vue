@@ -11,6 +11,10 @@ function noop() {}
   }
 })
 export default class NebulaCheckbox extends Vue {
+  constructor(props: any) {
+    super(props);
+  }
+
   @Model("change", { default: undefined })
   checked!: boolean;
 
@@ -60,7 +64,7 @@ export default class NebulaCheckbox extends Vue {
     vueCheckbox.blur();
   }
 
-  render() {
+  render(h: any): any {
     // @ts-ignore
     const { checkboxGroupContext: checkboxGroup, $listeners, $slots } = this;
     const props = getOptionProps(this);
