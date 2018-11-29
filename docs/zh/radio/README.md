@@ -1,11 +1,11 @@
 # Radio
 
-多选框。
+单选框。
 
 ## 何时使用
 
-- 在一组可选项中进行多项选择时；
-- 单独使用可以表示两种状态之间的切换，和 `switch` 类似。区别在于切换 `switch` 会直接触发状态改变，而 `checkbox` 一般用于状态标记，需要和提交操作配合。
+- 用于在多个备选项中选中单个状态。
+- 和 Select 的区别是，Radio 所有选项默认可见，方便用户在比较中选择，因此选项不宜过多。
 
 ## 代码演示
 
@@ -83,32 +83,33 @@ Radio 不可用。
 
 ## API
 
-### 属性
-
-#### Checkbox
+### Radio
 
 | 参数 | 说明 | 类型 | 默认值 |
 | --- | --- | --- | --- |
 | autoFocus | 自动获取焦点 | boolean | false |
 | checked | 指定当前是否选中 | boolean | false |
 | defaultChecked | 初始是否选中 | boolean | false |
-| disabled | 失效状态 | boolean | false |
-| indeterminate | 设置 indeterminate 状态，只负责样式控制 | boolean | false |
-| onChange | 变化时回调函数 | Function(e:Event) | - |
+| value | 根据 value 进行比较，判断是否选中 | any | - |
 
-#### Checkbox Group
+### RadioGroup
+
+单选框组合，用于包裹一组 `Radio`。
 
 | 参数 | 说明 | 类型 | 默认值 |
 | --- | --- | --- | --- |
-| defaultValue | 默认选中的选项 | string\[] | \[] |
-| disabled | 整组失效 | boolean | false |
-| options | 指定可选项 | string\[] | \[] |
-| value | 指定选中的选项 | string\[] | \[] |
-| onChange | 变化时回调函数 | Function(checkedValue) | - |
+| defaultValue | 默认选中的值 | any | - |
+| disabled | 禁选所有子单选器 | boolean | false |
+| name | RadioGroup 下所有 `input[type="radio"]` 的 `name` 属性 | string | - |
+| options | 以配置形式设置子元素 | string\[] \| Array&lt;{ label: string value: string disabled?: boolean }> | - |
+| size | 大小，只对按钮样式生效 | `large` \| `default` \| `small` | `default` |
+| value | 用于设置当前选中的值 | any | - |
+| onChange | 选项变化时的回调函数 | Function(e:Event) | - |
+| buttonStyle | RadioButton 的风格样式，目前有描边和填色两种风格 | `outline` \| `solid` | `outline` |
 
-### 方法
+## 方法
 
-#### Checkbox
+### Radio
 
 | 名称 | 描述 |
 | --- | --- |
