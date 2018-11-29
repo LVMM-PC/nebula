@@ -19,7 +19,7 @@ export interface CheckboxOptionType {
   }
 })
 export default class NebulaCheckboxGroup extends Vue {
-  @Model("change", { default: () => [], type: Array })
+  @Model("change", { default: undefined, type: Array })
   value?: Array<CheckboxValueType>;
 
   @Prop({ default: "nebula-checkbox", type: String })
@@ -29,7 +29,7 @@ export default class NebulaCheckboxGroup extends Vue {
   private disabled?: boolean;
 
   @Prop({
-    default: () => [],
+    default: undefined,
     type: Array
   })
   private defaultValue?: Array<CheckboxValueType>;

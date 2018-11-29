@@ -28,16 +28,20 @@ export default {
     };
   },
   methods: {
-    handleCheckAllChange(checked) {
-      this.checkedList = checked ? plainOptions : [];
-      this.indeterminate = false;
-      this.checkAll = checked;
+    handleCheckAllChange(e) {
+      Object.assign(this, {
+        checkedList: e.target.checked ? plainOptions : [],
+        indeterminate: false,
+        checkAll: e.target.checked
+      });
     },
     handleChange(checkedList) {
-      this.checkedList = checkedList;
-      this.indeterminate =
-        !!checkedList.length && checkedList.length < plainOptions.length;
-      this.checkAll = checkedList.length === plainOptions.length;
+      Object.assign(this, {
+        checkedList,
+        indeterminate:
+          !!checkedList.length && checkedList.length < plainOptions.length,
+        checkAll: checkedList.length === plainOptions.length
+      });
     }
   }
 };

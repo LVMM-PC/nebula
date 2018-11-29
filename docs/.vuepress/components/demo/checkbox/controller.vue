@@ -48,8 +48,8 @@ export default {
     }
   },
   methods: {
-    handleChange(checked) {
-      this.checked = checked;
+    handleChange(e) {
+      this.checked = e.target.checked;
     },
     handleToggleChecked() {
       this.checked = !this.checked;

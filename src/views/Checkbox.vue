@@ -15,19 +15,19 @@
         </NebulaCheckbox>
       </div>
       <br >
-      <NebulaCheckbox-group 
-        :options="plainOptions" 
-        v-model="checkedList" 
+      <NebulaCheckbox-group
+        :options="plainOptions"
+        v-model="checkedList"
         @change="onChange2" />
     </div>
 
     <div>
-      <NebulaCheckbox 
-        :default-checked="false" 
+      <NebulaCheckbox
+        :default-checked="false"
         disabled />
       <br >
-      <NebulaCheckbox 
-        default-checked 
+      <NebulaCheckbox
+        default-checked
         disabled />
     </div>
 
@@ -61,25 +61,25 @@
     </div>
 
     <div>
-      <NebulaCheckboxGroup 
-        :options="plainOptions" 
-        v-model="value" 
+      <NebulaCheckboxGroup
+        :options="plainOptions"
+        v-model="value"
         @change="onChange4" />
       <br >
-      <NebulaCheckboxGroup 
-        :options="plainOptions" 
-        :default-value="['Apple']" 
+      <NebulaCheckboxGroup
+        :options="plainOptions"
+        :default-value="['Apple']"
         @change="onChange4" />
       <br >
-      <NebulaCheckboxGroup 
-        :options="options" 
-        :value="['Pear']" 
+      <NebulaCheckboxGroup
+        :options="options"
+        :value="['Pear']"
         @change="onChange4" />
       <br >
-      <NebulaCheckboxGroup 
-        :options="optionsWithDisabled" 
-        :default-value="['Apple']" 
-        disabled 
+      <NebulaCheckboxGroup
+        :options="optionsWithDisabled"
+        :default-value="['Apple']"
+        disabled
         @change="onChange4" />
     </div>
 
