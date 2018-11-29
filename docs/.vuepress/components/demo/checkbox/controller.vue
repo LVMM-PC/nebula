@@ -4,7 +4,7 @@
       <NebulaCheckbox
         v-model="checked"
         :disabled="disabled"
-        @change="handleChange"
+        @change="onChange"
       >{{label}}
       </NebulaCheckbox>
     </section>
@@ -12,14 +12,14 @@
       <NebulaButton
         type="primary"
         size="small"
-        @click="handleToggleChecked"
+        @click="toggleChecked"
       >{{checkLabel}}
       </NebulaButton>
       <NebulaButton
         :style="{marginLeft:'10px'}"
         type="primary"
         size="small"
-        @click="handleToggleDisable"
+        @click="toggleDisable"
       >{{checkDisabled}}
       </NebulaButton>
     </section>
@@ -48,13 +48,13 @@ export default {
     }
   },
   methods: {
-    handleChange(e) {
+    onChange(e) {
       this.checked = e.target.checked;
     },
-    handleToggleChecked() {
+    toggleChecked() {
       this.checked = !this.checked;
     },
-    handleToggleDisable() {
+    toggleDisable() {
       this.disabled = !this.disabled;
     }
   }

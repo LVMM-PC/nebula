@@ -1,4 +1,11 @@
-let sidebar = ["/", "/installation/", "/button/", "/icon/", "/checkbox/"];
+let sidebar = [
+  "/",
+  "/installation/",
+  "/button/",
+  "/icon/",
+  "/checkbox/",
+  "/radio/"
+];
 
 module.exports = {
   title: "Nebula UI",
