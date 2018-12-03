@@ -1,5 +1,5 @@
 <script lang="tsx">
-import VueCheckbox from "../vue-checkbox/VueCheckbox.vue";
+import VueCheckbox from "../vc-checkbox";
 import { getAttrs, getOptionProps } from "../_util/props-util";
 import { Component, Model, Prop, Vue } from "vue-property-decorator";
 

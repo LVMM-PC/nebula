@@ -35,6 +35,11 @@ export default new Router({
       path: "/radio",
       name: "radio",
       component: () => import("./views/Radio.vue")
+    },
+    {
+      path: "/select",
+      name: "select",
+      component: () => import("./views/Select.vue")
     }
   ]
 });
