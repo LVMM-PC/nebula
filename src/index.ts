@@ -9,6 +9,7 @@ import NebulaRadioButton from "./components/radio/NebulaRadioButton.vue";
 import NebulaRadioGroup from "./components/radio/NebulaRadioGroup.vue";
 
 import { default as Select } from './components/select'
+import { default as Switch } from './components/switch'
 
 export {
   VueCheckbox,
@@ -20,5 +21,6 @@ export {
   NebulaRadio,
   NebulaRadioButton,
   NebulaRadioGroup,
-  Select
+  Select,
+  Switch
 };

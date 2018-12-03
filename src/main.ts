@@ -12,7 +12,8 @@ import {
   NebulaRadioButton,
   NebulaRadioGroup,
   VueCheckbox,
-  Select
+  Select,
+  Switch
 } from "./index";
 
 import router from "./router";
@@ -27,6 +28,7 @@ Vue.component("NebulaRadio", NebulaRadio);
 Vue.component("NebulaRadioButton", NebulaRadioButton);
 Vue.component("NebulaRadioGroup", NebulaRadioGroup);
 Vue.component(Select.name, Select);
+Vue.component(Switch.name, Switch);
 Vue.config.productionTip = false;
 
 new Vue({

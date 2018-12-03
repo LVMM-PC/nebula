@@ -40,6 +40,11 @@ export default new Router({
       path: "/select",
       name: "select",
       component: () => import("./views/Select.vue")
+    },
+    {
+      path: "/switch",
+      name: "switch",
+      component: () => import("./views/SwitchDemo.vue")
     }
   ]
 });
