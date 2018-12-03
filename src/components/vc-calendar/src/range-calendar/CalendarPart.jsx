@@ -1,13 +1,12 @@
-
-import PropTypes from '../../../_util/vue-types'
-import BaseMixin from '../../../_util/BaseMixin'
-import { getOptionProps } from '../../../_util/props-util'
-import { cloneElement } from '../../../_util/vnode'
-import CalendarHeader from '../calendar/CalendarHeader'
-import DateTable from '../date/DateTable'
-import DateInput from '../date/DateInput'
-import { getTimeConfig } from '../util/index'
-function noop () {}
+import PropTypes from "../../../_util/vue-types";
+import BaseMixin from "../../../_util/BaseMixin";
+import { getOptionProps } from "../../../_util/props-util";
+import { cloneElement } from "../../../_util/vnode";
+import CalendarHeader from "../calendar/CalendarHeader";
+import DateTable from "../date/DateTable";
+import DateInput from "../date/DateInput";
+import { getTimeConfig } from "../util/index";
+function noop() {}
 const CalendarPart = {
   mixins: [BaseMixin],
   props: {
@@ -31,10 +30,10 @@ const CalendarPart = {
     timePickerDisabledTime: PropTypes.object,
     enableNext: PropTypes.any,
     enablePrev: PropTypes.any,
-    dateRender: PropTypes.func,
+    dateRender: PropTypes.func
   },
-  render () {
-    const { $props: props, $listeners = {}} = this
+  render() {
+    const { $props: props, $listeners = {} } = this;
     const {
       prefixCls,
       value,
@@ -42,32 +41,44 @@ const CalendarPart = {
       selectedValue,
       mode,
       direction,
-      locale, format, placeholder,
-      disabledDate, timePicker, disabledTime,
-      timePickerDisabledTime, showTimePicker,
-      enablePrev, enableNext, disabledMonth,
-      showDateInput, dateRender, showWeekNumber,
-    } = props
-    const { inputSelect = noop,
+      locale,
+      format,
+      placeholder,
+      disabledDate,
+      timePicker,
+      disabledTime,
+      timePickerDisabledTime,
+      showTimePicker,
+      enablePrev,
+      enableNext,
+      disabledMonth,
+      showDateInput,
+      dateRender,
+      showWeekNumber
+    } = props;
+    const {
+      inputSelect = noop,
       valueChange = noop,
       panelChange = noop,
       select = noop,
-      dayHover = noop,
-    } = $listeners
-    const shouldShowTimePicker = showTimePicker && timePicker
-    const disabledTimeConfig = shouldShowTimePicker && disabledTime
-      ? getTimeConfig(selectedValue, disabledTime) : null
-    const rangeClassName = `${prefixCls}-range`
+      dayHover = noop
+    } = $listeners;
+    const shouldShowTimePicker = showTimePicker && timePicker;
+    const disabledTimeConfig =
+      shouldShowTimePicker && disabledTime
+        ? getTimeConfig(selectedValue, disabledTime)
+        : null;
+    const rangeClassName = `${prefixCls}-range`;
     const newProps = {
       locale,
       value,
       prefixCls,
-      showTimePicker,
-    }
-    const index = direction === 'left' ? 0 : 1
-    let timePickerEle = null
+      showTimePicker
+    };
+    const index = direction === "left" ? 0 : 1;
+    let timePickerEle = null;
     if (shouldShowTimePicker) {
-      const timePickerProps = getOptionProps(timePicker)
+      const timePickerProps = getOptionProps(timePicker);
       timePickerEle = cloneElement(timePicker, {
         props: {
           showHour: true,
@@ -77,16 +88,15 @@ const CalendarPart = {
           ...disabledTimeConfig,
           ...timePickerDisabledTime,
           defaultOpenValue: value,
-          value: selectedValue[index],
+          value: selectedValue[index]
         },
         on: {
-          change: inputSelect,
-        },
-
-      })
+          change: inputSelect
+        }
+      });
     }
 
-    const dateInputElement = showDateInput &&
+    const dateInputElement = showDateInput && (
       <DateInput
         format={format}
         locale={locale}
@@ -100,19 +110,20 @@ const CalendarPart = {
         selectedValue={selectedValue[index]}
         onChange={inputSelect}
       />
+    );
     const headerProps = {
       props: {
         ...newProps,
         mode,
         enableNext,
         enablePrev,
-        disabledMonth,
+        disabledMonth
       },
       on: {
         valueChange,
-        panelChange,
-      },
-    }
+        panelChange
+      }
+    };
     const tableProps = {
       props: {
         ...newProps,
@@ -120,30 +131,32 @@ const CalendarPart = {
         selectedValue,
         dateRender,
         disabledDate,
-        showWeekNumber,
+        showWeekNumber
       },
       on: {
         select,
-        dayHover,
-      },
-    }
+        dayHover
+      }
+    };
     return (
       <div class={`${rangeClassName}-part ${rangeClassName}-${direction}`}>
         {dateInputElement}
-        <div style={{ outline: 'none' }}>
-          <CalendarHeader {...headerProps}/>
-          {showTimePicker ? <div class={`${prefixCls}-time-picker`}>
-            <div class={`${prefixCls}-time-picker-panel`}>
-              {timePickerEle}
+        <div style={{ outline: "none" }}>
+          <CalendarHeader {...headerProps} />
+          {showTimePicker ? (
+            <div class={`${prefixCls}-time-picker`}>
+              <div class={`${prefixCls}-time-picker-panel`}>
+                {timePickerEle}
+              </div>
             </div>
-          </div> : null}
+          ) : null}
           <div class={`${prefixCls}-body`}>
-            <DateTable {...tableProps}/>
+            <DateTable {...tableProps} />
           </div>
         </div>
-      </div>)
-  },
-}
+      </div>
+    );
+  }
+};
 
-export default CalendarPart
-
+export default CalendarPart;

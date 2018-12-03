@@ -1,41 +1,39 @@
-
-import omit from 'omit.js'
+import omit from "omit.js";
 export default {
-  name: 'DOMWrap',
+  name: "DOMWrap",
   props: {
     visible: {
       type: Boolean,
-      default: false,
+      default: false
     },
     tag: {
       type: String,
-      default: 'div',
+      default: "div"
     },
     hiddenClassName: {
       type: String,
-      default: '',
-    },
+      default: ""
+    }
   },
   computed: {
-    class () {
-      const { visible, hiddenClassName } = this.$props
+    class() {
+      const { visible, hiddenClassName } = this.$props;
       return {
         // [hiddenClassName]: !visible,
-      }
-    },
+      };
+    }
   },
-  render () {
-    const otherProps = omit(this.$props, [
-      'tag',
-      'hiddenClassName',
-      'visible',
-    ])
-    const Tag = this.$props.tag
+  render() {
+    const otherProps = omit(this.$props, ["tag", "hiddenClassName", "visible"]);
+    const Tag = this.$props.tag;
     const tagProps = {
       attr: { ...otherProps, ...this.$attrs },
-      on: this.$listeners,
-    }
-    return <Tag {...tagProps} class={this.class}>{this.$slots.default}</Tag>
-  },
-}
-
+      on: this.$listeners
+    };
+    return (
+      <Tag {...tagProps} class={this.class}>
+        {this.$slots.default}
+      </Tag>
+    );
+  }
+};

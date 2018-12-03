@@ -1,10 +1,9 @@
-
-import PropTypes from '../../../_util/vue-types'
-import BaseMixin from '../../../_util/BaseMixin'
-import { getOptionProps } from '../../../_util/props-util'
-import TodayButton from './TodayButton'
-import OkButton from './OkButton'
-import TimePickerButton from './TimePickerButton'
+import PropTypes from "../../../_util/vue-types";
+import BaseMixin from "../../../_util/BaseMixin";
+import { getOptionProps } from "../../../_util/props-util";
+import TodayButton from "./TodayButton";
+import OkButton from "./OkButton";
+import TimePickerButton from "./TimePickerButton";
 
 const CalendarFooter = {
   mixins: [BaseMixin],
@@ -23,65 +22,76 @@ const CalendarFooter = {
     showToday: PropTypes.bool,
     disabledDate: PropTypes.func,
     showTimePicker: PropTypes.bool,
-    okDisabled: PropTypes.bool,
+    okDisabled: PropTypes.bool
   },
   methods: {
-    onSelect (value) {
-      this.__emit('select', value)
+    onSelect(value) {
+      this.__emit("select", value);
     },
 
-    getRootDOMNode () {
-      return this.$el
-    },
+    getRootDOMNode() {
+      return this.$el;
+    }
   },
 
-  render () {
-    const props = getOptionProps(this)
-    const { $listeners } = this
-    const { value, prefixCls, showOk, timePicker, renderFooter, showToday } = props
-    let footerEl = null
-    const extraFooter = renderFooter()
+  render() {
+    const props = getOptionProps(this);
+    const { $listeners } = this;
+    const {
+      value,
+      prefixCls,
+      showOk,
+      timePicker,
+      renderFooter,
+      showToday
+    } = props;
+    let footerEl = null;
+    const extraFooter = renderFooter();
     if (showToday || timePicker || extraFooter) {
       const btnProps = {
         props: {
           ...props,
-          value: value,
+          value: value
         },
-        on: $listeners,
-      }
-      let nowEl = null
+        on: $listeners
+      };
+      let nowEl = null;
       if (showToday) {
-        nowEl = <TodayButton {...btnProps} />
+        nowEl = <TodayButton {...btnProps} />;
       }
-      delete btnProps.props.value
-      let okBtn = null
-      if (showOk === true || showOk !== false && !!timePicker) {
-        okBtn = <OkButton {...btnProps} />
+      delete btnProps.props.value;
+      let okBtn = null;
+      if (showOk === true || (showOk !== false && !!timePicker)) {
+        okBtn = <OkButton {...btnProps} />;
       }
-      let timePickerBtn = null
+      let timePickerBtn = null;
       if (timePicker) {
-        timePickerBtn = <TimePickerButton {...btnProps} />
+        timePickerBtn = <TimePickerButton {...btnProps} />;
       }
 
-      let footerBtn
+      let footerBtn;
       if (nowEl || timePickerBtn || okBtn) {
-        footerBtn = (<span class={`${prefixCls}-footer-btn`}>
-          {nowEl}{timePickerBtn}{okBtn}
-        </span>)
+        footerBtn = (
+          <span class={`${prefixCls}-footer-btn`}>
+            {nowEl}
+            {timePickerBtn}
+            {okBtn}
+          </span>
+        );
       }
       const cls = {
         [`${prefixCls}-footer`]: true,
-        [`${prefixCls}-footer-show-ok`]: !!okBtn,
-      }
+        [`${prefixCls}-footer-show-ok`]: !!okBtn
+      };
       footerEl = (
         <div class={cls}>
           {extraFooter}
           {footerBtn}
-        </div>)
+        </div>
+      );
     }
-    return footerEl
-  },
-}
+    return footerEl;
+  }
+};
 
-export default CalendarFooter
-
+export default CalendarFooter;

@@ -1,16 +1,14 @@
-
 export default {
-  name: 'MenuDivider',
+  name: "MenuDivider",
   props: {
     disabled: {
       type: Boolean,
-      default: true,
+      default: true
     },
-    rootPrefixCls: String,
+    rootPrefixCls: String
   },
-  render () {
-    const { rootPrefixCls } = this.$props
-    return <li class={`${rootPrefixCls}-item-divider`}/>
-  },
-}
-
+  render() {
+    const { rootPrefixCls } = this.$props;
+    return <li class={`${rootPrefixCls}-item-divider`} />;
+  }
+};

@@ -1,8 +1,7 @@
-
-import PropTypes from '../_util/vue-types'
+import PropTypes from "../_util/vue-types";
 
 export default {
-  name: 'Pager',
+  name: "Pager",
   props: {
     rootPrefixCls: PropTypes.string,
     page: PropTypes.number,
@@ -12,34 +11,34 @@ export default {
     showTitle: PropTypes.bool,
     itemRender: {
       type: Function,
-      default: () => {},
-    },
+      default: () => {}
+    }
   },
   computed: {
-    classes () {
-      const prefixCls = `${this.rootPrefixCls}-item`
-      let cls = `${prefixCls} ${prefixCls}-${this.page}`
+    classes() {
+      const prefixCls = `${this.rootPrefixCls}-item`;
+      let cls = `${prefixCls} ${prefixCls}-${this.page}`;
       if (this.active) {
-        cls = `${cls} ${prefixCls}-active`
+        cls = `${cls} ${prefixCls}-active`;
       }
-      return cls
-    },
+      return cls;
+    }
   },
   methods: {
-    handleClick () {
-      this.$emit('click', this.page)
+    handleClick() {
+      this.$emit("click", this.page);
     },
-    handleKeyPress (event) {
-      this.$emit('keypress', event, this.handleClick, this.page)
-    },
+    handleKeyPress(event) {
+      this.$emit("keypress", event, this.handleClick, this.page);
+    }
   },
-  render () {
-    const { rootPrefixCls, page, active } = this
-    const prefixCls = `${rootPrefixCls}-item`
-    let cls = `${prefixCls} ${prefixCls}-${page}`
+  render() {
+    const { rootPrefixCls, page, active } = this;
+    const prefixCls = `${rootPrefixCls}-item`;
+    let cls = `${prefixCls} ${prefixCls}-${page}`;
 
     if (active) {
-      cls = `${cls} ${prefixCls}-active`
+      cls = `${cls} ${prefixCls}-active`;
     }
 
     return (
@@ -48,11 +47,10 @@ export default {
         onClick={this.handleClick}
         onKeypress={this.handleKeyPress}
         title={this.showTitle ? this.page : null}
-        tabIndex='0'
+        tabIndex="0"
       >
-        {this.itemRender(this.page, 'page', <a>{this.page}</a>)}
+        {this.itemRender(this.page, "page", <a>{this.page}</a>)}
       </li>
-    )
-  },
-}
-
+    );
+  }
+};

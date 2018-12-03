@@ -1,39 +1,41 @@
+import PropTypes from "../../_util/vue-types";
+import BaseMixin from "../../_util/BaseMixin";
+import { getOptionProps, hasProp } from "../../_util/props-util";
+import { cloneElement } from "../../_util/vnode";
+import KeyCode from "../../_util/KeyCode";
+import * as moment from "moment";
+import DateTable from "./date/DateTable";
+import CalendarHeader from "./calendar/CalendarHeader";
+import CalendarFooter from "./calendar/CalendarFooter";
+import CalendarMixin from "./mixin/CalendarMixin";
+import CommonMixin from "./mixin/CommonMixin";
+import DateInput from "./date/DateInput";
+import enUs from "./locale/en_US";
+import { getTimeConfig, getTodayTime, syncTime } from "./util";
+import { goStartMonth, goEndMonth, goTime } from "./util/toTime";
 
-import PropTypes from '../../_util/vue-types'
-import BaseMixin from '../../_util/BaseMixin'
-import { getOptionProps, hasProp } from '../../_util/props-util'
-import { cloneElement } from '../../_util/vnode'
-import KeyCode from '../../_util/KeyCode'
-import * as moment from 'moment'
-import DateTable from './date/DateTable'
-import CalendarHeader from './calendar/CalendarHeader'
-import CalendarFooter from './calendar/CalendarFooter'
-import CalendarMixin from './mixin/CalendarMixin'
-import CommonMixin from './mixin/CommonMixin'
-import DateInput from './date/DateInput'
-import enUs from './locale/en_US'
-import { getTimeConfig, getTodayTime, syncTime } from './util'
-import { goStartMonth, goEndMonth, goTime } from './util/toTime'
-
-function isMoment (value) {
+function isMoment(value) {
   if (Array.isArray(value)) {
-    return value.length === 0 || value.findIndex((val) => val === undefined || moment.isMoment(val)) !== -1
+    return (
+      value.length === 0 ||
+      value.findIndex(val => val === undefined || moment.isMoment(val)) !== -1
+    );
   } else {
-    return value === undefined || moment.isMoment(value)
+    return value === undefined || moment.isMoment(value);
   }
 }
-const MomentType = PropTypes.custom(isMoment)
+const MomentType = PropTypes.custom(isMoment);
 const Calendar = {
   props: {
     locale: PropTypes.object.def(enUs),
     format: PropTypes.string,
     visible: PropTypes.bool.def(true),
-    prefixCls: PropTypes.string.def('rc-calendar'),
+    prefixCls: PropTypes.string.def("rc-calendar"),
     // prefixCls: PropTypes.string,
     defaultValue: MomentType,
     value: MomentType,
     selectedValue: MomentType,
-    mode: PropTypes.oneOf(['time', 'date', 'month', 'year', 'decade']),
+    mode: PropTypes.oneOf(["time", "date", "month", "year", "decade"]),
     // locale: PropTypes.object,
     showDateInput: PropTypes.bool.def(true),
     showWeekNumber: PropTypes.bool,
@@ -51,163 +53,166 @@ const Calendar = {
     disabledTime: PropTypes.any,
     renderFooter: PropTypes.func.def(() => null),
     renderSidebar: PropTypes.func.def(() => null),
-    dateRender: PropTypes.func,
+    dateRender: PropTypes.func
   },
 
   mixins: [BaseMixin, CommonMixin, CalendarMixin],
 
-  data () {
+  data() {
     return {
-      sMode: this.mode || 'date',
-    }
+      sMode: this.mode || "date"
+    };
   },
   watch: {
-    mode (val) {
-      this.setState({ sMode: val })
-    },
+    mode(val) {
+      this.setState({ sMode: val });
+    }
   },
   methods: {
-    onKeyDown (event) {
-      if (event.target.nodeName.toLowerCase() === 'input') {
-        return undefined
+    onKeyDown(event) {
+      if (event.target.nodeName.toLowerCase() === "input") {
+        return undefined;
       }
-      const keyCode = event.keyCode
+      const keyCode = event.keyCode;
       // mac
-      const ctrlKey = event.ctrlKey || event.metaKey
-      const { disabledDate, sValue: value } = this
+      const ctrlKey = event.ctrlKey || event.metaKey;
+      const { disabledDate, sValue: value } = this;
       switch (keyCode) {
         case KeyCode.DOWN:
-          this.goTime(1, 'weeks')
-          event.preventDefault()
-          return 1
+          this.goTime(1, "weeks");
+          event.preventDefault();
+          return 1;
         case KeyCode.UP:
-          this.goTime(-1, 'weeks')
-          event.preventDefault()
-          return 1
+          this.goTime(-1, "weeks");
+          event.preventDefault();
+          return 1;
         case KeyCode.LEFT:
           if (ctrlKey) {
-            this.goTime(-1, 'years')
+            this.goTime(-1, "years");
           } else {
-            this.goTime(-1, 'days')
+            this.goTime(-1, "days");
           }
-          event.preventDefault()
-          return 1
+          event.preventDefault();
+          return 1;
         case KeyCode.RIGHT:
           if (ctrlKey) {
-            this.goTime(1, 'years')
+            this.goTime(1, "years");
           } else {
-            this.goTime(1, 'days')
+            this.goTime(1, "days");
           }
-          event.preventDefault()
-          return 1
+          event.preventDefault();
+          return 1;
         case KeyCode.HOME:
-          this.setValue(
-            goStartMonth(value),
-          )
-          event.preventDefault()
-          return 1
+          this.setValue(goStartMonth(value));
+          event.preventDefault();
+          return 1;
         case KeyCode.END:
-          this.setValue(
-            goEndMonth(value),
-          )
-          event.preventDefault()
-          return 1
+          this.setValue(goEndMonth(value));
+          event.preventDefault();
+          return 1;
         case KeyCode.PAGE_DOWN:
-          this.goTime(1, 'month')
-          event.preventDefault()
-          return 1
+          this.goTime(1, "month");
+          event.preventDefault();
+          return 1;
         case KeyCode.PAGE_UP:
-          this.goTime(-1, 'month')
-          event.preventDefault()
-          return 1
+          this.goTime(-1, "month");
+          event.preventDefault();
+          return 1;
         case KeyCode.ENTER:
           if (!disabledDate || !disabledDate(value)) {
             this.onSelect(value, {
-              source: 'keyboard',
-            })
+              source: "keyboard"
+            });
           }
-          event.preventDefault()
-          return 1
+          event.preventDefault();
+          return 1;
         default:
-          this.__emit('keydown', event)
-          return 1
+          this.__emit("keydown", event);
+          return 1;
       }
     },
 
-    onClear () {
-      this.onSelect(null)
-      this.__emit('clear')
+    onClear() {
+      this.onSelect(null);
+      this.__emit("clear");
     },
 
-    onOk () {
-      const { sSelectedValue } = this
+    onOk() {
+      const { sSelectedValue } = this;
       if (this.isAllowedDate(sSelectedValue)) {
-        this.__emit('ok', sSelectedValue)
+        this.__emit("ok", sSelectedValue);
       }
     },
 
-    onDateInputChange (value) {
+    onDateInputChange(value) {
       this.onSelect(value, {
-        source: 'dateInput',
-      })
+        source: "dateInput"
+      });
     },
-    onDateTableSelect (value) {
-      const { timePicker, sSelectedValue } = this
+    onDateTableSelect(value) {
+      const { timePicker, sSelectedValue } = this;
       if (!sSelectedValue && timePicker) {
-        const timePickerProps = getOptionProps(timePicker)
-        const timePickerDefaultValue = timePickerProps.defaultValue
+        const timePickerProps = getOptionProps(timePicker);
+        const timePickerDefaultValue = timePickerProps.defaultValue;
         if (timePickerDefaultValue) {
-          syncTime(timePickerDefaultValue, value)
+          syncTime(timePickerDefaultValue, value);
         }
       }
-      this.onSelect(value)
+      this.onSelect(value);
     },
-    onToday () {
-      const { sValue } = this
-      const now = getTodayTime(sValue)
+    onToday() {
+      const { sValue } = this;
+      const now = getTodayTime(sValue);
       this.onSelect(now, {
-        source: 'todayButton',
-      })
+        source: "todayButton"
+      });
     },
-    onPanelChange (value, mode) {
-      const { sValue } = this
-      if (!hasProp(this, 'mode')) {
-        this.setState({ sMode: mode })
+    onPanelChange(value, mode) {
+      const { sValue } = this;
+      if (!hasProp(this, "mode")) {
+        this.setState({ sMode: mode });
       }
-      this.__emit('panelChange', value || sValue, mode)
+      this.__emit("panelChange", value || sValue, mode);
     },
-    getRootDOMNode () {
-      return this.$el
+    getRootDOMNode() {
+      return this.$el;
     },
-    openTimePicker () {
-      this.onPanelChange(null, 'time')
+    openTimePicker() {
+      this.onPanelChange(null, "time");
     },
-    closeTimePicker () {
-      this.onPanelChange(null, 'date')
+    closeTimePicker() {
+      this.onPanelChange(null, "date");
     },
-    goTime (direction, unit) {
-      this.setValue(
-        goTime(this.sValue, direction, unit),
-      )
-    },
+    goTime(direction, unit) {
+      this.setValue(goTime(this.sValue, direction, unit));
+    }
   },
 
-  render () {
+  render() {
     const {
-      locale, prefixCls, disabledDate,
-      dateInputPlaceholder, timePicker,
-      disabledTime, showDateInput, renderSidebar,
-      sValue, sSelectedValue, sMode,
-      $props: props,
-    } = this
-    const showTimePicker = sMode === 'time'
-    const disabledTimeConfig = showTimePicker && disabledTime && timePicker
-      ? getTimeConfig(sSelectedValue, disabledTime) : null
+      locale,
+      prefixCls,
+      disabledDate,
+      dateInputPlaceholder,
+      timePicker,
+      disabledTime,
+      showDateInput,
+      renderSidebar,
+      sValue,
+      sSelectedValue,
+      sMode,
+      $props: props
+    } = this;
+    const showTimePicker = sMode === "time";
+    const disabledTimeConfig =
+      showTimePicker && disabledTime && timePicker
+        ? getTimeConfig(sSelectedValue, disabledTime)
+        : null;
 
-    let timePickerEle = null
+    let timePickerEle = null;
 
     if (timePicker && showTimePicker) {
-      const timePickerOriginProps = getOptionProps(timePicker)
+      const timePickerOriginProps = getOptionProps(timePicker);
       const timePickerProps = {
         props: {
           showHour: true,
@@ -216,23 +221,24 @@ const Calendar = {
           ...timePickerOriginProps,
           ...disabledTimeConfig,
           value: sSelectedValue,
-          disabledTime,
+          disabledTime
         },
         on: {
-          change: this.onDateInputChange,
-        },
-      }
+          change: this.onDateInputChange
+        }
+      };
 
       if (timePickerOriginProps.defaultValue !== undefined) {
-        timePickerProps.props.defaultOpenValue = timePickerOriginProps.defaultValue
+        timePickerProps.props.defaultOpenValue =
+          timePickerOriginProps.defaultValue;
       }
-      timePickerEle = cloneElement(timePicker, timePickerProps)
+      timePickerEle = cloneElement(timePicker, timePickerProps);
     }
 
     const dateInputElement = showDateInput ? (
       <DateInput
         format={this.getFormat()}
-        key='date-input'
+        key="date-input"
         value={sValue}
         locale={locale}
         placeholder={dateInputPlaceholder}
@@ -244,10 +250,10 @@ const Calendar = {
         selectedValue={sSelectedValue}
         onChange={this.onDateInputChange}
       />
-    ) : null
+    ) : null;
     const children = [
       renderSidebar(),
-      (<div class={`${prefixCls}-panel`} key='panel'>
+      <div class={`${prefixCls}-panel`} key="panel">
         {dateInputElement}
         <div class={`${prefixCls}-date-panel`}>
           <CalendarHeader
@@ -259,13 +265,13 @@ const Calendar = {
             showTimePicker={showTimePicker}
             prefixCls={prefixCls}
           />
-          {timePicker && showTimePicker
-            ? (<div class={`${prefixCls}-time-picker`}>
+          {timePicker && showTimePicker ? (
+            <div class={`${prefixCls}-time-picker`}>
               <div class={`${prefixCls}-time-picker-panel`}>
-                {timePickerEle }
+                {timePickerEle}
               </div>
-            </div>)
-            : null}
+            </div>
+          ) : null}
           <div class={`${prefixCls}-body`}>
             <DateTable
               locale={locale}
@@ -300,15 +306,14 @@ const Calendar = {
             onCloseTimePicker={this.closeTimePicker}
           />
         </div>
-      </div>),
-    ]
+      </div>
+    ];
 
     return this.renderRoot({
       children,
-      class: props.showWeekNumber ? `${prefixCls}-week-number` : '',
-    })
-  },
-}
+      class: props.showWeekNumber ? `${prefixCls}-week-number` : ""
+    });
+  }
+};
 
-export default Calendar
-
+export default Calendar;
