@@ -7,6 +7,14 @@ import animate from "../_util/css-animation";
 import { Component, Vue, Prop } from "vue-property-decorator";
 
 @Component({
+  data() {
+    return {
+      // Used for stretch
+      stretchChecked: false,
+      targetWidth: undefined,
+      targetHeight: undefined
+    };
+  },
   props: {
     visible: PropTypes.bool,
     getClassNameFromAlign: PropTypes.func,
@@ -31,20 +39,16 @@ import { Component, Vue, Prop } from "vue-property-decorator";
   }
 })
 export default class Popup extends Vue {
+  constructor(props: any) {
+    super(props);
+  }
+
   @Prop()
   currentAlignClassName: any;
 
   @Prop()
   rootNode: any;
 
-  data() {
-    return {
-      // Used for stretch
-      stretchChecked: false,
-      targetWidth: undefined,
-      targetHeight: undefined
-    };
-  }
   mounted() {
     this.$nextTick(() => {
       this.rootNode = this.getPopupDomNode();

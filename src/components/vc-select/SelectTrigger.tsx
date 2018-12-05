@@ -219,9 +219,11 @@ export default {
       ]
     };
     if (mouseenter) {
+      // @ts-ignore
       triggerProps.on.mouseenter = mouseenter;
     }
     if (mouseleave) {
+      // @ts-ignore
       triggerProps.on.mouseleave = mouseleave;
     }
     return (

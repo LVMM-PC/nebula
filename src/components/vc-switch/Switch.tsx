@@ -1,11 +1,11 @@
 import { switchPropTypes } from "./PropTypes";
 import BaseMixin from "../_util/BaseMixin";
 import {
-  hasProp,
+  getComponentFromProp,
   getOptionProps,
-  getComponentFromProp
+  hasProp
 } from "../_util/props-util";
-import { Vue, Component } from "vue-property-decorator";
+import { Component, Model, Prop, Vue, Watch } from "vue-property-decorator";
 
 // function noop () {
 // }
@@ -13,10 +13,6 @@ import { Vue, Component } from "vue-property-decorator";
 @Component({
   name: "VcSwitch",
   mixins: [BaseMixin],
-  model: {
-    prop: "checked",
-    event: "change"
-  },
   props: {
     ...switchPropTypes,
     prefixCls: switchPropTypes.prefixCls.def("rc-switch")
@@ -26,18 +22,15 @@ import { Vue, Component } from "vue-property-decorator";
   data() {
     let checked = false;
     if (hasProp(this, "checked")) {
+      // @ts-ignore
       checked = !!this.checked;
     } else {
+      // @ts-ignore
       checked = !!this.defaultChecked;
     }
     return {
       stateChecked: checked
     };
-  },
-  watch: {
-    checked(val) {
-      this.stateChecked = val;
-    }
   },
   mounted() {
     this.$nextTick(() => {
@@ -47,48 +40,69 @@ import { Vue, Component } from "vue-property-decorator";
       }
     });
   },
-  methods: {
-    setChecked(checked) {
-      if (this.disabled) {
-        return;
-      }
-      if (!hasProp(this, "checked")) {
-        this.stateChecked = checked;
-      }
-      this.$emit("change", checked);
-    },
-    toggle() {
-      const checked = !this.stateChecked;
-      this.setChecked(checked);
-      this.$emit("click", checked);
-    },
-    handleKeyDown(e) {
-      if (e.keyCode === 37) {
-        // Left
-        this.setChecked(false);
-      } else if (e.keyCode === 39) {
-        // Right
-        this.setChecked(true);
-      } else if (e.keyCode === 32 || e.keyCode === 13) {
-        // Space, Enter
-        this.toggle();
-      }
-    },
-    handleMouseUp(e) {
-      if (this.$refs.refSwitchNode) {
-        this.$refs.refSwitchNode.blur();
-      }
-      this.$emit("mouseup", e);
-    },
-    focus() {
-      this.$refs.refSwitchNode.focus();
-    },
-    blur() {
-      this.$refs.refSwitchNode.blur();
-    }
-  }
+  methods: {}
 })
 export default class VcSwitch extends Vue {
+  @Model("change", { default: false })
+  checked!: boolean;
+
+  @Prop({ default: false, type: Boolean })
+  private disabled?: boolean;
+
+  @Watch("checked")
+  onCheckedChanged(val: boolean | number) {
+    this.stateChecked = val;
+  }
+
+  public stateChecked: any;
+
+  setChecked(checked) {
+    if (this.disabled) {
+      return;
+    }
+    if (!hasProp(this, "checked")) {
+      this.stateChecked = checked;
+    }
+    this.$emit("change", checked);
+  }
+
+  toggle() {
+    const checked = !this.stateChecked;
+    this.setChecked(checked);
+    this.$emit("click", checked);
+  }
+
+  handleKeyDown(e) {
+    if (e.keyCode === 37) {
+      // Left
+      this.setChecked(false);
+    } else if (e.keyCode === 39) {
+      // Right
+      this.setChecked(true);
+    } else if (e.keyCode === 32 || e.keyCode === 13) {
+      // Space, Enter
+      this.toggle();
+    }
+  }
+
+  handleMouseUp(e) {
+    let refSwitchNode = this.$refs.refSwitchNode as HTMLInputElement;
+    if (refSwitchNode) {
+      refSwitchNode.blur();
+    }
+    this.$emit("mouseup", e);
+  }
+
+  focus() {
+    let refSwitchNode = this.$refs.refSwitchNode as HTMLInputElement;
+    refSwitchNode.focus();
+  }
+
+  blur() {
+    let refSwitchNode = this.$refs.refSwitchNode as HTMLInputElement;
+    refSwitchNode.blur();
+  }
+
   render() {
     const { prefixCls, disabled, tabIndex, ...restProps } = getOptionProps(
       this

@@ -2,6 +2,10 @@ import { Component, Prop, Vue } from "vue-property-decorator";
 
 @Component({})
 export default class ContainerRender extends Vue {
+  constructor(props: any) {
+    super(props);
+  }
+
   @Prop({ default: true, type: Boolean })
   autoMount: boolean;
 
