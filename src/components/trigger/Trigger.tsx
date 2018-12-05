@@ -19,6 +19,7 @@ import { getAlignFromPlacement, getAlignPopupClassName, noop } from "./utils";
 import BaseMixin from "../_util/BaseMixin";
 import { cloneElement } from "../_util/vnode";
 import ContainerRender from "../_util/ContainerRender";
+import { Component } from "vue-property-decorator";
 
 Vue.use(ref, { name: "ant-ref" });
 
@@ -40,7 +41,7 @@ const ALL_HANDLERS = [
   "contextmenu"
 ];
 
-export default {
+@Component({
   name: "Trigger",
   props: {
     action: PropTypes.oneOfType([
@@ -608,7 +609,9 @@ export default {
     close() {
       this.setPopupVisible(false);
     }
-  },
+  }
+})
+export default class Trigger extends Vue {
   render(h) {
     const { sPopupVisible } = this;
     const children = filterEmpty(this.$slots.default);
@@ -687,4 +690,4 @@ export default {
       />
     );
   }
-};
+}

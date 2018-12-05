@@ -1,6 +1,7 @@
 import TransitionEvents from "./css-animation/Event";
+import { Vue, Component } from "vue-property-decorator";
 
-export default {
+@Component({
   name: "Wave",
   props: ["insertExtraNode"],
   mounted() {
@@ -122,9 +123,10 @@ export default {
         this.styleForPesudo = null;
       }
     }
-  },
-
+  }
+})
+export default class Wave extends Vue {
   render() {
     return this.$slots.default && this.$slots.default[0];
   }
-};
+}

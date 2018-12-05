@@ -5,10 +5,12 @@ import {
   getOptionProps,
   getComponentFromProp
 } from "../_util/props-util";
+import { Vue, Component } from "vue-property-decorator";
 
 // function noop () {
 // }
-export default {
+
+@Component({
   name: "VcSwitch",
   mixins: [BaseMixin],
   model: {
@@ -84,7 +86,9 @@ export default {
     blur() {
       this.$refs.refSwitchNode.blur();
     }
-  },
+  }
+})
+export default class VcSwitch extends Vue {
   render() {
     const { prefixCls, disabled, tabIndex, ...restProps } = getOptionProps(
       this
@@ -120,4 +124,4 @@ export default {
       </span>
     );
   }
-};
+}

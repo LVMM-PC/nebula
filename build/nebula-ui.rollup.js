@@ -8,6 +8,7 @@ export var NebulaCheckboxGroup = NebulaUi.NebulaCheckboxGroup;
 export var NebulaRadio = NebulaUi.NebulaRadio;
 export var NebulaRadioButton = NebulaUi.NebulaRadioButton;
 export var NebulaRadioGroup = NebulaUi.NebulaRadioGroup;
+export var NebulaSwitch = NebulaUi.NebulaSwitch;
 
 function install(Vue) {
   Vue.component("NebulaButton", NebulaButton);
@@ -18,6 +19,7 @@ function install(Vue) {
   Vue.component("NebulaRadio", NebulaRadio);
   Vue.component("NebulaRadioButton", NebulaRadioButton);
   Vue.component("NebulaRadioGroup", NebulaRadioGroup);
+  Vue.component("NebulaSwitch", NebulaSwitch);
 }
 
 const plugin = {
