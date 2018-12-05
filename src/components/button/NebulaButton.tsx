@@ -1,7 +1,6 @@
-<script lang="tsx">
 import { Component, Prop, Vue, Watch } from "vue-property-decorator";
 import { VNode } from "vue";
-import NebulaIcon from "../icon/NebulaIcon.vue";
+import NebulaIcon from "../icon/NebulaIcon";
 
 const rxTwoCNChar = /^[\u4e00-\u9fa5]{2}$/;
 const isTwoCNChar = (str: any) => {
@@ -25,6 +24,10 @@ export type ButtonHTMLType = "submit" | "button" | "reset";
   }
 })
 export default class NebulaButton extends Vue {
+  constructor(props: any) {
+    super(props);
+  }
+
   static __NEBULA_BUTTON: boolean = true;
 
   @Prop({ default: null, type: String })
@@ -267,4 +270,3 @@ export default class NebulaButton extends Vue {
     }
   }
 }
-</script>

@@ -1,12 +1,19 @@
 import PropTypes from "../_util/vue-types";
 import LazyRenderBox from "./LazyRenderBox";
+import { Component, Vue } from "vue-property-decorator";
 
-export default {
+@Component({
   props: {
     hiddenClassName: PropTypes.string.def(""),
     prefixCls: PropTypes.string,
     visible: PropTypes.bool
-  },
+  }
+})
+export default class PopupInner extends Vue {
+  constructor(props: any) {
+    super(props);
+  }
+
   render() {
     const { prefixCls, visible, hiddenClassName } = this.$props;
     const { $listeners } = this;
@@ -22,4 +29,4 @@ export default {
       </div>
     );
   }
-};
+}

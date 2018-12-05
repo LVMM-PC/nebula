@@ -70,6 +70,7 @@ const LocaleProvider = {
 };
 
 /* istanbul ignore next */
+// @ts-ignore
 LocaleProvider.install = function(Vue) {
   Vue.component(LocaleProvider.name, LocaleProvider);
 };

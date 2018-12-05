@@ -6,7 +6,7 @@
 
 <script lang="ts">
 import { Component, Prop, Vue } from "vue-property-decorator";
-import { ButtonSize } from "./NebulaButton.vue";
+import { ButtonSize } from "./NebulaButton";
 
 @Component
 export default class NebulaButtonGroup extends Vue {

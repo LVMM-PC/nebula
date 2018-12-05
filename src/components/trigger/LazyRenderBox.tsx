@@ -1,10 +1,17 @@
 import PropTypes from "../_util/vue-types";
 
-export default {
+import { Component, Vue } from "vue-property-decorator";
+@Component({
   props: {
     visible: PropTypes.bool,
     hiddenClassName: PropTypes.string
-  },
+  }
+})
+export default class LazyRenderBox extends Vue {
+  constructor(props: any) {
+    super(props);
+  }
+
   render() {
     const { hiddenClassName, visible } = this.$props;
     let children = null;
@@ -23,4 +30,4 @@ export default {
     }
     return children;
   }
-};
+}
