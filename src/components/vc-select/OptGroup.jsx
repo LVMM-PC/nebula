@@ -1,7 +1,9 @@
-import PropTypes from "../_util/vue-types";
+
+import PropTypes from '../_util/vue-types'
 export default {
   props: {
-    label: PropTypes.any
+    label: PropTypes.any,
   },
-  isSelectOptGroup: true
-};
+  isSelectOptGroup: true,
+}
+

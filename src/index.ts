@@ -3,13 +3,15 @@ import NebulaIcon from "./components/icon";
 import NebulaRadio from "./components/radio";
 import NebulaCheckbox from "./components/checkbox";
 import NebulaSwitch from "./components/switch";
+import NebulaSelect from "./components/select"
 
 const components = [
   NebulaButton,
   NebulaIcon,
   NebulaRadio,
   NebulaCheckbox,
-  NebulaSwitch
+  NebulaSwitch,
+  NebulaSelect
 ];
 
 const install = function(Vue) {
@@ -23,7 +25,8 @@ export {
   NebulaIcon,
   NebulaRadio,
   NebulaCheckbox,
-  NebulaSwitch
+  NebulaSwitch,
+  NebulaSelect
 };
 
 export default {

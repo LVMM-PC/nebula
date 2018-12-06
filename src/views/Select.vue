@@ -2,7 +2,7 @@
   <div>
     <h1>Select</h1>
     <h2>TODO</h2>
-    <!--<div>
+    <div>
       <nebula-select
         default-value="lucy"
         style="width: 120px"
@@ -12,7 +12,7 @@
         <nebula-select-option
           value="disabled"
           disabled>Disabled</nebula-select-option>
-        <a-select-option value="Yiminghe">yiminghe</a-select-option>
+        <nebula-select-option value="Yiminghe">yiminghe</nebula-select-option>
       </nebula-select>
       <nebula-select
         default-value="lucy"
@@ -20,7 +20,7 @@
         disabled>
         <nebula-select-option value="lucy">Lucy</nebula-select-option>
       </nebula-select>
-    </div>-->
+    </div>
   </div>
 </template>
 
