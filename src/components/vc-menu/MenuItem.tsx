@@ -167,6 +167,7 @@ const MenuItem = {
 
     const style = {};
     if (props.mode === "inline") {
+      // @ts-ignore
       style.paddingLeft = `${props.inlineIndent * props.level}px`;
     }
     const listeners = { ...this.$listeners };

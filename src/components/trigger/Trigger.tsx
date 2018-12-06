@@ -501,9 +501,9 @@ export default class Trigger extends Vue {
           sPopupVisible
         });
       }
+      let popupVisibleChange = this.$listeners.popupVisibleChange;
       // @ts-ignore
-      this.$listeners.popupVisibleChange &&
-        this.$listeners.popupVisibleChange(sPopupVisible);
+      popupVisibleChange && popupVisibleChange(sPopupVisible);
     }
     // Always record the point position since mouseEnterDelay will delay the show
     if (sPopupVisible && alignPoint && event) {

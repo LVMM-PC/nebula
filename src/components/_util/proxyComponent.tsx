@@ -9,6 +9,7 @@ export default function wrapWithConnect(WrappedComponent) {
   const methods = WrappedComponent.methods || {};
   const props = {};
   Object.keys(tempProps).forEach(k => {
+    // @ts-ignore
     props[k] = { ...k, required: false };
   });
   WrappedComponent.props.__propsSymbol__ = PropTypes.any;
@@ -36,6 +37,7 @@ export default function wrapWithConnect(WrappedComponent) {
         attrs: $attrs
       };
       if (Object.keys($scopedSlots).length) {
+        // @ts-ignore
         wrapProps.scopedSlots = $scopedSlots;
       }
       const slotsKey = Object.keys($slots);

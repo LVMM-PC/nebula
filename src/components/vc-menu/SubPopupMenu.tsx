@@ -382,21 +382,21 @@ const SubPopupMenu = {
     //   domProps.id = props.id
     // }
     if (props.focusable) {
+      // @ts-ignore
       domWrapProps.attrs.tabIndex = "0";
       domWrapProps.on.keydown = this.onKeyDown;
     }
     return (
       // ESLint is not smart enough to know that the type of `children` was checked.
       /* eslint-disable */
-      <DOMWrap
-        {...domWrapProps}
-      >
-        {props.children.map((c, i) => this.renderMenuItem(c, i, eventKey || '0-menu-'))}
+      <DOMWrap {...domWrapProps}>
+        {props.children.map((c, i) =>
+          this.renderMenuItem(c, i, eventKey || "0-menu-")
+        )}
       </DOMWrap>
       /*eslint -enable */
-    )
-  },
-}
+    );
+  }
+};
 
 export default connect()(SubPopupMenu);
-

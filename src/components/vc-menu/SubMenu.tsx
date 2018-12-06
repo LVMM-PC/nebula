@@ -394,9 +394,12 @@ const SubMenu = {
       // don't show transition on first rendering (no animation for opened menu)
       // show appear transition if it's not visible (not sure why)
       // show appear transition if it's not inline mode
+      // @ts-ignore
+      let basePropsModeInline = baseProps.mode === "inline";
       const transitionAppear =
-        haveRendered || !baseProps.visible || !baseProps.mode === "inline";
+        haveRendered || !baseProps.visible || !basePropsModeInline;
 
+      // @ts-ignore
       subPopupMenuProps.class = ` ${baseProps.prefixCls}-sub`;
       let animProps = { appear: transitionAppear };
       let transitionProps = {
@@ -476,6 +479,7 @@ const SubMenu = {
 
     const style = {};
     if (isInlineMode) {
+      // @ts-ignore
       style.paddingLeft = `${props.inlineIndent * props.level}px`;
     }
     let ariaOwns = {};
