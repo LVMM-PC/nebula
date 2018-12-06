@@ -568,7 +568,7 @@ const Select = {
     },
 
     getOptionsInfoFromProps(props, preState) {
-      console.log(this.$props)
+      console.log(this.$props);
       const options = this.getOptionsFromChildren(this.$props.children);
       const optionsInfo = {};
       options.forEach(option => {
