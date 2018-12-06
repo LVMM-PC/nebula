@@ -12,8 +12,8 @@ export default function wrapWithConnect(WrappedComponent) {
     // @ts-ignore
     props[k] = { ...k, required: false };
   });
-  WrappedComponent.props.__propsSymbol__ = PropTypes.any;
-  WrappedComponent.props.children = PropTypes.array.def([]);
+  tempProps.__propsSymbol__ = PropTypes.any;
+  tempProps.children = PropTypes.array.def([]);
   const ProxyWrappedComponent = {
     props,
     model: WrappedComponent.model,

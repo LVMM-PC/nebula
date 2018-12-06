@@ -122,6 +122,9 @@ class Select extends Vue {
   @Prop({ default: "rc-select", type: String })
   prefixCls: string;
 
+  @Prop({})
+  __propsSymbol__: any;
+
   @Prop({ default: false, type: Boolean })
   defaultOpen: boolean;
 
@@ -191,10 +194,10 @@ class Select extends Vue {
   @Prop({ default: true, type: Boolean })
   dropdownMatchSelectWidth: boolean;
 
-  @Prop({ default: {}, type: Object })
+  @Prop({ default: () => {}, type: Object })
   dropdownStyle: any;
 
-  @Prop({ default: {}, type: Object })
+  @Prop({ default: () => {}, type: Object })
   dropdownMenuStyle: any;
 
   @Prop({ default: "value", type: String })
@@ -212,10 +215,10 @@ class Select extends Vue {
   @Prop({ default: true, type: Boolean })
   combobox: boolean;
 
-  @Prop({ default: ["click"], type: Array })
+  @Prop({ default: () => ["click"], type: Array })
   showAction: [String];
 
-  @Prop({ default: [], type: Array })
+  @Prop({ default: () => [], type: Array })
   tokenSeparators: [String];
 
   @Prop({ default: true, type: Boolean })
@@ -242,8 +245,7 @@ class Select extends Vue {
   public rootRef;
   public _valueOptions;
 
-  @Prop({})
-  setState: any;
+  public setState: any;
 
   // @Watch("__propsSymbol__")
   // on__propsSymbol__Changed(val: any) {
@@ -706,12 +708,14 @@ class Select extends Vue {
       // keep option info in pre state value.
       const oldOptionsInfo = preState._optionsInfo;
       const value = preState._value;
-      value.forEach(v => {
-        const key = getMapKey(v);
-        if (!optionsInfo[key] && oldOptionsInfo[key] !== undefined) {
-          optionsInfo[key] = oldOptionsInfo[key];
-        }
-      });
+      if (value) {
+        value.forEach(v => {
+          const key = getMapKey(v);
+          if (!optionsInfo[key] && oldOptionsInfo[key] !== undefined) {
+            optionsInfo[key] = oldOptionsInfo[key];
+          }
+        });
+      }
     }
     return optionsInfo;
   }
