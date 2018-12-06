@@ -1,17 +1,14 @@
-import warning from "warning";
-import PropTypes from "../_util/vue-types";
-import { Select as VcSelect, Option, OptGroup } from "../vc-select";
-import LocaleReceiver from "../locale-provider/LocaleReceiver";
-import defaultLocale from "../locale-provider/default";
-import {
-  getComponentFromProp,
-  getOptionProps,
-  filterEmpty
-} from "../_util/props-util";
+
+import warning from 'warning'
+import PropTypes from '../_util/vue-types'
+import { Select as VcSelect, Option, OptGroup } from '../vc-select'
+import LocaleReceiver from '../locale-provider/LocaleReceiver'
+import defaultLocale from '../locale-provider/default'
+import { getComponentFromProp, getOptionProps, filterEmpty } from '../_util/props-util'
 
 const AbstractSelectProps = () => ({
   prefixCls: PropTypes.string,
-  size: PropTypes.oneOf(["small", "large", "default"]),
+  size: PropTypes.oneOf(['small', 'large', 'default']),
   notFoundContent: PropTypes.any,
   transitionName: PropTypes.string,
   choiceTransitionName: PropTypes.string,
@@ -26,24 +23,29 @@ const AbstractSelectProps = () => ({
   dropdownMenuStyle: PropTypes.any,
   dropdownMatchSelectWidth: PropTypes.bool,
   // onSearch: (value: string) => any,
-  filterOption: PropTypes.oneOfType([PropTypes.bool, PropTypes.func]),
+  filterOption: PropTypes.oneOfType([
+    PropTypes.bool,
+    PropTypes.func,
+  ]),
   autoFocus: PropTypes.bool,
   backfill: PropTypes.bool,
   showArrow: PropTypes.bool,
-  getPopupContainer: PropTypes.func
-});
+  getPopupContainer: PropTypes.func,
+})
 const Value = PropTypes.shape({
-  key: PropTypes.string
-}).loose;
+  key: PropTypes.string,
+}).loose
 
 const SelectValue = PropTypes.oneOfType([
   PropTypes.string,
   PropTypes.number,
-  PropTypes.arrayOf(
-    PropTypes.oneOfType([Value, PropTypes.string, PropTypes.number])
-  ),
-  Value
-]);
+  PropTypes.arrayOf(PropTypes.oneOfType([
+    Value,
+    PropTypes.string,
+    PropTypes.number,
+  ])),
+  Value,
+])
 
 const SelectProps = {
   ...AbstractSelectProps(),
@@ -67,132 +69,139 @@ const SelectProps = {
   getPopupContainer: PropTypes.func,
   tokenSeparators: PropTypes.arrayOf(PropTypes.string),
   getInputElement: PropTypes.func,
-  options: PropTypes.array
-};
+  options: PropTypes.array,
+}
 
 const SelectPropTypes = {
   prefixCls: PropTypes.string,
-  size: PropTypes.oneOf(["default", "large", "small"]),
+  size: PropTypes.oneOf(['default', 'large', 'small']),
   // combobox: PropTypes.bool,
   notFoundContent: PropTypes.any,
   showSearch: PropTypes.bool,
   optionLabelProp: PropTypes.string,
   transitionName: PropTypes.string,
-  choiceTransitionName: PropTypes.string
-};
+  choiceTransitionName: PropTypes.string,
+}
 
-export { AbstractSelectProps, SelectValue, SelectProps };
-const SECRET_COMBOBOX_MODE_DO_NOT_USE = "SECRET_COMBOBOX_MODE_DO_NOT_USE";
+export {
+  AbstractSelectProps,
+  SelectValue,
+  SelectProps,
+}
+const SECRET_COMBOBOX_MODE_DO_NOT_USE = 'SECRET_COMBOBOX_MODE_DO_NOT_USE'
 const Select = {
   SECRET_COMBOBOX_MODE_DO_NOT_USE,
-  Option: { ...Option, name: "ASelectOption" },
-  OptGroup: { ...OptGroup, name: "ASelectOptGroup" },
-  name: "ASelect",
+  Option: { ...Option, name: 'ASelectOption' },
+  OptGroup: { ...OptGroup, name: 'ASelectOptGroup' },
+  name: 'ASelect',
   props: {
     ...SelectProps,
-    prefixCls: PropTypes.string.def("ant-select"),
+    prefixCls: PropTypes.string.def('ant-select'),
     showSearch: PropTypes.bool.def(false),
-    transitionName: PropTypes.string.def("slide-up"),
-    choiceTransitionName: PropTypes.string.def("zoom")
+    transitionName: PropTypes.string.def('slide-up'),
+    choiceTransitionName: PropTypes.string.def('zoom'),
   },
   propTypes: SelectPropTypes,
   model: {
-    prop: "value",
-    event: "change"
+    prop: 'value',
+    event: 'change',
   },
-  created() {
+  created () {
     warning(
-      this.$props.mode !== "combobox",
-      "The combobox mode of Select is deprecated," +
-        "it will be removed in next major version," +
-        "please use AutoComplete instead"
-    );
+      this.$props.mode !== 'combobox',
+      'The combobox mode of Select is deprecated,' +
+      'it will be removed in next major version,' +
+      'please use AutoComplete instead',
+    )
   },
   methods: {
-    focus() {
-      this.$refs.vcSelect.focus();
+    focus () {
+      this.$refs.vcSelect.focus()
     },
-    blur() {
-      this.$refs.vcSelect.blur();
+    blur () {
+      this.$refs.vcSelect.blur()
     },
-    getNotFoundContent(locale) {
-      const notFoundContent = getComponentFromProp(this, "notFoundContent");
+    getNotFoundContent (locale) {
+      const notFoundContent = getComponentFromProp(this, 'notFoundContent')
       if (this.isCombobox()) {
-        // AutoComplete don't have notFoundContent defaultly
-        return notFoundContent === undefined ? null : notFoundContent;
+      // AutoComplete don't have notFoundContent defaultly
+        return notFoundContent === undefined ? null : notFoundContent
       }
-      return notFoundContent === undefined
-        ? locale.notFoundContent
-        : notFoundContent;
+      return notFoundContent === undefined ? locale.notFoundContent : notFoundContent
     },
-    isCombobox() {
-      const { mode } = this;
-      return mode === "combobox" || mode === SECRET_COMBOBOX_MODE_DO_NOT_USE;
+    isCombobox () {
+      const { mode } = this
+      return mode === 'combobox' || mode === SECRET_COMBOBOX_MODE_DO_NOT_USE
     },
-    renderSelect(locale) {
-      const { prefixCls, size, mode, options, ...restProps } = getOptionProps(
-        this
-      );
+    renderSelect (locale) {
+      const {
+        prefixCls,
+        size,
+        mode,
+        options,
+        ...restProps
+      } = getOptionProps(this)
       const cls = {
-        [`${prefixCls}-lg`]: size === "large",
-        [`${prefixCls}-sm`]: size === "small"
-      };
+        [`${prefixCls}-lg`]: size === 'large',
+        [`${prefixCls}-sm`]: size === 'small',
+      }
 
-      let { optionLabelProp } = this.$props;
+      let { optionLabelProp } = this.$props
       if (this.isCombobox()) {
-        // children 带 dom 结构时，无法填入输入框
-        optionLabelProp = optionLabelProp || "value";
+      // children 带 dom 结构时，无法填入输入框
+        optionLabelProp = optionLabelProp || 'value'
       }
 
       const modeConfig = {
-        multiple: mode === "multiple",
-        tags: mode === "tags",
-        combobox: this.isCombobox()
-      };
+        multiple: mode === 'multiple',
+        tags: mode === 'tags',
+        combobox: this.isCombobox(),
+      }
       const selectProps = {
         props: {
           ...restProps,
           ...modeConfig,
           prefixCls,
-          optionLabelProp: optionLabelProp || "children",
+          optionLabelProp: optionLabelProp || 'children',
           notFoundContent: this.getNotFoundContent(locale),
-          maxTagPlaceholder: getComponentFromProp(this, "maxTagPlaceholder"),
-          placeholder: getComponentFromProp(this, "placeholder"),
+          maxTagPlaceholder: getComponentFromProp(this, 'maxTagPlaceholder'),
+          placeholder: getComponentFromProp(this, 'placeholder'),
           children: options
-            ? options.map(option => {
-                const { key, label = option.title, ...restOption } = option;
-                return (
-                  <Option key={key} {...{ props: restOption }}>
-                    {label}
-                  </Option>
-                );
-              })
+            ? options.map((option) => {
+              const { key, label = option.title, ...restOption } = option
+              return <Option key={key} {...{ props: restOption }}>{label}</Option>
+            })
             : filterEmpty(this.$slots.default),
-          __propsSymbol__: Symbol()
+          __propsSymbol__: Symbol(),
         },
         on: this.$listeners,
         class: cls,
-        ref: "vcSelect"
-      };
-      return <VcSelect {...selectProps} />;
-    }
+        ref: 'vcSelect',
+      }
+      return (
+        <VcSelect {...selectProps} />
+      )
+    },
   },
-  render() {
+  render () {
     return (
       <LocaleReceiver
-        componentName="Select"
+        componentName='Select'
         defaultLocale={defaultLocale.Select}
-        scopedSlots={{ default: this.renderSelect }}
+        scopedSlots={
+          { default: this.renderSelect }
+        }
       />
-    );
-  }
-};
+    )
+  },
+}
 
 /* istanbul ignore next */
-Select.install = function(Vue) {
-  Vue.component(Select.name, Select);
-  Vue.component(Select.Option.name, Select.Option);
-  Vue.component(Select.OptGroup.name, Select.OptGroup);
-};
+Select.install = function (Vue) {
+  Vue.component(Select.name, Select)
+  Vue.component(Select.Option.name, Select.Option)
+  Vue.component(Select.OptGroup.name, Select.OptGroup)
+}
 
-export default Select;
+export default Select
+
