@@ -5,7 +5,9 @@ import { Component, Model, Prop, Vue } from "vue-property-decorator";
 
 export type switchSize = "small" | "default" | "large";
 
-@Component({})
+@Component({
+  name: "NebulaSwitch"
+})
 export default class NebulaSwitch extends Vue {
   @Prop({ default: "nebula-switch", type: String })
   public prefixCls?: string;

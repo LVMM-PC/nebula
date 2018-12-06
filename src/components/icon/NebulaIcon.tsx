@@ -1,6 +1,8 @@
 import { Component, Prop, Vue } from "vue-property-decorator";
 
-@Component
+@Component({
+  name: "NebulaIcon"
+})
 export default class NebulaIcon extends Vue {
   @Prop({ default: null, type: String })
   private type?: string;

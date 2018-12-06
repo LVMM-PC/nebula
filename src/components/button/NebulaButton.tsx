@@ -19,9 +19,7 @@ export type ButtonSize = "small" | "default" | "large";
 export type ButtonHTMLType = "submit" | "button" | "reset";
 
 @Component({
-  components: {
-    NebulaIcon
-  }
+  name: "NebulaButton"
 })
 export default class NebulaButton extends Vue {
   constructor(props: any) {

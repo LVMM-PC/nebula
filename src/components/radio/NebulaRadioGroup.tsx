@@ -1,6 +1,5 @@
-<script lang="tsx">
 import { Component, Model, Prop, Vue, Watch } from "vue-property-decorator";
-import NebulaRadio from "./NebulaRadio.vue";
+import NebulaRadio from "./NebulaRadio";
 import { filterEmpty, getOptionProps, hasProp } from "../_util/props-util";
 
 function noop() {}
@@ -14,6 +13,7 @@ export interface CheckboxOptionType {
 }
 
 @Component({
+  name: "NebulaRadioGroup",
   provide() {
     return {
       radioGroupContext: this
@@ -156,4 +156,3 @@ export default class NebulaRadioGroup extends Vue {
     );
   }
 }
-</script>

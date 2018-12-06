@@ -1,15 +1,15 @@
-<template>
-  <div :class="classes">
-    <slot/>
-  </div>
-</template>
-
-<script lang="ts">
 import { Component, Prop, Vue } from "vue-property-decorator";
 import { ButtonSize } from "./NebulaButton";
+import { filterEmpty } from "../_util/props-util";
 
-@Component
+@Component({
+  name: "NebulaButtonGroup"
+})
 export default class NebulaButtonGroup extends Vue {
+  constructor(props: any) {
+    super(props);
+  }
+
   @Prop({ default: null, type: String })
   private size?: ButtonSize;
 
@@ -42,5 +42,9 @@ export default class NebulaButtonGroup extends Vue {
     }
     return sizeCls;
   }
+
+  render() {
+    const { classes, $slots } = this;
+    return <div class={classes}>{filterEmpty($slots.default)}</div>;
+  }
 }
-</script>

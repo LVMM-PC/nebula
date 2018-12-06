@@ -1,5 +1,4 @@
-<script lang="tsx">
-import NebulaCheckbox from "./NebulaCheckbox.vue";
+import NebulaCheckbox from "./NebulaCheckbox";
 import hasProp from "../_util/props-util";
 import { Component, Model, Prop, Vue, Watch } from "vue-property-decorator";
 
@@ -12,6 +11,7 @@ export interface CheckboxOptionType {
 }
 
 @Component({
+  name: "NebulaCheckboxGroup",
   provide() {
     return {
       checkboxGroupContext: this
@@ -103,4 +103,3 @@ export default class NebulaCheckboxGroup extends Vue {
     return <div class={groupPrefixCls}>{children}</div>;
   }
 }
-</script>

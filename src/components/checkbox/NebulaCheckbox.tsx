@@ -1,16 +1,16 @@
-<script lang="tsx">
-import { Component, Model, Prop, Vue } from "vue-property-decorator";
 import VueCheckbox from "../vc-checkbox";
 import { getAttrs, getOptionProps } from "../_util/props-util";
+import { Component, Model, Prop, Vue } from "vue-property-decorator";
 
 function noop() {}
 
 @Component({
+  name: "NebulaCheckbox",
   inject: {
-    radioGroupContext: { default: undefined }
+    checkboxGroupContext: { default: null }
   }
 })
-export default class NebulaRadio extends Vue {
+export default class NebulaCheckbox extends Vue {
   constructor(props: any) {
     super(props);
   }
@@ -18,7 +18,7 @@ export default class NebulaRadio extends Vue {
   @Model("change", { default: undefined })
   checked!: boolean;
 
-  @Prop({ default: "nebula-radio", type: String })
+  @Prop({ default: "nebula-checkbox", type: String })
   public prefixCls?: string;
 
   @Prop({ type: Boolean })
@@ -40,10 +40,13 @@ export default class NebulaRadio extends Vue {
   private id?: string;
 
   @Prop({ type: Boolean })
-  private autoFocus?: boolean;
+  private indeterminate?: boolean;
 
-  @Prop({ default: "radio" })
+  @Prop({ default: "checkbox" })
   private type?: string;
+
+  @Prop({ type: Boolean })
+  private autoFocus?: boolean;
 
   handleChange(event: { target: HTMLInputElement }) {
     const targetChecked = event.target.checked;
@@ -63,7 +66,7 @@ export default class NebulaRadio extends Vue {
 
   render(h: any): any {
     // @ts-ignore
-    const { $slots, $listeners, radioGroupContext: radioGroup } = this;
+    const { checkboxGroupContext: checkboxGroup, $listeners, $slots } = this;
     const props = getOptionProps(this);
     const children = $slots.default;
     const {
@@ -71,39 +74,44 @@ export default class NebulaRadio extends Vue {
       mouseleave = noop,
       ...restListeners
     } = $listeners;
-    const { prefixCls, ...restProps } = props;
-    const radioProps = {
+    const { prefixCls, indeterminate, ...restProps } = props;
+    const checkboxProps = {
       props: { ...restProps, prefixCls },
       on: restListeners,
       attrs: getAttrs(this)
     };
-
-    if (radioGroup) {
-      radioProps.props.name = radioGroup.name;
-      radioProps.on.change = radioGroup.onRadioChange;
-      radioProps.props.checked = props.value === radioGroup.stateValue;
-      radioProps.props.disabled = props.disabled || radioGroup.disabled;
+    if (checkboxGroup) {
+      checkboxProps.on.change = () =>
+        checkboxGroup.toggleOption({ label: children, value: props.value });
+      checkboxProps.props.checked =
+        checkboxGroup.stateValue.indexOf(props.value) !== -1;
+      checkboxProps.props.disabled = props.disabled || checkboxGroup.disabled;
     } else {
-      radioProps.on.change = this.handleChange;
+      checkboxProps.on.change = this.handleChange;
     }
-    const wrapperClassString = [
+    const classString = [
       {
-        [`${prefixCls}-wrapper`]: true,
-        [`${prefixCls}-wrapper-checked`]: radioProps.props.checked,
-        [`${prefixCls}-wrapper-disabled`]: radioProps.props.disabled
+        [`${prefixCls}-wrapper`]: true
       }
     ];
-
+    const checkboxClass = [
+      {
+        [`${prefixCls}-indeterminate`]: indeterminate
+      }
+    ];
     return (
       <label
-        class={wrapperClassString}
+        class={classString}
         onMouseenter={mouseenter}
         onMouseleave={mouseleave}
       >
-        <VueCheckbox {...radioProps} ref="vueCheckbox" />
+        <VueCheckbox
+          {...checkboxProps}
+          class={checkboxClass}
+          ref="vueCheckbox"
+        />
         {children !== undefined ? <span>{children}</span> : null}
       </label>
     );
   }
 }
-</script>

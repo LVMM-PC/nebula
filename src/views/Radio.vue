@@ -1,13 +1,13 @@
 <template>
   <div>
-    <NebulaRadio 
-      name="lens" 
+    <NebulaRadio
+      name="lens"
       value="16-35"/>
-    <NebulaRadio 
-      name="lens" 
+    <NebulaRadio
+      name="lens"
       value="24-70"/>
-    <NebulaRadio 
-      name="lens" 
+    <NebulaRadio
+      name="lens"
       value="70-200"/>
 
     <div>
@@ -29,7 +29,7 @@
       </div>
     </div>
 
-    <VueCheckbox
+    <!--<VueCheckbox
       id="myVueCheckbox1"
       :checked="true"
       :disabled="false"
@@ -58,7 +58,7 @@
       auto-focus
       tab-index="2"
       value="tomato"
-    />
+    />-->
 
     <div>
       <div>
