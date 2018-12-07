@@ -1,34 +1,29 @@
-import NebulaButton from "./components/button";
-import NebulaIcon from "./components/icon";
-import NebulaRadio from "./components/radio";
-import NebulaCheckbox from "./components/checkbox";
-import NebulaSwitch from "./components/switch";
-import NebulaSelect from "./components/select"
+import NebulaButton from "./components/button/NebulaButton";
+import NebulaButtonGroup from "./components/button/NebulaButtonGroup";
+import NebulaIcon from "./components/icon/NebulaIcon";
+import NebulaCheckbox from "./components/checkbox/NebulaCheckbox";
+import NebulaCheckboxGroup from "./components/checkbox/NebulaCheckboxGroup";
+import NebulaRadio from "./components/radio/NebulaRadio";
+import NebulaRadioButton from "./components/radio/NebulaRadioButton";
+import NebulaRadioGroup from "./components/radio/NebulaRadioGroup";
 
-const components = [
-  NebulaButton,
-  NebulaIcon,
-  NebulaRadio,
-  NebulaCheckbox,
-  NebulaSwitch,
-  NebulaSelect
-];
+import NebulaSelect from "./components/select/index";
+let NebulaSelectOption = NebulaSelect.Option;
+let NebulaSelectOptGroup = NebulaSelect.OptGroup;
 
-const install = function(Vue) {
-  components.map(component => {
-    Vue.use(component);
-  });
-};
+import NebulaSwitch from "./components/switch/NebulaSwitch";
+
 export {
-  install,
   NebulaButton,
+  NebulaButtonGroup,
   NebulaIcon,
-  NebulaRadio,
   NebulaCheckbox,
-  NebulaSwitch,
-  NebulaSelect
-};
-
-export default {
-  install
+  NebulaCheckboxGroup,
+  NebulaRadio,
+  NebulaRadioButton,
+  NebulaRadioGroup,
+  NebulaSelect,
+  NebulaSelectOption,
+  NebulaSelectOptGroup,
+  NebulaSwitch
 };
