@@ -1,32 +1,31 @@
-
-import classnames from 'classnames'
-import Trigger from '../trigger'
-import PropTypes from '../_util/vue-types'
-import DropdownMenu from './DropdownMenu'
-import { isSingleMode, saveRef } from './util'
-import BaseMixin from '../_util/BaseMixin'
+import classnames from "classnames";
+import Trigger from "../trigger";
+import PropTypes from "../_util/vue-types";
+import DropdownMenu from "./DropdownMenu";
+import { isSingleMode, saveRef } from "./util";
+import BaseMixin from "../_util/BaseMixin";
 
 const BUILT_IN_PLACEMENTS = {
   bottomLeft: {
-    points: ['tl', 'bl'],
+    points: ["tl", "bl"],
     offset: [0, 4],
     overflow: {
       adjustX: 0,
-      adjustY: 1,
-    },
+      adjustY: 1
+    }
   },
   topLeft: {
-    points: ['bl', 'tl'],
+    points: ["bl", "tl"],
     offset: [0, -4],
     overflow: {
       adjustX: 0,
-      adjustY: 1,
-    },
-  },
-}
+      adjustY: 1
+    }
+  }
+};
 
 export default {
-  name: 'SelectTrigger',
+  name: "SelectTrigger",
   mixins: [BaseMixin],
   props: {
     // onPopupFocus: PropTypes.func,
@@ -53,90 +52,97 @@ export default {
     animation: PropTypes.string,
     transitionName: PropTypes.string,
     getPopupContainer: PropTypes.func,
-    backfillValue: PropTypes.any,
+    backfillValue: PropTypes.any
   },
-  created () {
-    this.saveDropdownMenuRef = saveRef(this, 'dropdownMenuRef')
-    this.saveTriggerRef = saveRef(this, 'triggerRef')
-  },
-  data () {
+  data() {
     return {
-      dropdownWidth: null,
-    }
+      dropdownWidth: null
+    };
+  },
+  created() {
+    this.saveDropdownMenuRef = saveRef(this, "dropdownMenuRef");
+    this.saveTriggerRef = saveRef(this, "triggerRef");
   },
 
-  mounted () {
+  mounted() {
     this.$nextTick(() => {
-      this.setDropdownWidth()
-    })
+      this.setDropdownWidth();
+    });
   },
 
-  updated () {
+  updated() {
     this.$nextTick(() => {
-      this.setDropdownWidth()
-    })
+      this.setDropdownWidth();
+    });
   },
   methods: {
-    setDropdownWidth () {
-      const width = this.$el.offsetWidth
+    setDropdownWidth() {
+      const width = this.$el.offsetWidth;
       if (width !== this.dropdownWidth) {
-        this.setState({ dropdownWidth: width })
+        this.setState({ dropdownWidth: width });
       }
     },
 
-    getInnerMenu () {
-      return this.dropdownMenuRef && this.dropdownMenuRef.$refs.menuRef
+    getInnerMenu() {
+      return this.dropdownMenuRef && this.dropdownMenuRef.$refs.menuRef;
     },
 
-    getPopupDOMNode () {
-      return this.triggerRef.getPopupDomNode()
+    getPopupDOMNode() {
+      return this.triggerRef.getPopupDomNode();
     },
 
-    getDropdownElement (newProps) {
+    getDropdownElement(newProps) {
       const {
-        value, firstActiveValue, defaultActiveFirstOption,
-        dropdownMenuStyle, getDropdownPrefixCls, backfillValue,
-      } = this
-      const { menuSelect, menuDeselect, popupScroll } = this.$listeners
+        value,
+        firstActiveValue,
+        defaultActiveFirstOption,
+        dropdownMenuStyle,
+        getDropdownPrefixCls,
+        backfillValue
+      } = this;
+      const { menuSelect, menuDeselect, popupScroll } = this.$listeners;
       const dropdownMenuProps = {
         props: {
           ...newProps.props,
           prefixCls: getDropdownPrefixCls(),
-          value, firstActiveValue, defaultActiveFirstOption, dropdownMenuStyle,
-          backfillValue,
+          value,
+          firstActiveValue,
+          defaultActiveFirstOption,
+          dropdownMenuStyle,
+          backfillValue
         },
         on: {
           ...newProps.on,
           menuSelect,
           menuDeselect,
-          popupScroll,
+          popupScroll
         },
-        directives: [{
-          name: 'ref',
-          value: this.saveDropdownMenuRef,
-        }],
-      }
-      return (
-        <DropdownMenu {...dropdownMenuProps} />
-      )
+        directives: [
+          {
+            name: "ref",
+            value: this.saveDropdownMenuRef
+          }
+        ]
+      };
+      return <DropdownMenu {...dropdownMenuProps} />;
     },
 
-    getDropdownTransitionName () {
-      const props = this.$props
-      let transitionName = props.transitionName
+    getDropdownTransitionName() {
+      const props = this.$props;
+      let transitionName = props.transitionName;
       if (!transitionName && props.animation) {
-        transitionName = `${this.getDropdownPrefixCls()}-${props.animation}`
+        transitionName = `${this.getDropdownPrefixCls()}-${props.animation}`;
       }
-      return transitionName
+      return transitionName;
     },
 
-    getDropdownPrefixCls () {
-      return `${this.prefixCls}-dropdown`
-    },
+    getDropdownPrefixCls() {
+      return `${this.prefixCls}-dropdown`;
+    }
   },
 
-  render () {
-    const { $props, $slots, $listeners } = this
+  render() {
+    const { $props, $slots, $listeners } = this;
     const {
       multiple,
       visible,
@@ -149,44 +155,50 @@ export default {
       dropdownMatchSelectWidth,
       options,
       getPopupContainer,
-      showAction,
-    } = $props
-    const { mouseenter, mouseleave, popupFocus, dropdownVisibleChange } = $listeners
-    const dropdownPrefixCls = this.getDropdownPrefixCls()
+      showAction
+    } = $props;
+    const {
+      mouseenter,
+      mouseleave,
+      popupFocus,
+      dropdownVisibleChange
+    } = $listeners;
+    const dropdownPrefixCls = this.getDropdownPrefixCls();
     const popupClassName = {
       [dropdownClassName]: !!dropdownClassName,
-      [`${dropdownPrefixCls}--${multiple ? 'multiple' : 'single'}`]: 1,
-    }
+      [`${dropdownPrefixCls}--${multiple ? "multiple" : "single"}`]: 1
+    };
     const popupElement = this.getDropdownElement({
       props: {
         menuItems: options,
         multiple,
         inputValue,
-        visible,
-      }, on: {
-        popupFocus,
+        visible
       },
-    })
-    let hideAction
+      on: {
+        popupFocus
+      }
+    });
+    let hideAction;
     if (disabled) {
-      hideAction = []
+      hideAction = [];
     } else if (isSingleMode($props) && !showSearch) {
-      hideAction = ['click']
+      hideAction = ["click"];
     } else {
-      hideAction = ['blur']
+      hideAction = ["blur"];
     }
-    const popupStyle = { ...dropdownStyle }
-    const widthProp = dropdownMatchSelectWidth ? 'width' : 'minWidth'
+    const popupStyle = { ...dropdownStyle };
+    const widthProp = dropdownMatchSelectWidth ? "width" : "minWidth";
     if (this.dropdownWidth) {
-      popupStyle[widthProp] = `${this.dropdownWidth}px`
+      popupStyle[widthProp] = `${this.dropdownWidth}px`;
     }
     const triggerProps = {
       props: {
         ...$props,
         showAction: disabled ? [] : showAction,
         hideAction,
-        ref: 'triggerRef',
-        popupPlacement: 'bottomLeft',
+        ref: "triggerRef",
+        popupPlacement: "bottomLeft",
         builtinPlacements: BUILT_IN_PLACEMENTS,
         prefixCls: dropdownPrefixCls,
         popupTransitionName: this.getDropdownTransitionName(),
@@ -194,30 +206,29 @@ export default {
         popupVisible: visible,
         getPopupContainer,
         popupClassName: classnames(popupClassName),
-        popupStyle,
+        popupStyle
       },
       on: {
-        popupVisibleChange: dropdownVisibleChange,
+        popupVisibleChange: dropdownVisibleChange
       },
-      directives: [{
-        name: 'ref',
-        value: this.saveTriggerRef,
-      }],
-    }
+      directives: [
+        {
+          name: "ref",
+          value: this.saveTriggerRef
+        }
+      ]
+    };
     if (mouseenter) {
-      triggerProps.on.mouseenter = mouseenter
+      triggerProps.on.mouseenter = mouseenter;
     }
     if (mouseleave) {
-      triggerProps.on.mouseleave = mouseleave
+      triggerProps.on.mouseleave = mouseleave;
     }
     return (
       <Trigger {...triggerProps}>
         {$slots.default}
-        <template slot='popup'>
-          {popupElement}
-        </template>
+        <template slot="popup">{popupElement}</template>
       </Trigger>
-    )
-  },
-}
-
+    );
+  }
+};

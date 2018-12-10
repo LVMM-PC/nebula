@@ -1,5 +1,4 @@
 import warning from "warning";
-import PropTypes from "../_util/vue-types";
 import { Select as VcSelect } from "../vc-select/Select";
 import Option from "../vc-select/Option";
 import LocaleReceiver from "../locale-provider/LocaleReceiver";
@@ -13,7 +12,12 @@ import { mixins } from "vue-class-component";
 import { Component, Prop, Vue, Model } from "vue-property-decorator";
 
 @Component({})
-class AbstractSelectProps extends Vue {
+export class AbstractSelectProps extends Vue {
+  constructor(props) {
+    super(props);
+
+  }
+
   @Prop({ type: String })
   prefixCls?: string;
 
@@ -75,19 +79,6 @@ class AbstractSelectProps extends Vue {
   getPopupContainer?: (triggerNode: Element) => HTMLElement;
 }
 
-const Value = PropTypes.shape({
-  key: PropTypes.string
-}).loose;
-
-const SelectValue = PropTypes.oneOfType([
-  PropTypes.string,
-  PropTypes.number,
-  PropTypes.arrayOf(
-    PropTypes.oneOfType([Value, PropTypes.string, PropTypes.number])
-  ),
-  Value
-]);
-
 export interface LabeledValue {
   key: string;
   label: any;
@@ -102,7 +93,7 @@ export type SelectValue =
   | LabeledValue[];
 
 @Component({})
-class SelectProps extends mixins(AbstractSelectProps) {
+export class SelectProps extends mixins(AbstractSelectProps) {
   @Prop()
   value?: SelectValue;
 
@@ -145,8 +136,6 @@ class SelectProps extends mixins(AbstractSelectProps) {
   @Prop({ type: Array })
   options?: any;
 }
-
-export { AbstractSelectProps, SelectValue, SelectProps };
 
 @Component({})
 export default class Select extends mixins(SelectProps) {
@@ -203,7 +192,9 @@ export default class Select extends mixins(SelectProps) {
 
   isCombobox() {
     const { mode } = this;
-    return mode === "combobox" || mode === Select.SECRET_COMBOBOX_MODE_DO_NOT_USE;
+    return (
+      mode === "combobox" || mode === Select.SECRET_COMBOBOX_MODE_DO_NOT_USE
+    );
   }
 
   renderSelect(locale) {

@@ -1,5 +1,5 @@
 import { Component, Model, Prop, Vue } from "vue-property-decorator";
-import VueCheckbox from "../vc-checkbox";
+import VcCheckbox from "../vc-checkbox";
 import { getAttrs, getOptionProps } from "../_util/props-util";
 
 function noop() {}
@@ -52,13 +52,13 @@ export default class NebulaRadio extends Vue {
   }
 
   focus() {
-    let vueCheckbox = this.$refs.vueCheckbox as HTMLInputElement;
-    vueCheckbox.focus();
+    let vcCheckbox = this.$refs.vcCheckbox as HTMLInputElement;
+    vcCheckbox.focus();
   }
 
   blur() {
-    let vueCheckbox = this.$refs.vueCheckbox as HTMLInputElement;
-    vueCheckbox.blur();
+    let vcCheckbox = this.$refs.vcCheckbox as HTMLInputElement;
+    vcCheckbox.blur();
   }
 
   render(h: any): any {
@@ -100,7 +100,7 @@ export default class NebulaRadio extends Vue {
         onMouseenter={mouseenter}
         onMouseleave={mouseleave}
       >
-        <VueCheckbox {...radioProps} ref="vueCheckbox" />
+        <VcCheckbox {...radioProps} ref="vcCheckbox" />
         {children !== undefined ? <span>{children}</span> : null}
       </label>
     );
