@@ -4,7 +4,6 @@ import { Component, Vue, Prop } from "vue-property-decorator";
 export default class extends Vue {
   constructor(props) {
     super(props);
-
   }
 
   @Prop({ type: Boolean })

@@ -15,7 +15,6 @@ import { Component, Prop, Vue, Model } from "vue-property-decorator";
 export class AbstractSelectProps extends Vue {
   constructor(props) {
     super(props);
-
   }
 
   @Prop({ type: String })
