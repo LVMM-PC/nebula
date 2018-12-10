@@ -2,7 +2,6 @@ import warning from "warning";
 import PropTypes from "../_util/vue-types";
 import { Select as VcSelect } from "../vc-select/Select";
 import Option from "../vc-select/Option";
-import OptGroup from "../vc-select/OptGroup";
 import LocaleReceiver from "../locale-provider/LocaleReceiver";
 import defaultLocale from "../locale-provider/default";
 import {
@@ -10,31 +9,72 @@ import {
   getOptionProps,
   filterEmpty
 } from "../_util/props-util";
-import { Component, Vue } from "vue-property-decorator";
+import { mixins } from "vue-class-component";
+import { Component, Prop, Vue, Model } from "vue-property-decorator";
 
-const AbstractSelectProps = () => ({
-  prefixCls: PropTypes.string,
-  size: PropTypes.oneOf(["small", "large", "default"]),
-  notFoundContent: PropTypes.any,
-  transitionName: PropTypes.string,
-  choiceTransitionName: PropTypes.string,
-  showSearch: PropTypes.bool,
-  allowClear: PropTypes.bool,
-  disabled: PropTypes.bool,
-  tabIndex: PropTypes.number,
-  placeholder: PropTypes.any,
-  defaultActiveFirstOption: PropTypes.bool,
-  dropdownClassName: PropTypes.string,
-  dropdownStyle: PropTypes.any,
-  dropdownMenuStyle: PropTypes.any,
-  dropdownMatchSelectWidth: PropTypes.bool,
-  // onSearch: (value: string) => any,
-  filterOption: PropTypes.oneOfType([PropTypes.bool, PropTypes.func]),
-  autoFocus: PropTypes.bool,
-  backfill: PropTypes.bool,
-  showArrow: PropTypes.bool,
-  getPopupContainer: PropTypes.func
-});
+@Component({})
+class AbstractSelectProps extends Vue {
+  @Prop({ type: String })
+  prefixCls?: string;
+
+  @Prop({ type: String })
+  size?: "small" | "large" | "default";
+
+  @Prop()
+  notFoundContent?: any;
+
+  @Prop({ type: String })
+  transitionName?: string;
+
+  @Prop({ type: String })
+  choiceTransitionName?: string;
+
+  @Prop({ type: Boolean })
+  showSearch?: boolean;
+
+  @Prop({ type: Boolean })
+  allowClear?: boolean;
+
+  @Prop({ type: Boolean })
+  disabled?: boolean;
+
+  @Prop({ type: Number })
+  tabIndex?: number;
+
+  @Prop()
+  placeholder?: any;
+
+  @Prop({ type: Boolean })
+  defaultActiveFirstOption?: boolean;
+
+  @Prop({ type: String })
+  dropdownClassName?: string;
+
+  @Prop()
+  dropdownStyle?: any;
+
+  @Prop()
+  dropdownMenuStyle?: any;
+
+  @Prop({ type: Boolean })
+  dropdownMatchSelectWidth?: boolean;
+
+  @Prop({ type: [Boolean, Function] })
+  filterOption?: boolean | ((inputValue: string, option: any) => any);
+
+  @Prop({ type: Boolean })
+  autoFocus?: boolean;
+
+  @Prop({ type: Boolean })
+  backfill?: boolean;
+
+  @Prop({ default: true, type: Boolean })
+  showArrow?: boolean;
+
+  @Prop({ type: Function })
+  getPopupContainer?: (triggerNode: Element) => HTMLElement;
+}
+
 const Value = PropTypes.shape({
   key: PropTypes.string
 }).loose;
@@ -48,61 +88,89 @@ const SelectValue = PropTypes.oneOfType([
   Value
 ]);
 
-const SelectProps = {
-  ...AbstractSelectProps(),
-  value: SelectValue,
-  defaultValue: SelectValue,
-  // mode: PropTypes.oneOf(['default', 'multiple', 'tags', 'combobox']),
-  mode: PropTypes.string,
-  optionLabelProp: PropTypes.string,
-  firstActiveValue: PropTypes.oneOfType([String, PropTypes.arrayOf(String)]),
-  // onChange?: (value: SelectValue, option: React.ReactElement<any> | React.ReactElement<any>[]) => void;
-  // onSelect?: (value: SelectValue, option: React.ReactElement<any>) => any;
-  // onDeselect?: (value: SelectValue) => any;
-  // onBlur?: () => any;
-  // onFocus?: () => any;
-  // onInputKeyDown?: (e: React.KeyboardEvent<HTMLInputElement>) => void;
-  maxTagCount: PropTypes.number,
-  maxTagPlaceholder: PropTypes.any,
-  dropdownMatchSelectWidth: PropTypes.bool,
-  optionFilterProp: PropTypes.string,
-  labelInValue: PropTypes.boolean,
-  getPopupContainer: PropTypes.func,
-  tokenSeparators: PropTypes.arrayOf(PropTypes.string),
-  getInputElement: PropTypes.func,
-  options: PropTypes.array
-};
+export interface LabeledValue {
+  key: string;
+  label: any;
+}
 
-const SelectPropTypes = {
-  prefixCls: PropTypes.string,
-  size: PropTypes.oneOf(["default", "large", "small"]),
-  // combobox: PropTypes.bool,
-  notFoundContent: PropTypes.any,
-  showSearch: PropTypes.bool,
-  optionLabelProp: PropTypes.string,
-  transitionName: PropTypes.string,
-  choiceTransitionName: PropTypes.string
-};
+export type SelectValue =
+  | string
+  | string[]
+  | number
+  | number[]
+  | LabeledValue
+  | LabeledValue[];
+
+@Component({})
+class SelectProps extends mixins(AbstractSelectProps) {
+  @Prop()
+  value?: SelectValue;
+
+  @Prop()
+  defaultValue?: SelectValue;
+
+  @Prop({ type: String })
+  mode?: "default" | "multiple" | "tags" | "combobox" | string;
+
+  @Prop({ type: String })
+  optionLabelProp?: string;
+
+  @Prop({ type: [String, Array] })
+  firstActiveValue?: string | string[];
+
+  @Prop({ type: Number })
+  maxTagCount?: number;
+
+  @Prop()
+  maxTagPlaceholder?: any;
+
+  @Prop({ type: Boolean })
+  dropdownMatchSelectWidth?: boolean;
+
+  @Prop({ type: String })
+  optionFilterProp?: string;
+
+  @Prop({ type: Boolean })
+  labelInValue?: boolean;
+
+  @Prop({ type: Function })
+  getPopupContainer?: any;
+
+  @Prop({ type: Array })
+  tokenSeparators?: string[];
+
+  @Prop({ type: Function })
+  getInputElement?: any;
+
+  @Prop({ type: Array })
+  options?: any;
+}
 
 export { AbstractSelectProps, SelectValue, SelectProps };
-const SECRET_COMBOBOX_MODE_DO_NOT_USE = "SECRET_COMBOBOX_MODE_DO_NOT_USE";
 
-@Component({
-  SECRET_COMBOBOX_MODE_DO_NOT_USE,
-  props: {
-    ...SelectProps,
-    prefixCls: PropTypes.string.def("nebula-select"),
-    showSearch: PropTypes.bool.def(false),
-    transitionName: PropTypes.string.def("slide-up"),
-    choiceTransitionName: PropTypes.string.def("zoom")
-  },
-  propTypes: SelectPropTypes,
-  model: {
-    prop: "value",
-    event: "change"
+@Component({})
+export default class Select extends mixins(SelectProps) {
+  constructor(props) {
+    super(props);
   }
-})
-export default class Select extends Vue {
+
+  @Prop({ default: "nebula-select", type: String })
+  prefixCls?: string;
+
+  @Prop({ default: false, type: Boolean })
+  showSearch?: boolean;
+
+  @Prop({ default: "slide-up", type: String })
+  transitionName?: string;
+
+  @Prop({ default: "zoom", type: String })
+  choiceTransitionName?: string;
+
+  @Model("change")
+  value!: any;
+
+  static SECRET_COMBOBOX_MODE_DO_NOT_USE = "SECRET_COMBOBOX_MODE_DO_NOT_USE";
+
   created() {
     warning(
       this.$props.mode !== "combobox",
@@ -113,11 +181,13 @@ export default class Select extends Vue {
   }
 
   focus() {
-    this.$refs.vcSelect.focus();
+    let vcSelect = this.$refs.vcSelect as HTMLInputElement;
+    vcSelect.focus();
   }
 
   blur() {
-    this.$refs.vcSelect.blur();
+    let vcSelect = this.$refs.vcSelect as HTMLInputElement;
+    vcSelect.blur();
   }
 
   getNotFoundContent(locale) {
@@ -133,7 +203,7 @@ export default class Select extends Vue {
 
   isCombobox() {
     const { mode } = this;
-    return mode === "combobox" || mode === SECRET_COMBOBOX_MODE_DO_NOT_USE;
+    return mode === "combobox" || mode === Select.SECRET_COMBOBOX_MODE_DO_NOT_USE;
   }
 
   renderSelect(locale) {
