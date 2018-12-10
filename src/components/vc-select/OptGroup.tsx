@@ -1,9 +1,13 @@
+import { Component, Prop, Vue } from "vue-property-decorator";
 
-import PropTypes from '../_util/vue-types'
-export default {
-  props: {
-    label: PropTypes.any,
-  },
-  isSelectOptGroup: true,
+@Component({
+  isSelectOptGroup: true
+})
+export default class OptGroup extends Vue {
+  constructor(props) {
+    super(props);
+  }
+
+  @Prop()
+  label: any;
 }
-

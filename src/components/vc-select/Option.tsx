@@ -1,15 +1,19 @@
+import { Component, Prop, Vue } from "vue-property-decorator";
 
-import PropTypes from '../_util/vue-types'
+@Component({
+  isSelectOption: true
+})
+export default class Option extends Vue {
+  constructor(props) {
+    super(props);
+  }
 
-export default {
-  props: {
-    value: PropTypes.oneOfType([
-      PropTypes.string,
-      PropTypes.number,
-    ]),
-    disabled: PropTypes.bool,
-    title: PropTypes.string,
-  },
-  isSelectOption: true,
+  @Prop({ type: [String, Number] })
+  value: string | number;
+
+  @Prop({ type: Boolean })
+  disabled: boolean;
+
+  @Prop({ type: String })
+  title: string;
 }
-

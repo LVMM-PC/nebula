@@ -1,6 +1,8 @@
 import warning from "warning";
 import PropTypes from "../_util/vue-types";
-import { Select as VcSelect, Option, OptGroup } from "../vc-select";
+import { Select as VcSelect } from "../vc-select/Select";
+import Option from "../vc-select/Option";
+import OptGroup from "../vc-select/OptGroup";
 import LocaleReceiver from "../locale-provider/LocaleReceiver";
 import defaultLocale from "../locale-provider/default";
 import {
@@ -8,6 +10,7 @@ import {
   getOptionProps,
   filterEmpty
 } from "../_util/props-util";
+import { Component, Vue } from "vue-property-decorator";
 
 const AbstractSelectProps = () => ({
   prefixCls: PropTypes.string,
@@ -83,11 +86,9 @@ const SelectPropTypes = {
 
 export { AbstractSelectProps, SelectValue, SelectProps };
 const SECRET_COMBOBOX_MODE_DO_NOT_USE = "SECRET_COMBOBOX_MODE_DO_NOT_USE";
-const Select = {
+
+@Component({
   SECRET_COMBOBOX_MODE_DO_NOT_USE,
-  Option: { ...Option, name: "NebulaSelectOption" },
-  OptGroup: { ...OptGroup, name: "NebulaSelectOptGroup" },
-  name: "NebulaSelect",
   props: {
     ...SelectProps,
     prefixCls: PropTypes.string.def("nebula-select"),
@@ -99,7 +100,9 @@ const Select = {
   model: {
     prop: "value",
     event: "change"
-  },
+  }
+})
+export default class Select extends Vue {
   created() {
     warning(
       this.$props.mode !== "combobox",
@@ -107,76 +110,80 @@ const Select = {
         "it will be removed in next major version," +
         "please use AutoComplete instead"
     );
-  },
-  methods: {
-    focus() {
-      this.$refs.vcSelect.focus();
-    },
-    blur() {
-      this.$refs.vcSelect.blur();
-    },
-    getNotFoundContent(locale) {
-      const notFoundContent = getComponentFromProp(this, "notFoundContent");
-      if (this.isCombobox()) {
-        // AutoComplete don't have notFoundContent defaultly
-        return notFoundContent === undefined ? null : notFoundContent;
-      }
-      return notFoundContent === undefined
-        ? locale.notFoundContent
-        : notFoundContent;
-    },
-    isCombobox() {
-      const { mode } = this;
-      return mode === "combobox" || mode === SECRET_COMBOBOX_MODE_DO_NOT_USE;
-    },
-    renderSelect(locale) {
-      const { prefixCls, size, mode, options, ...restProps } = getOptionProps(
-        this
-      );
-      const cls = {
-        [`${prefixCls}-lg`]: size === "large",
-        [`${prefixCls}-sm`]: size === "small"
-      };
+  }
 
-      let { optionLabelProp } = this.$props;
-      if (this.isCombobox()) {
-        // children 带 dom 结构时，无法填入输入框
-        optionLabelProp = optionLabelProp || "value";
-      }
+  focus() {
+    this.$refs.vcSelect.focus();
+  }
 
-      const modeConfig = {
-        multiple: mode === "multiple",
-        tags: mode === "tags",
-        combobox: this.isCombobox()
-      };
-      const selectProps = {
-        props: {
-          ...restProps,
-          ...modeConfig,
-          prefixCls,
-          optionLabelProp: optionLabelProp || "children",
-          notFoundContent: this.getNotFoundContent(locale),
-          maxTagPlaceholder: getComponentFromProp(this, "maxTagPlaceholder"),
-          placeholder: getComponentFromProp(this, "placeholder"),
-          children: options
-            ? options.map(option => {
-                const { key, label = option.title, ...restOption } = option;
-                return (
-                  <Option key={key} {...{ props: restOption }}>
-                    {label}
-                  </Option>
-                );
-              })
-            : filterEmpty(this.$slots.default),
-          __propsSymbol__: Symbol()
-        },
-        on: this.$listeners,
-        class: cls,
-        ref: "vcSelect"
-      };
-      return <VcSelect {...selectProps} />;
+  blur() {
+    this.$refs.vcSelect.blur();
+  }
+
+  getNotFoundContent(locale) {
+    const notFoundContent = getComponentFromProp(this, "notFoundContent");
+    if (this.isCombobox()) {
+      // AutoComplete don't have notFoundContent defaultly
+      return notFoundContent === undefined ? null : notFoundContent;
     }
-  },
+    return notFoundContent === undefined
+      ? locale.notFoundContent
+      : notFoundContent;
+  }
+
+  isCombobox() {
+    const { mode } = this;
+    return mode === "combobox" || mode === SECRET_COMBOBOX_MODE_DO_NOT_USE;
+  }
+
+  renderSelect(locale) {
+    const { prefixCls, size, mode, options, ...restProps } = getOptionProps(
+      this
+    );
+    const cls = {
+      [`${prefixCls}-lg`]: size === "large",
+      [`${prefixCls}-sm`]: size === "small"
+    };
+
+    let { optionLabelProp } = this.$props;
+    if (this.isCombobox()) {
+      // children 带 dom 结构时，无法填入输入框
+      optionLabelProp = optionLabelProp || "value";
+    }
+
+    const modeConfig = {
+      multiple: mode === "multiple",
+      tags: mode === "tags",
+      combobox: this.isCombobox()
+    };
+    const selectProps = {
+      props: {
+        ...restProps,
+        ...modeConfig,
+        prefixCls,
+        optionLabelProp: optionLabelProp || "children",
+        notFoundContent: this.getNotFoundContent(locale),
+        maxTagPlaceholder: getComponentFromProp(this, "maxTagPlaceholder"),
+        placeholder: getComponentFromProp(this, "placeholder"),
+        children: options
+          ? options.map(option => {
+              const { key, label = option.title, ...restOption } = option;
+              return (
+                <Option key={key} {...{ props: restOption }}>
+                  {label}
+                </Option>
+              );
+            })
+          : filterEmpty(this.$slots.default),
+        __propsSymbol__: Symbol()
+      },
+      on: this.$listeners,
+      class: cls,
+      ref: "vcSelect"
+    };
+    return <VcSelect {...selectProps} />;
+  }
+
   render() {
     return (
       <LocaleReceiver
@@ -186,6 +193,4 @@ const Select = {
       />
     );
   }
-};
-
-export default Select;
+}

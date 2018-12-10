@@ -8,8 +8,8 @@ import NebulaRadioButton from "./components/radio/NebulaRadioButton";
 import NebulaRadioGroup from "./components/radio/NebulaRadioGroup";
 
 import NebulaSelect from "./components/select/NebulaSelect";
-let NebulaSelectOption = NebulaSelect.Option;
-let NebulaSelectOptGroup = NebulaSelect.OptGroup;
+import NebulaSelectOption from "./components/select/NebulaSelectOption";
+import NebulaSelectOptGroup from "./components/select/NebulaSelectOptGroup";
 
 import NebulaSwitch from "./components/switch/NebulaSwitch";
 
