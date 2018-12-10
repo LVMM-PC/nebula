@@ -7,7 +7,7 @@ import NebulaRadio from "./components/radio/NebulaRadio";
 import NebulaRadioButton from "./components/radio/NebulaRadioButton";
 import NebulaRadioGroup from "./components/radio/NebulaRadioGroup";
 
-import NebulaSelect from "./components/select/index";
+import NebulaSelect from "./components/select/NebulaSelect";
 let NebulaSelectOption = NebulaSelect.Option;
 let NebulaSelectOptGroup = NebulaSelect.OptGroup;
 

@@ -1,41 +1,51 @@
-import PropTypes from "../_util/vue-types";
+import { Vue, Component, Prop } from "vue-property-decorator";
 
-export default {
-  props: {
-    componentName: PropTypes.string,
-    defaultLocale: PropTypes.oneOfType([PropTypes.object, PropTypes.func]),
-    children: PropTypes.func
-  },
+@Component({
   inject: {
     localeData: { default: {} }
-  },
-  methods: {
-    getLocale() {
-      const { componentName, defaultLocale } = this;
-      const { antLocale } = this.localeData;
-      const localeFromContext = antLocale && antLocale[componentName];
-      return {
-        ...(typeof defaultLocale === "function"
-          ? defaultLocale()
-          : defaultLocale),
-        ...(localeFromContext || {})
-      };
-    },
+  }
+})
+export default class LocaleReceiver extends Vue {
+  constructor(props) {
+    super(props);
+  }
 
-    getLocaleCode() {
-      const { antLocale } = this.localeData;
-      const localeCode = antLocale && antLocale.locale;
-      // Had use LocaleProvide but didn't set locale
-      if (antLocale && antLocale.exist && !localeCode) {
-        return "en-us";
-      }
-      return localeCode;
-    }
-  },
+  @Prop({ type: String })
+  componentName: string;
+
+  @Prop({ type: [Object, Function] })
+  defaultLocale: any;
+
+  @Prop({ type: Function })
+  children: any;
+
+  public localeData: any;
 
   render() {
     const { $scopedSlots } = this;
     const children = this.children || $scopedSlots.default;
     return children(this.getLocale(), this.getLocaleCode());
   }
-};
+
+  getLocale() {
+    const { componentName, defaultLocale } = this;
+    const { antLocale } = this.localeData;
+    const localeFromContext = antLocale && antLocale[componentName];
+    return {
+      ...(typeof defaultLocale === "function"
+        ? defaultLocale()
+        : defaultLocale),
+      ...(localeFromContext || {})
+    };
+  }
+
+  getLocaleCode() {
+    const { antLocale } = this.localeData;
+    const localeCode = antLocale && antLocale.locale;
+    // Had use LocaleProvide but didn't set locale
+    if (antLocale && antLocale.exist && !localeCode) {
+      return "en-us";
+    }
+    return localeCode;
+  }
+}
