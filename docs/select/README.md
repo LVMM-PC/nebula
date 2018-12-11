@@ -49,6 +49,30 @@ Select with tags, transform input to tag (scroll the menu)
 
 ^^^ @/docs/.vuepress/components/demo/select/tags.vue
 
+### Option Group
+
+Using `OptGroup` to group the options.
+
+<demo-select-select-optgroup/>
+
+^^^ @/docs/.vuepress/components/demo/select/select-optgroup.vue
+
+### coordinate
+
+Coordinating the selection of provinces and cities is a common use case and demonstrates how selection can be coordinated.
+
+<demo-select-coordinate/>
+
+^^^ @/docs/.vuepress/components/demo/select/coordinate.vue
+
+### Search Box
+
+Search with remote data.
+
+<demo-select-search-box/>
+
+^^^ @/docs/.vuepress/components/demo/select/search-box.vue
+
 ## API
 
 ```html

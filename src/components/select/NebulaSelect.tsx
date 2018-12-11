@@ -62,7 +62,7 @@ export class AbstractSelectProps extends Vue {
   @Prop({ type: Boolean })
   dropdownMatchSelectWidth?: boolean;
 
-  @Prop({ type: [Boolean, Function] })
+  @Prop({})
   filterOption?: boolean | ((inputValue: string, option: any) => any);
 
   @Prop({ type: Boolean })
