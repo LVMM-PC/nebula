@@ -5,7 +5,8 @@ let sidebar = [
   "/icon/",
   "/checkbox/",
   "/radio/",
-  "/switch/"
+  "/switch/",
+  "/select/"
 ];
 
 module.exports = {
