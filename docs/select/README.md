@@ -41,6 +41,14 @@ The height of the input field for the select defaults to 32px. If size is set to
 
 ^^^ @/docs/.vuepress/components/demo/select/size.vue
 
+### Tags
+
+Select with tags, transform input to tag (scroll the menu)
+
+<demo-select-tags/>
+
+^^^ @/docs/.vuepress/components/demo/select/tags.vue
+
 ## API
 
 ```html

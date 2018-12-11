@@ -8,7 +8,7 @@
       @change="handleChange"
       @focus="handleFocus"
       @blur="handleBlur"
-      :filterOption="(input, option) => option.props.children.toLowerCase().indexOf(input.toLowerCase()) >= 0"
+      :filterOption="filterOption"
     >
       <NebulaSelectOption value="jack">Jack</NebulaSelectOption>
       <NebulaSelectOption value="lucy">Lucy</NebulaSelectOption>
@@ -24,13 +24,18 @@ export default {
     handleChange(value) {
       console.log(`selected ${value}`);
     },
-
     handleBlur() {
       console.log("blur");
     },
-
     handleFocus() {
       console.log("focus");
+    },
+    filterOption(input, option) {
+      return (
+        option.componentOptions.children[0].text
+          .toLowerCase()
+          .indexOf(input.toLowerCase()) >= 0
+      );
     }
   }
 };
