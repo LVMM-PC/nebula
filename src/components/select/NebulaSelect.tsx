@@ -241,6 +241,7 @@ export default class Select extends mixins(SelectProps) {
       class: cls,
       ref: "vcSelect"
     };
+    // @ts-ignore
     return <VcSelect {...selectProps} />;
   }
 

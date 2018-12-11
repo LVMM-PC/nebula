@@ -222,6 +222,12 @@ const Select = {
       const newState = {
         _optionsInfo: optionsInfo,
         _skipBuildOptionsInfo: false
+      } as {
+        _optionsInfo;
+        _skipBuildOptionsInfo;
+        _open;
+        _value;
+        _inputValue;
       };
 
       if ("open" in nextProps) {
@@ -539,7 +545,7 @@ const Select = {
       return options;
     },
     getInputValueForCombobox(props, optionsInfo, useDefaultValue) {
-      let value = [];
+      let value: any = [];
       if ("value" in props && !useDefaultValue) {
         value = toArray(props.value);
       }
@@ -1715,17 +1721,30 @@ const Select = {
       mouseleave = noop,
       popupScroll = noop
     } = $listeners;
+    let on = {
+      click: this.selectionRefClick
+    } as {
+      click;
+      keydown;
+      focus;
+      blur;
+    };
+    let attrs = {
+      role: "combobox",
+      "aria-autocomplete": "list",
+      "aria-haspopup": "true",
+      "aria-expanded": realOpen
+    } as {
+      role;
+      "aria-autocomplete";
+      "aria-haspopup";
+      "aria-expanded";
+      tabIndex;
+    };
     const selectionProps = {
       props: {},
-      attrs: {
-        role: "combobox",
-        "aria-autocomplete": "list",
-        "aria-haspopup": "true",
-        "aria-expanded": realOpen
-      },
-      on: {
-        click: this.selectionRefClick
-      },
+      attrs: attrs,
+      on: on,
       class: `${prefixCls}-selection ${prefixCls}-selection--${
         multiple ? "multiple" : "single"
       }`,
