@@ -1,6 +1,6 @@
 <template>
   <div>
-    <NebulaRadioGroup value={size} @change="handleSizeChange">
+    <NebulaRadioGroup :value="size" @change="handleSizeChange">
       <NebulaRadioButton value="large">Large</NebulaRadioButton>
       <NebulaRadioButton value="default">Default</NebulaRadioButton>
       <NebulaRadioButton value="small">Small</NebulaRadioButton>

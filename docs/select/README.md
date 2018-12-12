@@ -61,6 +61,8 @@ Using `OptGroup` to group the options.
 
 Coordinating the selection of provinces and cities is a common use case and demonstrates how selection can be coordinated.
 
+Using the `Cascader` component is strongly recommended instead as it is more flexible and capable.
+
 <demo-select-coordinate/>
 
 ^^^ @/docs/.vuepress/components/demo/select/coordinate.vue
@@ -72,6 +74,32 @@ Search with remote data.
 <demo-select-search-box/>
 
 ^^^ @/docs/.vuepress/components/demo/select/search-box.vue
+
+### Get value of selected item
+
+As a default behavior, the onChange callback can only get the value of the selected item. The labelInValue prop can be used to get the label property of the selected item.
+
+The label of the selected item will be packed as an object for passing to the onChange callback.
+
+<demo-select-label-in-value/>
+
+^^^ @/docs/.vuepress/components/demo/select/label-in-value.vue
+
+### Automatic tokenization
+
+Try to copy `Lucy,Jack` to the input. Only available in tags and multiple mode.
+
+<demo-select-automatic-tokenization/>
+
+^^^ @/docs/.vuepress/components/demo/select/automatic-tokenization.vue
+
+### Search and Select Users
+
+A complete multiple select sample with remote search, debounce fetch, ajax callback order flow, and loading state.
+
+<demo-select-select-users/>
+
+^^^ @/docs/.vuepress/components/demo/select/select-users.vue
 
 ## API
 
