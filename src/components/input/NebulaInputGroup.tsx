@@ -1,30 +1,28 @@
 import { filterEmpty } from "../_util/props-util";
-export default {
-  name: "NebulaInputGroup",
-  props: {
-    prefixCls: {
-      default: "nebula-input-group",
-      type: String
-    },
-    size: {
-      validator(value) {
-        return ["small", "large", "default"].includes(value);
-      }
-    },
-    compact: Boolean
-  },
-  computed: {
-    classes() {
-      const { prefixCls, size, compact = false } = this;
-      return {
-        [`${prefixCls}`]: true,
-        [`${prefixCls}-lg`]: size === "large",
-        [`${prefixCls}-sm`]: size === "small",
-        [`${prefixCls}-compact`]: compact
-      };
-    }
-  },
-  methods: {},
+
+import { Prop, Vue, Component, Watch, Model } from "vue-property-decorator";
+
+@Component({})
+export default class NebulaInputGroup extends Vue {
+  @Prop({ default: "nebula-input-group", type: String })
+  prefixCls?: any;
+
+  @Prop({ type: String })
+  size?: "small" | "large" | "default";
+
+  @Prop({ type: Boolean })
+  compact?: boolean;
+
+  get classes() {
+    const { prefixCls, size, compact = false } = this;
+    return {
+      [`${prefixCls}`]: true,
+      [`${prefixCls}-lg`]: size === "large",
+      [`${prefixCls}-sm`]: size === "small",
+      [`${prefixCls}-compact`]: compact
+    };
+  }
+
   render() {
     const { $listeners } = this;
     return (
@@ -33,4 +31,4 @@ export default {
       </span>
     );
   }
-};
+}
