@@ -1,228 +1,125 @@
-import { Component, Prop, Vue, Watch } from "vue-property-decorator";
-import { VNode } from "vue";
-import NebulaIcon from "../icon/NebulaIcon";
-
+import Wave from "../_util/wave";
+import Icon from "../icon";
 const rxTwoCNChar = /^[\u4e00-\u9fa5]{2}$/;
-const isTwoCNChar = (str: any) => {
-  if (typeof str !== "string") {
-    return;
-  }
-  return rxTwoCNChar.test(str);
-};
-const isString = (str: any) => {
-  return typeof str === "string";
-};
-
-export type ButtonType = "default" | "primary" | "ghost" | "dashed" | "danger";
-export type ButtonShape = "circle" | "circle-outline";
-export type ButtonSize = "small" | "default" | "large";
-export type ButtonHTMLType = "submit" | "button" | "reset";
-
-@Component({
-  name: "NebulaButton"
-})
-export default class NebulaButton extends Vue {
-  constructor(props: any) {
-    super(props);
-  }
-
-  static __NEBULA_BUTTON: boolean = true;
-
-  @Prop({ default: null, type: String })
-  private icon?: string;
-
-  @Prop({ default: null, type: String })
-  private shape?: ButtonShape;
-
-  @Prop({ default: null, type: String })
-  private type?: ButtonType;
-
-  @Prop({ default: null, type: String })
-  private size?: ButtonSize;
-
-  @Prop({ default: null, type: Boolean })
-  private ghost?: boolean;
-
-  @Prop({ default: null, type: Boolean })
-  private disabled?: boolean;
-
-  @Prop({ default: null, type: [Boolean, Object] })
-  private loading?: boolean | { delay: number };
-
-  @Prop({ default: null, type: Boolean })
-  private block?: boolean;
-
-  @Prop({ default: "button", type: String })
-  private htmlType?: ButtonHTMLType;
-
-  @Watch("loading")
-  onLoadingChanged(val: boolean | { delay?: number }) {
-    const currentLoading = this.loading;
-
-    if (currentLoading) {
-      clearTimeout(this.delayTimeout);
-    }
-
-    if (typeof val === "object" && val && val.delay) {
-      this.delayTimeout = setTimeout(() => {
-        this.stateLoading = true;
-      }, val.delay);
-    } else if (typeof val === "boolean") {
-      this.stateLoading = val;
-    }
-  }
-
-  get sizeCls() {
-    // large => lg
-    // small => sm
-    let sizeCls = "";
-    switch (this.size) {
-      case "large":
-        sizeCls = "lg";
-        break;
-      case "small":
-        sizeCls = "sm";
-        break;
-      default:
-        break;
-    }
-    return sizeCls;
-  }
-
-  get component() {
-    if (this.$attrs["href"]) {
-      return "a";
-    } else {
-      return "button";
-    }
-  }
-
-  get iconType() {
-    if (this.stateLoading) {
-      return "loading";
-    } else {
-      return this.icon;
-    }
-  }
-
+const isTwoCNChar = rxTwoCNChar.test.bind(rxTwoCNChar);
+import buttonTypes from "./buttonTypes";
+const props = buttonTypes();
+export default {
+  name: "AButton",
+  __ANT_BUTTON: true,
+  props: {
+    ...props
+  },
+  data() {
+    return {
+      sizeMap: {
+        large: "lg",
+        small: "sm"
+      },
+      // clicked: false,
+      sLoading: !!this.loading,
+      hasTwoCNChar: false
+    };
+  },
   mounted() {
     this.fixTwoCNChar();
-  }
-
+  },
   updated() {
     this.fixTwoCNChar();
-  }
-
+  },
   beforeDestroy() {
+    // if (this.timeout) {
+    //   clearTimeout(this.timeout)
+    // }
     if (this.delayTimeout) {
       clearTimeout(this.delayTimeout);
     }
-  }
-
-  public prefixCls: string = "nebula-btn";
-
-  public hasTwoCNChar: boolean = false;
-
-  public stateLoading: boolean = !!this.loading;
-
-  public delayTimeout: any;
-
-  public classes() {
-    let block = this.block;
-    let children = this.children();
-    let ghost = this.ghost;
-    let hasTwoCNChar = this.hasTwoCNChar;
-    let icon = this.icon;
-    let loading = this.stateLoading;
-    let prefixCls = this.prefixCls;
-    let shape = this.shape;
-    let sizeCls = this.sizeCls;
-    let type = this.type;
-    return [
-      prefixCls,
-      {
+  },
+  watch: {
+    loading(val) {
+      clearTimeout(this.delayTimeout);
+      if (typeof val !== "boolean" && val && val.delay) {
+        this.delayTimeout = setTimeout(() => {
+          this.sLoading = !!val;
+        }, val.delay);
+      } else {
+        this.sLoading = !!val;
+      }
+    }
+  },
+  computed: {
+    classes() {
+      const {
+        prefixCls,
+        type,
+        shape,
+        size,
+        hasTwoCNChar,
+        sLoading,
+        ghost,
+        block,
+        sizeMap
+      } = this;
+      const sizeCls = sizeMap[size] || "";
+      return {
+        [`${prefixCls}`]: true,
+        [`${prefixCls}-${type}`]: type,
         [`${prefixCls}-${shape}`]: shape,
         [`${prefixCls}-${sizeCls}`]: sizeCls,
-        [`${prefixCls}-${type}`]: type,
-        [`${prefixCls}-background-ghost`]: ghost,
-        [`${prefixCls}-block`]: block,
-        [`${prefixCls}-icon-only`]: !children && icon,
-        [`${prefixCls}-loading`]: loading,
-        [`${prefixCls}-two-chinese-chars`]: hasTwoCNChar
+        [`${prefixCls}-loading`]: sLoading,
+        [`${prefixCls}-background-ghost`]: ghost || type === "ghost",
+        [`${prefixCls}-two-chinese-chars`]: hasTwoCNChar,
+        [`${prefixCls}-block`]: block
+      };
+    }
+  },
+  methods: {
+    fixTwoCNChar() {
+      // Fix for HOC usage like <FormatMessage />
+      const node = this.$el;
+      const buttonText = node.textContent || node.innerText;
+      if (this.isNeedInserted() && isTwoCNChar(buttonText)) {
+        if (!this.hasTwoCNChar) {
+          this.hasTwoCNChar = true;
+        }
+      } else if (this.hasTwoCNChar) {
+        this.hasTwoCNChar = false;
       }
-    ];
-  }
-
-  public insertSpace(child: VNode, needInserted: boolean) {
-    if (child == null) {
-      return;
-    }
-    const SPACE = needInserted ? " " : "";
-    let childText =
-      child.children && child.children[0] && child.children[0].text;
-    if (
-      typeof child !== "string" &&
-      typeof child !== "number" &&
-      isString(child.tag) &&
-      child.children &&
-      child.children.length === 1 &&
-      childText &&
-      isString(childText) &&
-      isTwoCNChar(childText)
-    ) {
-      return childText.split("").join(SPACE);
-    }
-    let text = child.text;
-    if (typeof text === "string") {
-      if (isTwoCNChar(text)) {
-        text = text.split("").join(SPACE);
-      }
-      return <span>{text}</span>;
-    }
-    return child;
-  }
-
-  public handleClick(event: Event) {
-    if (this.ghost) {
-      event.preventDefault();
-      event.stopPropagation();
-      event.stopImmediatePropagation();
-    } else {
+    },
+    handleClick(event) {
+      // this.clicked = true
+      // clearTimeout(this.timeout)
+      // this.timeout = setTimeout(() => (this.clicked = false), 500)
       this.$emit("click", event);
-    }
-  }
-
-  public isNeedInserted() {
-    const { iconType, $slots } = this;
-    return $slots.default && $slots.default.length === 1 && !iconType;
-  }
-
-  public fixTwoCNChar() {
-    const node = this.$el as HTMLElement;
-    const buttonText = node.textContent || node.innerText;
-    if (this.isNeedInserted() && isTwoCNChar(buttonText)) {
-      if (!this.hasTwoCNChar) {
-        this.hasTwoCNChar = true;
+    },
+    insertSpace(child, needInserted) {
+      const SPACE = needInserted ? " " : "";
+      if (typeof child.text === "string") {
+        let text = child.text.trim();
+        if (isTwoCNChar(text)) {
+          text = text.split("").join(SPACE);
+        }
+        return <span>{text}</span>;
       }
-    } else if (this.hasTwoCNChar) {
-      this.hasTwoCNChar = false;
+      return child;
+    },
+    isNeedInserted() {
+      const { icon, $slots } = this;
+      return $slots.default && $slots.default.length === 1 && !icon;
     }
-  }
-
-  public children() {
-    return this.$slots.default;
-  }
-
+  },
   render() {
     const {
-      $attrs,
-      $listeners,
+      htmlType,
+      classes,
+      icon,
       disabled,
       handleClick,
-      htmlType,
-      iconType
+      sLoading,
+      $slots,
+      $attrs,
+      $listeners
     } = this;
-    let classes = this.classes();
     const buttonProps = {
       props: {},
       attrs: {
@@ -236,35 +133,28 @@ export default class NebulaButton extends Vue {
         click: handleClick
       }
     };
-
-    const iconProps = {
-      props: {
-        type: iconType
-      }
-    };
-    const iconNode = iconType ? <NebulaIcon {...iconProps} /> : "";
-    let children = this.children();
-    const kids = children
-      ? children.map(child => {
-          return this.insertSpace(child, this.isNeedInserted());
-        })
-      : null;
-
-    switch (this.component) {
-      case "a":
-        return (
-          <a {...buttonProps}>
-            {iconNode}
-            {kids}
-          </a>
-        );
-      case "button":
-        return (
+    const iconType = sLoading ? "loading" : icon;
+    const iconNode = iconType ? <Icon type={iconType} /> : null;
+    const kids =
+      $slots.default && $slots.default.length === 1
+        ? this.insertSpace($slots.default[0], this.isNeedInserted())
+        : $slots.default;
+    if ("href" in $attrs) {
+      return (
+        <a {...buttonProps}>
+          {iconNode}
+          {kids}
+        </a>
+      );
+    } else {
+      return (
+        <Wave>
           <button {...buttonProps}>
             {iconNode}
             {kids}
           </button>
-        );
+        </Wave>
+      );
     }
   }
-}
+};

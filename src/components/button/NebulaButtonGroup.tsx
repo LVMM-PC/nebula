@@ -1,50 +1,41 @@
-import { Component, Prop, Vue } from "vue-property-decorator";
-import { ButtonSize } from "./NebulaButton";
 import { filterEmpty } from "../_util/props-util";
-
-@Component({
-  name: "NebulaButtonGroup"
-})
-export default class NebulaButtonGroup extends Vue {
-  constructor(props: any) {
-    super(props);
-  }
-
-  @Prop({ default: null, type: String })
-  private size?: ButtonSize;
-
-  public prefixCls: string = "nebula-btn-group";
-
-  get classes() {
-    let prefixCls = this.prefixCls;
-    let sizeCls = this.sizeCls;
-    return [
-      prefixCls,
-      {
-        [`${prefixCls}-${sizeCls}`]: sizeCls
-      }
-    ];
-  }
-
-  get sizeCls() {
-    // large => lg
-    // small => sm
-    let sizeCls = "";
-    switch (this.size) {
-      case "large":
-        sizeCls = "lg";
-        break;
-      case "small":
-        sizeCls = "sm";
-        break;
-      default:
-        break;
+const ButtonGroupProps = {
+  prefixCls: {
+    default: "nebula-btn-group",
+    type: String
+  },
+  size: {
+    validator(value) {
+      return ["small", "large", "default"].includes(value);
     }
-    return sizeCls;
   }
-
+};
+export { ButtonGroupProps };
+export default {
+  name: "AButtonGroup",
+  props: ButtonGroupProps,
+  data() {
+    return {
+      sizeMap: {
+        large: "lg",
+        small: "sm"
+      }
+    };
+  },
+  computed: {
+    classes() {
+      const { prefixCls, size, sizeMap } = this;
+      const sizeCls = sizeMap[size] || "";
+      return [
+        {
+          [`${prefixCls}`]: true,
+          [`${prefixCls}-${sizeCls}`]: sizeCls
+        }
+      ];
+    }
+  },
   render() {
     const { classes, $slots } = this;
     return <div class={classes}>{filterEmpty($slots.default)}</div>;
   }
-}
+};

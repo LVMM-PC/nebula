@@ -1,36 +1,29 @@
 import { Component, Prop, Vue } from "vue-property-decorator";
 
-@Component({
-  name: "NebulaIcon"
-})
+@Component({})
 export default class NebulaIcon extends Vue {
-  @Prop({ default: null, type: String })
-  private type?: string;
+  @Prop({ default: "nebula-icon", type: String })
+  prefixCls?: string;
 
-  @Prop({ default: null, type: String })
-  private title?: string;
+  @Prop({ type: String })
+  type?: string;
 
-  @Prop({ default: false, type: Boolean })
-  private spin?: boolean;
+  @Prop({ type: String })
+  title?: string;
 
-  @Prop()
-  private timeout?: any;
+  @Prop({ type: Boolean })
+  spin?: boolean;
 
-  public prefixCls: string = "nebula-icon";
+  clicked: any;
+  timeout: any;
 
-  public clicked: boolean = false;
-
-  get classes() {
-    let prefixCls = this.prefixCls;
-    let type = this.type;
-    let spin = this.spin || (type && type.indexOf("loading") === 0);
-    return [
-      prefixCls,
-      {
-        [`${prefixCls}-${type}`]: type,
-        [`${prefixCls}-spin`]: spin
-      }
-    ];
+  classes() {
+    const { prefixCls, type, spin } = this;
+    return {
+      [`${prefixCls}`]: true,
+      [`${prefixCls}-${type}`]: type,
+      [`${prefixCls}-spin`]: !!spin || type === "loading"
+    };
   }
 
   handleClick(event) {
@@ -44,13 +37,19 @@ export default class NebulaIcon extends Vue {
     this.$emit("click", event);
   }
 
+  beforeDestroy() {
+    if (this.timeout) {
+      clearTimeout(this.timeout);
+    }
+  }
+
   render() {
     const { title, classes, handleClick, $listeners } = this;
     const iconProps = {
       attrs: {
         title
       },
-      class: classes,
+      class: classes(),
       on: {
         ...$listeners,
         click: handleClick

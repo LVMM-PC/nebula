@@ -46,7 +46,7 @@ if (isIE9) {
 
 export default {
   install: (Vue, options) => {
-    Vue.directive("ant-input", {
+    Vue.directive("nebula-input", {
       inserted(el, binding, vnode, oldVnode) {
         if (vnode.tag === "textarea" || isTextInputType(el.type)) {
           if (!binding.modifiers || !binding.modifiers.lazy) {

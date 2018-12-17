@@ -10,6 +10,10 @@ import NebulaSelect from "./components/select/NebulaSelect";
 import NebulaSelectOption from "./components/select/NebulaSelectOption";
 import NebulaSelectOptGroup from "./components/select/NebulaSelectOptGroup";
 import NebulaSwitch from "./components/switch/NebulaSwitch";
+import NebulaInput from "./components/input/NebulaInput";
+import NebulaInputSearch from "./components/input/NebulaInputSearch";
+import NebulaInputGroup from "./components/input/NebulaInputGroup";
+import NebulaTextarea from "./components/input/NebulaTextarea";
 
 export {
   NebulaButton,
@@ -23,5 +27,9 @@ export {
   NebulaSelect,
   NebulaSelectOption,
   NebulaSelectOptGroup,
-  NebulaSwitch
+  NebulaSwitch,
+  NebulaInput,
+  NebulaInputSearch,
+  NebulaInputGroup,
+  NebulaTextarea
 };
