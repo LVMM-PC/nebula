@@ -2,6 +2,10 @@ import { Component, Prop, Vue } from "vue-property-decorator";
 
 @Component({})
 export default class NebulaIcon extends Vue {
+  constructor(props) {
+    super(props);
+  }
+
   @Prop({ default: "nebula-icon", type: String })
   prefixCls?: string;
 
