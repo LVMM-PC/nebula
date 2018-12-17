@@ -5,20 +5,34 @@
 
 .example-list
   columns 30em 4
+
   .example
     break-inside: avoid;
     display flex
     flex-direction: column
 
+table
+  th
+  td
+    padding 10px
+blockquote
+  font-size 14px
+  padding-left: 1em
+
 main
   margin-bottom 1em
   display flex !important
   flex-wrap wrap
+
   section
     display flex !important
     flex-wrap wrap
     width 100%
-    margin-bottom 0
+    margin-bottom 10px
+    .nebula-btn-group
+    .nebula-btn
+      margin-bottom: 0
+
 
 .nebula-btn
   margin-right 10px
@@ -29,16 +43,17 @@ main
   flex-wrap wrap
   margin-right 10px
   margin-bottom 10px
+
   .nebula-btn
     margin-right 0
     margin-bottom 0
 
 .nebula-switch
-  margin-bottom 5px !important
 
 .content
   .content
     padding 0 !important
+
     *:first-child
       margin-top 0 !important
 
@@ -47,14 +62,17 @@ main
   list-style none
   display flex
   flex-wrap wrap
+
   li
     display flex
     flex-direction column
     text-align center
     width 64px
     height 64px
+
     .nebula-icon
       margin-top 16px
+
     .nebula-icons-list-label
       line-height 14px
       font-size 12px

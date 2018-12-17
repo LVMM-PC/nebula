@@ -1,15 +1,12 @@
 import { filterEmpty } from "../_util/props-util";
 import { Prop, Component, Vue } from "vue-property-decorator";
 import { ButtonSize } from "@/components/button/NebulaButton";
-import {mixins} from "vue-class-component";
+import { mixins } from "vue-class-component";
 
 @Component({})
 export class ButtonGroupProps extends Vue {
   @Prop({ default: "nebula-btn-group", type: String })
   prefixCls?: string;
-
-  @Prop({ type: String })
-  style?: string;
 
   @Prop({ type: String })
   className?: string;
@@ -44,6 +41,4 @@ export class ButtonGroupProps extends Vue {
     return <div class={classes}>{filterEmpty($slots.default)}</div>;
   }
 })
-export default class NebulaButtonGroup extends mixins(ButtonGroupProps){
-
-};
+export default class NebulaButtonGroup extends mixins(ButtonGroupProps) {}

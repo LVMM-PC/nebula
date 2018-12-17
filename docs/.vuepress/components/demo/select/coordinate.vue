@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <section>
     <NebulaSelect
       :defaultValue="provinceData[0]"
       :style="{ width: '90px'}"
@@ -21,7 +21,7 @@
         {{city}}
       </NebulaSelectOption>
     </NebulaSelect>
-  </div>
+  </section>
 </template>
 
 <script>
@@ -32,7 +32,6 @@ const cityData = {
 };
 
 export default {
-  name: "coordinate",
   data() {
     return {
       provinceData: provinceData,

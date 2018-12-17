@@ -1,24 +1,25 @@
 <template>
-  <NebulaSelect
-    mode="multiple"
-    labelInValue
-    :value="value"
-    placeholder="Select users"
-    :notFoundContent="fetching ? 'Loading' : null"
-    :filterOption="false"
-    @search="fetchUser"
-    @change="handleChange"
-    :style="{ width: '100%'}"
-  >
-    <NebulaSelectOption v-for="d in data" :key="d.value">{{d.text}}</NebulaSelectOption>
-  </NebulaSelect>
+  <section>
+    <NebulaSelect
+      mode="multiple"
+      labelInValue
+      :value="value"
+      placeholder="Select users"
+      :notFoundContent="fetching ? 'Loading' : null"
+      :filterOption="false"
+      @search="fetchUser"
+      @change="handleChange"
+      :style="{ width: '100%'}"
+    >
+      <NebulaSelectOption v-for="d in data" :key="d.value">{{d.text}}</NebulaSelectOption>
+    </NebulaSelect>
+  </section>
 </template>
 
 <script>
 import debounce from "lodash/debounce";
 
 export default {
-  name: "select-users",
   data() {
     return {
       data: [],

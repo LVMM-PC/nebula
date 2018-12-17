@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <section>
     <NebulaSelect defaultValue="lucy" :style="{ width: '120px' }" @change="handleChange">
       <NebulaSelectOption value="jack">Jack</NebulaSelectOption>
       <NebulaSelectOption value="lucy">Lucy</NebulaSelectOption>
@@ -9,12 +9,11 @@
     <NebulaSelect defaultValue="lucy" :style="{ width: '120px' }" disabled>
       <NebulaSelectOption value="lucy">Lucy</NebulaSelectOption>
     </NebulaSelect>
-  </div>
+  </section>
 </template>
 
 <script>
 export default {
-  name: "basic",
   methods: {
     handleChange(value) {
       console.log(`selected ${value}`);

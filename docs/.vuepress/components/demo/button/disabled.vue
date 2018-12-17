@@ -18,7 +18,7 @@
         type="dashed">Dashed(disabled)
       </NebulaButton>
     </section>
-    <section :style="{ padding: '8px 8px 0 8px', background: 'rgb(190, 200, 200)' }">
+    <section :style="{ padding: '8px', background: 'rgb(190, 200, 200)' }">
       <NebulaButton ghost>Ghost</NebulaButton>
       <NebulaButton
         disabled

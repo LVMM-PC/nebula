@@ -12,6 +12,10 @@ export var NebulaSwitch = NebulaUi.NebulaSwitch;
 export var NebulaSelect = NebulaUi.NebulaSelect;
 export var NebulaSelectOption = NebulaUi.NebulaSelectOption;
 export var NebulaSelectOptGroup = NebulaUi.NebulaSelectOptGroup;
+export var NebulaInput = NebulaUi.NebulaInput;
+export var NebulaInputSearch = NebulaUi.NebulaInputSearch;
+export var NebulaInputGroup = NebulaUi.NebulaInputGroup;
+export var NebulaTextarea = NebulaUi.NebulaTextarea;
 
 function install(Vue) {
   Vue.component("NebulaButton", NebulaButton);
@@ -26,6 +30,10 @@ function install(Vue) {
   Vue.component("NebulaSelect", NebulaSelect);
   Vue.component("NebulaSelectOption", NebulaSelectOption);
   Vue.component("NebulaSelectOptGroup", NebulaSelectOptGroup);
+  Vue.component("NebulaInput", NebulaInput);
+  Vue.component("NebulaInputSearch", NebulaInputSearch);
+  Vue.component("NebulaInputGroup", NebulaInputGroup);
+  Vue.component("NebulaTextarea", NebulaTextarea);
 }
 
 const plugin = {

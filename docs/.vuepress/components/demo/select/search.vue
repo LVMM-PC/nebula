@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <section>
     <NebulaSelect
       showSearch
       :style="{width: '200px'}"
@@ -14,12 +14,11 @@
       <NebulaSelectOption value="lucy">Lucy</NebulaSelectOption>
       <NebulaSelectOption value="tom">Tom</NebulaSelectOption>
     </NebulaSelect>
-  </div>
+  </section>
 </template>
 
 <script>
 export default {
-  name: "search",
   methods: {
     handleChange(value) {
       console.log(`selected ${value}`);

@@ -1,18 +1,20 @@
 <template>
-  <NebulaSelect
-    showSearch
-    :value="value"
-    placeholder="input search text"
-    :style="{ width: '200px'}"
-    :defaultActiveFirstOption="false"
-    :showArrow="false"
-    :filterOption="false"
-    @search="handleSearch"
-    @change="handleChange"
-    :notFoundContent="null"
-  >
-    <NebulaSelectOption v-for="(item) in data" :key="item.value">{{item.text}}</NebulaSelectOption>
-  </NebulaSelect>
+  <section>
+    <NebulaSelect
+      showSearch
+      :value="value"
+      placeholder="input search text"
+      :style="{ width: '200px'}"
+      :defaultActiveFirstOption="false"
+      :showArrow="false"
+      :filterOption="false"
+      @search="handleSearch"
+      @change="handleChange"
+      :notFoundContent="null"
+    >
+      <NebulaSelectOption v-for="(item) in data" :key="item.value">{{item.text}}</NebulaSelectOption>
+    </NebulaSelect>
+  </section>
 </template>
 
 <script>
@@ -55,7 +57,6 @@ function fetch(value, callback) {
 }
 
 export default {
-  name: "search-box",
   data() {
     return {
       data: [],
