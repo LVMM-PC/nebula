@@ -15,7 +15,9 @@
 
 <demo-select-basic/>
 
+<demo-code-box>
 ^^^ @/docs/.vuepress/components/demo/select/basic.vue
+</demo-code-box>
 
 ### 带搜索框
 
@@ -23,7 +25,9 @@
 
 <demo-select-search/>
 
+<demo-code-box>
 ^^^ @/docs/.vuepress/components/demo/select/search.vue
+</demo-code-box>
 
 ### 多选
 
@@ -31,7 +35,9 @@
 
 <demo-select-multiple/>
 
+<demo-code-box>
 ^^^ @/docs/.vuepress/components/demo/select/multiple.vue
+</demo-code-box>
 
 ### 三种大小
 
@@ -39,7 +45,9 @@
 
 <demo-select-size/>
 
+<demo-code-box>
 ^^^ @/docs/.vuepress/components/demo/select/size.vue
+</demo-code-box>
 
 ### 标签
 
@@ -47,7 +55,9 @@ tags select，随意输入的内容（scroll the menu）
 
 <demo-select-tags/>
 
+<demo-code-box>
 ^^^ @/docs/.vuepress/components/demo/select/tags.vue
+</demo-code-box>
 
 ### 分组
 
@@ -55,7 +65,9 @@ tags select，随意输入的内容（scroll the menu）
 
 <demo-select-select-optgroup/>
 
+<demo-code-box>
 ^^^ @/docs/.vuepress/components/demo/select/select-optgroup.vue
+</demo-code-box>
 
 ### 联动
 
@@ -65,7 +77,9 @@ tags select，随意输入的内容（scroll the menu）
 
 <demo-select-coordinate/>
 
+<demo-code-box>
 ^^^ @/docs/.vuepress/components/demo/select/coordinate.vue
+</demo-code-box>
 
 ### 搜索框
 
@@ -73,7 +87,9 @@ tags select，随意输入的内容（scroll the menu）
 
 <demo-select-search-box/>
 
+<demo-code-box>
 ^^^ @/docs/.vuepress/components/demo/select/search-box.vue
+</demo-code-box>
 
 ### 获得选项的文本
 
@@ -83,7 +99,9 @@ tags select，随意输入的内容（scroll the menu）
 
 <demo-select-label-in-value/>
 
+<demo-code-box>
 ^^^ @/docs/.vuepress/components/demo/select/label-in-value.vue
+</demo-code-box>
 
 ### 自动分词
 
@@ -91,7 +109,9 @@ tags select，随意输入的内容（scroll the menu）
 
 <demo-select-automatic-tokenization/>
 
+<demo-code-box>
 ^^^ @/docs/.vuepress/components/demo/select/automatic-tokenization.vue
+</demo-code-box>
 
 ### 搜索用户
 
@@ -99,14 +119,16 @@ tags select，随意输入的内容（scroll the menu）
 
 <demo-select-select-users/>
 
+<demo-code-box>
 ^^^ @/docs/.vuepress/components/demo/select/select-users.vue
+</demo-code-box>
 
 ## API
 
 ```html
-<Select>
-  <Option value="lucy">lucy</Option>
-</Select>
+<NebulaSelect>
+  <NebulaOption value="lucy">lucy</Option>
+</NebulaSelect>
 ```
 
 ### Select props

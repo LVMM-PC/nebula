@@ -8,7 +8,7 @@
         <NebulaRadioButton value="d">Chengdu</NebulaRadioButton>
       </NebulaRadioGroup>
     </section>
-    <section :style="{ marginTop: '16px' }">
+    <section>
       <NebulaRadioGroup defaultValue="a">
         <NebulaRadioButton value="a">Hangzhou</NebulaRadioButton>
         <NebulaRadioButton value="b">Shanghai</NebulaRadioButton>
@@ -16,7 +16,7 @@
         <NebulaRadioButton value="d">Chengdu</NebulaRadioButton>
       </NebulaRadioGroup>
     </section>
-    <section :style="{ marginTop: '16px' }">
+    <section>
       <NebulaRadioGroup defaultValue="a" size="small">
         <NebulaRadioButton value="a">Hangzhou</NebulaRadioButton>
         <NebulaRadioButton value="b">Shanghai</NebulaRadioButton>

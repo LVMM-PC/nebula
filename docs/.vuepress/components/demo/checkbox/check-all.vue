@@ -1,6 +1,6 @@
 <template>
   <main>
-    <section :style="{borderBottom: '1px solid #E9E9E9'}">
+    <section>
       <NebulaCheckbox
         :indeterminate="indeterminate"
         @change="onCheckAllChange"

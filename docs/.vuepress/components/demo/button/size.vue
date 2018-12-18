@@ -1,23 +1,13 @@
 <template>
   <main>
     <section>
-      <NebulaButtonGroup :value="size">
-        <NebulaButton
-          :type="(size === 'large') ? 'primary' : ''"
-          @click="handleSwitchSize('large')"
-          value="large">Large
-        </NebulaButton>
-        <NebulaButton
-          :type="(size === 'default') ? 'primary' : ''"
-          @click="handleSwitchSize('default')"
-          value="default">Default
-        </NebulaButton>
-        <NebulaButton
-          :type="(size === 'small') ? 'primary' : ''"
-          @click="handleSwitchSize('small')"
-          value="small">Small
-        </NebulaButton>
-      </NebulaButtonGroup>
+
+      <NebulaRadioGroup v-model="size" @change="handleSizeChange">
+        <NebulaRadioButton value="large">Large</NebulaRadioButton>
+        <NebulaRadioButton value="default">Default</NebulaRadioButton>
+        <NebulaRadioButton value="small">Small</NebulaRadioButton>
+      </NebulaRadioGroup>
+
     </section>
     <section>
       <NebulaButton
@@ -68,8 +58,8 @@ export default {
     };
   },
   methods: {
-    handleSwitchSize(size) {
-      this.size = size;
+    handleSizeChange(e) {
+      this.size =  e.target.value;
     }
   }
 };

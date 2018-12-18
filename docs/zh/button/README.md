@@ -14,7 +14,9 @@
 
 <demo-button-basic/>
 
+<demo-code-box>
 ^^^ @/docs/.vuepress/components/demo/button/basic.vue
+</demo-code-box>
 
 ### 图标按钮
 
@@ -24,7 +26,9 @@
 
 <demo-button-icon/>
 
+<demo-code-box>
 ^^^ @/docs/.vuepress/components/demo/button/icon.vue
+</demo-code-box>
 
 ### 按钮尺寸
 
@@ -34,7 +38,9 @@
 
 <demo-button-size/>
 
+<demo-code-box>
 ^^^ @/docs/.vuepress/components/demo/button/size.vue
+</demo-code-box>
 
 ### 不可用状态
 
@@ -42,7 +48,9 @@
 
 <demo-button-disabled/>
 
+<demo-code-box>
 ^^^ @/docs/.vuepress/components/demo/button/disabled.vue
+</demo-code-box>
 
 ### 加载中状态
 
@@ -50,7 +58,9 @@
 
 <demo-button-loading/>
 
+<demo-code-box>
 ^^^ @/docs/.vuepress/components/demo/button/loading.vue
+</demo-code-box>
 
 ### 多个按钮组合
 
@@ -58,7 +68,9 @@
 
 <demo-button-multiple/>
 
+<demo-code-box>
 ^^^ @/docs/.vuepress/components/demo/button/multiple.vue
+</demo-code-box>
 
 ### 按钮组合
 
@@ -68,7 +80,9 @@
 
 <demo-button-group/>
 
+<demo-code-box>
 ^^^ @/docs/.vuepress/components/demo/button/group.vue
+</demo-code-box>
 
 ### 幽灵按钮
 
@@ -76,7 +90,9 @@
 
 <demo-button-ghost/>
 
+<demo-code-box>
 ^^^ @/docs/.vuepress/components/demo/button/ghost.vue
+</demo-code-box>
 
 ### Block 按钮
 
@@ -84,16 +100,20 @@
 
 <demo-button-block/>
 
+<demo-code-box>
 ^^^ @/docs/.vuepress/components/demo/button/block.vue
+</demo-code-box>
 
 ## API
 
 通过设置 Button 的属性来产生不同的按钮样式，推荐顺序为：`type` -> `shape` -> `size` -> `loading` -> `disabled`
 
+按钮的属性说明如下：
+
 | 属性     | 说明                                                                                                                                 | 类型                         | 默认值    |
 | -------- | ------------------------------------------------------------------------------------------------------------------------------------ | ---------------------------- | --------- |
 | disabled | 按钮失效状态                                                                                                                         | boolean                      | `false`   |
-| ghost    | 幽灵属性，使按钮背景透明，版本 2.7 中增加                                                                                            | boolean                      | `false`   |
+| ghost    | 幽灵属性，使按钮背景透明，版本 2.7 中增加                                                                                            | boolean                      | false     |
 | href     | 点击跳转的地址，指定此属性 button 的行为和 a 链接一致                                                                                | string                       | -         |
 | htmlType | 设置 `button` 原生的 `type` 值，可选值请参考 [HTML 标准](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button#attr-type) | string                       | `button`  |
 | icon     | 设置按钮的图标类型                                                                                                                   | string                       | -         |
@@ -101,9 +121,11 @@
 | shape    | 设置按钮形状，可选值为 `circle` 或者不设                                                                                             | string                       | -         |
 | size     | 设置按钮大小，可选值为 `small` `large` 或者不设                                                                                      | string                       | `default` |
 | target   | 相当于 a 链接的 target 属性，href 存在时生效                                                                                         | string                       | -         |
-| type     | 设置按钮类型，可选值为 `primary` `dashed` `danger`(版本 2.7 中增加) 或者不设                                                         | string                       | `default` |
-| onClick  | `click` 事件的 handler                                                                                                               | function                     | -         |
+| type     | 设置按钮类型，可选值为 `primary` `dashed` `danger`(版本 2.7 中增加) 或者不设                                                         | string                       | -         |
+| onClick  | 点击按钮时的回调                                                                                                                     | (event) => void              | -         |
 | block    | 将按钮宽度调整为其父宽度的选项                                                                                                       | boolean                      | `false`   |
+
+支持原生 button 的其他所有属性。
 
 `<NebulaButton>Hello world!</NebulaButton>` 最终会被渲染为 `<button><span>Hello world!</span></button>`，并且除了上表中的属性，其它属性都会直接传到 `<button></button>`。
 

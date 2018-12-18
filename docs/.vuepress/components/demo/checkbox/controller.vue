@@ -1,6 +1,6 @@
 <template>
   <main>
-    <section :style="{marginBottom:'20px'}">
+    <section>
       <NebulaCheckbox
         v-model="checked"
         :disabled="disabled"
@@ -16,7 +16,6 @@
       >{{checkLabel}}
       </NebulaButton>
       <NebulaButton
-        :style="{marginLeft:'10px'}"
         type="primary"
         size="small"
         @click="toggleDisable"

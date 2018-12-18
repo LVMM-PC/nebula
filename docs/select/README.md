@@ -15,7 +15,9 @@ Basic Usage.
 
 <demo-select-basic/>
 
+<demo-code-box>
 ^^^ @/docs/.vuepress/components/demo/select/basic.vue
+</demo-code-box>
 
 ### Select with search field
 
@@ -23,7 +25,9 @@ Search the options while expanded.
 
 <demo-select-search/>
 
+<demo-code-box>
 ^^^ @/docs/.vuepress/components/demo/select/search.vue
+</demo-code-box>
 
 ### multiple selection
 
@@ -31,7 +35,9 @@ Multiple selection, selecting from existing items (scroll the menu).
 
 <demo-select-multiple/>
 
+<demo-code-box>
 ^^^ @/docs/.vuepress/components/demo/select/multiple.vue
+</demo-code-box>
 
 ### Sizes
 
@@ -39,7 +45,9 @@ The height of the input field for the select defaults to 32px. If size is set to
 
 <demo-select-size/>
 
+<demo-code-box>
 ^^^ @/docs/.vuepress/components/demo/select/size.vue
+</demo-code-box>
 
 ### Tags
 
@@ -47,7 +55,9 @@ Select with tags, transform input to tag (scroll the menu)
 
 <demo-select-tags/>
 
+<demo-code-box>
 ^^^ @/docs/.vuepress/components/demo/select/tags.vue
+</demo-code-box>
 
 ### Option Group
 
@@ -55,7 +65,9 @@ Using `OptGroup` to group the options.
 
 <demo-select-select-optgroup/>
 
+<demo-code-box>
 ^^^ @/docs/.vuepress/components/demo/select/select-optgroup.vue
+</demo-code-box>
 
 ### coordinate
 
@@ -65,7 +77,9 @@ Using the `Cascader` component is strongly recommended instead as it is more fle
 
 <demo-select-coordinate/>
 
+<demo-code-box>
 ^^^ @/docs/.vuepress/components/demo/select/coordinate.vue
+</demo-code-box>
 
 ### Search Box
 
@@ -73,7 +87,9 @@ Search with remote data.
 
 <demo-select-search-box/>
 
+<demo-code-box>
 ^^^ @/docs/.vuepress/components/demo/select/search-box.vue
+</demo-code-box>
 
 ### Get value of selected item
 
@@ -83,7 +99,9 @@ The label of the selected item will be packed as an object for passing to the on
 
 <demo-select-label-in-value/>
 
+<demo-code-box>
 ^^^ @/docs/.vuepress/components/demo/select/label-in-value.vue
+</demo-code-box>
 
 ### Automatic tokenization
 
@@ -91,7 +109,9 @@ Try to copy `Lucy,Jack` to the input. Only available in tags and multiple mode.
 
 <demo-select-automatic-tokenization/>
 
+<demo-code-box>
 ^^^ @/docs/.vuepress/components/demo/select/automatic-tokenization.vue
+</demo-code-box>
 
 ### Search and Select Users
 
@@ -99,14 +119,16 @@ A complete multiple select sample with remote search, debounce fetch, ajax callb
 
 <demo-select-select-users/>
 
+<demo-code-box>
 ^^^ @/docs/.vuepress/components/demo/select/select-users.vue
+</demo-code-box>
 
 ## API
 
 ```html
-<Select>
-  <Option value="lucy">lucy</Option>
-</Select>
+<NebulaSelect>
+  <NebulaOption value="lucy">lucy</Option>
+</NebulaSelect>
 ```
 
 ### Select props

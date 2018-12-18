@@ -49,18 +49,15 @@ export default class NebulaTextarea extends mixins(InputProps) {
   }
 
   public stateValue?: any;
-  public nextFrameActionId?: any;
-  public textareaStyles?: any;
+  public nextFrameActionId?: any = undefined;
+  public textareaStyles?: any = {};
 
   initData() {
     const { value, defaultValue } = this.$props;
     this.stateValue = fixControlledValue(
       !hasProp(this, "value") ? defaultValue : value
     );
-    this.nextFrameActionId = undefined;
-    this.textareaStyles = {};
   }
-
   created() {
     this.initData();
   }

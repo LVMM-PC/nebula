@@ -6,7 +6,7 @@
     <section>
       <NebulaRadio defaultChecked :disabled="disabled">Disabled</NebulaRadio>
     </section>
-    <section :style="{ marginTop: '20px' }">
+    <section>
       <NebulaButton type="primary" @click="toggleDisabled">
         Toggle disabled
       </NebulaButton>

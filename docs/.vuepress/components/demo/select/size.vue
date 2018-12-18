@@ -54,7 +54,7 @@
 export default {
   data() {
     return {
-      size: "default"
+      size: "large"
     };
   },
   methods: {
