@@ -1,9 +1,5 @@
 <template>
-  <NebulaInput placeholder="Basic usage" />
+  <section>
+    <NebulaInput placeholder="Basic usage" />
+  </section>
 </template>
-
-<script>
-export default {
-  name: "basic"
-}
-</script>

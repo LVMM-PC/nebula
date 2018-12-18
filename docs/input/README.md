@@ -18,6 +18,56 @@ The most basic usage.
 
 ^^^ @/docs/.vuepress/components/demo/input/basic.vue
 
+### Three sizes of Input
+
+There are three sizes of an Input box: `large` (40px)、`default` (32px) and `small` (24px).
+
+<demo-input-size/>
+
+^^^ @/docs/.vuepress/components/demo/input/size.vue
+
+### Pre / Post tab
+
+Using pre & post tabs example.
+
+<demo-input-addon/>
+
+^^^ @/docs/.vuepress/components/demo/input/addon.vue
+
+### Input Group
+
+Input.Group example
+
+Note: You don't need `Col` to control the width in the `compact` mode.
+
+<demo-input-group/>
+
+^^^ @/docs/.vuepress/components/demo/input/group.vue
+
+### Search box
+
+Example of creating a search box by grouping a standard input with a search button, added in `2.5.0`.
+
+<demo-input-search-input/>
+
+^^^ @/docs/.vuepress/components/demo/input/search-input.vue
+
+### TextArea
+
+For multi-line input.
+
+<demo-input-textarea/>
+
+^^^ @/docs/.vuepress/components/demo/input/textarea.vue
+
+### TextArea
+
+For multi-line input.
+
+<demo-input-textarea-resize/>
+
+^^^ @/docs/.vuepress/components/demo/input/textarea-resize.vue
+
 ## API
 
 ### Input
