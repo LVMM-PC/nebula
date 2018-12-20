@@ -1,44 +1,42 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`renders ./docs/.vuepress/components/demo/checkbox/basic.vue correctly 1`] = `<section><label class="nebula-checkbox-wrapper"><span class="nebula-checkbox"><input type="checkbox" class="nebula-checkbox-input"><span class="nebula-checkbox-inner"></span></span><span>Checkbox</span></label></section>`;
+exports[`renders ./docs/.vuepress/components/demo/checkbox/basic.vue correctly 1`] = `<section><label class="nebula-checkbox-wrapper"><span class="nebula-checkbox"><input type="checkbox" class="nebula-checkbox-input" value=""><span class="nebula-checkbox-inner"></span></span><span>Checkbox</span></label></section>`;
 
 exports[`renders ./docs/.vuepress/components/demo/checkbox/check-all.vue correctly 1`] = `
 <main>
-  <section style="border-bottom: 1px solid #E9E9E9;"><label class="nebula-checkbox-wrapper"><span class="nebula-checkbox nebula-checkbox-indeterminate"><input type="checkbox" class="nebula-checkbox-input"><span class="nebula-checkbox-inner"></span></span><span>Check all
+  <section><label class="nebula-checkbox-wrapper"><span class="nebula-checkbox nebula-checkbox-indeterminate"><input type="checkbox" class="nebula-checkbox-input" value=""><span class="nebula-checkbox-inner"></span></span><span>Check all
     </span></label></section>
   <section>
-    <div class="nebula-checkbox-group"><label class="nebula-checkbox-wrapper nebula-checkbox-group-item"><span class="nebula-checkbox nebula-checkbox-checked"><input type="checkbox" class="nebula-checkbox-input"><span class="nebula-checkbox-inner"></span></span><span>Apple</span></label><label class="nebula-checkbox-wrapper nebula-checkbox-group-item"><span class="nebula-checkbox"><input type="checkbox" class="nebula-checkbox-input"><span class="nebula-checkbox-inner"></span></span><span>Pear</span></label><label class="nebula-checkbox-wrapper nebula-checkbox-group-item"><span class="nebula-checkbox nebula-checkbox-checked"><input type="checkbox" class="nebula-checkbox-input"><span class="nebula-checkbox-inner"></span></span><span>Orange</span></label></div>
+    <div class="nebula-checkbox-group"><label class="nebula-checkbox-wrapper nebula-checkbox-group-item"><span class="nebula-checkbox nebula-checkbox-checked"><input type="checkbox" class="nebula-checkbox-input" value="Apple"><span class="nebula-checkbox-inner"></span></span><span>Apple</span></label><label class="nebula-checkbox-wrapper nebula-checkbox-group-item"><span class="nebula-checkbox"><input type="checkbox" class="nebula-checkbox-input" value="Pear"><span class="nebula-checkbox-inner"></span></span><span>Pear</span></label><label class="nebula-checkbox-wrapper nebula-checkbox-group-item"><span class="nebula-checkbox nebula-checkbox-checked"><input type="checkbox" class="nebula-checkbox-input" value="Orange"><span class="nebula-checkbox-inner"></span></span><span>Orange</span></label></div>
   </section>
 </main>
 `;
 
 exports[`renders ./docs/.vuepress/components/demo/checkbox/controller.vue correctly 1`] = `
 <main>
-  <section style="margin-bottom: 20px;"><label class="nebula-checkbox-wrapper"><span class="nebula-checkbox"><input type="checkbox" class="nebula-checkbox-input"><span class="nebula-checkbox-inner"></span></span><span>Unchecked-Enabled
+  <section><label class="nebula-checkbox-wrapper"><span class="nebula-checkbox"><input type="checkbox" class="nebula-checkbox-input" value=""><span class="nebula-checkbox-inner"></span></span><span>Unchecked-Enabled
     </span></label></section>
-  <section><button type="button" class="nebula-btn nebula-btn-sm nebula-btn-primary"><span>Check
-    </span></button> <button type="button" class="nebula-btn nebula-btn-sm nebula-btn-primary" style="margin-left: 10px;"><span>Disable
-    </span></button></section>
+  <section><button type="button" class="nebula-btn nebula-btn-primary nebula-btn-sm"><span>Check</span></button> <button type="button" class="nebula-btn nebula-btn-primary nebula-btn-sm"><span>Disable</span></button></section>
 </main>
 `;
 
 exports[`renders ./docs/.vuepress/components/demo/checkbox/disabled.vue correctly 1`] = `
 <main>
-  <section><label class="nebula-checkbox-wrapper"><span class="nebula-checkbox nebula-checkbox-disabled"><input type="checkbox" disabled="disabled" class="nebula-checkbox-input"><span class="nebula-checkbox-inner"></span></span></label></section>
-  <section><label class="nebula-checkbox-wrapper"><span class="nebula-checkbox nebula-checkbox-checked nebula-checkbox-disabled"><input type="checkbox" disabled="disabled" class="nebula-checkbox-input"><span class="nebula-checkbox-inner"></span></span></label></section>
+  <section><label class="nebula-checkbox-wrapper"><span class="nebula-checkbox nebula-checkbox-disabled"><input type="checkbox" disabled="disabled" class="nebula-checkbox-input" value=""><span class="nebula-checkbox-inner"></span></span></label></section>
+  <section><label class="nebula-checkbox-wrapper"><span class="nebula-checkbox nebula-checkbox-checked nebula-checkbox-disabled"><input type="checkbox" disabled="disabled" class="nebula-checkbox-input" value=""><span class="nebula-checkbox-inner"></span></span></label></section>
 </main>
 `;
 
 exports[`renders ./docs/.vuepress/components/demo/checkbox/group.vue correctly 1`] = `
 <main>
   <section>
-    <div class="nebula-checkbox-group"><label class="nebula-checkbox-wrapper nebula-checkbox-group-item"><span class="nebula-checkbox nebula-checkbox-checked"><input type="checkbox" class="nebula-checkbox-input"><span class="nebula-checkbox-inner"></span></span><span>Apple</span></label><label class="nebula-checkbox-wrapper nebula-checkbox-group-item"><span class="nebula-checkbox"><input type="checkbox" class="nebula-checkbox-input"><span class="nebula-checkbox-inner"></span></span><span>Pear</span></label><label class="nebula-checkbox-wrapper nebula-checkbox-group-item"><span class="nebula-checkbox"><input type="checkbox" class="nebula-checkbox-input"><span class="nebula-checkbox-inner"></span></span><span>Orange</span></label></div>
+    <div class="nebula-checkbox-group"><label class="nebula-checkbox-wrapper nebula-checkbox-group-item"><span class="nebula-checkbox nebula-checkbox-checked"><input type="checkbox" class="nebula-checkbox-input" value="Apple"><span class="nebula-checkbox-inner"></span></span><span>Apple</span></label><label class="nebula-checkbox-wrapper nebula-checkbox-group-item"><span class="nebula-checkbox"><input type="checkbox" class="nebula-checkbox-input" value="Pear"><span class="nebula-checkbox-inner"></span></span><span>Pear</span></label><label class="nebula-checkbox-wrapper nebula-checkbox-group-item"><span class="nebula-checkbox"><input type="checkbox" class="nebula-checkbox-input" value="Orange"><span class="nebula-checkbox-inner"></span></span><span>Orange</span></label></div>
   </section>
   <section>
-    <div class="nebula-checkbox-group"><label class="nebula-checkbox-wrapper nebula-checkbox-group-item"><span class="nebula-checkbox"><input type="checkbox" class="nebula-checkbox-input"><span class="nebula-checkbox-inner"></span></span><span>Apple</span></label><label class="nebula-checkbox-wrapper nebula-checkbox-group-item"><span class="nebula-checkbox nebula-checkbox-checked"><input type="checkbox" class="nebula-checkbox-input"><span class="nebula-checkbox-inner"></span></span><span>Pear</span></label><label class="nebula-checkbox-wrapper nebula-checkbox-group-item"><span class="nebula-checkbox"><input type="checkbox" class="nebula-checkbox-input"><span class="nebula-checkbox-inner"></span></span><span>Orange</span></label></div>
+    <div class="nebula-checkbox-group"><label class="nebula-checkbox-wrapper nebula-checkbox-group-item"><span class="nebula-checkbox"><input type="checkbox" class="nebula-checkbox-input" value="Apple"><span class="nebula-checkbox-inner"></span></span><span>Apple</span></label><label class="nebula-checkbox-wrapper nebula-checkbox-group-item"><span class="nebula-checkbox nebula-checkbox-checked"><input type="checkbox" class="nebula-checkbox-input" value="Pear"><span class="nebula-checkbox-inner"></span></span><span>Pear</span></label><label class="nebula-checkbox-wrapper nebula-checkbox-group-item"><span class="nebula-checkbox"><input type="checkbox" class="nebula-checkbox-input" value="Orange"><span class="nebula-checkbox-inner"></span></span><span>Orange</span></label></div>
   </section>
   <section>
-    <div class="nebula-checkbox-group"><label class="nebula-checkbox-wrapper nebula-checkbox-group-item"><span class="nebula-checkbox nebula-checkbox-checked nebula-checkbox-disabled"><input type="checkbox" disabled="disabled" class="nebula-checkbox-input"><span class="nebula-checkbox-inner"></span></span><span>Apple</span></label><label class="nebula-checkbox-wrapper nebula-checkbox-group-item"><span class="nebula-checkbox nebula-checkbox-disabled"><input type="checkbox" disabled="disabled" class="nebula-checkbox-input"><span class="nebula-checkbox-inner"></span></span><span>Pear</span></label><label class="nebula-checkbox-wrapper nebula-checkbox-group-item"><span class="nebula-checkbox nebula-checkbox-disabled"><input type="checkbox" disabled="disabled" class="nebula-checkbox-input"><span class="nebula-checkbox-inner"></span></span><span>Orange</span></label></div>
+    <div class="nebula-checkbox-group"><label class="nebula-checkbox-wrapper nebula-checkbox-group-item"><span class="nebula-checkbox nebula-checkbox-checked nebula-checkbox-disabled"><input type="checkbox" disabled="disabled" class="nebula-checkbox-input" value="Apple"><span class="nebula-checkbox-inner"></span></span><span>Apple</span></label><label class="nebula-checkbox-wrapper nebula-checkbox-group-item"><span class="nebula-checkbox nebula-checkbox-disabled"><input type="checkbox" disabled="disabled" class="nebula-checkbox-input" value="Pear"><span class="nebula-checkbox-inner"></span></span><span>Pear</span></label><label class="nebula-checkbox-wrapper nebula-checkbox-group-item"><span class="nebula-checkbox nebula-checkbox-disabled"><input type="checkbox" disabled="disabled" class="nebula-checkbox-input" value="Orange"><span class="nebula-checkbox-inner"></span></span><span>Orange</span></label></div>
   </section>
 </main>
 `;

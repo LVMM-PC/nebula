@@ -1,5 +1,5 @@
 import { mount } from "@vue/test-utils";
-import NebulaIcon from "../NebulaIcon";
+import { NebulaIcon } from "@/../";
 
 describe("Icon", () => {
   it("should render to a <span class='???'></span>", () => {

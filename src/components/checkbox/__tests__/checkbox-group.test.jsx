@@ -1,6 +1,5 @@
 import { mount } from "@vue/test-utils";
-import NebulaCheckbox from "../NebulaCheckbox.vue";
-import NebulaCheckboxGroup from "../NebulaCheckboxGroup.vue";
+import { NebulaCheckbox, NebulaCheckboxGroup } from "@/../";
 import Vue from "vue";
 
 Vue.component("NebulaCheckbox", NebulaCheckbox);
