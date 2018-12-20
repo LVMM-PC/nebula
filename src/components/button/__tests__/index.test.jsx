@@ -216,17 +216,28 @@ describe("Button", () => {
     expect(wrapper2.html()).toMatchSnapshot();
   });
 
-  it("should has click wave effect", async ()=>{
+  it("should has click wave effect", async () => {
     const wrapper = mount({
-      render(){
-        return (<NebulaButton type="primary">button</NebulaButton>)
+      render() {
+        return <NebulaButton type="primary">button</NebulaButton>;
       }
-    })
+    });
+    await flushPromises();
+    wrapper.trigger("click");
+    await flushPromises();
+    expect(wrapper.html()).toMatchSnapshot();
+  });
 
-    wrapper.find("nebula-btn").trigger("click");
-    await new Promise(resolve => {
-
-    })
-
-  })
+  it("should not render as link button when href is undefined", async () => {
+    const wrapper = mount({
+      render() {
+        return (
+          <NebulaButton type="primary" href={undefined}>
+            button
+          </NebulaButton>
+        );
+      }
+    });
+    expect(wrapper.html()).toMatchSnapshot();
+  });
 });

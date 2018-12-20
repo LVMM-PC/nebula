@@ -18,4 +18,8 @@ exports[`Button renders Chinese characters correctly 5`] = `<button type="button
 
 exports[`Button renders correctly 1`] = `<button type="button" class="nebula-btn"><span>Follow</span></button>`;
 
+exports[`Button should has click wave effect 1`] = `<button type="button" class="nebula-btn nebula-btn-primary" ant-click-animating-without-extra-node="true"><span>button</span></button>`;
+
+exports[`Button should not render as link button when href is undefined 1`] = `<a type="button" class="nebula-btn nebula-btn-primary"><span>button</span></a>`;
+
 exports[`Button should support link button 1`] = `<a href="http://nebula.em2046.com/" target="_blank" type="button" class="nebula-btn"><span>Link button</span></a>`;
