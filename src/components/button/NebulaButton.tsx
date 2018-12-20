@@ -62,6 +62,8 @@ export default class NebulaButton extends mixins(BaseButtonProps) {
     super(props);
   }
 
+  static __NEBULA_BUTTON: any = true;
+
   @Watch("loading")
   onLoadingChanged(val: loadingType) {
     clearTimeout(this.delayTimeout);

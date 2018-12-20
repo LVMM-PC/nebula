@@ -1,6 +1,6 @@
 import { mount } from "@vue/test-utils";
 import { render } from "@vue/server-test-utils";
-import NebulaButton from "../NebulaButton";
+import { NebulaButton } from "@/../";
 import flushPromises from "flush-promises";
 
 describe("Button", () => {
