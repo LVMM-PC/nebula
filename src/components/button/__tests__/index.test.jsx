@@ -224,6 +224,7 @@ describe("Button", () => {
     });
     await flushPromises();
     wrapper.trigger("click");
+    await new Promise(resolve => setTimeout(resolve, 0));
     await flushPromises();
     expect(wrapper.html()).toMatchSnapshot();
   });
