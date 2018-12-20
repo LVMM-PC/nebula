@@ -1,13 +1,13 @@
 <template>
   <section>
-    <NebulaCheckbox @click="handleClick">Checkbox</NebulaCheckbox>
+    <NebulaCheckbox @change="onChange">Checkbox</NebulaCheckbox>
   </section>
 </template>
 
 <script>
 export default {
   methods: {
-    handleClick(e) {
+    onChange(e) {
       console.log(`checked = ${e.target.checked}`);
     }
   }

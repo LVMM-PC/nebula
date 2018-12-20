@@ -7,13 +7,17 @@
 - 在一组可选项中进行多项选择时；
 - 单独使用可以表示两种状态之间的切换，和 `switch` 类似。区别在于切换 `switch` 会直接触发状态改变，而 `checkbox` 一般用于状态标记，需要和提交操作配合。
 
+## 代码演示
+
 ### 基本用法
 
 简单的 checkbox。
 
 <demo-checkbox-basic/>
 
+<demo-code-box>
 ^^^ @/docs/.vuepress/components/demo/checkbox/basic.vue
+</demo-code-box>
 
 ### 不可用
 
@@ -21,7 +25,9 @@ checkbox 不可用。
 
 <demo-checkbox-disabled/>
 
+<demo-code-box>
 ^^^ @/docs/.vuepress/components/demo/checkbox/disabled.vue
+</demo-code-box>
 
 ### 受控的 Checkbox
 
@@ -29,7 +35,9 @@ checkbox 不可用。
 
 <demo-checkbox-controller/>
 
+<demo-code-box>
 ^^^ @/docs/.vuepress/components/demo/checkbox/controller.vue
+</demo-code-box>
 
 ### Checkbox 组
 
@@ -37,7 +45,9 @@ checkbox 不可用。
 
 <demo-checkbox-group/>
 
+<demo-code-box>
 ^^^ @/docs/.vuepress/components/demo/checkbox/group.vue
+</demo-code-box>
 
 ### 全选
 
@@ -45,7 +55,9 @@ checkbox 不可用。
 
 <demo-checkbox-check-all/>
 
+<demo-code-box>
 ^^^ @/docs/.vuepress/components/demo/checkbox/check-all.vue
+</demo-code-box>
 
 ## API
 
@@ -53,24 +65,24 @@ checkbox 不可用。
 
 #### Checkbox
 
-| 参数           | 说明                                    | 类型                   | 默认值  |
-| -------------- | --------------------------------------- | ---------------------- | ------- |
-| autofocus      | 自动获取焦点                            | boolean                | `false` |
-| checked        | 指定当前是否选中                        | boolean                | `false` |
-| defaultChecked | 初始是否选中                            | boolean                | `false` |
-| disabled       | 失效状态                                | boolean                | `false` |
-| indeterminate  | 设置 indeterminate 状态，只负责样式控制 | boolean                | `false` |
-| onChange       | 变化时回调函数                          | Function(checkedValue) | -       |
+| 参数           | 说明                                    | 类型              | 默认值 |
+| -------------- | --------------------------------------- | ----------------- | ------ |
+| autoFocus      | 自动获取焦点                            | boolean           | false  |
+| checked        | 指定当前是否选中                        | boolean           | false  |
+| defaultChecked | 初始是否选中                            | boolean           | false  |
+| disabled       | 失效状态                                | boolean           | false  |
+| indeterminate  | 设置 indeterminate 状态，只负责样式控制 | boolean           | false  |
+| onChange       | 变化时回调函数                          | Function(e:Event) | -      |
 
 #### Checkbox Group
 
-| 参数         | 说明           | 类型                   | 默认值  |
-| ------------ | -------------- | ---------------------- | ------- |
-| defaultValue | 默认选中的选项 | string\[]              | `[]`    |
-| disabled     | 整组失效       | boolean                | `false` |
-| options      | 指定可选项     | string\[]              | `[]`    |
-| value        | 指定选中的选项 | string\[]              | `[]`    |
-| onChange     | 变化时回调函数 | Function(checkedValue) | -       |
+| 参数         | 说明           | 类型                   | 默认值 |
+| ------------ | -------------- | ---------------------- | ------ |
+| defaultValue | 默认选中的选项 | string\[]              | \[]    |
+| disabled     | 整组失效       | boolean                | false  |
+| options      | 指定可选项     | string\[]              | \[]    |
+| value        | 指定选中的选项 | string\[]              | \[]    |
+| onChange     | 变化时回调函数 | Function(checkedValue) | -      |
 
 ### 方法
 

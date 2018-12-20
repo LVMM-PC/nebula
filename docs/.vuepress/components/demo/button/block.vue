@@ -1,17 +1,25 @@
 <template>
   <main>
-    <NebulaButton
-      block
-      type="primary">Primary
-    </NebulaButton>
-    <NebulaButton block>Default</NebulaButton>
-    <NebulaButton
-      block
-      type="dashed">Dashed
-    </NebulaButton>
-    <NebulaButton
-      block
-      type="danger">danger
-    </NebulaButton>
+    <section>
+      <NebulaButton
+        block
+        type="primary">Primary
+      </NebulaButton>
+    </section>
+    <section>
+      <NebulaButton block>Default</NebulaButton>
+    </section>
+    <section>
+      <NebulaButton
+        block
+        type="dashed">Dashed
+      </NebulaButton>
+    </section>
+    <section>
+      <NebulaButton
+        block
+        type="danger">danger
+      </NebulaButton>
+    </section>
   </main>
 </template>

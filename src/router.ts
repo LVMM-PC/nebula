@@ -30,6 +30,26 @@ export default new Router({
       path: "/checkbox",
       name: "checkbox",
       component: () => import("./views/Checkbox.vue")
+    },
+    {
+      path: "/radio",
+      name: "radio",
+      component: () => import("./views/Radio.vue")
+    },
+    {
+      path: "/select",
+      name: "select",
+      component: () => import("./views/Select.vue")
+    },
+    {
+      path: "/switch",
+      name: "switch",
+      component: () => import("./views/SwitchDemo.vue")
+    },
+    {
+      path: "/input",
+      name: "input",
+      component: () => import("./views/InputDemo.vue")
     }
   ]
 });

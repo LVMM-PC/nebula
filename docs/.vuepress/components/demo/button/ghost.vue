@@ -1,5 +1,5 @@
 <template>
-  <main :style="{ background: 'rgb(190, 200, 200)', padding: '26px 16px 16px' }">
+  <main :style="{ background: 'rgb(190, 200, 200)', padding: '20px' }">
     <NebulaButton
       ghost
       type="primary">Primary

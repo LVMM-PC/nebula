@@ -1,5 +1,5 @@
 import { mount } from "@vue/test-utils";
-import NebulaCheckbox from "../NebulaCheckbox.vue";
+import { NebulaCheckbox } from "@/../";
 import focusTest from "../../../../tests/shared/focus-test";
 
 describe("Checkbox", () => {

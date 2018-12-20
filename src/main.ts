@@ -6,8 +6,19 @@ import {
   NebulaButton,
   NebulaButtonGroup,
   NebulaCheckbox,
+  NebulaCheckboxGroup,
   NebulaIcon,
-  NebulaCheckboxGroup
+  NebulaRadio,
+  NebulaRadioButton,
+  NebulaRadioGroup,
+  NebulaSelect,
+  NebulaSelectOption,
+  NebulaSelectOptGroup,
+  NebulaSwitch,
+  NebulaInput,
+  NebulaInputSearch,
+  NebulaInputGroup,
+  NebulaTextarea
 } from "./index";
 
 import router from "./router";
@@ -17,6 +28,17 @@ Vue.component("NebulaIcon", NebulaIcon);
 Vue.component("NebulaButtonGroup", NebulaButtonGroup);
 Vue.component("NebulaCheckbox", NebulaCheckbox);
 Vue.component("NebulaCheckboxGroup", NebulaCheckboxGroup);
+Vue.component("NebulaRadio", NebulaRadio);
+Vue.component("NebulaRadioButton", NebulaRadioButton);
+Vue.component("NebulaRadioGroup", NebulaRadioGroup);
+Vue.component("NebulaSelect", NebulaSelect);
+Vue.component("NebulaSelectOption", NebulaSelectOption);
+Vue.component("NebulaSelectOptGroup", NebulaSelectOptGroup);
+Vue.component("NebulaSwitch", NebulaSwitch);
+Vue.component("NebulaInput", NebulaInput);
+Vue.component("NebulaInputSearch", NebulaInputSearch);
+Vue.component("NebulaInputGroup", NebulaInputGroup);
+Vue.component("NebulaTextarea", NebulaTextarea);
 Vue.config.productionTip = false;
 
 new Vue({

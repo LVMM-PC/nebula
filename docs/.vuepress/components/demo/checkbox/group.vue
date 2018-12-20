@@ -1,13 +1,13 @@
 <template>
   <main>
     <section>
-      <NebulaCheckboxGroup :options="plainOptions" :defaultValue="['Apple']" @change="handleChange"/>
+      <NebulaCheckboxGroup :options="plainOptions" :defaultValue="['Apple']" @change="onChange"/>
     </section>
     <section>
-      <NebulaCheckboxGroup :options="options" :defaultValue="['Pear']" @change="handleChange"/>
+      <NebulaCheckboxGroup :options="options" :defaultValue="['Pear']" @change="onChange"/>
     </section>
     <section>
-      <NebulaCheckboxGroup :options="optionsWithDisabled" disabled :defaultValue="['Apple']" @change="handleChange"/>
+      <NebulaCheckboxGroup :options="optionsWithDisabled" disabled :defaultValue="['Apple']" @change="onChange"/>
     </section>
   </main>
 </template>
@@ -34,7 +34,7 @@ export default {
     };
   },
   methods: {
-    handleChange(checkedValues) {
+    onChange(checkedValues) {
       console.log("checked = ", JSON.parse(JSON.stringify(checkedValues)));
     }
   }
