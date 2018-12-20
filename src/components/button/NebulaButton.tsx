@@ -25,7 +25,7 @@ export class BaseButtonProps extends Vue {
   @Prop({ default: "nebula-btn", type: String })
   prefixCls?: string;
 
-  @Prop({ default: "default", type: String })
+  @Prop({ type: String })
   type?: ButtonType;
 
   @Prop({ default: "button", type: String })
@@ -37,7 +37,7 @@ export class BaseButtonProps extends Vue {
   @Prop({ type: String })
   shape?: ButtonShape;
 
-  @Prop({ default: "default", type: String })
+  @Prop({ type: String })
   size?: ButtonSize;
 
   @Prop({ type: [Boolean, Object] })

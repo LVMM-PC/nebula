@@ -1,6 +1,5 @@
 import { mount } from "@vue/test-utils";
-import { render } from "@vue/server-test-utils";
-import { NebulaButton } from "@/../";
+import { NebulaButton, NebulaIcon } from "@/../";
 import flushPromises from "flush-promises";
 
 describe("Button", () => {
@@ -15,7 +14,7 @@ describe("Button", () => {
 
   it("mount correctly", () => {
     expect(() => {
-      render({
+      mount({
         render() {
           return <NebulaButton>Follow</NebulaButton>;
         }
@@ -24,28 +23,36 @@ describe("Button", () => {
   });
 
   it("renders Chinese characters correctly", () => {
-    const buttonWrapper1 = mount({
+    const wrapper = mount({
       render() {
         return <NebulaButton>按钮</NebulaButton>;
       }
     });
-    expect(buttonWrapper1.html()).toMatchSnapshot();
+    expect(wrapper.html()).toMatchSnapshot();
 
-    const buttonWrapper2 = mount({
-      render() {
-        return <NebulaButton icon={"search"}>按钮</NebulaButton>;
-      }
-    });
-    expect(buttonWrapper2.html()).toMatchSnapshot();
-
-    const buttonWrapper3 = mount({
+    // should not insert space when there is icon
+    const wrapper1 = mount({
       render() {
         return <NebulaButton icon="search">按钮</NebulaButton>;
       }
     });
-    expect(buttonWrapper3.html()).toMatchSnapshot();
+    expect(wrapper1.html()).toMatchSnapshot();
 
-    const buttonWrapper4 = mount({
+    // should not insert space when there is icon
+    const wrapper2 = mount({
+      render() {
+        return (
+          <NebulaButton>
+            <NebulaIcon type="search" />
+            按钮
+          </NebulaButton>
+        );
+      }
+    });
+    expect(wrapper2.html()).toMatchSnapshot();
+
+    // should not insert space when there is icon while loading
+    const wrapper4 = mount({
       render() {
         return (
           <NebulaButton icon="search" loading>
@@ -54,14 +61,15 @@ describe("Button", () => {
         );
       }
     });
-    expect(buttonWrapper4.html()).toMatchSnapshot();
+    expect(wrapper4.html()).toMatchSnapshot();
 
-    const buttonWrapper5 = mount({
+    // should insert space while loading
+    const wrapper5 = mount({
       render() {
         return <NebulaButton loading>按钮</NebulaButton>;
       }
     });
-    expect(buttonWrapper5.html()).toMatchSnapshot();
+    expect(wrapper5.html()).toMatchSnapshot();
   });
 
   it("renders Chinese characters correctly in HOC", async () => {
@@ -133,7 +141,9 @@ describe("Button", () => {
       },
       render() {
         return (
-          <NebulaButton loading={this.loading} onClick={this.enterLoading} />
+          <NebulaButton loading={this.loading} onClick={this.enterLoading}>
+            Button
+          </NebulaButton>
         );
       }
     };
@@ -205,4 +215,18 @@ describe("Button", () => {
     });
     expect(wrapper2.html()).toMatchSnapshot();
   });
+
+  it("should has click wave effect", async ()=>{
+    const wrapper = mount({
+      render(){
+        return (<NebulaButton type="primary">button</NebulaButton>)
+      }
+    })
+
+    wrapper.find("nebula-btn").trigger("click");
+    await new Promise(resolve => {
+
+    })
+
+  })
 });
