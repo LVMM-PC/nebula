@@ -1,17 +1,49 @@
-import {Component, Prop, Vue, Watch} from "vue-property-decorator";
+import { Component, Prop, Vue, Watch } from "vue-property-decorator";
 import Wave from "../_util/wave";
+import classNames from "classnames";
 import Icon from "../icon";
-import {mixins} from "vue-class-component";
 
 const rxTwoCNChar = /^[\u4e00-\u9fa5]{2}$/;
 const isTwoCNChar = rxTwoCNChar.test.bind(rxTwoCNChar);
+
+function isString(str: any) {
+  return typeof str === "string";
+}
 
 export type ButtonType = "default" | "primary" | "ghost" | "dashed" | "danger";
 export type ButtonShape = "circle" | "circle-outline";
 export type ButtonSize = "small" | "default" | "large";
 export type ButtonHTMLType = "submit" | "button" | "reset";
 
-type loadingType = boolean | { delay?: number };
+type ButtonLoading = boolean | { delay?: number };
+
+export interface BaseButtonProps {
+  type?: ButtonType;
+  icon?: string;
+  shape?: ButtonShape;
+  size?: ButtonSize;
+  loading?: ButtonLoading;
+  prefixCls?: string;
+  className?: string;
+  ghost?: boolean;
+  block?: boolean;
+  children?: any;
+}
+
+export type AnchorButtonProps = {
+  href: string;
+  target?: string;
+  onClick?: any;
+} & BaseButtonProps &
+  HTMLAnchorElement;
+
+export type NativeButtonProps = {
+  htmlType?: ButtonHTMLType;
+  onClick?: any;
+} & BaseButtonProps &
+  HTMLButtonElement;
+
+export type ButtonProps = AnchorButtonProps | NativeButtonProps;
 
 @Component({})
 export class BaseButtonProps extends Vue {
@@ -28,7 +60,7 @@ export class BaseButtonProps extends Vue {
   @Prop({ type: String })
   size?: ButtonSize;
   @Prop({ type: [Boolean, Object] })
-  loading?: loadingType;
+  loading?: ButtonLoading;
   @Prop({ type: Boolean })
   disabled?: boolean;
   @Prop({ type: Boolean })
@@ -45,58 +77,64 @@ export class BaseButtonProps extends Vue {
   // @ts-ignore
   __NEBULA_BUTTON: true
 })
-export default class NebulaButton extends mixins(BaseButtonProps) {
+export default class NebulaButton extends Vue {
   static __NEBULA_BUTTON: any = true;
-  public delayTimeout?: any;
+  private delayTimeout?: number;
   public sizeMap?: any = {
     large: "lg",
     small: "sm"
   };
-  public sLoading?: any = !!this.loading;
-  public hasTwoCNChar?: any = false;
 
-  constructor(props) {
+  public state = {
+    loading: undefined,
+    hasTwoCNChar: undefined
+  };
+
+  @Prop({ default: "nebula-btn", type: String })
+  prefixCls?: string;
+  @Prop({ default: false, type: Boolean })
+  ghost?: boolean;
+  @Prop({ default: undefined, type: String })
+  type?: ButtonType;
+  @Prop({ default: undefined, type: String })
+  shape?: ButtonShape;
+  @Prop({ default: undefined, type: String })
+  size?: ButtonSize;
+  @Prop({ default: undefined, type: String })
+  htmlType?: ButtonHTMLType;
+  @Prop({ default: undefined, type: Function })
+  onClick?: any;
+  @Prop({ default: false, type: [Boolean, Object] })
+  loading?: ButtonLoading;
+  @Prop({ default: undefined, type: String })
+  className?: string;
+  @Prop({ default: undefined, type: String })
+  icon?: string;
+  @Prop({ default: false, type: Boolean })
+  block?: boolean;
+
+  constructor(props: ButtonProps) {
     super(props);
-    Object.assign(this, {
-      loading: props.loading,
+    Object.assign(this.state, {
+      loading: this.loading,
       hasTwoCNChar: false
     });
   }
 
-  get classes() {
-    const {
-      prefixCls,
-      type,
-      shape,
-      size,
-      hasTwoCNChar,
-      sLoading,
-      ghost,
-      block,
-      sizeMap
-    } = this;
-    const sizeCls = sizeMap[size] || "";
-    return {
-      [`${prefixCls}`]: true,
-      [`${prefixCls}-${type}`]: type,
-      [`${prefixCls}-${shape}`]: shape,
-      [`${prefixCls}-${sizeCls}`]: sizeCls,
-      [`${prefixCls}-loading`]: sLoading,
-      [`${prefixCls}-background-ghost`]: ghost || type === "ghost",
-      [`${prefixCls}-two-chinese-chars`]: hasTwoCNChar,
-      [`${prefixCls}-block`]: block
-    };
-  }
-
   @Watch("loading")
-  onLoadingChanged(val: loadingType) {
-    clearTimeout(this.delayTimeout);
-    if (typeof val !== "boolean" && val && val.delay) {
-      this.delayTimeout = setTimeout(() => {
-        this.sLoading = !!val;
-      }, val.delay);
+  onLoadingChanged(loading: ButtonLoading) {
+    const currentLoading = this.loading;
+
+    if (currentLoading) {
+      clearTimeout(this.delayTimeout);
+    }
+
+    if (typeof loading !== "boolean" && loading && loading.delay) {
+      this.delayTimeout = window.setTimeout(() => {
+        Object.assign(this.state, { loading });
+      }, loading.delay);
     } else {
-      this.sLoading = !!val;
+      Object.assign(this.state, { loading });
     }
   }
 
@@ -117,28 +155,23 @@ export default class NebulaButton extends mixins(BaseButtonProps) {
     }
   }
 
-  fixTwoCNChar() {
-    // Fix for HOC usage like <FormatMessage />
-    const node = this.$el;
-    const buttonText = node.textContent || node.innerText;
-    if (this.isNeedInserted() && isTwoCNChar(buttonText)) {
-      if (!this.hasTwoCNChar) {
-        this.hasTwoCNChar = true;
-      }
-    } else if (this.hasTwoCNChar) {
-      this.hasTwoCNChar = false;
+  // Insert one space between two chinese characters automatically.
+  insertSpace(child: any, needInserted: boolean) {
+    // Check the child if is undefined or null.
+    if (child == null) {
+      return;
     }
-  }
-
-  handleClick(event) {
-    // this.clicked = true
-    // clearTimeout(this.timeout)
-    // this.timeout = setTimeout(() => (this.clicked = false), 500)
-    this.$emit("click", event);
-  }
-
-  insertSpace(child, needInserted) {
     const SPACE = needInserted ? " " : "";
+    // strictNullChecks oops.
+    /*if (
+      typeof child !== 'string' &&
+      typeof child !== 'number' &&
+      isString(child.type) &&
+      isTwoCNChar(child.props.children)
+    ) {
+      return React.cloneElement(child, {}, child.props.children.split('').join(SPACE));
+    }*/
+
     if (typeof child.text === "string") {
       let text = child.text.trim();
       if (isTwoCNChar(text)) {
@@ -149,6 +182,35 @@ export default class NebulaButton extends mixins(BaseButtonProps) {
     return child;
   }
 
+  saveButtonRef = (node: HTMLElement | null) => {
+    // @ts-ignore
+    this.buttonNode = node;
+  };
+
+  fixTwoCNChar() {
+    // Fix for HOC usage like <FormatMessage />
+    const node = this.$el;
+    const buttonText = node.textContent || node.innerText;
+    if (this.isNeedInserted() && isTwoCNChar(buttonText)) {
+      if (!this.state.hasTwoCNChar) {
+        Object.assign(this.state, {
+          hasTwoCNChar: true
+        });
+      }
+    } else if (this.state.hasTwoCNChar) {
+      Object.assign(this.state, {
+        hasTwoCNChar: false
+      });
+    }
+  }
+
+  handleClick(event) {
+    // this.clicked = true
+    // clearTimeout(this.timeout)
+    // this.timeout = setTimeout(() => (this.clicked = false), 500)
+    this.$emit("click", event);
+  }
+
   isNeedInserted() {
     const { icon, $slots } = this;
     return $slots.default && $slots.default.length === 1 && !icon;
@@ -156,51 +218,87 @@ export default class NebulaButton extends mixins(BaseButtonProps) {
 
   render() {
     const {
-      htmlType,
-      classes,
-      icon,
-      disabled,
-      handleClick,
-      sLoading,
+      type,
+      shape,
+      size,
+      className,
       $slots,
-      $attrs,
-      $listeners
+      icon,
+      prefixCls,
+      ghost,
+      block,
+      // @ts-ignore
+      ...rest
     } = this;
-    const buttonProps = {
-      props: {},
-      attrs: {
-        ...$attrs,
-        type: htmlType,
-        disabled
-      },
-      class: classes,
-      on: {
-        ...$listeners,
-        click: handleClick
-      }
-    };
-    const iconType = sLoading ? "loading" : icon;
+
+    const { loading, hasTwoCNChar } = this.state;
+
+    // large => lg
+    // small => sm
+    let sizeCls = "";
+    switch (size) {
+      case "large":
+        sizeCls = "lg";
+        break;
+      case "small":
+        sizeCls = "sm";
+        break;
+      default:
+        break;
+    }
+
+    const classes = classNames(prefixCls, className, {
+      [`${prefixCls}-${type}`]: type,
+      [`${prefixCls}-${shape}`]: shape,
+      [`${prefixCls}-${sizeCls}`]: sizeCls,
+      [`${prefixCls}-icon-only`]: !$slots.default && icon,
+      [`${prefixCls}-loading`]: loading,
+      [`${prefixCls}-background-ghost`]: ghost,
+      [`${prefixCls}-two-chinese-chars`]: hasTwoCNChar,
+      [`${prefixCls}-block`]: block
+    });
+
+    const iconType = loading ? "loading" : icon;
     const iconNode = iconType ? <Icon type={iconType} /> : null;
     const kids =
       $slots.default && $slots.default.length === 1
         ? this.insertSpace($slots.default[0], this.isNeedInserted())
         : $slots.default;
-    if ("href" in $attrs) {
+
+    const title = rest.title;
+
+    const linkButtonRestProps = rest as AnchorButtonProps;
+    if (linkButtonRestProps.href !== undefined) {
       return (
-        <a {...buttonProps}>
+        <a
+          {...linkButtonRestProps}
+          class={classes}
+          onClick={this.handleClick}
+          title={title}
+          ref={this.saveButtonRef}
+        >
           {iconNode}
           {kids}
         </a>
       );
-    } else {
-      return (
-        <Wave>
-          <button {...buttonProps}>
-            {iconNode}
-            {kids}
-          </button>
-        </Wave>
-      );
     }
+
+    const { htmlType, ...otherProps } = rest as NativeButtonProps;
+
+    return (
+      <Wave>
+        <button
+          {...otherProps as NativeButtonProps}
+          type={htmlType || "button"}
+          class={classes}
+          onClick={this.handleClick}
+          title={title}
+          ref={this.saveButtonRef}
+        >
+          {iconNode}
+          {kids}
+        </button>
+      </Wave>
+    );
   }
 }
