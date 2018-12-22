@@ -23,6 +23,12 @@
         icon="search"/>
     </section>
     <section>
+      <NebulaButton
+        href="https://nebula.em2046.com/"
+        @mouseenter="handleMouseenter"
+      />
+    </section>
+    <section>
       <DefaultButton/>
     </section>
   </div>
@@ -81,6 +87,9 @@ export default {
       } else {
         this.label = "按钮";
       }
+    },
+    handleMouseenter() {
+      console.log("Mouseenter");
     }
   }
 };
