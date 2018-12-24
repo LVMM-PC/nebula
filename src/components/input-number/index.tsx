@@ -1,5 +1,5 @@
 import PropTypes from "../_util/vue-types";
-import { initDefaultProps, getOptionProps } from "../_util/props-util";
+import {getOptionProps, initDefaultProps} from "../_util/props-util";
 import classNames from "classnames";
 import Icon from "../icon";
 import VcInputNumber from "../vc-input-number/src";
@@ -44,16 +44,16 @@ const InputNumber = {
   },
 
   render() {
-    const { size, ...others } = getOptionProps(this);
+    const {size, ...others} = getOptionProps(this);
     const inputNumberClass = classNames({
       [`${this.prefixCls}-lg`]: size === "large",
       [`${this.prefixCls}-sm`]: size === "small"
     });
     const upIcon = (
-      <Icon type="up" class={`${this.prefixCls}-handler-up-inner`} />
+      <Icon type="up" class={`${this.prefixCls}-handler-up-inner`}/>
     );
     const downIcon = (
-      <Icon type="down" class={`${this.prefixCls}-handler-down-inner`} />
+      <Icon type="down" class={`${this.prefixCls}-handler-down-inner`}/>
     );
 
     const vcInputNumberprops = {
@@ -71,7 +71,7 @@ const InputNumber = {
 };
 
 /* istanbul ignore next */
-InputNumber.install = function(Vue) {
+InputNumber.install = function (Vue) {
   Vue.component(InputNumber.name, InputNumber);
 };
 
