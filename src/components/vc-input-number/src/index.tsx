@@ -1,15 +1,18 @@
 // based on rc-input-number 4.3.1
 import BaseMixin from "../../_util/BaseMixin";
-import {getOptionProps, hasProp, initDefaultProps} from "../../_util/props-util";
+import {
+  getOptionProps,
+  hasProp,
+  initDefaultProps
+} from "../../_util/props-util";
 import classNames from "classnames";
 import isNegativeZero from "is-negative-zero";
 import KeyCode from "../../_util/KeyCode";
 import InputHandler from "./InputHandler";
-import {Component, Prop, Vue} from "vue-property-decorator";
-import {mixins} from "vue-class-component";
+import { Component, Model, Prop, Vue, Watch } from "vue-property-decorator";
+import { mixins } from "vue-class-component";
 
-function noop() {
-}
+function noop() {}
 
 function preventDefault(e) {
   e.preventDefault();
@@ -37,47 +40,47 @@ const MAX_SAFE_INTEGER = Number.MAX_SAFE_INTEGER || Math.pow(2, 53) - 1;
 
 @Component({})
 class InputNumberProps extends Vue {
-  @Prop({type: [Number, String]})
+  @Prop({ type: [Number, String] })
   value?: number | string;
-  @Prop({type: [Number, String]})
+  @Prop({ type: [Number, String] })
   defaultValue?: number | string;
-  @Prop({type: Boolean})
+  @Prop({ type: Boolean })
   focusOnUpDown?: boolean;
-  @Prop({type: Boolean})
+  @Prop({ type: Boolean })
   autoFocus?: boolean;
-  @Prop({type: String})
+  @Prop({ type: String })
   prefixCls?: string;
-  @Prop({type: [Number, String]})
+  @Prop({ type: [Number, String] })
   tabIndex?: number | string;
-  @Prop({type: String})
+  @Prop({ type: String })
   placeholder?: string;
-  @Prop({type: Boolean})
+  @Prop({ type: Boolean })
   disabled?: boolean;
-  @Prop({type: Boolean})
+  @Prop({ type: Boolean })
   readOnly?: boolean;
-  @Prop({type: Number})
+  @Prop({ type: Number })
   max?: number;
-  @Prop({type: Number})
+  @Prop({ type: Number })
   min?: number;
-  @Prop({type: [Number, String]})
+  @Prop({ type: [Number, String] })
   step?: number | string;
   @Prop({})
   upHandler?: any;
   @Prop({})
   downHandler?: any;
-  @Prop({type: Boolean})
+  @Prop({ type: Boolean })
   useTouch?: boolean;
-  @Prop({type: Function})
+  @Prop({ type: Function })
   formatter?: any;
-  @Prop({type: Function})
+  @Prop({ type: Function })
   parser?: any;
-  @Prop({type: Number})
+  @Prop({ type: Number })
   precision?: number;
-  @Prop({type: Boolean})
+  @Prop({ type: Boolean })
   required?: boolean;
-  @Prop({type: String})
+  @Prop({ type: String })
   pattern?: string;
-  @Prop({type: String})
+  @Prop({ type: String })
   decimalSeparator?: string;
 
   constructor(props) {
@@ -88,74 +91,104 @@ class InputNumberProps extends Vue {
 @Component({
   name: "InputNumber",
   mixins: [BaseMixin],
-  model: {
-    prop: "value",
-    event: "change"
-  },
 
   data() {
     let value;
     if (hasProp(this, "value")) {
+      // @ts-ignore
       value = this.value;
     } else {
+      // @ts-ignore
       value = this.defaultValue;
     }
+    // @ts-ignore
     value = this.toNumber(value);
 
     return {
+      // @ts-ignore
       inputValue: this.toPrecisionAsStep(value),
       sValue: value,
+      // @ts-ignore
       focused: this.autoFocus
     };
-  },
-
-  watch: {
-    value(val) {
-      const value = this.focused
-        ? val
-        : this.getValidValue(val, this.min, this.max);
-      this.setState({
-        sValue: val,
-        inputValue: this.inputting ? value : this.toPrecisionAsStep(value)
-      });
-    },
-    max(val) {
-      const props = getOptionProps(this);
-      // Trigger onChange when max or min change
-      // https://github.com/ant-design/ant-design/issues/11574
-      const nextValue = "value" in props ? props.value : this.sValue;
-      if (nextValue > val) {
-        this.__emit("change", val);
-      }
-    },
-    min(val) {
-      const props = getOptionProps(this);
-      const nextValue = "value" in props ? props.value : this.sValue;
-      if (nextValue < val) {
-        this.__emit("change", val);
-      }
-    }
   }
 })
 export default class InputNumber extends mixins(InputNumberProps) {
-  @Prop({default: true, type: Boolean})
-  focusOnUpDown?: boolean;
-  @Prop({default: false, type: Boolean})
-  useTouch?: boolean;
-  @Prop({default: "rc-input-number", type: String})
-  prefixCls?: string;
-  @Prop({default: -MAX_SAFE_INTEGER, type: Number})
-  min?: number;
-  @Prop({default: 1, type: [Number, String]})
-  step?: number | string;
-  @Prop({default: defaultParser, type: Function})
-  parser?: any;
-  @Prop({default: false, type: Boolean})
-  required?: boolean;
+  public inputValue?: any;
+  public sValue?: any;
+  public cursorStart?: any;
+  public focused?: any;
+  public cursorAfter?: any;
+  public lastKeyCode?: any;
+  public currentValue?: any;
+  public pressingUpOrDown?: any;
+  public start?: any;
+  public end?: any;
+  public inputting?: any;
+  public cursorEnd?: any;
+  public cursorBefore?: any;
+  public input?: any;
+  public autoStepTimer?: any;
 
   constructor(props) {
     super(props);
   }
+
+  @Model("change")
+  value?: any;
+
+  @Watch("value")
+  handleValueChanged(val: any) {
+    // @ts-ignore
+    const value = this.focused
+      ? val
+      : this.getValidValue(val, this.min, this.max);
+    // @ts-ignore
+    this.setState({
+      sValue: val,
+      // @ts-ignore
+      inputValue: this.inputting ? value : this.toPrecisionAsStep(value)
+    });
+  }
+
+  @Watch("max")
+  handleMaxChanged(val: any) {
+    const props = getOptionProps(this);
+    // Trigger onChange when max or min change
+    // https://github.com/ant-design/ant-design/issues/11574
+    // @ts-ignore
+    const nextValue = "value" in props ? props.value : this.sValue;
+    if (nextValue > val) {
+      // @ts-ignore
+      this.__emit("change", val);
+    }
+  }
+
+  @Watch("min")
+  handleMinChanged(val: any) {
+    const props = getOptionProps(this);
+    // @ts-ignore
+    const nextValue = "value" in props ? props.value : this.sValue;
+    if (nextValue < val) {
+      // @ts-ignore
+      this.__emit("change", val);
+    }
+  }
+
+  @Prop({ default: true, type: Boolean })
+  focusOnUpDown?: boolean;
+  @Prop({ default: false, type: Boolean })
+  useTouch?: boolean;
+  @Prop({ default: "rc-input-number", type: String })
+  prefixCls?: string;
+  @Prop({ default: -MAX_SAFE_INTEGER, type: Number })
+  min?: number;
+  @Prop({ default: 1, type: [Number, String] })
+  step?: any;
+  @Prop({ default: defaultParser, type: Function })
+  parser?: any;
+  @Prop({ default: false, type: Boolean })
+  required?: boolean;
 
   mounted() {
     this.$nextTick(() => {
@@ -169,8 +202,9 @@ export default class InputNumber extends mixins(InputNumberProps) {
   beforeUpdate() {
     this.$nextTick(() => {
       try {
-        this.start = this.$refs.inputRef.selectionStart;
-        this.end = this.$refs.inputRef.selectionEnd;
+        let inputRef = this.$refs.inputRef as HTMLInputElement;
+        this.start = inputRef.selectionStart;
+        this.end = inputRef.selectionEnd;
       } catch (e) {
         // Fix error in Chrome:
         // Failed to read the 'selectionStart' property from 'HTMLInputElement'
@@ -190,7 +224,7 @@ export default class InputNumber extends mixins(InputNumberProps) {
   }
 
   updatedFunc() {
-    const inputElem = this.$refs.inputRef;
+    const inputElem = this.$refs.inputRef as HTMLInputElement;
     // Restore cursor
     try {
       // Firefox set the input cursor after it get focused.
@@ -281,11 +315,13 @@ export default class InputNumber extends mixins(InputNumberProps) {
       this.inputting = true;
     }
     const input = this.parser(this.getValueFromEvent(e));
-    this.setState({inputValue: input});
+    // @ts-ignore
+    this.setState({ inputValue: input });
     this.$emit("change", this.toNumberWhenUserInput(input)); // valid number or invalid string
   }
 
   onFocus(...args) {
+    // @ts-ignore
     this.setState({
       focused: true
     });
@@ -294,6 +330,7 @@ export default class InputNumber extends mixins(InputNumberProps) {
 
   onBlur(e, ...args) {
     this.inputting = false;
+    // @ts-ignore
     this.setState({
       focused: false
     });
@@ -340,7 +377,7 @@ export default class InputNumber extends mixins(InputNumberProps) {
   }
 
   getValidValue(value, min = this.min, max = this.max) {
-    let val = parseFloat(value, 10);
+    let val = parseFloat(value);
     // https://github.com/ant-design/ant-design/issues/7358
     if (isNaN(val)) {
       return value;
@@ -354,14 +391,15 @@ export default class InputNumber extends mixins(InputNumberProps) {
     return val;
   }
 
-  setValue(v, callback) {
+  setValue(v, callback = null) {
     // trigger onChange
-    const newValue = this.isNotCompleteNumber(parseFloat(v, 10))
+    const newValue = this.isNotCompleteNumber(parseFloat(v))
       ? undefined
-      : parseFloat(v, 10);
+      : parseFloat(v);
     const changed =
       newValue !== this.sValue || `${newValue}` !== `${this.inputValue}`; // https://github.com/ant-design/ant-design/issues/7363
     if (!hasProp(this, "value")) {
+      // @ts-ignore
       this.setState(
         {
           sValue: newValue,
@@ -371,6 +409,7 @@ export default class InputNumber extends mixins(InputNumberProps) {
       );
     } else {
       // always set input value same as value
+      // @ts-ignore
       this.setState(
         {
           inputValue: this.toPrecisionAsStep(this.sValue)
@@ -407,7 +446,7 @@ export default class InputNumber extends mixins(InputNumberProps) {
     if (hasProp(this, "precision")) {
       return this.precision;
     }
-    const {step} = this;
+    const { step } = this;
     const ratioPrecision = this.getPrecision(ratio);
     const stepPrecision = this.getPrecision(step);
     const currentValuePrecision = this.getPrecision(currentValue);
@@ -423,7 +462,7 @@ export default class InputNumber extends mixins(InputNumberProps) {
   }
 
   getInputDisplayValue() {
-    const {focused, inputValue, sValue} = this;
+    const { focused, inputValue, sValue } = this;
     let inputDisplayValue;
     if (focused) {
       inputDisplayValue = inputValue;
@@ -441,7 +480,7 @@ export default class InputNumber extends mixins(InputNumberProps) {
   recordCursorPosition() {
     // Record position
     try {
-      const inputElem = this.$refs.inputRef;
+      const inputElem = this.$refs.inputRef as HTMLInputElement;
       this.cursorStart = inputElem.selectionStart;
       this.cursorEnd = inputElem.selectionEnd;
       this.currentValue = inputElem.value;
@@ -465,7 +504,7 @@ export default class InputNumber extends mixins(InputNumberProps) {
     }
 
     try {
-      const inputElem = this.$refs.inputRef;
+      const inputElem = this.$refs.inputRef as HTMLInputElement;
       const currentStart = inputElem.selectionStart;
       const currentEnd = inputElem.selectionEnd;
 
@@ -482,7 +521,8 @@ export default class InputNumber extends mixins(InputNumberProps) {
   restoreByAfter(str) {
     if (str === undefined) return false;
 
-    const fullStr = this.$refs.inputRef.value;
+    let inputRef = this.$refs.inputRef as HTMLInputElement;
+    const fullStr = inputRef.value;
     const index = fullStr.lastIndexOf(str);
 
     if (index === -1) return false;
@@ -510,12 +550,14 @@ export default class InputNumber extends mixins(InputNumberProps) {
   }
 
   focus() {
-    this.$refs.inputRef.focus();
+    let inputRef = this.$refs.inputRef as HTMLInputElement;
+    inputRef.focus();
     this.recordCursorPosition();
   }
 
   blur() {
-    this.$refs.inputRef.blur();
+    let inputRef = this.$refs.inputRef as HTMLInputElement;
+    inputRef.blur();
   }
 
   formatWrapper(num) {
@@ -574,7 +616,7 @@ export default class InputNumber extends mixins(InputNumberProps) {
   }
 
   upStep(val, rat) {
-    const {step, min} = this;
+    const { step, min } = this;
     const precisionFactor = this.getPrecisionFactor(val, rat);
     const precision = Math.abs(this.getMaxPrecision(val, rat));
     let result;
@@ -590,7 +632,7 @@ export default class InputNumber extends mixins(InputNumberProps) {
   }
 
   downStep(val, rat) {
-    const {step, min} = this;
+    const { step, min } = this;
     const precisionFactor = this.getPrecisionFactor(val, rat);
     const precision = Math.abs(this.getMaxPrecision(val, rat));
     let result;
@@ -614,7 +656,7 @@ export default class InputNumber extends mixins(InputNumberProps) {
     if (this.disabled) {
       return;
     }
-    const {max, min} = this;
+    const { max, min } = this;
     const value = this.getCurrentValidValue(this.inputValue) || 0;
     if (this.isNotCompleteNumber(value)) {
       return;
@@ -627,6 +669,7 @@ export default class InputNumber extends mixins(InputNumberProps) {
       val = min;
     }
     this.setValue(val);
+    // @ts-ignore
     this.setState({
       focused: true
     });
@@ -644,12 +687,12 @@ export default class InputNumber extends mixins(InputNumberProps) {
     }
   }
 
-  down(e, ratio, recursive) {
+  down(e, ratio, recursive = null) {
     this.pressingUpOrDown = true;
     this.stepFn("down", e, ratio, recursive);
   }
 
-  up(e, ratio, recursive) {
+  up(e, ratio, recursive = null) {
     this.pressingUpOrDown = true;
     this.stepFn("up", e, ratio, recursive);
   }
@@ -659,7 +702,7 @@ export default class InputNumber extends mixins(InputNumberProps) {
   }
 
   render() {
-    const {prefixCls, disabled, readOnly, useTouch} = this.$props;
+    const { prefixCls, disabled, readOnly, useTouch } = this.$props;
     const classes = classNames({
       [prefixCls]: true,
       [`${prefixCls}-disabled`]: disabled,
@@ -667,7 +710,7 @@ export default class InputNumber extends mixins(InputNumberProps) {
     });
     let upDisabledClass = "";
     let downDisabledClass = "";
-    const {sValue} = this;
+    const { sValue } = this;
     if (sValue || sValue === 0) {
       if (!isNaN(sValue)) {
         const val = Number(sValue);
@@ -736,7 +779,7 @@ export default class InputNumber extends mixins(InputNumberProps) {
       mouseout = noop
     } = this.$listeners;
     const contentProps = {
-      on: {mouseenter, mouseleave, mouseover, mouseout},
+      on: { mouseenter, mouseleave, mouseover, mouseout },
       class: classes
     };
     const upHandlerProps = {
@@ -801,6 +844,7 @@ export default class InputNumber extends mixins(InputNumberProps) {
         >
           <input
             required={this.required}
+            //@ts-ignore
             type={this.type}
             placeholder={this.placeholder}
             onClick={this.handleInputClick}
@@ -811,13 +855,16 @@ export default class InputNumber extends mixins(InputNumberProps) {
             onBlur={this.onBlur}
             onKeydown={editable ? this.onKeyDown : noop}
             onKeyup={editable ? this.onKeyUp : noop}
+            //@ts-ignore
             maxLength={this.maxLength}
             readOnly={this.readOnly}
             disabled={this.disabled}
             max={this.max}
             min={this.min}
             step={this.step}
+            //@ts-ignore
             name={this.name}
+            //@ts-ignore
             id={this.id}
             onInput={this.onChange}
             ref="inputRef"

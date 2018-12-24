@@ -1,50 +1,52 @@
 <template>
   <div>
     <div>
-      <nebula-input-number 
-        :min="1" 
-        :max="10" 
-        v-model="value" 
-        @change="onChange" />
+      <nebula-input-number
+        :min="1"
+        :max="10"
+        v-model="value"
+        auto-focus
+        @change="onChange"/>
       当前值：{{ value }}
     </div>
     <div>
-      <nebula-input-number 
-        :min="1" 
-        :max="100000" 
-        :default-value="3" 
-        size="large" 
-        @change="onChange" />
-      <nebula-input-number 
-        :min="1" 
-        :max="100000" 
-        :default-value="3" 
-        @change="onChange" />
-      <nebula-input-number 
-        :min="1" 
-        :max="100000" 
-        :default-value="3" 
-        size="small" 
-        @change="onChange" />
+      <nebula-input-number
+        :min="1"
+        :max="100000"
+        :default-value="3"
+        size="large"
+        @change="onChange"/>
+      <nebula-input-number
+        :min="1"
+        :max="100000"
+        :default-value="3"
+        @change="onChange"/>
+      <nebula-input-number
+        :min="1"
+        :max="100000"
+        :default-value="3"
+        size="small"
+        @change="onChange"/>
     </div>
     <div>
-      <nebula-input-number 
-        :min="1" 
-        :max="10" 
-        :disabled="disabled" 
-        :default-value="3" />
+      <nebula-input-number
+        :min="1"
+        :max="10"
+        :disabled="disabled"
+        :default-value="3"/>
       <div style="marginTop:20px">
-        <nebula-button 
-          type="primary" 
-          @click="toggle">Toggle disabled</nebula-button>
+        <nebula-button
+          type="primary"
+          @click="toggle">Toggle disabled
+        </nebula-button>
       </div>
     </div>
     <div>
-      <nebula-input-number 
-        :min="0" 
-        :max="10" 
-        :step="0.01" 
-        @change="onChange" />
+      <nebula-input-number
+        :min="0"
+        :max="10"
+        :step="0.01"
+        @change="onChange"/>
     </div>
     <div>
       <nebula-input-number

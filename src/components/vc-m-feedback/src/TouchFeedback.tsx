@@ -1,16 +1,16 @@
-import {initDefaultProps} from "../../_util/props-util";
-import {cloneElement} from "../../_util/vnode";
+import { initDefaultProps } from "../../_util/props-util";
+import { cloneElement } from "../../_util/vnode";
 import warning from "../../_util/warning";
 import BaseMixin from "../../_util/BaseMixin";
-import {Component, Prop, Vue} from "vue-property-decorator";
-import {mixins} from "vue-class-component";
+import { Component, Prop, Vue } from "vue-property-decorator";
+import { mixins } from "vue-class-component";
 
 @Component({})
 class ITouchProps extends Vue {
-  @Prop({type: Boolean})
+  @Prop({ type: Boolean })
   disabled?: boolean;
 
-  @Prop({type: String})
+  @Prop({ type: String })
   activeClassName?: string;
 
   @Prop({})
@@ -26,7 +26,6 @@ export default class TouchFeedback extends mixins(ITouchProps) {
 
   constructor(props) {
     super(props);
-
   }
 
   mounted() {
@@ -81,7 +80,7 @@ export default class TouchFeedback extends mixins(ITouchProps) {
   }
 
   render() {
-    const {disabled, activeClassName = "", activeStyle = {}} = this.$props;
+    const { disabled, activeClassName = "", activeStyle = {} } = this.$props;
 
     const child = this.$slots.default;
     if (child.length !== 1) {
@@ -92,14 +91,14 @@ export default class TouchFeedback extends mixins(ITouchProps) {
       on: disabled
         ? {}
         : {
-          touchstart: this.onTouchStart,
-          touchmove: this.onTouchMove,
-          touchend: this.onTouchEnd,
-          touchcancel: this.onTouchCancel,
-          mousedown: this.onMouseDown,
-          mouseup: this.onMouseUp,
-          mouseleave: this.onMouseLeave
-        }
+            touchstart: this.onTouchStart,
+            touchmove: this.onTouchMove,
+            touchend: this.onTouchEnd,
+            touchcancel: this.onTouchCancel,
+            mousedown: this.onMouseDown,
+            mouseup: this.onMouseUp,
+            mouseleave: this.onMouseLeave
+          }
     };
 
     if (!disabled && this.active) {

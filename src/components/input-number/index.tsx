@@ -1,59 +1,96 @@
-import PropTypes from "../_util/vue-types";
-import {getOptionProps, initDefaultProps} from "../_util/props-util";
+import { getOptionProps, initDefaultProps } from "../_util/props-util";
 import classNames from "classnames";
 import Icon from "../icon";
 import VcInputNumber from "../vc-input-number/src";
+import { Component, Model, Prop, Vue } from "vue-property-decorator";
+import { mixins } from "vue-class-component";
 
-export const InputNumberProps = {
-  prefixCls: PropTypes.string,
-  min: PropTypes.number,
-  max: PropTypes.number,
-  value: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
-  step: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
-  defaultValue: PropTypes.number,
-  tabIndex: PropTypes.number,
-  disabled: PropTypes.bool,
-  size: PropTypes.oneOf(["large", "small", "default"]),
-  formatter: PropTypes.func,
-  parser: PropTypes.func,
-  decimalSeparator: PropTypes.string,
-  placeholder: PropTypes.string,
-  name: PropTypes.string,
-  id: PropTypes.string,
-  precision: PropTypes.number,
-  autoFocus: PropTypes.bool
-};
+@Component({})
+export class InputNumberProps extends Vue {
+  @Prop({ type: String })
+  prefixCls?: string;
 
-const InputNumber = {
-  name: "AInputNumber",
-  model: {
-    prop: "value",
-    event: "change"
-  },
-  props: initDefaultProps(InputNumberProps, {
-    prefixCls: "nebula-input-number",
-    step: 1
-  }),
-  methods: {
-    focus() {
-      this.$refs.inputNumberRef.focus();
-    },
-    blur() {
-      this.$refs.inputNumberRef.blur();
-    }
-  },
+  @Prop({ type: Number })
+  min?: number;
+
+  @Prop({ type: Number })
+  max?: number;
+
+  @Prop({ type: [Number, String] })
+  value?: number | string;
+
+  @Prop({ type: [Number, String] })
+  step?: number | string;
+
+  @Prop({ type: Number })
+  defaultValue?: number;
+
+  @Prop({ type: Number })
+  tabIndex?: number;
+
+  @Prop({ type: Boolean })
+  disabled?: boolean;
+
+  @Prop({ type: String })
+  size?: "large" | "small" | "default";
+
+  @Prop({ type: Function })
+  formatter?: any;
+
+  @Prop({ type: Function })
+  parser?: any;
+
+  @Prop({ type: String })
+  decimalSeparator?: string;
+
+  @Prop({ type: String })
+  placeholder?: string;
+
+  @Prop({ type: String })
+  name?: string;
+
+  @Prop({ type: String })
+  id?: string;
+
+  @Prop({ type: Number })
+  precision?: number;
+
+  @Prop({ type: Boolean })
+  autoFocus?: boolean;
+}
+
+@Component({})
+export default class InputNumber extends mixins(InputNumberProps) {
+  @Model("change")
+  value?: any;
+
+  @Prop({ default: "nebula-input-number", type: String })
+  prefixCls?: string;
+
+  @Prop({ default: 1, type: Number })
+  step?: number;
+
+  focus() {
+    let inputNumberRef = this.$refs.inputNumberRef as HTMLInputElement;
+    inputNumberRef.focus();
+  }
+
+  blur() {
+    let inputNumberRef = this.$refs.inputNumberRef as HTMLInputElement;
+    inputNumberRef.blur();
+  }
 
   render() {
-    const {size, ...others} = getOptionProps(this);
+    const { size, ...others } = getOptionProps(this);
     const inputNumberClass = classNames({
       [`${this.prefixCls}-lg`]: size === "large",
       [`${this.prefixCls}-sm`]: size === "small"
     });
     const upIcon = (
-      <Icon type="up" class={`${this.prefixCls}-handler-up-inner`}/>
+      <Icon type="up" class={`${this.prefixCls}-handler-up-inner`} />
     );
     const downIcon = (
-      <Icon type="down" class={`${this.prefixCls}-handler-down-inner`}/>
+      <Icon type="down" class={`${this.prefixCls}-handler-down-inner`} />
     );
 
     const vcInputNumberprops = {
@@ -68,11 +105,4 @@ const InputNumber = {
     };
     return <VcInputNumber {...vcInputNumberprops} />;
   }
-};
-
-/* istanbul ignore next */
-InputNumber.install = function (Vue) {
-  Vue.component(InputNumber.name, InputNumber);
-};
-
-export default InputNumber;
+}
