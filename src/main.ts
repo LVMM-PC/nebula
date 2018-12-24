@@ -18,7 +18,8 @@ import {
   NebulaInput,
   NebulaInputSearch,
   NebulaInputGroup,
-  NebulaTextarea
+  NebulaTextarea,
+  NebulaInputNumber
 } from "./index";
 
 import router from "./router";
@@ -39,6 +40,7 @@ Vue.component("NebulaInput", NebulaInput);
 Vue.component("NebulaInputSearch", NebulaInputSearch);
 Vue.component("NebulaInputGroup", NebulaInputGroup);
 Vue.component("NebulaTextarea", NebulaTextarea);
+Vue.component("NebulaInputNumber", NebulaInputNumber);
 Vue.config.productionTip = false;
 
 new Vue({

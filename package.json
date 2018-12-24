@@ -38,6 +38,8 @@
     "component-classes": "^1.2.6",
     "dom-align": "^1.8.0",
     "dom-scroll-into-view": "^1.2.1",
+    "fetch-jsonp": "latest",
+    "is-negative-zero": "^2.0.0",
     "lodash": "^4.17.11",
     "moment": "^2.22.2",
     "omit.js": "^1.0.0",
@@ -48,8 +50,7 @@
     "vue-property-decorator": "^7.0.0",
     "vue-ref": "^1.0.2",
     "vue-router": "^3.0.1",
-    "warning": "^4.0.2",
-    "fetch-jsonp": "latest"
+    "warning": "^4.0.2"
   },
   "devDependencies": {
     "@types/jest": "^23.1.4",
