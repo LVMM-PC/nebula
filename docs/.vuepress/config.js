@@ -39,7 +39,7 @@ module.exports = {
     },
     "/zh/": {
       lang: "zh-CN",
-      description: "服务于企业级产品的设计体系，让设计者和开发者专注于更好的用户体验"
+      description: "服务于企业级中后台产品，提供开箱即用的组件。让设计者和开发者专注于更好的用户体验。"
     }
   },
   evergreen: true
