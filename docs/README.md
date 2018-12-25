@@ -8,6 +8,6 @@ features:
   - title: Vue-Powered
     details: Enjoy the dev experience of Vue + webpack, use Vue components in projects, and develop custom components with Vue.
   - title: Design Language
-    details: A design system with values of Nature and Determinacy for better user experience of enterprise applications.
+    details: Based on the Ant Design, A design system with values of Nature.
 footer: MIT Licensed | Copyright © 2018-present lvmama.com
 ---
