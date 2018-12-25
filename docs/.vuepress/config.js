@@ -7,7 +7,8 @@ let sidebar = [
   "/radio/",
   "/switch/",
   "/select/",
-  "/input/"
+  "/input/",
+  "/input-number/"
 ];
 
 module.exports = {
