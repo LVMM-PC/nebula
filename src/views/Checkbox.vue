@@ -7,28 +7,28 @@
     <div>
       <div :style="{ borderBottom: '1px solid #E9E9E9' }">
         <NebulaCheckbox
-          :indeterminate="indeterminate"
           :checked="checkAll"
+          :indeterminate="indeterminate"
           @change="onCheckAllChange2"
         >
           Check all
         </NebulaCheckbox>
       </div>
-      <br >
+      <br>
       <NebulaCheckbox-group
         :options="plainOptions"
         v-model="checkedList"
-        @change="onChange2" />
+        @change="onChange2"/>
     </div>
 
     <div>
       <NebulaCheckbox
         :default-checked="false"
-        disabled />
-      <br >
+        disabled/>
+      <br>
       <NebulaCheckbox
         default-checked
-        disabled />
+        disabled/>
     </div>
 
     <div>
@@ -43,16 +43,16 @@
       </p>
       <p>
         <NebulaButton
-          type="primary"
           size="small"
+          type="primary"
           @click="toggleChecked3"
         >
           {{ !checked ? 'Check' : 'Uncheck' }}
         </NebulaButton>
         <NebulaButton
           :style="{ marginLeft: '10px' }"
-          type="primary"
           size="small"
+          type="primary"
           @click="toggleDisable3"
         >
           {{ !disabled ? 'Disable' : 'Enable' }}
@@ -64,33 +64,43 @@
       <NebulaCheckboxGroup
         :options="plainOptions"
         v-model="value"
-        @change="onChange4" />
-      <br >
+        @change="onChange4"/>
+      <br>
       <NebulaCheckboxGroup
-        :options="plainOptions"
         :default-value="['Apple']"
-        @change="onChange4" />
-      <br >
+        :options="plainOptions"
+        @change="onChange4"/>
+      <br>
       <NebulaCheckboxGroup
         :options="options"
         :value="['Pear']"
-        @change="onChange4" />
-      <br >
+        @change="onChange4"/>
+      <br>
       <NebulaCheckboxGroup
-        :options="optionsWithDisabled"
         :default-value="['Apple']"
+        :options="optionsWithDisabled"
         disabled
-        @change="onChange4" />
+        @change="onChange4"/>
     </div>
 
     <div>
       <NebulaCheckboxGroup @change="onChange5">
         <div>
-          <div :span="8"><NebulaCheckbox value="A">A</NebulaCheckbox></div>
-          <div :span="8"><NebulaCheckbox value="B">B</NebulaCheckbox></div>
-          <div :span="8"><NebulaCheckbox value="C">C</NebulaCheckbox></div>
-          <div :span="8"><NebulaCheckbox value="D">D</NebulaCheckbox></div>
-          <div :span="8"><NebulaCheckbox value="E">E</NebulaCheckbox></div>
+          <div :span="8">
+            <NebulaCheckbox value="A">A</NebulaCheckbox>
+          </div>
+          <div :span="8">
+            <NebulaCheckbox value="B">B</NebulaCheckbox>
+          </div>
+          <div :span="8">
+            <NebulaCheckbox value="C">C</NebulaCheckbox>
+          </div>
+          <div :span="8">
+            <NebulaCheckbox value="D">D</NebulaCheckbox>
+          </div>
+          <div :span="8">
+            <NebulaCheckbox value="E">E</NebulaCheckbox>
+          </div>
         </div>
       </NebulaCheckboxGroup>
     </div>

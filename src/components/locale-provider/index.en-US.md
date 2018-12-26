@@ -6,8 +6,7 @@
 
 `LocaleProvider` takes use of [provide/inject](https://vuejs.org/v2/api/#provide-inject), a feature of Vue, to accomplish global effectiveness by wrapping the app only once.
 
-
-````html
+```html
 <template>
   <a-locale-provider :locale="fr_FR">
     <App />
@@ -24,13 +23,13 @@ export default {
   }
 }
 </script>
-````
+```
 
 We provide some locale like English, Chinese, Russian, German, French and etc, all locale packages can be found in [here](https://github.com/vueComponent/ant-design-vue/tree/master/components/locale-provider).
 
 Note: if you need to use antd's UMD dist file, please use `antd/dist/antd-with-locales.js` and corresponding moment locale:
 
-````html
+```html
 <template>
   <a-locale-provider :locale="locales.fr_FR">
     <App />
@@ -39,7 +38,7 @@ Note: if you need to use antd's UMD dist file, please use `antd/dist/antd-with-l
 <script>
 const { LocaleProvider, locales } = window.antd;
 </script>
-````
+```
 
 ### Add a new language
 

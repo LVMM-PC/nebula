@@ -8,7 +8,8 @@
     </section>
     <section id="hoc">
       <NebulaButton
-        @click="handleHocClick">{{ hocLabel }}</NebulaButton>
+        @click="handleHocClick">{{ hocLabel }}
+      </NebulaButton>
     </section>
     <section>
       <NebulaButton @click="handleClick">{{ label }}</NebulaButton>
@@ -18,9 +19,15 @@
     </section>
     <section>
       <NebulaButton
-        type="primary"
+        icon="search"
         shape="circle"
-        icon="search"/>
+        type="primary"/>
+    </section>
+    <section>
+      <NebulaButton
+        href="https://nebula.em2046.com/"
+        @mouseenter="handleMouseenter"
+      />
     </section>
     <section>
       <DefaultButton/>
@@ -31,6 +38,7 @@
 <script>
 import NebulaButton from "../components/button/NebulaButton";
 import Vue from "vue";
+
 const DefaultButton = {
   data() {
     return {
@@ -81,6 +89,9 @@ export default {
       } else {
         this.label = "按钮";
       }
+    },
+    handleMouseenter() {
+      console.log("Mouseenter");
     }
   }
 };

@@ -24,12 +24,18 @@
   .button-color(@color; @background; @background);
   &:hover,
   &:focus {
-    .button-color(@color; ~`colorPalette("@{background}", 5)`; ~`colorPalette("@{background}", 5)`);
+    .button-color(
+      @color; ~`colorPalette("@{background}", 5) `;
+        ~`colorPalette("@{background}", 5) `
+    );
   }
 
   &:active,
   &.active {
-    .button-color(@color; ~`colorPalette("@{background}", 7)`; ~`colorPalette("@{background}", 7)`);
+    .button-color(
+      @color; ~`colorPalette("@{background}", 7) `;
+        ~`colorPalette("@{background}", 7) `
+    );
   }
 
   .button-disabled();
@@ -55,16 +61,24 @@
   .button-color(@color; @background; @border);
 
   &:hover {
-    .button-color(@btn-primary-color; ~`colorPalette("@{color}", 5)`; ~`colorPalette("@{color}", 5)`);
+    .button-color(
+      @btn-primary-color; ~`colorPalette("@{color}", 5) `;
+        ~`colorPalette("@{color}", 5) `
+    );
   }
 
   &:focus {
-    .button-color(~`colorPalette("@{color}", 5)`; #fff; ~`colorPalette("@{color}", 5)`);
+    .button-color(
+      ~`colorPalette("@{color}", 5) `; #fff; ~`colorPalette("@{color}", 5) `
+    );
   }
 
   &:active,
   &.active {
-    .button-color(@btn-primary-color; ~`colorPalette("@{color}", 7)`; ~`colorPalette("@{color}", 7)`);
+    .button-color(
+      @btn-primary-color; ~`colorPalette("@{color}", 7) `;
+        ~`colorPalette("@{color}", 7) `
+    );
   }
 
   .button-disabled();
@@ -75,12 +89,18 @@
 
   &:hover,
   &:focus {
-    .button-color(~`colorPalette("@{color}", 5)`; transparent; ~`colorPalette("@{color}", 5)`);
+    .button-color(
+      ~`colorPalette("@{color}", 5) `; transparent;
+        ~`colorPalette("@{color}", 5) `
+    );
   }
 
   &:active,
   &.active {
-    .button-color(~`colorPalette("@{color}", 7)`; transparent; ~`colorPalette("@{color}", 7)`);
+    .button-color(
+      ~`colorPalette("@{color}", 7) `; transparent;
+        ~`colorPalette("@{color}", 7) `
+    );
   }
 
   .button-disabled();
@@ -94,8 +114,9 @@
   // http://stackoverflow.com/a/17253457
   > a:only-child {
     color: currentColor;
+
     &:after {
-      content: '';
+      content: "";
       position: absolute;
       top: 0;
       left: 0;
@@ -137,6 +158,7 @@
   &-sm > span > .@{btnClassName} {
     .button-size(@btn-height-sm; @btn-padding-sm; @font-size-base; 0);
     line-height: @btn-height-sm - 2px;
+
     > .@{iconfont-css-prefix} {
       font-size: @font-size-base;
     }
@@ -154,9 +176,12 @@
   background-image: none;
   border: @border-width-base @border-style-base transparent;
   white-space: nowrap;
-  .button-size(@btn-height-base; @btn-padding-base; @font-size-base; @btn-border-radius-base);
+  .button-size(
+    @btn-height-base; @btn-padding-base; @font-size-base;
+      @btn-border-radius-base
+  );
   user-select: none;
-  transition: all .3s @ease-in-out;
+  transition: all 0.3s @ease-in-out;
   position: relative;
 
   > .@{iconfont-css-prefix} {
@@ -181,17 +206,23 @@
   &.disabled,
   &[disabled] {
     cursor: not-allowed;
+
     > * {
       pointer-events: none;
     }
   }
 
   &-lg {
-    .button-size(@btn-height-lg; @btn-padding-lg; @btn-font-size-lg; @btn-border-radius-base);
+    .button-size(
+      @btn-height-lg; @btn-padding-lg; @btn-font-size-lg;
+        @btn-border-radius-base
+    );
   }
 
   &-sm {
-    .button-size(@btn-height-sm; @btn-padding-sm; @btn-font-size-sm; @btn-border-radius-sm);
+    .button-size(
+      @btn-height-sm; @btn-padding-sm; @btn-font-size-sm; @btn-border-radius-sm
+    );
   }
 }
 
@@ -202,7 +233,9 @@
 
 // default button style
 .btn-default() {
-  .button-variant-other(@btn-default-color; @btn-default-bg; @btn-default-border);
+  .button-variant-other(
+    @btn-default-color; @btn-default-bg; @btn-default-border
+  );
   &:hover,
   &:focus,
   &:active,
@@ -219,7 +252,11 @@
 
 // dashed button style
 .btn-dashed() {
-  .button-variant-other(@btn-default-color, @btn-default-bg, @btn-default-border);
+  .button-variant-other(
+    @btn-default-color,
+    @btn-default-bg,
+    @btn-default-border
+  );
   border-style: dashed;
 }
 
@@ -259,7 +296,8 @@
     margin-left: -1px;
   }
 
-  .@{btnClassName}-primary + .@{btnClassName}:not(.@{btnClassName}-primary):not([disabled]) {
+  .@{btnClassName}-primary
+    + .@{btnClassName}:not(.@{btnClassName}-primary):not([disabled]) {
     border-left-color: transparent;
   }
 
@@ -294,14 +332,17 @@
     > .@{btnClassName}:only-child {
       border-radius: @btn-border-radius-sm;
     }
+
     > span:only-child > .@{btnClassName} {
       border-radius: @btn-border-radius-sm;
     }
+
     > .@{btnClassName}:first-child:not(:last-child),
     > span:first-child:not(:last-child) > .@{btnClassName} {
       border-bottom-left-radius: @btn-border-radius-sm;
       border-top-left-radius: @btn-border-radius-sm;
     }
+
     > .@{btnClassName}:last-child:not(:first-child),
     > span:last-child:not(:first-child) > .@{btnClassName} {
       border-bottom-right-radius: @btn-border-radius-sm;

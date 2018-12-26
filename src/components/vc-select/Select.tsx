@@ -7,54 +7,54 @@ import warning from "warning";
 import Vue from "vue";
 import Option from "./Option";
 import {
-  hasProp,
-  getSlotOptions,
-  getPropsData,
-  getValueByProp as getValue,
+  getAttrs,
+  getClass,
   getComponentFromProp,
   getEvents,
-  getClass,
+  getOptionProps,
+  getPropsData,
+  getSlotOptions,
   getStyle,
-  getAttrs,
-  getOptionProps
+  getValueByProp as getValue,
+  hasProp
 } from "../_util/props-util";
 import getTransitionProps from "../_util/getTransitionProps";
 import { cloneElement } from "../_util/vnode";
 import BaseMixin from "../_util/BaseMixin";
 import proxyComponent from "../_util/proxyComponent";
 import ref from "vue-ref";
-
-Vue.use(ref, { name: "ant-ref" });
-
 import {
+  defaultFilterFn,
+  findFirstMenuItem,
+  findIndexInValueBySingleValue,
+  getLabelFromPropsValue,
+  getMapKey,
   getPropValue,
   getValuePropValue,
+  includesSeparators,
   isCombobox,
   isMultipleOrTags,
   isMultipleOrTagsOrCombobox,
   isSingleMode,
+  preventDefaultEvent,
+  saveRef,
+  splitBySeparators,
   toArray,
-  getMapKey,
-  findIndexInValueBySingleValue,
-  getLabelFromPropsValue,
+  toTitle,
   UNSELECTABLE_ATTRIBUTE,
   UNSELECTABLE_STYLE,
-  preventDefaultEvent,
-  findFirstMenuItem,
-  includesSeparators,
-  splitBySeparators,
-  defaultFilterFn,
-  validateOptionValue,
-  saveRef,
-  toTitle
+  validateOptionValue
 } from "./util";
 import SelectTrigger from "./SelectTrigger";
 import { SelectPropTypes } from "./PropTypes";
 
+Vue.use(ref, { name: "ant-ref" });
+
 function noop() {}
 
 function chaining(...fns) {
-  return function (...args) { // eslint-disable-line
+  return function(...args) {
+    // eslint-disable-line
     // eslint-disable-line
     for (let i = 0; i < fns.length; i++) {
       if (fns[i] && typeof fns[i] === "function") {
@@ -63,6 +63,7 @@ function chaining(...fns) {
     }
   };
 }
+
 const Select = {
   inheritAttrs: false,
   name: "Select",

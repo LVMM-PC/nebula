@@ -1,9 +1,9 @@
 import {
-  getPropsData,
-  getSlotOptions,
-  getKey,
   getAttrs,
-  getComponentFromProp
+  getComponentFromProp,
+  getKey,
+  getPropsData,
+  getSlotOptions
 } from "../_util/props-util";
 import { cloneVNodes } from "../_util/vnode";
 
@@ -13,6 +13,7 @@ export function toTitle(title) {
   }
   return null;
 }
+
 export function getValuePropValue(child) {
   if (!child) {
     return null;

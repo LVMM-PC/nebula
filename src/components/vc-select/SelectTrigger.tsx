@@ -3,7 +3,7 @@ import Trigger from "../trigger";
 import DropdownMenu from "./DropdownMenu";
 import { isSingleMode, saveRef } from "./util";
 import BaseMixin from "../_util/BaseMixin";
-import { Component, Prop, Vue, Model } from "vue-property-decorator";
+import { Component, Prop, Vue } from "vue-property-decorator";
 
 const BUILT_IN_PLACEMENTS = {
   bottomLeft: {
@@ -29,82 +29,60 @@ const BUILT_IN_PLACEMENTS = {
   mixins: [BaseMixin]
 })
 export default class SelectTrigger extends Vue {
-  constructor(props) {
-    super(props);
-  }
-
   @Prop({ type: Boolean })
   dropdownMatchSelectWidth?: boolean;
-
   @Prop({ type: Boolean })
   defaultActiveFirstOption?: boolean;
-
   @Prop({ type: Object })
   dropdownAlign?: any;
-
   @Prop({ type: Boolean })
   visible?: boolean;
-
   @Prop({ type: Boolean })
   disabled?: boolean;
-
   @Prop({ type: Boolean })
   showSearch?: boolean;
-
   @Prop({ type: String })
   dropdownClassName?: string;
-
   @Prop({ type: Object })
   dropdownStyle?: any;
-
   @Prop({ type: Object })
   dropdownMenuStyle?: any;
-
   @Prop({ type: Boolean })
   multiple?: boolean;
-
   @Prop({ type: String })
   inputValue?: string;
-
   @Prop({})
   filterOption?: any;
-
   @Prop({})
   options?: any;
-
   @Prop({ type: String })
   prefixCls?: string;
-
   @Prop({ type: String })
   popupClassName?: string;
-
   @Prop({ type: Array })
   value?: any;
-
   @Prop({ type: Array })
   showAction?: string[];
-
   @Prop({ type: Boolean })
   combobox?: boolean;
-
   @Prop({ type: String })
   animation?: string;
-
   @Prop({ type: String })
   transitionName?: string;
-
   @Prop({ type: Function })
   getPopupContainer?: any;
-
   @Prop({})
   backfillValue?: any;
-
   public dropdownWidth: any = null;
   public saveDropdownMenuRef: any;
   public saveTriggerRef: any;
   public dropdownMenuRef: any;
   public triggerRef: any;
   public firstActiveValue: any;
+
+  constructor(props) {
+    super(props);
+  }
 
   created() {
     this.saveDropdownMenuRef = saveRef(this, "dropdownMenuRef");

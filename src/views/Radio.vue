@@ -77,8 +77,8 @@
           @change="onChange">
           <NebulaRadioButton value="a">Hangzhou</NebulaRadioButton>
           <NebulaRadioButton
-            value="b"
-            disabled>Shanghai
+            disabled
+            value="b">Shanghai
           </NebulaRadioButton>
           <NebulaRadioButton value="c">Beijing</NebulaRadioButton>
           <NebulaRadioButton value="d">Chengdu</NebulaRadioButton>
@@ -86,8 +86,8 @@
       </div>
       <div :style="{ marginTop: '16px' }">
         <NebulaRadioGroup
-          disabled
           default-value="a"
+          disabled
           @change="onChange">
           <NebulaRadioButton value="a">Hangzhou</NebulaRadioButton>
           <NebulaRadioButton value="b">Shanghai</NebulaRadioButton>
@@ -100,8 +100,8 @@
     <div>
       <div>
         <NebulaRadioGroup
-          default-value="a"
-          button-style="solid">
+          button-style="solid"
+          default-value="a">
           <NebulaRadioButton value="a">Hangzhou</NebulaRadioButton>
           <NebulaRadioButton value="b">Shanghai</NebulaRadioButton>
           <NebulaRadioButton value="c">Beijing</NebulaRadioButton>
@@ -110,12 +110,12 @@
       </div>
       <div :style="{ marginTop: '16px' }">
         <NebulaRadioGroup
-          default-value="c"
-          button-style="solid">
+          button-style="solid"
+          default-value="c">
           <NebulaRadioButton value="a">Hangzhou</NebulaRadioButton>
           <NebulaRadioButton
-            value="b"
-            disabled>Shanghai
+            disabled
+            value="b">Shanghai
           </NebulaRadioButton>
           <NebulaRadioButton value="c">Beijing</NebulaRadioButton>
           <NebulaRadioButton value="d">Chengdu</NebulaRadioButton>
@@ -153,8 +153,8 @@
     <div>
       <div>
         <NebulaRadioGroup
-          :options="plainOptions"
           :default-value="value1"
+          :options="plainOptions"
           @change="onChange1"/>
         <br>
         <NebulaRadioGroup

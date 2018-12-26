@@ -7,12 +7,13 @@ let sidebar = [
   "/radio/",
   "/switch/",
   "/select/",
-  "/input/"
+  "/input/",
+  "/input-number/"
 ];
 
 module.exports = {
   title: "Nebula UI",
-  description: "Based on the Ant Design",
+  description: "Determinacy for better user experience of enterprise applications",
   themeConfig: {
     nav: [{ text: "GitHub", link: "https://github.com/LVMM-PC/nebula" }],
     sidebar: sidebar,
@@ -38,7 +39,7 @@ module.exports = {
     },
     "/zh/": {
       lang: "zh-CN",
-      description: "基于 Ant Design 的组件库"
+      description: "服务于企业级中后台产品，提供开箱即用的组件。让设计者和开发者专注于更好的用户体验。"
     }
   },
   evergreen: true

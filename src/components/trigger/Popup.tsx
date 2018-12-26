@@ -3,7 +3,7 @@ import PopupInner from "./PopupInner";
 import LazyRenderBox from "./LazyRenderBox";
 import { noop } from "./utils";
 import animate from "../_util/css-animation";
-import { Component, Prop, Vue, Model } from "vue-property-decorator";
+import { Component, Prop, Vue } from "vue-property-decorator";
 
 @Component({
   data() {
@@ -18,64 +18,47 @@ import { Component, Prop, Vue, Model } from "vue-property-decorator";
   methods: {}
 })
 export default class extends Vue {
-  constructor(props) {
-    super(props);
-  }
-
   @Prop({ type: Boolean })
   visible?: boolean;
-
   @Prop({ type: Function })
   getClassNameFromAlign?: any;
-
   @Prop({ type: Function })
   getRootDomNode?: any;
-
   @Prop({})
   align?: any;
-
   @Prop({ type: Boolean })
   destroyPopupOnHide?: boolean;
-
   @Prop({ type: String })
   prefixCls?: string;
-
   @Prop({ type: Function })
   getContainer?: any;
-
   @Prop({ type: String })
   transitionName?: string;
-
   @Prop({})
   animation?: any;
-
   @Prop({ type: String })
   maskAnimation?: string;
-
   @Prop({ type: String })
   maskTransitionName?: string;
-
   @Prop({ type: Boolean })
   mask?: boolean;
-
   @Prop({ type: Number })
   zIndex?: number;
-
   @Prop({})
   popupClassName?: any;
-
   @Prop({
     default: () => {}
   })
   popupStyle?: any;
-
   @Prop({ type: String })
   stretch?: string;
-
   @Prop({})
   point?: any;
-
   public currentAlignClassName: any;
+
+  constructor(props) {
+    super(props);
+  }
 
   mounted() {
     this.$nextTick(() => {

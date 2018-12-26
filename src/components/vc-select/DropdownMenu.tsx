@@ -5,42 +5,38 @@ import { getSelectKeys, preventDefaultEvent } from "./util";
 import { cloneElement } from "../_util/vnode";
 import BaseMixin from "../_util/BaseMixin";
 import { getSlotOptions } from "../_util/props-util";
-import { Component, Model, Prop, Vue, Watch } from "vue-property-decorator";
+import { Component, Prop, Vue, Watch } from "vue-property-decorator";
 
 @Component({
   mixins: [BaseMixin]
 })
 export default class NebulaSwitch extends Vue {
+  @Prop({ type: Boolean })
+  defaultActiveFirstOption?: boolean;
+  @Prop({})
+  value?: any;
+  @Prop({ type: Object })
+  dropdownMenuStyle?: any;
+  @Prop({ type: Boolean })
+  multiple?: boolean;
+  @Prop({ type: String })
+  prefixCls?: string;
+  @Prop({})
+  menuItems?: any;
+  @Prop({ type: String })
+  inputValue?: string;
+  @Prop({ type: Boolean })
+  visible?: boolean;
+  @Prop({})
+  backfillValue?: any;
+  public lastVisible: any;
+  public lastInputValue: any;
+  public prevVisible: any;
+  public firstActiveItem: any;
+
   constructor(props) {
     super(props);
   }
-
-  @Prop({ type: Boolean })
-  defaultActiveFirstOption?: boolean;
-
-  @Prop({})
-  value?: any;
-
-  @Prop({ type: Object })
-  dropdownMenuStyle?: any;
-
-  @Prop({ type: Boolean })
-  multiple?: boolean;
-
-  @Prop({ type: String })
-  prefixCls?: string;
-
-  @Prop({})
-  menuItems?: any;
-
-  @Prop({ type: String })
-  inputValue?: string;
-
-  @Prop({ type: Boolean })
-  visible?: boolean;
-
-  @Prop({})
-  backfillValue?: any;
 
   @Watch("visible")
   onVisibleChanged(val: string) {
@@ -48,11 +44,6 @@ export default class NebulaSwitch extends Vue {
       this.lastVisible = val;
     }
   }
-
-  public lastVisible: any;
-  public lastInputValue: any;
-  public prevVisible: any;
-  public firstActiveItem: any;
 
   beforeMount() {
     this.lastInputValue = this.$props.inputValue;

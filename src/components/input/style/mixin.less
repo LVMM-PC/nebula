@@ -1,5 +1,5 @@
-@import '../../style/themes/default';
-@import '../../style/mixins/index';
+@import "../../style/themes/default";
+@import "../../style/mixins/index";
 
 @input-affix-width: 19px;
 
@@ -18,15 +18,16 @@
 // input status
 // == when focus or actived
 .active(@color: @outline-color) {
-  border-color: ~`colorPalette('@{color}', 5) `;
+  border-color: ~`colorPalette("@{color}", 5) `;
   outline: 0;
-  box-shadow: @input-outline-offset @outline-blur-size @outline-width fade(@color, 20%);
+  box-shadow: @input-outline-offset @outline-blur-size @outline-width
+    fade(@color, 20%);
   border-right-width: @border-width-base !important;
 }
 
 // == when hoverd
 .hover(@color: @input-hover-border-color) {
-  border-color: ~`colorPalette('@{color}', 5) `;
+  border-color: ~`colorPalette("@{color}", 5) `;
   border-right-width: @border-width-base !important;
 }
 
@@ -97,14 +98,15 @@
   width: 100%;
 
   // Undo padding and float of grid classes
-  &[class*='col-'] {
+  &[class*="col-"] {
     float: none;
     padding-left: 0;
     padding-right: 0;
   }
 
-  > [class*='col-'] {
+  > [class*="col-"] {
     padding-right: 8px;
+
     &:last-child {
       padding-right: 0;
     }
@@ -135,10 +137,12 @@
     float: left;
     width: 100%;
     margin-bottom: 0;
+
     &:focus {
       z-index: 1; // Fix https://gw.alipayobjects.com/zos/rmsportal/DHNpoqfMXSfrSnlZvhsJ.png
       border-right-width: 1px;
     }
+
     &:hover {
       z-index: 1;
       border-right-width: 1px;
@@ -181,7 +185,7 @@
     // https://github.com/ant-design/ant-design/issues/3714
     > i:only-child:after {
       position: absolute;
-      content: '';
+      content: "";
       top: 0;
       left: 0;
       right: 0;
@@ -269,9 +273,11 @@
       &:not(:first-child):not(:last-child) {
         border-right-width: 1px;
         border-right-color: transparent;
+
         &:hover {
           .hover();
         }
+
         &:focus {
           .active();
         }
@@ -306,9 +312,11 @@
       border-radius: 0;
       border-right-width: @border-width-base;
       border-right-color: transparent;
+
       &:hover {
         .hover();
       }
+
       &:focus {
         .active();
       }
@@ -319,8 +327,12 @@
     & > .@{ant-prefix}-calendar-picker:first-child .@{ant-prefix}-input,
     & > .@{ant-prefix}-select-auto-complete:first-child .@{ant-prefix}-input,
     & > .@{ant-prefix}-cascader-picker:first-child .@{ant-prefix}-input,
-    & > .@{ant-prefix}-mention-wrapper:first-child .@{ant-prefix}-mention-editor,
-    & > .@{ant-prefix}-time-picker:first-child .@{ant-prefix}-time-picker-input {
+    &
+      > .@{ant-prefix}-mention-wrapper:first-child
+      .@{ant-prefix}-mention-editor,
+    &
+      > .@{ant-prefix}-time-picker:first-child
+      .@{ant-prefix}-time-picker-input {
       border-top-left-radius: @border-radius-base;
       border-bottom-left-radius: @border-radius-base;
     }
@@ -337,11 +349,14 @@
       border-bottom-right-radius: @border-radius-base;
       border-right-width: @border-width-base;
       border-right-color: @input-border-color;
+
       &:hover {
         .hover();
       }
+
       &:focus {
         .active();
+
         .@{ant-prefix}-cascader-input {
           .active();
         }
@@ -375,6 +390,7 @@
     transform: translateY(-50%);
     line-height: 0;
     color: @input-color;
+
     :not(.anticon) {
       line-height: @line-height-base;
     }

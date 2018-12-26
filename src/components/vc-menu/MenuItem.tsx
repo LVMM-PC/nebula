@@ -3,7 +3,7 @@ import KeyCode from "../_util/KeyCode";
 import BaseMixin from "../_util/BaseMixin";
 import scrollIntoView from "dom-scroll-into-view";
 import { connect } from "../_util/store";
-import { noop, menuAllProps } from "./util";
+import { menuAllProps, noop } from "./util";
 
 const props = {
   attribute: PropTypes.object,

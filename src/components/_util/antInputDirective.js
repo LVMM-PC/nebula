@@ -6,6 +6,7 @@
 export const inBrowser = typeof window !== "undefined";
 export const UA = inBrowser && window.navigator.userAgent.toLowerCase();
 export const isIE9 = UA && UA.indexOf("msie 9.0") > 0;
+
 function makeMap(str, expectsLowerCase) {
   const map = Object.create(null);
   const list = str.split(",");
@@ -14,6 +15,7 @@ function makeMap(str, expectsLowerCase) {
   }
   return expectsLowerCase ? val => map[val.toLowerCase()] : val => map[val];
 }
+
 const isTextInputType = makeMap("text,number,password,search,email,tel,url");
 
 function onCompositionStart(e) {

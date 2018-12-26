@@ -16,6 +16,7 @@ export var NebulaInput = NebulaUi.NebulaInput;
 export var NebulaInputSearch = NebulaUi.NebulaInputSearch;
 export var NebulaInputGroup = NebulaUi.NebulaInputGroup;
 export var NebulaTextarea = NebulaUi.NebulaTextarea;
+export var NebulaInputNumber = NebulaUi.NebulaInputNumber;
 
 function install(Vue) {
   Vue.component("NebulaButton", NebulaButton);
@@ -34,6 +35,7 @@ function install(Vue) {
   Vue.component("NebulaInputSearch", NebulaInputSearch);
   Vue.component("NebulaInputGroup", NebulaInputGroup);
   Vue.component("NebulaTextarea", NebulaTextarea);
+  Vue.component("NebulaInputNumber", NebulaInputNumber);
 }
 
 const plugin = {

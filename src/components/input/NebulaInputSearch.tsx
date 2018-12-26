@@ -3,9 +3,9 @@ import Input from "./NebulaInput";
 import Icon from "../icon";
 import Button from "../button";
 import { cloneElement } from "../_util/vnode";
-import { getOptionProps, getComponentFromProp } from "../_util/props-util";
+import { getComponentFromProp, getOptionProps } from "../_util/props-util";
 import InputProps from "./InputProps";
-import { Prop, Vue, Component, Watch, Model } from "vue-property-decorator";
+import { Component, Model, Prop } from "vue-property-decorator";
 import { mixins } from "vue-class-component";
 
 @Component({})

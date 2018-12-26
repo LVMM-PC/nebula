@@ -5,10 +5,10 @@ import { Component, Prop, Vue } from "vue-property-decorator";
   isSelectOptGroup: true
 })
 export default class OptGroup extends Vue {
+  @Prop()
+  label: any;
+
   constructor(props) {
     super(props);
   }
-
-  @Prop()
-  label: any;
 }

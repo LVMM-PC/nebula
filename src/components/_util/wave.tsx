@@ -1,19 +1,18 @@
 import TransitionEvents from "./css-animation/Event";
-import { Component, Model, Prop, Vue } from "vue-property-decorator";
+import { Component, Prop, Vue } from "vue-property-decorator";
 
 @Component({})
 export default class Wave extends Vue {
-  constructor(props) {
-    super(props);
-  }
-
   @Prop({})
   insertExtraNode: any;
-
   public instance: any;
   public extraNode: any;
   public styleForPesudo: any;
   public clickWaveTimeoutId: any;
+
+  constructor(props) {
+    super(props);
+  }
 
   render() {
     return this.$slots.default && this.$slots.default[0];

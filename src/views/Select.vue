@@ -2,21 +2,22 @@
   <div>
     <h1>Select</h1>
     <div>
-      <nebula-select 
-        default-value="lucy" 
-        style="width: 120px" 
+      <nebula-select
+        default-value="lucy"
+        style="width: 120px"
         @change="basicUsageHandleChange">
         <nebula-select-option value="jack">Jack</nebula-select-option>
         <nebula-select-option value="lucy">Lucy</nebula-select-option>
-        <nebula-select-option 
-          value="disabled" 
-          disabled>Disabled</nebula-select-option>
+        <nebula-select-option
+          disabled
+          value="disabled">Disabled
+        </nebula-select-option>
         <nebula-select-option value="Yiminghe">yiminghe</nebula-select-option>
       </nebula-select>
-      <nebula-select 
-        default-value="lucy" 
-        style="width: 120px" 
-        disabled>
+      <nebula-select
+        default-value="lucy"
+        disabled
+        style="width: 120px">
         <nebula-select-option value="lucy">Lucy</nebula-select-option>
       </nebula-select>
     </div>
@@ -26,46 +27,46 @@
         <nebula-radio-button value="default">Default</nebula-radio-button>
         <nebula-radio-button value="small">Small</nebula-radio-button>
       </nebula-radio-group>
-      <br ><br >
+      <br><br>
       <nebula-select
         :size="size"
         default-value="a1"
         style="width: 200px"
         @change="sizesHandleChange"
       >
-        <nebula-select-option 
-          v-for="i in 25" 
+        <nebula-select-option
+          v-for="i in 25"
           :key="(i + 9).toString(36) + i">
           {{ (i + 9).toString(36) + i }}
         </nebula-select-option>
       </nebula-select>
-      <br >
+      <br>
       <nebula-select
-        :size="size"
         :default-value="['a1', 'b2']"
+        :size="size"
         mode="multiple"
         placeholder="Please select"
         style="width: 200px"
         @change="sizesHandleChange"
         @popupScroll="sizesPopupScroll"
       >
-        <nebula-select-option 
-          v-for="i in 25" 
+        <nebula-select-option
+          v-for="i in 25"
           :key="(i + 9).toString(36) + i">
           {{ (i + 9).toString(36) + i }}
         </nebula-select-option>
       </nebula-select>
-      <br >
+      <br>
       <nebula-select
-        :size="size"
         :default-value="['a1', 'b2']"
+        :size="size"
         mode="tags"
         placeholder="Please select"
         style="width: 200px"
         @change="sizesHandleChange"
       >
-        <nebula-select-option 
-          v-for="i in 25" 
+        <nebula-select-option
+          v-for="i in 25"
           :key="(i + 9).toString(36) + i">
           {{ (i + 9).toString(36) + i }}
         </nebula-select-option>
@@ -74,69 +75,74 @@
     <div>
       <nebula-select
         mode="tags"
-        style="width: 100%"
         placeholder="Tags Mode"
+        style="width: 100%"
         @change="tagsHandleChange"
       >
-        <nebula-select-option 
-          v-for="i in 25" 
-          :key="(i + 9).toString(36) + i">{{ (i + 9).toString(36) + i }}</nebula-select-option>
+        <nebula-select-option
+          v-for="i in 25"
+          :key="(i + 9).toString(36) + i">{{ (i + 9).toString(36) + i }}
+        </nebula-select-option>
       </nebula-select>
     </div>
     <div>
-      <nebula-select 
-        :token-separators="[',']" 
-        mode="tags" 
-        style="width: 100%" 
+      <nebula-select
+        :token-separators="[',']"
+        mode="tags"
+        style="width: 100%"
         @change="automaticTokenizationHandleChange">
-        <nebula-select-option 
-          v-for="i in 25" 
-          :key="(i + 9).toString(36) + i">{{ (i + 9).toString(36) + i }}</nebula-select-option>
+        <nebula-select-option
+          v-for="i in 25"
+          :key="(i + 9).toString(36) + i">{{ (i + 9).toString(36) + i }}
+        </nebula-select-option>
       </nebula-select>
     </div>
     <div>
-      <nebula-select 
-        :default-value="{ key: 'lucy' }" 
-        label-in-value 
-        style="width: 120px" 
+      <nebula-select
+        :default-value="{ key: 'lucy' }"
+        label-in-value
+        style="width: 120px"
         @change="getValueOfSelectedItemHandleChange">
         <nebula-select-option value="jack">Jack (100)</nebula-select-option>
         <nebula-select-option value="lucy">Lucy (101)</nebula-select-option>
       </nebula-select>
     </div>
     <div>
-      <nebula-select 
-        :default-value="['a1', 'b2']" 
-        mode="multiple" 
-        style="width: 100%" 
-        placeholder="Please select" 
+      <nebula-select
+        :default-value="['a1', 'b2']"
+        mode="multiple"
+        placeholder="Please select"
+        style="width: 100%"
         @change="multipleSelectionHandleChange">
-        <nebula-select-option 
-          v-for="i in 25" 
-          :key="(i + 9).toString(36) + i">{{ (i + 9).toString(36) + i }}</nebula-select-option>
+        <nebula-select-option
+          v-for="i in 25"
+          :key="(i + 9).toString(36) + i">{{ (i + 9).toString(36) + i }}
+        </nebula-select-option>
       </nebula-select>
     </div>
     <div>
-      <nebula-select 
-        :default-value="provinceData[0]" 
-        style="width: 120px" 
+      <nebula-select
+        :default-value="provinceData[0]"
+        style="width: 120px"
         @change="handleProvinceChange">
-        <nebula-select-option 
-          v-for="province in provinceData" 
-          :key="province">{{ province }}</nebula-select-option>
+        <nebula-select-option
+          v-for="province in provinceData"
+          :key="province">{{ province }}
+        </nebula-select-option>
       </nebula-select>
-      <nebula-select 
-        v-model="secondCity" 
+      <nebula-select
+        v-model="secondCity"
         style="width: 120px">
-        <nebula-select-option 
-          v-for="city in cities" 
-          :key="city">{{ city }}</nebula-select-option>
+        <nebula-select-option
+          v-for="city in cities"
+          :key="city">{{ city }}
+        </nebula-select-option>
       </nebula-select>
     </div>
     <div>
-      <nebula-select 
-        default-value="lucy" 
-        style="width: 200px" 
+      <nebula-select
+        default-value="lucy"
+        style="width: 200px"
         @change="optionGroupHandleChange">
         <nebula-select-opt-group>
           <span slot="label"><nebula-icon type="user"/>Manager</span>
@@ -150,32 +156,33 @@
     </div>
     <div>
       <nebula-select
-        :value="value"
         :default-active-first-option="false"
-        :show-arrow="false"
         :filter-option="false"
         :not-found-content="null"
-        show-search
+        :show-arrow="false"
+        :value="value"
         placeholder="input search text"
+        show-search
         style="width: 200px"
-        @search="searchBoxHandleSearch"
         @change="searchBoxHandleChange"
+        @search="searchBoxHandleSearch"
       >
-        <nebula-select-option 
-          v-for="d in data" 
-          :key="d.value">{{ d.text }}</nebula-select-option>
+        <nebula-select-option
+          v-for="d in data"
+          :key="d.value">{{ d.text }}
+        </nebula-select-option>
       </nebula-select>
     </div>
     <div>
       <nebula-select
         :filter-option="selectWithSearchFieldFilterOption"
-        show-search
-        placeholder="Select a person"
         option-filter-prop="children"
+        placeholder="Select a person"
+        show-search
         style="width: 200px"
-        @focus="selectWithSearchFieldHandleFocus"
         @blur="selectWithSearchFieldHandleBlur"
         @change="selectWithSearchFieldHandleChange"
+        @focus="selectWithSearchFieldHandleFocus"
       >
         <nebula-select-option value="jack">Jack</nebula-select-option>
         <nebula-select-option value="lucy">Lucy</nebula-select-option>
@@ -184,20 +191,21 @@
     </div>
     <div>
       <nebula-select
-        :value="searchAndSelectUsersValue"
         :filter-option="false"
         :not-found-content="searchAndSelectUsersFetching ? undefined : null"
-        mode="multiple"
+        :value="searchAndSelectUsersValue"
         label-in-value
+        mode="multiple"
         placeholder="Select users"
         style="width: 100%"
-        @search="searchAndSelectUsersFetchUser"
         @change="searchAndSelectUsersHandleChange"
+        @search="searchAndSelectUsersFetchUser"
       >
         <!--<nebula-spin v-if="searchAndSelectUsersFetching" slot="notFoundContent" size="small"/>-->
-        <nebula-select-option 
-          v-for="d in searchAndSelectUsersData" 
-          :key="d.value">{{ d.text }}</nebula-select-option>
+        <nebula-select-option
+          v-for="d in searchAndSelectUsersData"
+          :key="d.value">{{ d.text }}
+        </nebula-select-option>
       </nebula-select>
     </div>
   </div>
@@ -213,6 +221,7 @@ const cityData = {
 import jsonp from "fetch-jsonp";
 import querystring from "querystring";
 import debounce from "lodash/debounce";
+
 let timeout;
 let currentValue;
 

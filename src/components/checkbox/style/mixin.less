@@ -28,7 +28,7 @@
       height: 100%;
       border-radius: @border-radius-sm;
       border: 1px solid @checkbox-color;
-      content: '';
+      content: "";
       animation: antCheckboxEffect 0.36s ease-in-out;
       animation-fill-mode: both;
       visibility: hidden;
@@ -49,14 +49,15 @@
       border: @border-width-base @border-style-base @border-color-base;
       border-radius: @border-radius-sm;
       background-color: @checkbox-check-color;
-      transition: all .3s;
+      transition: all 0.3s;
 
       &:after {
         @check-width: (@checkbox-size / 14) * 5px;
         @check-height: (@checkbox-size / 14) * 8px;
         transform: rotate(45deg) scale(0);
         position: absolute;
-        left: (@checkbox-size - @check-width) / 2 - 0.5px * (@checkbox-size / 14);
+        left: (@checkbox-size - @check-width) / 2 - 0.5px *
+          (@checkbox-size / 14);
         top: (@checkbox-size - @check-height) / 2 - 2px * (@checkbox-size / 14);
         display: table;
         width: @check-width;
@@ -64,8 +65,8 @@
         border: 2px solid @checkbox-check-color;
         border-top: 0;
         border-left: 0;
-        content: ' ';
-        transition: all .1s @ease-in-back, opacity .1s;
+        content: " ";
+        transition: all 0.1s @ease-in-back, opacity 0.1s;
         opacity: 0;
       }
     }
@@ -88,7 +89,7 @@
   .@{checkbox-prefix-cls}-indeterminate .@{checkbox-inner-prefix-cls}:after {
     @indeterminate-width: @checkbox-size - 8px;
     @indeterminate-height: @checkbox-size - 8px;
-    content: ' ';
+    content: " ";
     transform: translate(-50%, -50%) scale(1);
     border: 0;
     left: 50%;
@@ -99,7 +100,8 @@
     opacity: 1;
   }
 
-  .@{checkbox-prefix-cls}-indeterminate.@{checkbox-prefix-cls}-disabled .@{checkbox-inner-prefix-cls}:after {
+  .@{checkbox-prefix-cls}-indeterminate.@{checkbox-prefix-cls}-disabled
+    .@{checkbox-inner-prefix-cls}:after {
     border-color: @disabled-color;
   }
 
@@ -111,8 +113,8 @@
     border: 2px solid @checkbox-check-color;
     border-top: 0;
     border-left: 0;
-    content: ' ';
-    transition: all .2s @ease-out-back .1s;
+    content: " ";
+    transition: all 0.2s @ease-out-back 0.1s;
     opacity: 1;
   }
 
@@ -140,6 +142,7 @@
     .@{checkbox-inner-prefix-cls} {
       border-color: @border-color-base !important;
       background-color: @input-disabled-bg;
+
       &:after {
         animation-name: none;
         border-color: @input-disabled-bg;
@@ -157,6 +160,7 @@
     line-height: unset;
     cursor: pointer;
     display: inline-block;
+
     & + & {
       margin-left: 8px;
     }
@@ -171,13 +175,16 @@
   .@{checkbox-prefix-cls}-group {
     .reset-component;
     display: inline-block;
+
     &-item {
       display: inline-block;
       margin-right: 8px;
+
       &:last-child {
         margin-right: 0;
       }
     }
+
     &-item + &-item {
       margin-left: 0;
     }

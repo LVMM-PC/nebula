@@ -11,33 +11,24 @@ export type switchSize = "small" | "default" | "large";
 export default class NebulaSwitch extends Vue {
   @Prop({ default: "nebula-switch", type: String })
   public prefixCls?: string;
-
-  @Prop({ default: null, type: String })
-  private size?: switchSize;
-
-  @Prop({ type: Boolean })
-  private disabled?: boolean;
-
-  @Prop({})
-  private checkedChildren?: any;
-
-  @Prop({})
-  private unCheckedChildren?: any;
-
-  @Prop({ type: Number })
-  private tabIndex?: number;
-
-  @Prop({ type: Boolean })
-  private defaultChecked?: boolean;
-
-  @Prop({ type: Boolean })
-  private autoFocus?: boolean;
-
-  @Prop({ type: Boolean })
-  private loading?: boolean;
-
   @Model("change", { default: undefined })
   checked!: boolean;
+  @Prop({ default: null, type: String })
+  private size?: switchSize;
+  @Prop({ type: Boolean })
+  private disabled?: boolean;
+  @Prop({})
+  private checkedChildren?: any;
+  @Prop({})
+  private unCheckedChildren?: any;
+  @Prop({ type: Number })
+  private tabIndex?: number;
+  @Prop({ type: Boolean })
+  private defaultChecked?: boolean;
+  @Prop({ type: Boolean })
+  private autoFocus?: boolean;
+  @Prop({ type: Boolean })
+  private loading?: boolean;
 
   focus() {
     let refSwitchNode = this.$refs.refSwitchNode as HTMLInputElement;

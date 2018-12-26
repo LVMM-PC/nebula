@@ -8,16 +8,17 @@ import {
   NebulaCheckbox,
   NebulaCheckboxGroup,
   NebulaIcon,
+  NebulaInput,
+  NebulaInputGroup,
+  NebulaInputNumber,
+  NebulaInputSearch,
   NebulaRadio,
   NebulaRadioButton,
   NebulaRadioGroup,
   NebulaSelect,
-  NebulaSelectOption,
   NebulaSelectOptGroup,
+  NebulaSelectOption,
   NebulaSwitch,
-  NebulaInput,
-  NebulaInputSearch,
-  NebulaInputGroup,
   NebulaTextarea
 } from "./index";
 
@@ -39,6 +40,7 @@ Vue.component("NebulaInput", NebulaInput);
 Vue.component("NebulaInputSearch", NebulaInputSearch);
 Vue.component("NebulaInputGroup", NebulaInputGroup);
 Vue.component("NebulaTextarea", NebulaTextarea);
+Vue.component("NebulaInputNumber", NebulaInputNumber);
 Vue.config.productionTip = false;
 
 new Vue({

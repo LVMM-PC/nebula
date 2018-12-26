@@ -3,15 +3,15 @@ import TextArea from "./NebulaTextarea";
 import omit from "omit.js";
 import InputProps from "./InputProps";
 import {
-  hasProp,
+  getClass,
   getComponentFromProp,
   getStyle,
-  getClass
+  hasProp
 } from "../_util/props-util";
 import { isIE, isIE9 } from "../_util/env";
 
 import antInputDirective from "../_util/antInputDirective";
-import { Prop, Vue, Component, Watch, Model } from "vue-property-decorator";
+import { Component, Model, Vue, Watch } from "vue-property-decorator";
 import { mixins } from "vue-class-component";
 
 Vue.use(antInputDirective);
@@ -27,19 +27,18 @@ function fixControlledValue(value) {
   inheritAttrs: false
 })
 export default class NebulaInput extends mixins(InputProps) {
+  @Model("change.value")
+  value!: any;
+  public stateValue: any;
+
   constructor(props) {
     super(props);
   }
-
-  @Model("change.value")
-  value!: any;
 
   @Watch("value")
   onValueChanged(val: string) {
     this.stateValue = fixControlledValue(val);
   }
-
-  public stateValue: any;
 
   initData() {
     const { value, defaultValue } = this.$props;
@@ -66,6 +65,7 @@ export default class NebulaInput extends mixins(InputProps) {
     }
     this.$emit("keydown", e);
   }
+
   handleChange(e) {
     // https://github.com/vueComponent/ant-design-vue/issues/92
     if (isIE && !isIE9 && this.stateValue === e.target.value) {
@@ -102,6 +102,7 @@ export default class NebulaInput extends mixins(InputProps) {
       [`${prefixCls}-disabled`]: disabled
     };
   }
+
   renderLabeledInput(children) {
     const props = this.$props;
     let addonAfter = getComponentFromProp(this, "addonAfter");
@@ -140,6 +141,7 @@ export default class NebulaInput extends mixins(InputProps) {
       </span>
     );
   }
+
   renderLabeledIcon(children) {
     const { prefixCls, size } = this.$props;
     let prefix = getComponentFromProp(this, "prefix");
@@ -206,6 +208,7 @@ export default class NebulaInput extends mixins(InputProps) {
     }
     return this.renderLabeledIcon(<input {...inputProps} />);
   }
+
   render() {
     if (this.$props.type === "textarea") {
       const { $listeners } = this;

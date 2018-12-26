@@ -1,4 +1,4 @@
-import { Vue, Component, Prop } from "vue-property-decorator";
+import { Component, Prop, Vue } from "vue-property-decorator";
 
 @Component({
   inject: {
@@ -6,20 +6,17 @@ import { Vue, Component, Prop } from "vue-property-decorator";
   }
 })
 export default class LocaleReceiver extends Vue {
+  @Prop({ type: String })
+  componentName: string;
+  @Prop({ type: [Object, Function] })
+  defaultLocale: any;
+  @Prop({ type: Function })
+  children: any;
+  public localeData: any;
+
   constructor(props) {
     super(props);
   }
-
-  @Prop({ type: String })
-  componentName: string;
-
-  @Prop({ type: [Object, Function] })
-  defaultLocale: any;
-
-  @Prop({ type: Function })
-  children: any;
-
-  public localeData: any;
 
   render() {
     const { $scopedSlots } = this;

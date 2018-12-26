@@ -1,4 +1,5 @@
 import PropTypes from "../_util/vue-types";
+
 export default () => ({
   prefixCls: PropTypes.string.def("nebula-btn"),
   type: PropTypes.oneOf([

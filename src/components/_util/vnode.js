@@ -1,4 +1,5 @@
 import { filterEmpty, parseStyleText } from "./props-util";
+
 export function cloneVNode(vnode, deep) {
   const componentOptions = vnode.componentOptions;
   const data = vnode.data;

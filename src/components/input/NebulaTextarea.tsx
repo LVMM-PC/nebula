@@ -3,7 +3,7 @@ import InputProps from "./InputProps";
 import calculateNodeHeight from "./calculateNodeHeight";
 import hasProp from "../_util/props-util";
 import { mixins } from "vue-class-component";
-import { Component, Model, Watch, Prop } from "vue-property-decorator";
+import { Component, Model, Prop, Watch } from "vue-property-decorator";
 
 function onNextFrame(cb) {
   if (window.requestAnimationFrame) {
@@ -29,15 +29,17 @@ function fixControlledValue(value) {
 
 @Component({})
 export default class NebulaTextarea extends mixins(InputProps) {
+  @Prop({ type: [Object, Boolean] })
+  autosize?: object | boolean;
+  @Model("change.value")
+  value!: any;
+  public stateValue?: any;
+  public nextFrameActionId?: any = undefined;
+  public textareaStyles?: any = {};
+
   constructor(props) {
     super(props);
   }
-
-  @Prop({ type: [Object, Boolean] })
-  autosize?: object | boolean;
-
-  @Model("change.value")
-  value!: any;
 
   @Watch("value")
   onValueChanged(val: string) {
@@ -48,16 +50,13 @@ export default class NebulaTextarea extends mixins(InputProps) {
     this.nextFrameActionId = onNextFrame(this.resizeTextarea);
   }
 
-  public stateValue?: any;
-  public nextFrameActionId?: any = undefined;
-  public textareaStyles?: any = {};
-
   initData() {
     const { value, defaultValue } = this.$props;
     this.stateValue = fixControlledValue(
       !hasProp(this, "value") ? defaultValue : value
     );
   }
+
   created() {
     this.initData();
   }
