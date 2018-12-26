@@ -1,14 +1,14 @@
 import ref from "vue-ref";
 import contains from "../_util/Dom/contains";
 import {
-  hasProp,
+  filterEmpty,
   getComponentFromProp,
   getEvents,
-  filterEmpty
+  hasProp
 } from "../_util/props-util";
 import {
-  requestAnimationTimeout,
-  cancelAnimationTimeout
+  cancelAnimationTimeout,
+  requestAnimationTimeout
 } from "../_util/requestAnimationTimeout";
 import addEventListener from "../_util/Dom/addEventListener";
 import warning from "../_util/warning";
@@ -17,7 +17,7 @@ import { getAlignFromPlacement, getAlignPopupClassName, noop } from "./utils";
 import BaseMixin from "../_util/BaseMixin";
 import { cloneElement } from "../_util/vnode";
 import ContainerRender from "../_util/ContainerRender";
-import { Component, Prop, Vue, Model } from "vue-property-decorator";
+import { Component, Prop, Vue } from "vue-property-decorator";
 
 Vue.use(ref, { name: "ant-ref" });
 
@@ -72,108 +72,73 @@ const ALL_HANDLERS = [
   }
 })
 export default class extends Vue {
-  constructor(props) {
-    super(props);
-  }
-
   @Prop({ default: () => [], type: [String, Array] })
   action?: string | string[];
-
   @Prop({ default: () => [] })
   showAction?: any;
-
   @Prop({})
   hideAction?: any;
-
   @Prop({ default: returnEmptyString })
   getPopupClassNameFromAlign?: any;
-
   @Prop({ default: noop, type: Function })
   afterPopupVisibleChange?: any;
-
   @Prop({})
   popup?: any;
-
   @Prop({
     default: () => {}
   })
   popupStyle?: any;
-
   @Prop({ default: "rc-trigger-popup", type: String })
   prefixCls?: string;
-
   @Prop({ default: "", type: String })
   popupClassName?: string;
-
   @Prop({ type: String })
   popupPlacement?: string;
-
   @Prop({})
   builtinPlacements?: any;
-
   @Prop({ type: [String, Object] })
   popupTransitionName?: any;
-
   @Prop({})
   popupAnimation?: any;
-
   @Prop({ default: 0, type: Number })
   mouseEnterDelay?: number;
-
   @Prop({ default: 0.1, type: Number })
   mouseLeaveDelay?: number;
-
   @Prop({ type: Number })
   zIndex?: number;
-
   @Prop({ default: 0, type: Number })
   focusDelay?: number;
-
   @Prop({ default: 0.15, type: Number })
   blurDelay?: number;
-
   @Prop({ type: Function })
   getPopupContainer?: any;
-
   @Prop({ default: returnDocument, type: Function })
   getDocument?: any;
-
   @Prop({})
   forceRender?: boolean;
-
   @Prop({ type: Boolean })
   destroyPopupOnHide?: any;
-
   @Prop({ default: false, type: Boolean })
   mask?: boolean;
-
   @Prop({ default: true, type: Boolean })
   maskClosable?: boolean;
-
   @Prop({
     default: () => {},
     type: Object
   })
   popupAlign?: any;
-
   @Prop({ type: Boolean })
   popupVisible?: boolean;
-
   @Prop({ default: false, type: Boolean })
   defaultPopupVisible?: boolean;
-
   @Prop({ type: [String, Object] })
   maskTransitionName?: any;
-
   @Prop({ type: String })
   maskAnimation?: string;
-
   @Prop({ type: String })
   stretch?: string;
-
   @Prop({ type: Boolean })
   alignPoint?: boolean;
-
   public sPopupVisible;
   public point;
   public renderComponent;
@@ -188,6 +153,10 @@ export default class extends Vue {
   public popupContainer;
   public delayTimer;
   public childOriginEvents;
+
+  constructor(props) {
+    super(props);
+  }
 
   created() {
     const props = this.$props;

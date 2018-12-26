@@ -26,10 +26,9 @@ export default class NebulaRadioGroup extends Vue {
 
   @Prop({ default: "nebula-radio", type: String })
   public prefixCls?: string;
-
+  public stateValue: any = [];
   @Prop({})
   private defaultValue?: any;
-
   @Prop({
     default: "default",
     type: String,
@@ -38,19 +37,15 @@ export default class NebulaRadioGroup extends Vue {
     }
   })
   private size?: string;
-
   @Prop({
     default: () => [],
     type: Array
   })
   private options?: Array<CheckboxOptionType | string>;
-
   @Prop({ default: null, type: Boolean })
   private disabled?: boolean;
-
   @Prop({ type: String })
   private name?: string;
-
   @Prop({ default: "outline", type: String })
   private buttonStyle?: string;
 
@@ -58,8 +53,6 @@ export default class NebulaRadioGroup extends Vue {
   onValueChanged(val: any) {
     this.stateValue = val;
   }
-
-  public stateValue: any = [];
 
   created() {
     const { value, defaultValue } = this;

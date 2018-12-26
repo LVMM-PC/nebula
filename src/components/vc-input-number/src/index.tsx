@@ -129,13 +129,26 @@ export default class InputNumber extends mixins(InputNumberProps) {
   public cursorBefore?: any;
   public input?: any;
   public autoStepTimer?: any;
+  @Model("change")
+  value?: any;
+  @Prop({ default: true, type: Boolean })
+  focusOnUpDown?: boolean;
+  @Prop({ default: false, type: Boolean })
+  useTouch?: boolean;
+  @Prop({ default: "rc-input-number", type: String })
+  prefixCls?: string;
+  @Prop({ default: -MAX_SAFE_INTEGER, type: Number })
+  min?: number;
+  @Prop({ default: 1, type: [Number, String] })
+  step?: any;
+  @Prop({ default: defaultParser, type: Function })
+  parser?: any;
+  @Prop({ default: false, type: Boolean })
+  required?: boolean;
 
   constructor(props) {
     super(props);
   }
-
-  @Model("change")
-  value?: any;
 
   @Watch("value")
   handleValueChanged(val: any) {
@@ -174,21 +187,6 @@ export default class InputNumber extends mixins(InputNumberProps) {
       this.__emit("change", val);
     }
   }
-
-  @Prop({ default: true, type: Boolean })
-  focusOnUpDown?: boolean;
-  @Prop({ default: false, type: Boolean })
-  useTouch?: boolean;
-  @Prop({ default: "rc-input-number", type: String })
-  prefixCls?: string;
-  @Prop({ default: -MAX_SAFE_INTEGER, type: Number })
-  min?: number;
-  @Prop({ default: 1, type: [Number, String] })
-  step?: any;
-  @Prop({ default: defaultParser, type: Function })
-  parser?: any;
-  @Prop({ default: false, type: Boolean })
-  required?: boolean;
 
   mounted() {
     this.$nextTick(() => {

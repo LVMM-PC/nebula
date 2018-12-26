@@ -8,13 +8,13 @@ import placements from "./placements";
 import BaseMixin from "../_util/BaseMixin";
 import { getComponentFromProp } from "../_util/props-util";
 import {
-  requestAnimationTimeout,
-  cancelAnimationTimeout
+  cancelAnimationTimeout,
+  requestAnimationTimeout
 } from "../_util/requestAnimationTimeout";
 import {
-  noop,
+  getMenuIdFromSubMenuEventKey,
   loopMenuItemRecursively,
-  getMenuIdFromSubMenuEventKey
+  noop
 } from "./util";
 import getTransitionProps from "../_util/getTransitionProps";
 

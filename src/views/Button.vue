@@ -8,7 +8,8 @@
     </section>
     <section id="hoc">
       <NebulaButton
-        @click="handleHocClick">{{ hocLabel }}</NebulaButton>
+        @click="handleHocClick">{{ hocLabel }}
+      </NebulaButton>
     </section>
     <section>
       <NebulaButton @click="handleClick">{{ label }}</NebulaButton>
@@ -18,9 +19,9 @@
     </section>
     <section>
       <NebulaButton
-        type="primary"
+        icon="search"
         shape="circle"
-        icon="search"/>
+        type="primary"/>
     </section>
     <section>
       <NebulaButton
@@ -37,6 +38,7 @@
 <script>
 import NebulaButton from "../components/button/NebulaButton";
 import Vue from "vue";
+
 const DefaultButton = {
   data() {
     return {

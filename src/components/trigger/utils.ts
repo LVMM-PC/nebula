@@ -31,4 +31,5 @@ export function getAlignPopupClassName(
   }
   return "";
 }
+
 export function noop() {}

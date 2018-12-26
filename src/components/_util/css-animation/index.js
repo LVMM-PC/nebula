@@ -1,8 +1,8 @@
 import Event from "./Event";
 import classes from "component-classes";
 import {
-  requestAnimationTimeout,
-  cancelAnimationTimeout
+  cancelAnimationTimeout,
+  requestAnimationTimeout
 } from "../requestAnimationTimeout";
 
 const isCssAnimationSupported = Event.endEvents.length !== 0;

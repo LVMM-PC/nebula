@@ -4,78 +4,59 @@ import Option from "../vc-select/Option";
 import LocaleReceiver from "../locale-provider/LocaleReceiver";
 import defaultLocale from "../locale-provider/default";
 import {
+  filterEmpty,
   getComponentFromProp,
-  getOptionProps,
-  filterEmpty
+  getOptionProps
 } from "../_util/props-util";
 import { mixins } from "vue-class-component";
-import { Component, Prop, Vue, Model } from "vue-property-decorator";
+import { Component, Model, Prop, Vue } from "vue-property-decorator";
 
 @Component({})
 export class AbstractSelectProps extends Vue {
+  @Prop({ type: String })
+  prefixCls?: string;
+  @Prop({ type: String })
+  size?: "small" | "large" | "default";
+  @Prop()
+  notFoundContent?: any;
+  @Prop({ type: String })
+  transitionName?: string;
+  @Prop({ type: String })
+  choiceTransitionName?: string;
+  @Prop({ type: Boolean })
+  showSearch?: boolean;
+  @Prop({ type: Boolean })
+  allowClear?: boolean;
+  @Prop({ type: Boolean })
+  disabled?: boolean;
+  @Prop({ type: Number })
+  tabIndex?: number;
+  @Prop()
+  placeholder?: any;
+  @Prop({ type: Boolean })
+  defaultActiveFirstOption?: boolean;
+  @Prop({ type: String })
+  dropdownClassName?: string;
+  @Prop()
+  dropdownStyle?: any;
+  @Prop()
+  dropdownMenuStyle?: any;
+  @Prop({ type: Boolean })
+  dropdownMatchSelectWidth?: boolean;
+  @Prop({})
+  filterOption?: boolean | ((inputValue: string, option: any) => any);
+  @Prop({ type: Boolean })
+  autoFocus?: boolean;
+  @Prop({ type: Boolean })
+  backfill?: boolean;
+  @Prop({ default: true, type: Boolean })
+  showArrow?: boolean;
+  @Prop({ type: Function })
+  getPopupContainer?: (triggerNode: Element) => HTMLElement;
+
   constructor(props) {
     super(props);
   }
-
-  @Prop({ type: String })
-  prefixCls?: string;
-
-  @Prop({ type: String })
-  size?: "small" | "large" | "default";
-
-  @Prop()
-  notFoundContent?: any;
-
-  @Prop({ type: String })
-  transitionName?: string;
-
-  @Prop({ type: String })
-  choiceTransitionName?: string;
-
-  @Prop({ type: Boolean })
-  showSearch?: boolean;
-
-  @Prop({ type: Boolean })
-  allowClear?: boolean;
-
-  @Prop({ type: Boolean })
-  disabled?: boolean;
-
-  @Prop({ type: Number })
-  tabIndex?: number;
-
-  @Prop()
-  placeholder?: any;
-
-  @Prop({ type: Boolean })
-  defaultActiveFirstOption?: boolean;
-
-  @Prop({ type: String })
-  dropdownClassName?: string;
-
-  @Prop()
-  dropdownStyle?: any;
-
-  @Prop()
-  dropdownMenuStyle?: any;
-
-  @Prop({ type: Boolean })
-  dropdownMatchSelectWidth?: boolean;
-
-  @Prop({})
-  filterOption?: boolean | ((inputValue: string, option: any) => any);
-
-  @Prop({ type: Boolean })
-  autoFocus?: boolean;
-
-  @Prop({ type: Boolean })
-  backfill?: boolean;
-
-  @Prop({ default: true, type: Boolean })
-  showArrow?: boolean;
-
-  @Prop({ type: Function })
-  getPopupContainer?: (triggerNode: Element) => HTMLElement;
 }
 
 export interface LabeledValue {
@@ -138,10 +119,7 @@ export class SelectProps extends mixins(AbstractSelectProps) {
 
 @Component({})
 export default class Select extends mixins(SelectProps) {
-  constructor(props) {
-    super(props);
-  }
-
+  static SECRET_COMBOBOX_MODE_DO_NOT_USE = "SECRET_COMBOBOX_MODE_DO_NOT_USE";
   @Prop({ default: "nebula-select", type: String })
   prefixCls?: string;
 
@@ -157,7 +135,9 @@ export default class Select extends mixins(SelectProps) {
   @Model("change")
   value!: any;
 
-  static SECRET_COMBOBOX_MODE_DO_NOT_USE = "SECRET_COMBOBOX_MODE_DO_NOT_USE";
+  constructor(props) {
+    super(props);
+  }
 
   created() {
     warning(

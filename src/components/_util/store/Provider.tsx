@@ -1,4 +1,5 @@
 import { storeShape } from "./PropTypes";
+
 export default {
   name: "StoreProvider",
   props: {

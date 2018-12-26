@@ -1,6 +1,6 @@
 import { filterEmpty } from "../_util/props-util";
 
-import { Prop, Vue, Component, Watch, Model } from "vue-property-decorator";
+import { Component, Prop, Vue } from "vue-property-decorator";
 
 @Component({})
 export default class NebulaInputGroup extends Vue {

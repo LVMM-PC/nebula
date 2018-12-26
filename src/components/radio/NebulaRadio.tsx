@@ -11,39 +11,30 @@ function noop() {}
   }
 })
 export default class NebulaRadio extends Vue {
+  @Model("change", { default: undefined })
+  checked!: boolean;
+  @Prop({ default: "nebula-radio", type: String })
+  public prefixCls?: string;
+  @Prop({ type: Boolean })
+  private defaultChecked?: boolean;
+  @Prop({ type: Boolean })
+  private disabled?: boolean;
+  @Prop({ type: Boolean })
+  private isGroup?: boolean;
+  @Prop({})
+  private value?: any;
+  @Prop({ type: String })
+  private name?: string;
+  @Prop({ type: String })
+  private id?: string;
+  @Prop({ type: Boolean })
+  private autoFocus?: boolean;
+  @Prop({ default: "radio" })
+  private type?: string;
+
   constructor(props: any) {
     super(props);
   }
-
-  @Model("change", { default: undefined })
-  checked!: boolean;
-
-  @Prop({ default: "nebula-radio", type: String })
-  public prefixCls?: string;
-
-  @Prop({ type: Boolean })
-  private defaultChecked?: boolean;
-
-  @Prop({ type: Boolean })
-  private disabled?: boolean;
-
-  @Prop({ type: Boolean })
-  private isGroup?: boolean;
-
-  @Prop({})
-  private value?: any;
-
-  @Prop({ type: String })
-  private name?: string;
-
-  @Prop({ type: String })
-  private id?: string;
-
-  @Prop({ type: Boolean })
-  private autoFocus?: boolean;
-
-  @Prop({ default: "radio" })
-  private type?: string;
 
   handleChange(event: { target: HTMLInputElement }) {
     const targetChecked = event.target.checked;

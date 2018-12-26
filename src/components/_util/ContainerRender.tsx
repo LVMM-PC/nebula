@@ -1,38 +1,29 @@
-import PropTypes from "./vue-types";
-import { Component, Model, Prop, Vue, Watch } from "vue-property-decorator";
+import { Component, Prop, Vue } from "vue-property-decorator";
 
 @Component({})
 export default class Checkbox extends Vue {
+  @Prop({ default: true, type: Boolean })
+  autoMount?: boolean;
+  @Prop({ default: true, type: Boolean })
+  autoDestroy?: boolean;
+  @Prop({ type: Boolean })
+  visible?: boolean;
+  @Prop({ default: false, type: Boolean })
+  forceRender?: boolean;
+  @Prop({})
+  parent?: any;
+  @Prop({ type: Function, required: true })
+  getComponent?: any;
+  @Prop({ type: Function, required: true })
+  getContainer?: any;
+  @Prop({ type: Function, required: true })
+  children?: any;
+  public container;
+  public _component;
+
   constructor(props) {
     super(props);
   }
-
-  @Prop({ default: true, type: Boolean })
-  autoMount?: boolean;
-
-  @Prop({ default: true, type: Boolean })
-  autoDestroy?: boolean;
-
-  @Prop({ type: Boolean })
-  visible?: boolean;
-
-  @Prop({ default: false, type: Boolean })
-  forceRender?: boolean;
-
-  @Prop({})
-  parent?: any;
-
-  @Prop({ type: Function, required: true })
-  getComponent?: any;
-
-  @Prop({ type: Function, required: true })
-  getContainer?: any;
-
-  @Prop({ type: Function, required: true })
-  children?: any;
-
-  public container;
-  public _component;
 
   mounted() {
     if (this.autoMount) {

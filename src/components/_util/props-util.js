@@ -165,6 +165,7 @@ export function getEvents(child) {
   }
   return { ...events };
 }
+
 export function getClass(ele) {
   let data = {};
   if (ele.data) {
@@ -183,6 +184,7 @@ export function getClass(ele) {
   }
   return cls;
 }
+
 export function getStyle(ele, camel) {
   let data = {};
   if (ele.data) {
@@ -213,6 +215,7 @@ export function isEmptyElement(ele) {
 export function filterEmpty(children = []) {
   return children.filter(c => c.tag || (c.text && c.text.trim() !== ""));
 }
+
 const initDefaultProps = (propTypes, defaultProps) => {
   Object.keys(defaultProps).forEach(k => {
     if (propTypes[k]) {

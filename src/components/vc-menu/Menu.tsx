@@ -1,5 +1,5 @@
 import PropTypes from "../_util/vue-types";
-import { Provider, create } from "../_util/store";
+import { create, Provider } from "../_util/store";
 import { default as SubPopupMenu, getActiveKey } from "./SubPopupMenu";
 import BaseMixin from "../_util/BaseMixin";
 import hasProp, { getOptionProps } from "../_util/props-util";

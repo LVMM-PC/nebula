@@ -1,11 +1,11 @@
-import { Prop, Component, Vue, Watch } from "vue-property-decorator";
+import { Component, Prop, Vue, Watch } from "vue-property-decorator";
 import Wave from "../_util/wave";
 import Icon from "../icon";
+import buttonTypes from "./buttonTypes";
+import { mixins } from "vue-class-component";
 
 const rxTwoCNChar = /^[\u4e00-\u9fa5]{2}$/;
 const isTwoCNChar = rxTwoCNChar.test.bind(rxTwoCNChar);
-import buttonTypes from "./buttonTypes";
-import { mixins } from "vue-class-component";
 
 const props = buttonTypes();
 
@@ -18,39 +18,30 @@ type loadingType = boolean | { delay?: number };
 
 @Component({})
 export class BaseButtonProps extends Vue {
+  @Prop({ default: "nebula-btn", type: String })
+  prefixCls?: string;
+  @Prop({ type: String })
+  type?: ButtonType;
+  @Prop({ default: "button", type: String })
+  htmlType?: ButtonHTMLType;
+  @Prop({ type: String })
+  icon?: string;
+  @Prop({ type: String })
+  shape?: ButtonShape;
+  @Prop({ type: String })
+  size?: ButtonSize;
+  @Prop({ type: [Boolean, Object] })
+  loading?: loadingType;
+  @Prop({ type: Boolean })
+  disabled?: boolean;
+  @Prop({ type: Boolean })
+  ghost?: boolean;
+  @Prop({ type: Boolean })
+  block?: boolean;
+
   constructor(props) {
     super(props);
   }
-
-  @Prop({ default: "nebula-btn", type: String })
-  prefixCls?: string;
-
-  @Prop({ type: String })
-  type?: ButtonType;
-
-  @Prop({ default: "button", type: String })
-  htmlType?: ButtonHTMLType;
-
-  @Prop({ type: String })
-  icon?: string;
-
-  @Prop({ type: String })
-  shape?: ButtonShape;
-
-  @Prop({ type: String })
-  size?: ButtonSize;
-
-  @Prop({ type: [Boolean, Object] })
-  loading?: loadingType;
-
-  @Prop({ type: Boolean })
-  disabled?: boolean;
-
-  @Prop({ type: Boolean })
-  ghost?: boolean;
-
-  @Prop({ type: Boolean })
-  block?: boolean;
 }
 
 @Component({
@@ -58,24 +49,7 @@ export class BaseButtonProps extends Vue {
   __NEBULA_BUTTON: true
 })
 export default class NebulaButton extends mixins(BaseButtonProps) {
-  constructor(props) {
-    super(props);
-  }
-
   static __NEBULA_BUTTON: any = true;
-
-  @Watch("loading")
-  onLoadingChanged(val: loadingType) {
-    clearTimeout(this.delayTimeout);
-    if (typeof val !== "boolean" && val && val.delay) {
-      this.delayTimeout = setTimeout(() => {
-        this.sLoading = !!val;
-      }, val.delay);
-    } else {
-      this.sLoading = !!val;
-    }
-  }
-
   public delayTimeout?: any;
   public sizeMap?: any = {
     large: "lg",
@@ -84,27 +58,8 @@ export default class NebulaButton extends mixins(BaseButtonProps) {
   public sLoading?: any = !!this.loading;
   public hasTwoCNChar?: any = false;
 
-  initData() {}
-
-  created() {
-    this.initData();
-  }
-
-  mounted() {
-    this.fixTwoCNChar();
-  }
-
-  updated() {
-    this.fixTwoCNChar();
-  }
-
-  beforeDestroy() {
-    // if (this.timeout) {
-    //   clearTimeout(this.timeout)
-    // }
-    if (this.delayTimeout) {
-      clearTimeout(this.delayTimeout);
-    }
+  constructor(props) {
+    super(props);
   }
 
   get classes() {
@@ -130,6 +85,41 @@ export default class NebulaButton extends mixins(BaseButtonProps) {
       [`${prefixCls}-two-chinese-chars`]: hasTwoCNChar,
       [`${prefixCls}-block`]: block
     };
+  }
+
+  @Watch("loading")
+  onLoadingChanged(val: loadingType) {
+    clearTimeout(this.delayTimeout);
+    if (typeof val !== "boolean" && val && val.delay) {
+      this.delayTimeout = setTimeout(() => {
+        this.sLoading = !!val;
+      }, val.delay);
+    } else {
+      this.sLoading = !!val;
+    }
+  }
+
+  initData() {}
+
+  created() {
+    this.initData();
+  }
+
+  mounted() {
+    this.fixTwoCNChar();
+  }
+
+  updated() {
+    this.fixTwoCNChar();
+  }
+
+  beforeDestroy() {
+    // if (this.timeout) {
+    //   clearTimeout(this.timeout)
+    // }
+    if (this.delayTimeout) {
+      clearTimeout(this.delayTimeout);
+    }
   }
 
   fixTwoCNChar() {

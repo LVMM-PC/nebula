@@ -1,9 +1,9 @@
 import { alignElement, alignPoint } from "dom-align";
 import addEventListener from "../_util/Dom/addEventListener";
-import { isWindow, buffer, isSamePoint } from "./util";
+import { buffer, isSamePoint, isWindow } from "./util";
 import { cloneElement } from "../_util/vnode.js";
 import clonedeep from "lodash/cloneDeep";
-import { Vue, Component, Prop } from "vue-property-decorator";
+import { Component, Prop, Vue } from "vue-property-decorator";
 
 function getElement(func) {
   if (typeof func !== "function" || !func) return null;

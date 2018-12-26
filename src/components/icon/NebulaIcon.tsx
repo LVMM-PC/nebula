@@ -2,24 +2,20 @@ import { Component, Prop, Vue } from "vue-property-decorator";
 
 @Component({})
 export default class NebulaIcon extends Vue {
+  @Prop({ default: "nebula-icon", type: String })
+  prefixCls?: string;
+  @Prop({ type: String })
+  type?: string;
+  @Prop({ type: String })
+  title?: string;
+  @Prop({ type: Boolean })
+  spin?: boolean;
+  clicked: any;
+  timeout: any;
+
   constructor(props) {
     super(props);
   }
-
-  @Prop({ default: "nebula-icon", type: String })
-  prefixCls?: string;
-
-  @Prop({ type: String })
-  type?: string;
-
-  @Prop({ type: String })
-  title?: string;
-
-  @Prop({ type: Boolean })
-  spin?: boolean;
-
-  clicked: any;
-  timeout: any;
 
   classes() {
     const { prefixCls, type, spin } = this;

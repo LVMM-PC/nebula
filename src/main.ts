@@ -8,18 +8,18 @@ import {
   NebulaCheckbox,
   NebulaCheckboxGroup,
   NebulaIcon,
+  NebulaInput,
+  NebulaInputGroup,
+  NebulaInputNumber,
+  NebulaInputSearch,
   NebulaRadio,
   NebulaRadioButton,
   NebulaRadioGroup,
   NebulaSelect,
-  NebulaSelectOption,
   NebulaSelectOptGroup,
+  NebulaSelectOption,
   NebulaSwitch,
-  NebulaInput,
-  NebulaInputSearch,
-  NebulaInputGroup,
-  NebulaTextarea,
-  NebulaInputNumber
+  NebulaTextarea
 } from "./index";
 
 import router from "./router";

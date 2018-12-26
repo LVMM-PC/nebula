@@ -69,8 +69,8 @@
     }
 
     &:before {
-      content: '\e61d';
-      transition: transform .3s;
+      content: "\e61d";
+      transition: transform 0.3s;
     }
   }
 
@@ -87,7 +87,7 @@
     // strange align fix for chrome but works
     // https://gw.alipayobjects.com/zos/rmsportal/VFTfKXJuogBAXcvfAUWJ.gif
     border-top-width: @border-width-base + 0.02px;
-    transition: all .3s @ease-in-out;
+    transition: all 0.3s @ease-in-out;
 
     &:hover {
       .hover;
@@ -128,6 +128,7 @@
   &-disabled &-selection {
     background: @input-disabled-bg;
     cursor: not-allowed;
+
     &:hover,
     &:focus,
     &:active {
@@ -146,6 +147,7 @@
     background: @background-color-base;
     color: #aaa;
     padding-right: 10px;
+
     &__remove {
       display: none;
     }
@@ -165,7 +167,7 @@
     line-height: @input-height-base - 2px;
     // https://github.com/ant-design/ant-design/issues/3481#issuecomment-254721026
     &:after {
-      content: '.';
+      content: ".";
       visibility: hidden;
       pointer-events: none;
       display: inline-block;
@@ -175,20 +177,25 @@
 
   &-lg {
     font-size: @font-size-lg;
+
     .@{select-prefix-cls}-selection--single {
       height: @input-height-lg;
     }
+
     .@{select-prefix-cls}-selection__rendered {
       line-height: @input-height-lg - 2px;
     }
+
     .@{select-prefix-cls}-selection--multiple {
       min-height: @input-height-lg;
+
       .@{select-prefix-cls}-selection__rendered {
         li {
           height: @input-height-lg - 8px;
           line-height: @input-height-lg - 8px;
         }
       }
+
       .@{select-prefix-cls}-selection__clear {
         top: @input-height-lg / 2;
       }
@@ -199,22 +206,27 @@
     .@{select-prefix-cls}-selection--single {
       height: @input-height-sm;
     }
+
     .@{select-prefix-cls}-selection__rendered {
       line-height: @input-height-sm - 2px;
       margin: 0 @control-padding-horizontal-sm - 1px;
     }
+
     .@{select-prefix-cls}-selection--multiple {
       min-height: @input-height-sm;
+
       .@{select-prefix-cls}-selection__rendered {
         li {
           height: @input-height-sm - 8px;
           line-height: @input-height-sm - 10px;
         }
       }
+
       .@{select-prefix-cls}-selection__clear {
         top: @input-height-sm / 2;
       }
     }
+
     .@{select-prefix-cls}-selection__clear,
     .@{select-prefix-cls}-arrow {
       right: @control-padding-horizontal-sm;
@@ -224,6 +236,7 @@
   &-disabled &-selection__choice__remove {
     color: @disabled-color;
     cursor: default;
+
     &:hover {
       color: @disabled-color;
     }
@@ -235,7 +248,8 @@
   }
 
   &-selection__placeholder,
-  &-search__field__placeholder { // for TreeSelect compatibility
+  &-search__field__placeholder {
+    // for TreeSelect compatibility
     position: absolute;
     top: 50%;
     left: 0;
@@ -301,6 +315,7 @@
       width: auto;
       padding: 0;
       max-width: 100%;
+
       .@{select-prefix-cls}-search__field {
         max-width: 100%;
         width: 0.75em;
@@ -318,7 +333,8 @@
     }
 
     > ul > li,
-    .@{select-prefix-cls}-selection__rendered > ul > li {  // for tree-select
+    .@{select-prefix-cls}-selection__rendered > ul > li {
+      // for tree-select
       margin-top: 3px;
       height: @input-height-base - 8px;
       line-height: @input-height-base - 8px - 2px;
@@ -335,8 +351,9 @@
       max-width: 99%;
       position: relative;
       overflow: hidden;
-      transition: padding .3s @ease-in-out;
+      transition: padding 0.3s @ease-in-out;
       padding: 0 20px 0 10px;
+
       &__disabled {
         padding: 0 10px;
       }
@@ -348,7 +365,7 @@
       overflow: hidden;
       text-overflow: ellipsis;
       max-width: 100%;
-      transition: margin .3s @ease-in-out;
+      transition: margin 0.3s @ease-in-out;
     }
 
     .@{select-prefix-cls}-selection__choice__remove {
@@ -358,14 +375,16 @@
       cursor: pointer;
       display: inline-block;
       font-weight: bold;
-      transition: all .3s;
+      transition: all 0.3s;
       font-size: @font-size-sm;
       .iconfont-size-under-12px(10px);
       position: absolute;
       right: 4px;
+
       &:hover {
         color: #404040;
       }
+
       &:before {
         content: "\e633";
       }
@@ -388,6 +407,7 @@
     .@{select-prefix-cls}-arrow:before {
       transform: rotate(180deg);
     }
+
     .@{select-prefix-cls}-selection {
       .active();
     }
@@ -397,24 +417,28 @@
     .@{select-prefix-cls}-arrow {
       display: none;
     }
+
     .@{select-prefix-cls}-search--inline {
       height: 100%;
       width: 100%;
       float: none;
     }
+
     .@{select-prefix-cls}-search__field__wrap {
       width: 100%;
       height: 100%;
     }
+
     .@{select-prefix-cls}-search__field {
       width: 100%;
       height: 100%;
       position: relative;
       z-index: 1;
-      transition: all .3s @ease-in-out;
+      transition: all 0.3s @ease-in-out;
       box-shadow: none;
     }
   }
+
   &-combobox&-allow-clear &-selection:hover &-selection__rendered {
     margin-right: 20px; // In case that clear button will overlap content
   }

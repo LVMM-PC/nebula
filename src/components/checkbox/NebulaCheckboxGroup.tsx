@@ -24,16 +24,14 @@ export default class NebulaCheckboxGroup extends Vue {
 
   @Prop({ default: "nebula-checkbox", type: String })
   public prefixCls?: string;
-
+  public stateValue: Array<CheckboxValueType> = [];
   @Prop({ default: null, type: Boolean })
   private disabled?: boolean;
-
   @Prop({
     default: undefined,
     type: Array
   })
   private defaultValue?: Array<CheckboxValueType>;
-
   @Prop({
     default: () => [],
     type: Array
@@ -44,8 +42,6 @@ export default class NebulaCheckboxGroup extends Vue {
   onValueChanged(val: any) {
     this.stateValue = val;
   }
-
-  public stateValue: Array<CheckboxValueType> = [];
 
   created() {
     const { value, defaultValue } = this;

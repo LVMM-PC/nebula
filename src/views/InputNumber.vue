@@ -2,8 +2,8 @@
   <div>
     <div>
       <nebula-input-number
-        :min="1"
         :max="10"
+        :min="1"
         v-model="value"
         auto-focus
         @change="onChange"/>
@@ -11,29 +11,29 @@
     </div>
     <div>
       <nebula-input-number
-        :min="1"
-        :max="100000"
         :default-value="3"
+        :max="100000"
+        :min="1"
         size="large"
         @change="onChange"/>
       <nebula-input-number
-        :min="1"
-        :max="100000"
         :default-value="3"
+        :max="100000"
+        :min="1"
         @change="onChange"/>
       <nebula-input-number
-        :min="1"
-        :max="100000"
         :default-value="3"
+        :max="100000"
+        :min="1"
         size="small"
         @change="onChange"/>
     </div>
     <div>
       <nebula-input-number
-        :min="1"
-        :max="10"
+        :default-value="3"
         :disabled="disabled"
-        :default-value="3"/>
+        :max="10"
+        :min="1"/>
       <div style="marginTop:20px">
         <nebula-button
           type="primary"
@@ -43,8 +43,8 @@
     </div>
     <div>
       <nebula-input-number
-        :min="0"
         :max="10"
+        :min="0"
         :step="0.01"
         @change="onChange"/>
     </div>
@@ -57,9 +57,9 @@
       />
       <nebula-input-number
         :default-value="100"
-        :min="0"
-        :max="100"
         :formatter="value => `${value}%`"
+        :max="100"
+        :min="0"
         :parser="value => value.replace('%', '')"
         @change="onChange"
       />

@@ -45,7 +45,7 @@ import { Component, Model, Prop, Vue, Watch } from "vue-property-decorator";
 export default class VcSwitch extends Vue {
   @Model("change", { default: false })
   checked!: boolean;
-
+  public stateChecked: any;
   @Prop({ default: false, type: Boolean })
   private disabled?: boolean;
 
@@ -53,8 +53,6 @@ export default class VcSwitch extends Vue {
   onCheckedChanged(val: boolean | number) {
     this.stateChecked = val;
   }
-
-  public stateChecked: any;
 
   setChecked(checked) {
     if (this.disabled) {

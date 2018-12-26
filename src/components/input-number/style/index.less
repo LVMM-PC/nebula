@@ -25,9 +25,11 @@
     display: block;
     width: 100%;
     font-weight: bold;
+
     &:active {
       background: #f4f4f4;
     }
+
     &:hover &-up-inner,
     &:hover &-down-inner {
       color: @primary-5;
@@ -58,9 +60,11 @@
 
   &-disabled {
     .disabled();
+
     .@{input-number-prefix-cls}-input {
       cursor: not-allowed;
     }
+
     .@{input-number-prefix-cls}-handler-wrap {
       display: none;
     }
@@ -121,11 +125,13 @@
 
   &-handler-up {
     cursor: pointer;
+
     &-inner {
       top: 50%;
       margin-top: -5px;
       text-align: center;
     }
+
     &:hover {
       height: 60% !important;
     }
@@ -135,11 +141,13 @@
     border-top: @border-width-base @border-style-base @border-color-base;
     top: 0;
     cursor: pointer;
+
     &-inner {
       top: 50%;
       margin-top: -6px;
       text-align: center;
     }
+
     &:hover {
       height: 60% !important;
     }

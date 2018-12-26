@@ -1,16 +1,15 @@
-import { Component, Vue, Prop } from "vue-property-decorator";
+import { Component, Prop, Vue } from "vue-property-decorator";
 
 @Component({})
 export default class extends Vue {
+  @Prop({ type: Boolean })
+  visible?: boolean;
+  @Prop({ type: String })
+  hiddenClassName?: string;
+
   constructor(props) {
     super(props);
   }
-
-  @Prop({ type: Boolean })
-  visible?: boolean;
-
-  @Prop({ type: String })
-  hiddenClassName?: string;
 
   render() {
     const { hiddenClassName, visible } = this.$props;

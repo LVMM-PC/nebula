@@ -4,6 +4,7 @@ import { getOptionProps } from "./props-util";
 function getDisplayName(WrappedComponent) {
   return WrappedComponent.name || "Component";
 }
+
 export default function wrapWithConnect(WrappedComponent) {
   const tempProps = WrappedComponent.props || {};
   const methods = WrappedComponent.methods || {};

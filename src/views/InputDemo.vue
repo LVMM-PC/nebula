@@ -4,26 +4,26 @@
       <nebula-input placeholder="Basic usage"/>
     </div>
     <div>
-      <nebula-textarea 
-        placeholder="Autosize height based on content lines" 
-        autosize/>
+      <nebula-textarea
+        autosize
+        placeholder="Autosize height based on content lines"/>
       <div style="margin: 24px 0"/>
-      <nebula-textarea 
+      <nebula-textarea
         :autosize="{ minRows: 2, maxRows: 6 }"
         placeholder="Autosize height with minimum and maximum number of lines"/>
     </div>
     <div class="components-input-demo-presuffix">
-      <nebula-input 
-        ref="userNameInput" 
-        v-model="userName" 
+      <nebula-input
+        ref="userNameInput"
+        v-model="userName"
         placeholder="Basic usage">
-        <nebula-icon 
-          slot="prefix" 
+        <nebula-icon
+          slot="prefix"
           type="user"/>
-        <nebula-icon 
-          v-if="userName" 
-          slot="suffix" 
-          type="close-circle" 
+        <nebula-icon
+          v-if="userName"
+          slot="suffix"
+          type="close-circle"
           @click="emitEmpty"/>
       </nebula-input>
     </div>
@@ -35,75 +35,75 @@
       />
       <br><br>
       <nebula-input-search
-        placeholder="input search text"
         enter-button
+        placeholder="input search text"
         @search="onSearch"
       />
       <br><br>
-      <nebula-input-search 
-        placeholder="input search text" 
-        enter-button="Search" 
-        size="large" 
+      <nebula-input-search
+        enter-button="Search"
+        placeholder="input search text"
+        size="large"
         @search="onSearch"/>
       <br><br>
-      <nebula-input-search 
-        placeholder="input search text" 
-        size="large" 
+      <nebula-input-search
+        placeholder="input search text"
+        size="large"
         @search="onSearch">
         <nebula-button slot="enterButton">Custom</nebula-button>
       </nebula-input-search>
     </div>
     <div class="components-input-demo-size">
-      <nebula-input 
-        size="large" 
-        placeholder="large size"/>
+      <nebula-input
+        placeholder="large size"
+        size="large"/>
       <nebula-input placeholder="default size"/>
-      <nebula-input 
-        size="small" 
-        placeholder="small size"/>
+      <nebula-input
+        placeholder="small size"
+        size="small"/>
     </div>
     <div>
       <nebula-input-group size="large">
-        <nebula-input default-value="0571" />
-        <nebula-input default-value="26888888" />
+        <nebula-input default-value="0571"/>
+        <nebula-input default-value="26888888"/>
       </nebula-input-group>
-      <br >
+      <br>
       <nebula-input-group compact>
-        <nebula-input 
-          style="width: 20%" 
-          default-value="0571" />
-        <nebula-input 
-          style="width: 30%" 
-          default-value="26888888" />
+        <nebula-input
+          default-value="0571"
+          style="width: 20%"/>
+        <nebula-input
+          default-value="26888888"
+          style="width: 30%"/>
       </nebula-input-group>
-      <br >
+      <br>
       <nebula-input-group compact>
         <nebula-select default-value="Zhejiang">
           <nebula-select-option value="Zhejiang">Zhejiang</nebula-select-option>
           <nebula-select-option value="Jiangsu">Jiangsu</nebula-select-option>
         </nebula-select>
-        <nebula-input 
-          style="width: 50%" 
-          default-value="Xihu District, Hangzhou" />
+        <nebula-input
+          default-value="Xihu District, Hangzhou"
+          style="width: 50%"/>
       </nebula-input-group>
-      <br >
+      <br>
       <nebula-input-group compact>
         <nebula-select default-value="Option1">
           <nebula-select-option value="Option1">Option1</nebula-select-option>
           <nebula-select-option value="Option2">Option2</nebula-select-option>
         </nebula-select>
-        <nebula-input 
-          style="width: 50%" 
-          default-value="input content" />
+        <nebula-input
+          default-value="input content"
+          style="width: 50%"/>
       </nebula-input-group>
-      <br >
+      <br>
       <nebula-input-group compact>
-        <nebula-input 
-          style="width: 50%" 
-          default-value="input content" />
+        <nebula-input
+          default-value="input content"
+          style="width: 50%"/>
           <!--<nebula-date-picker />-->
       </nebula-input-group>
-      <br >
+      <br>
       <nebula-input-group compact>
         <nebula-select default-value="Option1-1">
           <nebula-select-option value="Option1-1">Option1-1</nebula-select-option>
@@ -114,24 +114,24 @@
           <nebula-select-option value="Option2-2">Option2-2</nebula-select-option>
         </nebula-select>
       </nebula-input-group>
-      <br >
+      <br>
       <nebula-input-group compact>
         <nebula-select default-value="1">
           <nebula-select-option value="1">Between</nebula-select-option>
           <nebula-select-option value="2">Except</nebula-select-option>
         </nebula-select>
-        <nebula-input 
-          style=" width: 100px; text-align: center" 
-          placeholder="Minimum" />
-        <nebula-input 
-          style=" width: 30px; border-left: 0; pointer-events: none; backgroundColor: #fff" 
-          placeholder="~" 
-          disabled />
-        <nebula-input 
-          style="width: 100px; text-align: center; border-left: 0" 
-          placeholder="Maximum" />
+        <nebula-input
+          placeholder="Minimum"
+          style=" width: 100px; text-align: center"/>
+        <nebula-input
+          disabled
+          placeholder="~"
+          style=" width: 30px; border-left: 0; pointer-events: none; backgroundColor: #fff"/>
+        <nebula-input
+          placeholder="Maximum"
+          style="width: 100px; text-align: center; border-left: 0"/>
       </nebula-input-group>
-      <br >
+      <br>
       <nebula-input-group compact>
         <nebula-select default-value="Sign Up">
           <nebula-select-option value="Sign Up">Sign Up</nebula-select-option>
@@ -144,11 +144,11 @@
           placeholder="Email"
         />-->
       </nebula-input-group>
-      <br >
+      <br>
       <nebula-input-group compact>
-        <nebula-select 
-          style="width: 30%" 
-          default-value="Home">
+        <nebula-select
+          default-value="Home"
+          style="width: 30%">
           <nebula-select-option value="Home">Home</nebula-select-option>
           <nebula-select-option value="Company">Company</nebula-select-option>
         </nebula-select>
@@ -156,29 +156,29 @@
       </nebula-input-group>
     </div>
     <div>
-      <nebula-textarea 
-        :rows="4" 
+      <nebula-textarea
+        :rows="4"
         placeholder="Basic usage"/>
     </div>
     <div>
       <div style="margin-bottom: 16px">
-        <nebula-input 
-          addon-before="Http://" 
-          addon-after=".com" 
-          default-value="mysite" />
+        <nebula-input
+          addon-after=".com"
+          addon-before="Http://"
+          default-value="mysite"/>
       </div>
       <div style="margin-bottom: 16px">
         <nebula-input default-value="mysite">
-          <nebula-select 
-            slot="addonBefore" 
-            default-value="Http://" 
+          <nebula-select
+            slot="addonBefore"
+            default-value="Http://"
             style="width: 90px">
             <nebula-select-option value="Http://">Http://</nebula-select-option>
             <nebula-select-option value="Https://">Https://</nebula-select-option>
           </nebula-select>
-          <nebula-select 
-            slot="addonAfter" 
-            default-value=".com" 
+          <nebula-select
+            slot="addonAfter"
+            default-value=".com"
             style="width: 80px">
             <nebula-select-option value=".com">.com</nebula-select-option>
             <nebula-select-option value=".jp">.jp</nebula-select-option>
@@ -189,8 +189,8 @@
       </div>
       <div style="margin-bottom: 16px">
         <nebula-input default-value="mysite">
-          <nebula-icon 
-            slot="addonAfter" 
+          <nebula-icon
+            slot="addonAfter"
             type="setting"/>
         </nebula-input>
       </div>

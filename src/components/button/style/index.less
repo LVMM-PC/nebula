@@ -38,6 +38,7 @@
     .@{btn-prefix-cls}-group &:first-child {
       &:not(:last-child) {
         border-right-color: @btn-group-border;
+
         &[disabled] {
           border-right-color: @btn-default-border;
         }
@@ -47,6 +48,7 @@
     .@{btn-prefix-cls}-group &:last-child:not(:first-child),
     .@{btn-prefix-cls}-group & + & {
       border-left-color: @btn-group-border;
+
       &[disabled] {
         border-left-color: @btn-default-border;
       }
@@ -78,16 +80,16 @@
     right: -1px;
     background: #fff;
     opacity: 0.35;
-    content: '';
+    content: "";
     border-radius: inherit;
     z-index: 1;
-    transition: opacity .2s;
+    transition: opacity 0.2s;
     pointer-events: none;
     display: none;
   }
 
   .@{iconfont-css-prefix} {
-    transition: margin-left .3s @ease-in-out;
+    transition: margin-left 0.3s @ease-in-out;
   }
 
   &&-loading:before {
@@ -98,6 +100,7 @@
     padding-left: 29px;
     pointer-events: none;
     position: relative;
+
     .@{iconfont-css-prefix} {
       margin-left: -14px;
     }
@@ -105,6 +108,7 @@
 
   &-sm&-loading:not(&-circle):not(&-circle-outline):not(&-icon-only) {
     padding-left: 24px;
+
     .@{iconfont-css-prefix} {
       margin-left: -17px;
     }
@@ -114,7 +118,7 @@
     .btn-group(@btn-prefix-cls);
   }
 
-  &:not(&-circle):not(&-circle-outline)&-icon-only {
+  &:not(&-circle):not(&-circle-outline) &-icon-only {
     padding-left: 8px;
     padding-right: 8px;
   }
@@ -146,12 +150,12 @@
   }
 
   &-two-chinese-chars:first-letter {
-    letter-spacing: .34em;
+    letter-spacing: 0.34em;
   }
 
   &-two-chinese-chars > * {
-    letter-spacing: .34em;
-    margin-right: -.34em;
+    letter-spacing: 0.34em;
+    margin-right: -0.34em;
   }
 
   &-block {
@@ -161,9 +165,11 @@
 
 a.@{btn-prefix-cls} {
   line-height: @btn-height-base - 2px;
+
   &-lg {
     line-height: @btn-height-lg - 2px;
   }
+
   &-sm {
     line-height: @btn-height-sm - 2px;
   }

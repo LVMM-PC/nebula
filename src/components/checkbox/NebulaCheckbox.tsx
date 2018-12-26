@@ -11,42 +11,32 @@ function noop() {}
   }
 })
 export default class NebulaCheckbox extends Vue {
+  @Model("change", { default: undefined })
+  checked!: boolean;
+  @Prop({ default: "nebula-checkbox", type: String })
+  public prefixCls?: string;
+  @Prop({ type: Boolean })
+  private defaultChecked?: boolean;
+  @Prop({ type: Boolean })
+  private disabled?: boolean;
+  @Prop({ type: Boolean })
+  private isGroup?: boolean;
+  @Prop({})
+  private value?: any;
+  @Prop({ type: String })
+  private name?: string;
+  @Prop({ type: String })
+  private id?: string;
+  @Prop({ type: Boolean })
+  private indeterminate?: boolean;
+  @Prop({ default: "checkbox" })
+  private type?: string;
+  @Prop({ type: Boolean })
+  private autoFocus?: boolean;
+
   constructor(props: any) {
     super(props);
   }
-
-  @Model("change", { default: undefined })
-  checked!: boolean;
-
-  @Prop({ default: "nebula-checkbox", type: String })
-  public prefixCls?: string;
-
-  @Prop({ type: Boolean })
-  private defaultChecked?: boolean;
-
-  @Prop({ type: Boolean })
-  private disabled?: boolean;
-
-  @Prop({ type: Boolean })
-  private isGroup?: boolean;
-
-  @Prop({})
-  private value?: any;
-
-  @Prop({ type: String })
-  private name?: string;
-
-  @Prop({ type: String })
-  private id?: string;
-
-  @Prop({ type: Boolean })
-  private indeterminate?: boolean;
-
-  @Prop({ default: "checkbox" })
-  private type?: string;
-
-  @Prop({ type: Boolean })
-  private autoFocus?: boolean;
 
   handleChange(event: { target: HTMLInputElement }) {
     const targetChecked = event.target.checked;

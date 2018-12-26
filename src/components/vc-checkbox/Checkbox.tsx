@@ -1,9 +1,9 @@
 import classNames from "classnames";
 import {
+  getAttrs,
   getOptionProps,
   hasProp,
-  initDefaultProps,
-  getAttrs
+  initDefaultProps
 } from "../_util/props-util";
 import BaseMixin from "../_util/BaseMixin";
 import { Component, Model, Prop, Vue, Watch } from "vue-property-decorator";
@@ -14,50 +14,39 @@ import { Component, Model, Prop, Vue, Watch } from "vue-property-decorator";
   inheritAttrs: false
 })
 export default class Checkbox extends Vue {
+  @Prop({ default: "rc-checkbox", type: String })
+  prefixCls?: string;
+  @Prop({ type: String })
+  name?: string;
+  @Prop({ type: String })
+  id?: string;
+  @Prop({ default: "checkbox", type: String })
+  type?: string;
+  @Prop({ default: false, type: [Number, Boolean] })
+  defaultChecked?: number | boolean;
+  @Prop({ type: Boolean })
+  disabled?: boolean;
+  @Prop({ type: String })
+  tabIndex?: string;
+  @Prop({ type: Boolean })
+  readOnly?: boolean;
+  @Prop({ type: Boolean })
+  autoFocus?: boolean;
+  @Prop({})
+  value?: any;
+  @Model("change")
+  checked?: number | boolean;
+  public sChecked;
+  public eventShiftKey;
+
   constructor(props) {
     super(props);
   }
-
-  @Prop({ default: "rc-checkbox", type: String })
-  prefixCls?: string;
-
-  @Prop({ type: String })
-  name?: string;
-
-  @Prop({ type: String })
-  id?: string;
-
-  @Prop({ default: "checkbox", type: String })
-  type?: string;
-
-  @Prop({ default: false, type: [Number, Boolean] })
-  defaultChecked?: number | boolean;
-
-  @Prop({ type: Boolean })
-  disabled?: boolean;
-
-  @Prop({ type: String })
-  tabIndex?: string;
-
-  @Prop({ type: Boolean })
-  readOnly?: boolean;
-
-  @Prop({ type: Boolean })
-  autoFocus?: boolean;
-
-  @Prop({})
-  value?: any;
-
-  @Model("change")
-  checked?: number | boolean;
 
   @Watch("checked")
   onCheckedChanged(val: string) {
     this.sChecked = val;
   }
-
-  public sChecked;
-  public eventShiftKey;
 
   created() {
     const checked = hasProp(this, "checked")

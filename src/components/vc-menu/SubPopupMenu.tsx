@@ -8,9 +8,9 @@ import { getKeyFromChildrenIndex, loopMenuItem, noop } from "./util";
 import DOMWrap from "./DOMWrap";
 import { cloneElement } from "../_util/vnode";
 import {
-  initDefaultProps,
+  getEvents,
   getOptionProps,
-  getEvents
+  initDefaultProps
 } from "../_util/props-util";
 
 function allDisabled(arr) {
@@ -46,6 +46,7 @@ export function saveRef(key, c) {
     // }
   }
 }
+
 export function getActiveKey(props, originalActiveKey) {
   let activeKey = originalActiveKey;
   const { eventKey, defaultActiveFirst, children } = props;

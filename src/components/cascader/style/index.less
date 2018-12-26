@@ -28,7 +28,7 @@
     background-color: @component-background;
     border-radius: @border-radius-base;
     outline: 0;
-    transition: color .3s;
+    transition: color 0.3s;
 
     &-with-value &-label {
       color: transparent;
@@ -38,6 +38,7 @@
       cursor: not-allowed;
       background: @input-disabled-bg;
       color: @disabled-color;
+
       .@{cascader-prefix-cls}-input {
         cursor: not-allowed;
       }
@@ -80,6 +81,7 @@
       line-height: 12px;
       cursor: pointer;
       transition: color 0.3s ease, opacity 0.15s ease;
+
       &:hover {
         color: @text-color-secondary;
       }
@@ -101,9 +103,11 @@
       margin-top: -6px;
       line-height: 12px;
       color: @disabled-color;
+
       &:before {
-        transition: transform .2s;
+        transition: transform 0.2s;
       }
+
       &&-expand {
         &:before {
           transform: rotate(180deg);
@@ -137,6 +141,7 @@
     &-hidden {
       display: none;
     }
+
     &.slide-up-enter.slide-up-enter-active&-placement-bottomLeft,
     &.slide-up-appear.slide-up-appear-active&-placement-bottomLeft {
       animation-name: antSlideUpIn;
@@ -155,6 +160,7 @@
       animation-name: antSlideDownOut;
     }
   }
+
   &-menu {
     display: inline-block;
     vertical-align: top;
@@ -170,31 +176,38 @@
     &:first-child {
       border-radius: @border-radius-base 0 0 @border-radius-base;
     }
+
     &:last-child {
       border-right-color: transparent;
       margin-right: -1px;
       border-radius: 0 @border-radius-base @border-radius-base 0;
     }
+
     &:only-child {
       border-radius: @border-radius-base;
     }
   }
+
   &-menu-item {
     padding: 5px @control-padding-horizontal;
     line-height: 22px;
     cursor: pointer;
     white-space: nowrap;
     transition: all 0.3s;
+
     &:hover {
       background: @item-hover-bg;
     }
+
     &-disabled {
       cursor: not-allowed;
       color: @disabled-color;
+
       &:hover {
         background: transparent;
       }
     }
+
     &-active:not(&-disabled) {
       &,
       &:hover {
@@ -202,9 +215,11 @@
         font-weight: 600;
       }
     }
+
     &-expand {
       position: relative;
       padding-right: 24px;
+
       &:after {
         .iconfont-font("\e61f");
         .iconfont-size-under-12px(8px);
@@ -213,6 +228,7 @@
         right: @control-padding-horizontal;
       }
     }
+
     &-loading:after {
       .iconfont-font("\e64d");
       animation: loadingCircle 1s infinite linear;

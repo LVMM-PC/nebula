@@ -1,35 +1,29 @@
 import { getComponentFromProp } from "../_util/props-util";
-import { Component, Prop, Vue, Model } from "vue-property-decorator";
+import { Component, Prop, Vue } from "vue-property-decorator";
 
 @Component({
   // @ts-ignore
   isMenuItemGroup: true
 })
 export default class MenuItemGroup extends Vue {
+  @Prop({ type: Function })
+  renderMenuItem?: any;
+  @Prop({ type: Number })
+  index?: number;
+  @Prop({ type: String })
+  className?: string;
+  @Prop({ type: String })
+  subMenuKey?: string;
+  @Prop({ type: String })
+  rootPrefixCls?: string;
+  @Prop({ default: true, type: Boolean })
+  disabled?: boolean;
+  @Prop({})
+  title?: any;
+
   constructor(props) {
     super(props);
   }
-
-  @Prop({ type: Function })
-  renderMenuItem?: any;
-
-  @Prop({ type: Number })
-  index?: number;
-
-  @Prop({ type: String })
-  className?: string;
-
-  @Prop({ type: String })
-  subMenuKey?: string;
-
-  @Prop({ type: String })
-  rootPrefixCls?: string;
-
-  @Prop({ default: true, type: Boolean })
-  disabled?: boolean;
-
-  @Prop({})
-  title?: any;
 
   renderInnerMenuItem(item) {
     const { renderMenuItem, index, subMenuKey } = this.$props;

@@ -1,5 +1,5 @@
 import LazyRenderBox from "./LazyRenderBox";
-import { Component, Prop, Vue, Model } from "vue-property-decorator";
+import { Component, Prop, Vue } from "vue-property-decorator";
 
 @Component({})
 export default class extends Vue {

@@ -1,5 +1,5 @@
 import { filterEmpty } from "../_util/props-util";
-import { Prop, Component, Vue } from "vue-property-decorator";
+import { Component, Prop, Vue } from "vue-property-decorator";
 import { ButtonSize } from "@/components/button/NebulaButton";
 import { mixins } from "vue-class-component";
 
