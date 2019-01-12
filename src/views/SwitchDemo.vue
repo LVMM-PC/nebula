@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <main>
     <h1>Switch Demo</h1>
     <div>
       <NebulaSwitch
@@ -52,7 +52,7 @@
         loading
         size="small"/>
     </div>
-  </div>
+  </main>
 </template>
 
 <script>
@@ -74,5 +74,8 @@ export default {
 };
 </script>
 
-<style scoped>
+<style lang="less" scoped>
+main {
+  padding: 20px;
+}
 </style>

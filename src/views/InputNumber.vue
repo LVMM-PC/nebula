@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <main>
     <div>
       <nebula-input-number
         :max="10"
@@ -64,7 +64,7 @@
         @change="onChange"
       />
     </div>
-  </div>
+  </main>
 </template>
 
 <script>
@@ -87,5 +87,8 @@ export default {
 };
 </script>
 
-<style scoped>
+<style lang="less" scoped>
+main {
+  padding: 20px;
+}
 </style>

@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <main>
     <div>
       <nebula-input placeholder="Basic usage"/>
     </div>
@@ -195,7 +195,7 @@
         </nebula-input>
       </div>
     </div>
-  </div>
+  </main>
 </template>
 
 <script>
@@ -260,7 +260,15 @@ export default {
 };
 </script>
 
-<style scoped>
+<style lang="less" scoped>
+main {
+  padding: 20px;
+}
+
+.nebula-input {
+  margin-bottom: 10px;
+}
+
 .components-input-demo-presuffix .anticon-close-circle {
   cursor: pointer;
   color: #ccc;

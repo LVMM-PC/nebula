@@ -1,7 +1,7 @@
 <template>
-  <div>
+  <main>
     <h1>Select</h1>
-    <div>
+    <section>
       <nebula-select
         default-value="lucy"
         style="width: 120px"
@@ -20,8 +20,8 @@
         style="width: 120px">
         <nebula-select-option value="lucy">Lucy</nebula-select-option>
       </nebula-select>
-    </div>
-    <div>
+    </section>
+    <section>
       <nebula-radio-group v-model="size">
         <nebula-radio-button value="large">Large</nebula-radio-button>
         <nebula-radio-button value="default">Default</nebula-radio-button>
@@ -71,8 +71,8 @@
           {{ (i + 9).toString(36) + i }}
         </nebula-select-option>
       </nebula-select>
-    </div>
-    <div>
+    </section>
+    <section>
       <nebula-select
         mode="tags"
         placeholder="Tags Mode"
@@ -84,8 +84,8 @@
           :key="(i + 9).toString(36) + i">{{ (i + 9).toString(36) + i }}
         </nebula-select-option>
       </nebula-select>
-    </div>
-    <div>
+    </section>
+    <section>
       <nebula-select
         :token-separators="[',']"
         mode="tags"
@@ -96,8 +96,8 @@
           :key="(i + 9).toString(36) + i">{{ (i + 9).toString(36) + i }}
         </nebula-select-option>
       </nebula-select>
-    </div>
-    <div>
+    </section>
+    <section>
       <nebula-select
         :default-value="{ key: 'lucy' }"
         label-in-value
@@ -106,8 +106,8 @@
         <nebula-select-option value="jack">Jack (100)</nebula-select-option>
         <nebula-select-option value="lucy">Lucy (101)</nebula-select-option>
       </nebula-select>
-    </div>
-    <div>
+    </section>
+    <section>
       <nebula-select
         :default-value="['a1', 'b2']"
         mode="multiple"
@@ -119,8 +119,8 @@
           :key="(i + 9).toString(36) + i">{{ (i + 9).toString(36) + i }}
         </nebula-select-option>
       </nebula-select>
-    </div>
-    <div>
+    </section>
+    <section>
       <nebula-select
         :default-value="provinceData[0]"
         style="width: 120px"
@@ -138,8 +138,8 @@
           :key="city">{{ city }}
         </nebula-select-option>
       </nebula-select>
-    </div>
-    <div>
+    </section>
+    <section>
       <nebula-select
         default-value="lucy"
         style="width: 200px"
@@ -153,8 +153,8 @@
           <nebula-select-option value="Yiminghe">yiminghe</nebula-select-option>
         </nebula-select-opt-group>
       </nebula-select>
-    </div>
-    <div>
+    </section>
+    <section>
       <nebula-select
         :default-active-first-option="false"
         :filter-option="false"
@@ -172,8 +172,8 @@
           :key="d.value">{{ d.text }}
         </nebula-select-option>
       </nebula-select>
-    </div>
-    <div>
+    </section>
+    <section>
       <nebula-select
         :filter-option="selectWithSearchFieldFilterOption"
         option-filter-prop="children"
@@ -188,8 +188,8 @@
         <nebula-select-option value="lucy">Lucy</nebula-select-option>
         <nebula-select-option value="tom">Tom</nebula-select-option>
       </nebula-select>
-    </div>
-    <div>
+    </section>
+    <section>
       <nebula-select
         :filter-option="false"
         :not-found-content="searchAndSelectUsersFetching ? undefined : null"
@@ -207,8 +207,8 @@
           :key="d.value">{{ d.text }}
         </nebula-select-option>
       </nebula-select>
-    </div>
-  </div>
+    </section>
+  </main>
 </template>
 
 <script>
@@ -363,5 +363,17 @@ export default {
 };
 </script>
 
-<style scoped>
+<style lang="less" scoped>
+main {
+  padding: 20px;
+}
+</style>
+
+<style lang="less">
+section {
+  > .nebula-select {
+    margin-bottom: 10px;
+    margin-right: 10px;
+  }
+}
 </style>

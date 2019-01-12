@@ -87,8 +87,8 @@
 
   // 半选状态
   .@{checkbox-prefix-cls}-indeterminate .@{checkbox-inner-prefix-cls}:after {
-    @indeterminate-width: @checkbox-size - 8px;
-    @indeterminate-height: @checkbox-size - 8px;
+    @indeterminate-width: @checkbox-size - 6px;
+    @indeterminate-height: @checkbox-size - 6px;
     content: " ";
     transform: translate(-50%, -50%) scale(1);
     border: 0;
@@ -110,7 +110,7 @@
     transform: rotate(45deg) scale(1);
     position: absolute;
     display: table;
-    border: 2px solid @checkbox-check-color;
+    border: 1px solid @checkbox-color;
     border-top: 0;
     border-left: 0;
     content: " ";
@@ -120,7 +120,7 @@
 
   .@{checkbox-prefix-cls}-checked {
     .@{checkbox-inner-prefix-cls} {
-      background-color: @checkbox-color;
+      color: @checkbox-color;
       border-color: @checkbox-color;
     }
   }
