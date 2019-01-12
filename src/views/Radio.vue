@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <main>
     <NebulaRadio
       name="lens"
       value="16-35"/>
@@ -222,9 +222,7 @@
         </NebulaRadioGroup>
       </div>
     </div>
-
-
-  </div>
+  </main>
 </template>
 
 <script>
@@ -281,12 +279,8 @@ export default {
 };
 </script>
 
-<style>
-/*.nebula-radio-button-wrapper .nebula-radio-inner,
-.nebula-radio-button-wrapper input[type="checkbox"],
-.nebula-radio-button-wrapper input[type="radio"] {
-  opacity: 1;
-  width: auto;
-  height: auto;
-}*/
+<style lang="less" scoped>
+main {
+  padding: 20px;
+}
 </style>

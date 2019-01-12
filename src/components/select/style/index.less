@@ -3,6 +3,7 @@
 @import "../../input/style/mixin";
 
 @select-prefix-cls: ~"@{ant-prefix}-select";
+@arrow-font-size: 10px;
 
 .selection__clear() {
   display: inline-block;
@@ -56,20 +57,25 @@
   &-arrow {
     .iconfont-mixin();
     position: absolute;
-    top: 50%;
-    right: @control-padding-horizontal - 1px;
+    top: 4px;
+    bottom: 4px;
+    border-left: 1px solid #DDDDDD;
+    right: @control-padding-horizontal - 2px;
+    padding-left: @control-padding-horizontal - 3px;
     line-height: 1;
-    margin-top: -@font-size-sm / 2;
     transform-origin: 50% 50%;
-    color: @disabled-color;
-    font-size: @font-size-sm;
+    color: #666666;
+    font-size: @arrow-font-size;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
     * {
       display: none;
     }
 
     &:before {
-      content: "\e61d";
+      content: "\e606";
       transition: transform 0.3s;
     }
   }
@@ -82,7 +88,7 @@
     display: block;
 
     background-color: @component-background;
-    border-radius: @border-radius-base;
+    border-radius: @border-radius-sm;
     border: @border-width-base @border-style-base @border-color-base;
     // strange align fix for chrome but works
     // https://gw.alipayobjects.com/zos/rmsportal/VFTfKXJuogBAXcvfAUWJ.gif
@@ -294,7 +300,7 @@
       width: 100%;
       background: transparent;
       outline: 0;
-      border-radius: @border-radius-base;
+      border-radius: @border-radius-sm;
       line-height: 1;
     }
 
@@ -405,7 +411,7 @@
 
   &-open {
     .@{select-prefix-cls}-arrow:before {
-      transform: rotate(180deg);
+      transform: rotateX(180deg);
     }
 
     .@{select-prefix-cls}-selection {
@@ -471,7 +477,7 @@
 
   background-color: @component-background;
   box-shadow: @box-shadow-base;
-  border-radius: @border-radius-base;
+  border-radius: @border-radius-sm;
   box-sizing: border-box;
   z-index: @zindex-dropdown;
   left: -9999px;
@@ -524,15 +530,16 @@
       transition: background 0.3s ease;
 
       &:hover {
+        color: @item-hover-color;
         background-color: @item-hover-bg;
       }
 
       &:first-child {
-        border-radius: @border-radius-base @border-radius-base 0 0;
+        border-radius: @border-radius-sm @border-radius-sm 0 0;
       }
 
       &:last-child {
-        border-radius: 0 0 @border-radius-base @border-radius-base;
+        border-radius: 0 0 @border-radius-sm @border-radius-sm;
       }
 
       &-disabled {

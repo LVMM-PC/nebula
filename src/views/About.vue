@@ -1,5 +1,11 @@
 <template>
-  <div class="about">
+  <main class="about">
     <h1>This is an about page</h1>
-  </div>
+  </main>
 </template>
+
+<style lang="less" scoped>
+main {
+  padding: 20px;
+}
+</style>

@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <main>
     <div>
       <NebulaCheckbox @change="onChange1">Checkbox</NebulaCheckbox>
     </div>
@@ -104,7 +104,7 @@
         </div>
       </NebulaCheckboxGroup>
     </div>
-  </div>
+  </main>
 </template>
 
 <script>
@@ -183,3 +183,9 @@ export default {
   }
 };
 </script>
+
+<style lang="less" scoped>
+main {
+  padding: 20px;
+}
+</style>

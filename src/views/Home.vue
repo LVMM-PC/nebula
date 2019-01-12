@@ -1,10 +1,10 @@
 <template>
-  <div class="home">
+  <main class="home">
     <img
       alt="Vue logo"
       src="../assets/logo.png">
     <HelloWorld msg="Welcome to Your Vue.js App"/>
-  </div>
+  </main>
 </template>
 
 <script>
@@ -18,3 +18,10 @@ export default {
   }
 };
 </script>
+
+<style lang="less" scoped>
+main {
+  padding: 20px;
+  text-align: center;
+}
+</style>

@@ -5,13 +5,13 @@
 @ant-prefix             : nebula;
 
 // -------- Colors -----------
-@primary-color          : @blue-6;
+@primary-color          : #577CFF;
 @info-color             : @blue-6;
 @success-color          : @green-6;
 @processing-color       : @blue-6;
 @error-color            : @red-6;
 @highlight-color        : @red-6;
-@warning-color          : @gold-6;
+@warning-color          : #FF9900;
 @normal-color           : #d9d9d9;
 
 // Color used by default to control hover and active backgrounds and for
@@ -38,7 +38,7 @@
 "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
 @code-family            : "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace;
 @heading-color          : fade(#000, 85%);
-@text-color             : fade(#000, 65%);
+@text-color             : fade(#000, 80%);
 @text-color-secondary   : fade(#000, 45%);
 @heading-color-dark     : fade(#fff, 100%);
 @text-color-dark        : fade(#fff, 85%);
@@ -47,13 +47,13 @@
 @font-size-lg           : @font-size-base + 2px;
 @font-size-sm           : 12px;
 @line-height-base       : 1.5;
-@border-radius-base     : 4px;
-@border-radius-sm       : 2px;
+@border-radius-base     : 3px;
+@border-radius-sm       : 0px;
 
 // vertical paddings
-@padding-lg    : 24px; // containers
-@padding-md    : 16px; // small containers and buttons
-@padding-sm    : 12px; // Form controls and items
+@padding-lg    : 20px; // containers
+@padding-md    : 15px; // small containers and buttons
+@padding-sm    : 10px; // Form controls and items
 @padding-xs    : 8px;  // small items
 
 // vertical padding for all form controls
@@ -62,8 +62,10 @@
 
 // The background colors for active and hover states for things like
 // list items or table cells.
-@item-active-bg         : @primary-1;
-@item-hover-bg          : @primary-1;
+@item-active-bg         : rgba(87, 124, 255, 0.10);
+@item-hover-bg          : rgba(87, 124, 255, 0.10);
+
+@item-hover-color       : #577CFF;
 
 // ICONFONT
 @iconfont-css-prefix    : nebula-icon;
@@ -136,6 +138,9 @@
 @btn-danger-bg          : @background-color-base;
 @btn-danger-border      : @border-color-base;
 
+@btn-warning-color       : #fff;
+@btn-warning-bg          : @warning-color;
+
 @btn-disable-color      : @disabled-color;
 @btn-disable-bg         : @disabled-bg;
 @btn-disable-border     : @border-color-base;
@@ -146,7 +151,7 @@
 @btn-padding-lg         : @btn-padding-base;
 @btn-padding-sm         : 0 @padding-xs - 1px;
 
-@btn-height-base        : 32px;
+@btn-height-base        : 30px;
 @btn-height-lg          : 40px;
 @btn-height-sm          : 24px;
 
@@ -157,12 +162,12 @@
 @btn-group-border       : @primary-5;
 
 // Checkbox
-@checkbox-size          : 16px;
+@checkbox-size          : 12px;
 @checkbox-color         : @primary-color;
 @checkbox-check-color   : #fff;
 
 // Radio
-@radio-size             : 16px;
+@radio-size             : 13px;
 @radio-dot-color        : @primary-color;
 
 // Radio buttons
@@ -253,7 +258,7 @@
 
 // Input
 // ---
-@input-height-base           : 32px;
+@input-height-base           : 30px;
 @input-height-lg             : 40px;
 @input-height-sm             : 24px;
 @input-padding-horizontal    : @control-padding-horizontal - 1px;
