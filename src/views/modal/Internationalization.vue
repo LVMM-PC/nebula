@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <section>
     <nebula-button 
       type="primary" 
       @click="showModal">Modal</nebula-button>
@@ -15,7 +15,7 @@
       <p>Bla bla ...</p>
     </nebula-modal>
     <nebula-button @click="confirm">Confirm</nebula-button>
-  </div>
+  </section>
 </template>
 
 <script>

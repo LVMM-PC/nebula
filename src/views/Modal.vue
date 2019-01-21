@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <main>
     <AsynchronouslyClose/>
     <Basic/>
     <ConfirmationModalDialogUsePromise/>
@@ -10,7 +10,7 @@
     <ManualToUpdateDestroy/>
     <ToCustomizeThePositionOfModal/>
     <CustomizeFooterButtonsProps/>
-  </div>
+  </main>
 </template>
 
 <script>
@@ -41,3 +41,13 @@ export default {
   }
 };
 </script>
+
+<style lang="less" scoped>
+main {
+  padding: 20px;
+}
+
+section {
+  margin-bottom: 10px;
+}
+</style>

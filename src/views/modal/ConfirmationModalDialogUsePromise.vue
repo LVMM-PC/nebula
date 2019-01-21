@@ -1,7 +1,9 @@
 <template>
-  <nebula-button @click="showConfirm">
-    Confirm
-  </nebula-button>
+  <section>
+    <nebula-button @click="showConfirm">
+      Confirm
+    </nebula-button>
+  </section>
 </template>
 
 <script>

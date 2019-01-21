@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <section>
     <nebula-button 
       type="primary" 
       @click="showModal">Open Modal with async logic</nebula-button>
@@ -12,7 +12,7 @@
     >
       <p>{{ ModalText }}</p>
     </nebula-modal>
-  </div>
+  </section>
 </template>
 
 <script>

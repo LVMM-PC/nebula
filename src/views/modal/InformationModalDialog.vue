@@ -1,10 +1,10 @@
 <template>
-  <div>
+  <section>
     <nebula-button @click="info">Info</nebula-button>
     <nebula-button @click="success">Success</nebula-button>
     <nebula-button @click="error">Error</nebula-button>
     <nebula-button @click="warning">Warning</nebula-button>
-  </div>
+  </section>
 </template>
 
 <script>

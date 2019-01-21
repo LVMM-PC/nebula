@@ -1,5 +1,5 @@
 <template>
-  <div id="components-modal-demo-position">
+  <section id="components-modal-demo-position">
     <nebula-button 
       type="primary" 
       @click="() => setModal1Visible(true)">Display a modal dialog at 20px to Top</nebula-button>
@@ -27,7 +27,7 @@
       <p>some contents...</p>
       <p>some contents...</p>
     </nebula-modal>
-  </div>
+  </section>
 </template>
 
 <script>

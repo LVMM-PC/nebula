@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <section>
     <nebula-button @click="showConfirm">
       Confirm
     </nebula-button>
@@ -13,7 +13,7 @@
       @click="showPropsConfirm">
       With extra props
     </nebula-button>
-  </div>
+  </section>
 </template>
 
 <script>

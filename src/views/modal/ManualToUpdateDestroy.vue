@@ -1,5 +1,7 @@
 <template>
-  <nebula-button @click="countDown">Open modal to close in 5s</nebula-button>
+  <section>
+    <nebula-button @click="countDown">Open modal to close in 5s</nebula-button>
+  </section>
 </template>
 
 <script>

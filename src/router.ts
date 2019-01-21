@@ -60,6 +60,11 @@ export default new Router({
       path: "/modal",
       name: "modal",
       component: () => import("./views/Modal.vue")
+    },
+    {
+      path: "/tooltip",
+      name: "tooltip",
+      component: () => import("./views/Tooltip.vue")
     }
   ]
 });
