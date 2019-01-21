@@ -55,6 +55,11 @@ export default new Router({
       path: "/input-number",
       name: "input-number",
       component: () => import("./views/InputNumber.vue")
+    },
+    {
+      path: "/modal",
+      name: "modal",
+      component: () => import("./views/Modal.vue")
     }
   ]
 });

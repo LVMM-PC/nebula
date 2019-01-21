@@ -15,6 +15,7 @@ import NebulaInputSearch from "./components/input/NebulaInputSearch";
 import NebulaInputGroup from "./components/input/NebulaInputGroup";
 import NebulaTextarea from "./components/input/NebulaTextarea";
 import NebulaInputNumber from "./components/input-number";
+import NebulaModal from "./components/modal";
 
 export {
   NebulaButton,
@@ -33,5 +34,6 @@ export {
   NebulaInputSearch,
   NebulaInputGroup,
   NebulaTextarea,
-  NebulaInputNumber
+  NebulaInputNumber,
+  NebulaModal
 };

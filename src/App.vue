@@ -17,6 +17,8 @@
       |
       <router-link to="/input-number">InputNumber</router-link>
       |
+      <router-link to="/modal">Modal</router-link>
+      |
       <router-link to="/about">About</router-link>
     </div>
     <router-view/>

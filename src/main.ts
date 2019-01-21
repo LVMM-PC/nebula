@@ -19,10 +19,17 @@ import {
   NebulaSelectOptGroup,
   NebulaSelectOption,
   NebulaSwitch,
-  NebulaTextarea
+  NebulaTextarea,
+  NebulaModal
 } from "./index";
 
 import router from "./router";
+
+Vue.prototype.$info = NebulaModal.info;
+Vue.prototype.$success = NebulaModal.success;
+Vue.prototype.$error = NebulaModal.error;
+Vue.prototype.$warning = NebulaModal.warning;
+Vue.prototype.$confirm = NebulaModal.confirm;
 
 Vue.component("NebulaButton", NebulaButton);
 Vue.component("NebulaIcon", NebulaIcon);
@@ -41,6 +48,8 @@ Vue.component("NebulaInputSearch", NebulaInputSearch);
 Vue.component("NebulaInputGroup", NebulaInputGroup);
 Vue.component("NebulaTextarea", NebulaTextarea);
 Vue.component("NebulaInputNumber", NebulaInputNumber);
+Vue.component("NebulaModal", NebulaModal);
+
 Vue.config.productionTip = false;
 
 new Vue({
