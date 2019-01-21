@@ -7,7 +7,7 @@
   width: auto;
   margin: 0 auto;
   top: 100px;
-  padding-bottom: 24px;
+  padding-bottom: 20px;
 
   &-wrap {
     position: fixed;
@@ -33,7 +33,7 @@
     position: relative;
     background-color: @component-background;
     border: 0;
-    border-radius: @border-radius-base;
+    border-radius: @border-radius-sm;
     background-clip: padding-box;
     box-shadow: @shadow-2;
   }
@@ -46,7 +46,7 @@
     right: 0;
     top: 0;
     z-index: 10;
-    font-weight: 700;
+    font-weight: 400;
     line-height: 1;
     text-decoration: none;
     transition: color .3s;
@@ -61,10 +61,10 @@
       text-align: center;
       text-transform: none;
       text-rendering: auto;
-      width: 56px;
-      height: 56px;
-      line-height: 56px;
-      font-size: @font-size-lg;
+      width: 36px;
+      height: 36px;
+      line-height: 36px;
+      font-size: 20px;
     }
 
     &:focus,
@@ -75,27 +75,27 @@
   }
 
   &-header {
-    padding: 16px 24px;
-    border-radius: @border-radius-base @border-radius-base 0 0;
+    padding: 7px 10px;
+    border-radius: @border-radius-sm @border-radius-sm 0 0;
     background: @modal-header-bg;
     color: @text-color;
     border-bottom: @border-width-base @border-style-base @border-color-split;
   }
 
   &-body {
-    padding: 24px;
+    padding: 20px;
     font-size: @font-size-base;
     line-height: @line-height-base;
     word-wrap: break-word;
   }
 
   &-footer {
-    border-top: @border-width-base @border-style-base @border-color-split;
-    padding: 10px 16px;
-    text-align: right;
-    border-radius: 0 0 @border-radius-base @border-radius-base;
+    //border-top: @border-width-base @border-style-base @border-color-split;
+    padding: 0 20px 20px 20px;
+    text-align: center;
+    border-radius: 0 0 @border-radius-sm @border-radius-sm;
     button + button {
-      margin-left: 8px;
+      margin-left: 10px;
       margin-bottom: 0;
     }
   }

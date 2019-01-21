@@ -12,7 +12,7 @@
   }
 
   .@{ant-prefix}-modal-body {
-    padding: 32px 32px 24px;
+    padding: 20px;
   }
 
   &-body-wrapper {
@@ -24,7 +24,7 @@
       color: @heading-color;
       font-weight: 500;
       font-size: @font-size-lg;
-      line-height: 1.4;
+      line-height: 32px;
       display: block;
       // create BFC to avoid
       // https://user-images.githubusercontent.com/507615/37702510-ba844e06-2d2d-11e8-9b67-8e19be57f445.png
@@ -32,25 +32,26 @@
     }
 
     .@{confirm-prefix-cls}-content {
-      margin-left: 38px;
+      margin-left: 42px;
       font-size: @font-size-base;
       color: @text-color;
-      margin-top: 8px;
+      margin-top: 10px;
     }
 
     > .@{iconfont-css-prefix} {
-      font-size: 22px;
-      margin-right: 16px;
+      font-size: 32px;
+      margin-right: 10px;
       float: left;
     }
   }
 
   .@{confirm-prefix-cls}-btns {
     margin-top: 24px;
-    float: right;
+    display: flex;
+    justify-content: center;
 
     button + button {
-      margin-left: 8px;
+      margin-left: 10px;
       margin-bottom: 0;
     }
   }

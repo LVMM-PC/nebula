@@ -22,7 +22,7 @@ The most basic usage.
 
 ### Three sizes of Input
 
-There are three sizes of an Input box: `large` (40px)、`default` (32px) and `small` (24px).
+There are three sizes of an Input box: `large` (40px)、`default` (30px) and `small` (24px).
 
 <demo-input-size/>
 

@@ -8,7 +8,8 @@ let sidebar = [
   "/switch/",
   "/select/",
   "/input/",
-  "/input-number/"
+  "/input-number/",
+  "/modal/"
 ];
 
 module.exports = {

@@ -17,8 +17,15 @@ export var NebulaInputSearch = NebulaUi.NebulaInputSearch;
 export var NebulaInputGroup = NebulaUi.NebulaInputGroup;
 export var NebulaTextarea = NebulaUi.NebulaTextarea;
 export var NebulaInputNumber = NebulaUi.NebulaInputNumber;
+export var NebulaModal = NebulaUi.NebulaModal;
 
 function install(Vue) {
+  Vue.prototype.$info = NebulaModal.info;
+  Vue.prototype.$success = NebulaModal.success;
+  Vue.prototype.$error = NebulaModal.error;
+  Vue.prototype.$warning = NebulaModal.warning;
+  Vue.prototype.$confirm = NebulaModal.confirm;
+
   Vue.component("NebulaButton", NebulaButton);
   Vue.component("NebulaButtonGroup", NebulaButtonGroup);
   Vue.component("NebulaIcon", NebulaIcon);
@@ -36,6 +43,7 @@ function install(Vue) {
   Vue.component("NebulaInputGroup", NebulaInputGroup);
   Vue.component("NebulaTextarea", NebulaTextarea);
   Vue.component("NebulaInputNumber", NebulaInputNumber);
+  Vue.component("NebulaModal", NebulaModal);
 }
 
 const plugin = {

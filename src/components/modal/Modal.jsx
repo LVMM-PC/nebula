@@ -64,7 +64,7 @@ export default {
   name: 'AModal',
   props: modalProps({
     prefixCls: 'nebula-modal',
-    width: 520,
+    width: 420,
     transitionName: 'zoom',
     maskTransitionName: 'fade',
     confirmLoading: false,
