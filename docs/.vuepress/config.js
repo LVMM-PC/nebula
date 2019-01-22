@@ -9,7 +9,8 @@ let sidebar = [
   "/select/",
   "/input/",
   "/input-number/",
-  "/modal/"
+  "/modal/",
+  "/tooltip/"
 ];
 
 module.exports = {

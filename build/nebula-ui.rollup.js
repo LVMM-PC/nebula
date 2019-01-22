@@ -18,6 +18,7 @@ export var NebulaInputGroup = NebulaUi.NebulaInputGroup;
 export var NebulaTextarea = NebulaUi.NebulaTextarea;
 export var NebulaInputNumber = NebulaUi.NebulaInputNumber;
 export var NebulaModal = NebulaUi.NebulaModal;
+export var NebulaTooltip = NebulaUi.NebulaTooltip;
 
 function install(Vue) {
   Vue.prototype.$info = NebulaModal.info;
@@ -44,6 +45,7 @@ function install(Vue) {
   Vue.component("NebulaTextarea", NebulaTextarea);
   Vue.component("NebulaInputNumber", NebulaInputNumber);
   Vue.component("NebulaModal", NebulaModal);
+  Vue.component("NebulaTooltip", NebulaTooltip);
 }
 
 const plugin = {
