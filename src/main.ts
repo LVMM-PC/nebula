@@ -21,7 +21,8 @@ import {
   NebulaSwitch,
   NebulaTextarea,
   NebulaModal,
-  NebulaTooltip
+  NebulaTooltip,
+  NebulaForm
 } from "./index";
 
 import router from "./router";
@@ -51,6 +52,8 @@ Vue.component("NebulaTextarea", NebulaTextarea);
 Vue.component("NebulaInputNumber", NebulaInputNumber);
 Vue.component("NebulaModal", NebulaModal);
 Vue.component("NebulaTooltip", NebulaTooltip);
+
+Vue.use(NebulaForm);
 
 Vue.config.productionTip = false;
 

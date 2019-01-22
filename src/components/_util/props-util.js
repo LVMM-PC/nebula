@@ -49,7 +49,7 @@ const getSlots = ele => {
   if (ele.$vnode) {
     componentOptions = ele.$vnode.componentOptions || {};
   }
-  const children = componentOptions.children || [];
+  const children = ele.children || componentOptions.children || [];
   const slots = {};
   children.forEach(child => {
     const name = (child.data && child.data.slot) || "default";
@@ -57,6 +57,13 @@ const getSlots = ele => {
     slots[name].push(child);
   });
   return slots;
+};
+const getAllChildren = ele => {
+  let componentOptions = ele.componentOptions || {};
+  if (ele.$vnode) {
+    componentOptions = ele.$vnode.componentOptions || {};
+  }
+  return ele.children || componentOptions.children || [];
 };
 const getSlotOptions = ele => {
   if (ele.fnOptions) {
@@ -90,19 +97,31 @@ const getOptionProps = instance => {
   return filterProps($props, $options.propsData);
 };
 
-const getComponentFromProp = (instance, prop) => {
+const getComponentFromProp = (
+  instance,
+  prop,
+  options = instance,
+  execute = true
+) => {
   if (instance.$createElement) {
     const h = instance.$createElement;
     const temp = instance[prop];
     if (temp !== undefined) {
-      return typeof temp === "function" ? temp(h) : temp;
+      return typeof temp === "function" && execute ? temp(h, options) : temp;
     }
-    return instance.$slots[prop];
+    return (
+      instance.$slots[prop] ||
+      (instance.$scopedSlots[prop] &&
+        execute &&
+        instance.$scopedSlots[prop](options)) ||
+      (instance.$scopedSlots[prop] && instance.$scopedSlots[prop]) ||
+      undefined
+    );
   } else {
     const h = instance.context.$createElement;
     const temp = getPropsData(instance)[prop];
     if (temp !== undefined) {
-      return typeof temp === "function" ? temp(h) : temp;
+      return typeof temp === "function" && execute ? temp(h, options) : temp;
     }
     const slotsProp = [];
     const componentOptions = instance.componentOptions || {};
@@ -165,7 +184,6 @@ export function getEvents(child) {
   }
   return { ...events };
 }
-
 export function getClass(ele) {
   let data = {};
   if (ele.data) {
@@ -184,7 +202,6 @@ export function getClass(ele) {
   }
   return cls;
 }
-
 export function getStyle(ele, camel) {
   let data = {};
   if (ele.data) {
@@ -215,7 +232,6 @@ export function isEmptyElement(ele) {
 export function filterEmpty(children = []) {
   return children.filter(c => c.tag || (c.text && c.text.trim() !== ""));
 }
-
 const initDefaultProps = (propTypes, defaultProps) => {
   Object.keys(defaultProps).forEach(k => {
     if (propTypes[k]) {
@@ -230,7 +246,7 @@ const initDefaultProps = (propTypes, defaultProps) => {
 export function mergeProps() {
   const args = [].slice.call(arguments, 0);
   const props = {};
-  args.forEach((p, i) => {
+  args.forEach((p = {}, i) => {
     for (const [k, v] of Object.entries(p)) {
       props[k] = props[k] || {};
       if (isPlainObject(v)) {
@@ -263,6 +279,7 @@ export {
   isValidElement,
   camelize,
   getSlots,
-  getAllProps
+  getAllProps,
+  getAllChildren
 };
 export default hasProp;

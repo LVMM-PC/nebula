@@ -65,6 +65,11 @@ export default new Router({
       path: "/tooltip",
       name: "tooltip",
       component: () => import("./views/Tooltip.vue")
+    },
+    {
+      path: "/form",
+      name: "form",
+      component: () => import("./views/FormDemo.vue")
     }
   ]
 });

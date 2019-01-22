@@ -115,9 +115,9 @@ export const ValidationRule = {
 // };
 
 const Form = {
-  name: 'AForm',
+  name: 'NebulaForm',
   props: initDefaultProps(FormProps, {
-    prefixCls: 'ant-form',
+    prefixCls: 'nebula-form',
     layout: 'horizontal',
     hideRequiredMark: false,
   }),

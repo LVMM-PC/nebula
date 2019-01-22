@@ -27,12 +27,12 @@ export const FormItemProps = {
 }
 
 export default {
-  name: 'AFormItem',
+  name: 'NebulaFormItem',
   __ANT_FORM_ITEM: true,
   mixins: [BaseMixin],
   props: initDefaultProps(FormItemProps, {
     hasFeedback: false,
-    prefixCls: 'ant-form',
+    prefixCls: 'nebula-form',
     colon: true,
   }),
   inject: {
