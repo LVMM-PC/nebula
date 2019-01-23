@@ -18,6 +18,8 @@ import NebulaInputNumber from "./components/input-number";
 import NebulaModal from "./components/modal";
 import NebulaTooltip from "./components/tooltip";
 import NebulaForm from "./components/form";
+import NebulaRow from "./components/grid/Row";
+import NebulaCol from "./components/grid/Col";
 
 export {
   NebulaButton,
@@ -39,5 +41,7 @@ export {
   NebulaInputNumber,
   NebulaModal,
   NebulaTooltip,
-  NebulaForm
+  NebulaForm,
+  NebulaRow,
+  NebulaCol
 };

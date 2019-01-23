@@ -10,7 +10,8 @@ let sidebar = [
   "/input/",
   "/input-number/",
   "/modal/",
-  "/tooltip/"
+  "/tooltip/",
+  "/form/"
 ];
 
 module.exports = {

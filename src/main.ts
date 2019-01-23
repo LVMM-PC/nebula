@@ -22,7 +22,9 @@ import {
   NebulaTextarea,
   NebulaModal,
   NebulaTooltip,
-  NebulaForm
+  NebulaForm,
+  NebulaRow,
+  NebulaCol
 } from "./index";
 
 import router from "./router";
@@ -52,6 +54,8 @@ Vue.component("NebulaTextarea", NebulaTextarea);
 Vue.component("NebulaInputNumber", NebulaInputNumber);
 Vue.component("NebulaModal", NebulaModal);
 Vue.component("NebulaTooltip", NebulaTooltip);
+Vue.component("NebulaRow", NebulaRow);
+Vue.component("NebulaCol", NebulaCol);
 
 Vue.use(NebulaForm);
 
