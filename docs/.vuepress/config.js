@@ -2,7 +2,6 @@ let sidebar = [
   "/",
   "/installation/",
   "/button/",
-  "/icon/",
   "/checkbox/",
   "/radio/",
   "/switch/",
