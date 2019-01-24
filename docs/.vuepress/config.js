@@ -14,6 +14,9 @@ let sidebar = [
 ];
 
 module.exports = {
+  chainWebpack(config) {
+    config.resolve.alias.set('vue', 'vue/dist/vue.common.js')
+  },
   title: "Nebula UI",
   description: "Determinacy for better user experience of enterprise applications",
   themeConfig: {

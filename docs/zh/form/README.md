@@ -52,6 +52,51 @@
 ^^^ @/docs/.vuepress/components/demo/form/register.vue
 </demo-code-box>
 
+### 高级搜索
+
+三列栅格式的表单排列方式，常用于数据表格的高级搜索。
+
+有部分定制的样式代码，由于输入标签长度不确定，需要根据具体情况自行调整。
+
+<demo-form-advanced-search/>
+
+<demo-code-box>
+^^^ @/docs/.vuepress/components/demo/form/advanced-search.vue
+</demo-code-box>
+
+### 弹出层中的新建表单
+
+当用户访问一个展示了某个列表的页面，想新建一项但又不想跳转页面时，可以用 Modal 弹出一个表单，用户填写必要信息后创建新的项。
+
+<demo-form-form-in-modal/>
+
+<demo-code-box>
+^^^ @/docs/.vuepress/components/demo/form/form-in-modal.vue
+</demo-code-box>
+
+### 动态增减表单项
+
+动态增加、减少表单项。
+
+<demo-form-dynamic-form-item/>
+
+<demo-code-box>
+^^^ @/docs/.vuepress/components/demo/form/dynamic-form-item.vue
+</demo-code-box>
+
+### 自定义表单控件
+
+自定义或第三方的表单控件，也可以与 Form 组件一起使用。只要该组件遵循以下的约定：
+> * 提供受控属性 `value`
+> * 提供 `onChange`
+> * 不能是函数式组件。
+
+<demo-form-customized-form-controls/>
+
+<demo-code-box>
+^^^ @/docs/.vuepress/components/demo/form/customized-form-controls.vue
+</demo-code-box>
+
 ## API
 
 ### Form
@@ -232,7 +277,7 @@ validateFields(["field1", "field2"], options, (errors, values) => {
 更多高级用法可研究 [async-validator](https://github.com/yiminghe/async-validator)。
 
 <style>
-.nebula-form {
+main > .nebula-form {
   width: 600px;
 }
 .code-box-demo .ant-form:not(.ant-form-inline):not(.ant-form-vertical) {
