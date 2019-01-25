@@ -97,6 +97,72 @@
 ^^^ @/docs/.vuepress/components/demo/form/customized-form-controls.vue
 </demo-code-box>
 
+### 表单数据存储于上层组件
+
+通过使用 `onFieldsChange` 与 `mapPropsToFields`，可以把表单的数据存储到上层组件 
+
+**注意：**`mapPropsToFields` 里面返回的表单域数据必须使用 `Form.createFormField` 包装。
+
+<demo-form-global-state/>
+
+<demo-code-box>
+^^^ @/docs/.vuepress/components/demo/form/global-state.vue
+</demo-code-box>
+
+### 自行处理表单数据
+
+使用 `Form.create` 处理后的表单具有自动收集数据并校验的功能，但如果您不需要这个功能，或者默认的行为无法满足业务需求，可以选择不使用 `Form.create` 并自行处理数据。
+
+<demo-form-without-form-create/>
+
+<demo-code-box>
+^^^ @/docs/.vuepress/components/demo/form/without-form-create.vue
+</demo-code-box>
+
+### 自定义校验
+
+我们提供了 `validateStatus` `help` `hasFeedback` 等属性，你可以不需要使用 `Form.create` 和 `getFieldDecorator`，自己定义校验的时机和内容。
+
+1. `validateStatus`: 校验状态，可选 'success', 'warning', 'error', 'validating'。
+2. `hasFeedback`：用于给输入框添加反馈图标。
+3. `help`：设置校验文案。
+
+<demo-form-validate-static/>
+
+<demo-code-box>
+^^^ @/docs/.vuepress/components/demo/form/validate-static.vue
+</demo-code-box>
+
+### 表单布局
+
+表单有三种布局。
+
+<demo-form-layout/>
+
+<demo-code-box>
+^^^ @/docs/.vuepress/components/demo/form/layout.vue
+</demo-code-box>
+
+### 动态校验规则
+
+根据不同情况执行不同的校验规则。
+
+<demo-form-dynamic-rule/>
+
+<demo-code-box>
+^^^ @/docs/.vuepress/components/demo/form/dynamic-rule.vue
+</demo-code-box>
+
+### 校验其他组件
+
+以上演示没有出现的表单控件对应的校验演示。
+
+<demo-form-validate-other/>
+
+<demo-code-box>
+^^^ @/docs/.vuepress/components/demo/form/validate-other.vue
+</demo-code-box>
+
 ## API
 
 ### Form

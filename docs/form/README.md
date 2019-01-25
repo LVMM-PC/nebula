@@ -51,6 +51,117 @@ Fill in this form to create a new account for you.
 ^^^ @/docs/.vuepress/components/demo/form/register.vue
 </demo-code-box>
 
+### Advanced search
+
+Three columns layout is often used for advanced searching of data table.
+
+Because the width of label is not fixed, you may need to adjust it by customizing its style.
+
+<demo-form-advanced-search/>
+
+<demo-code-box>
+^^^ @/docs/.vuepress/components/demo/form/advanced-search.vue
+</demo-code-box>
+
+### Form in Modal to Create
+
+When user visit a page with a list of items, and want to create a new item. The page can popup a form in Modal, then let user fill in the form to create an item.
+
+<demo-form-form-in-modal/>
+
+<demo-code-box>
+^^^ @/docs/.vuepress/components/demo/form/form-in-modal.vue
+</demo-code-box>
+
+### Dynamic Form Item
+
+Add or remove form items dynamically.
+
+<demo-form-dynamic-form-item/>
+
+<demo-code-box>
+^^^ @/docs/.vuepress/components/demo/form/dynamic-form-item.vue
+</demo-code-box>
+
+### Customized Form Controls
+
+Customized or third-party form controls can be used in Form, too. Controls must follow these conventions:
+> * It has a controlled property `value`
+> * It has event `onChange`
+> * It must be a class component.
+
+<demo-form-customized-form-controls/>
+
+<demo-code-box>
+^^^ @/docs/.vuepress/components/demo/form/customized-form-controls.vue
+</demo-code-box>
+
+### Store Form Data into Upper Component
+
+We can store form data into upper component
+
+**Note:** You must wrap field data with `Form.createFormField` in `mapPropsToFields`.
+
+<demo-form-global-state/>
+
+<demo-code-box>
+^^^ @/docs/.vuepress/components/demo/form/global-state.vue
+</demo-code-box>
+
+### Handle Form Data Manually
+
+`Form.create` will collect and validate form data automatically. But if you don't need this feature or the default behaviour cannot satisfy your business, you can drop `Form.create` and handle form data manually.
+
+<demo-form-without-form-create/>
+
+<demo-code-box>
+^^^ @/docs/.vuepress/components/demo/form/without-form-create.vue
+</demo-code-box>
+
+### Customized Validation
+
+We provide properties like `validateStatus` `help` `hasFeedback` to customize your own validate status and message, without using `Form.create` and `getFieldDecorator`.
+
+1. `validateStatus`: validate status of form components which could be 'success', 'warning', 'error', 'validating'.
+2. `hasFeedback`: display feed icon of input control
+3. `help`: display validate message.
+
+<demo-form-validate-static/>
+
+<demo-code-box>
+^^^ @/docs/.vuepress/components/demo/form/validate-static.vue
+</demo-code-box>
+
+### Form Layout
+
+There are three layout for form: `horizontal`, `vertical`, `inline`.
+
+<demo-form-layout/>
+
+<demo-code-box>
+^^^ @/docs/.vuepress/components/demo/form/layout.vue
+</demo-code-box>
+
+### Dynamic Rules
+
+Perform different check rules according to different situations.
+
+<demo-form-dynamic-rule/>
+
+<demo-code-box>
+^^^ @/docs/.vuepress/components/demo/form/dynamic-rule.vue
+</demo-code-box>
+
+### Other Form Controls
+
+Demostration for validataion configuration for form controls which are not show in the above demos.
+
+<demo-form-validate-other/>
+
+<demo-code-box>
+^^^ @/docs/.vuepress/components/demo/form/validate-other.vue
+</demo-code-box>
+
 ## API
 
 ### Form
@@ -141,35 +252,35 @@ validateFields(["field1", "field2"], options, (errors, values) => {
 
 - `errors`:
 
-  ```json
-  {
-    "userName": {
-      "errors": [
-        {
-          "message": "Please input your username!",
-          "field": "userName"
-        }
-      ]
-    },
-    "password": {
-      "errors": [
-        {
-          "message": "Please input your Password!",
-          "field": "password"
-        }
-      ]
-    }
+```json
+{
+  "userName": {
+    "errors": [
+      {
+        "message": "Please input your username!",
+        "field": "userName"
+      }
+    ]
+  },
+  "password": {
+    "errors": [
+      {
+        "message": "Please input your Password!",
+        "field": "password"
+      }
+    ]
   }
-  ```
+}
+```
 
 - `values`:
 
-  ```json
-  {
-    "userName": "username",
-    "password": "password"
-  }
-  ```
+```json
+{
+  "userName": "username",
+  "password": "password"
+}
+```
 
 ### Form.createFormField
 
@@ -235,6 +346,9 @@ Note: if Form.Item has multiple children that had been decorated by `getFieldDec
 See more advanced usage at [async-validator](https://github.com/yiminghe/async-validator).
 
 <style>
+main > .nebula-form {
+  width: 600px;
+}
 .code-box-demo .ant-form:not(.ant-form-inline):not(.ant-form-vertical) {
   max-width: 600px;
 }
