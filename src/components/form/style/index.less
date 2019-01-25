@@ -9,7 +9,8 @@
 @form-component-height: @input-height-base;
 @form-component-max-height: @input-height-lg;
 @form-feedback-icon-size: @font-size-base;
-@form-help-margin-top: (@form-component-height - @form-component-max-height) / 2 + 2px;
+@form-help-margin-top: (@form-component-height - @form-component-max-height) / 2 +
+  2px;
 
 .@{form-prefix-cls} {
   .reset-component;
@@ -74,12 +75,6 @@ input[type="checkbox"] {
   margin-bottom: @form-item-margin-bottom;
   vertical-align: top;
 
-  // nested FormItem
-  &-control > &:last-child,
-  & [class^="@{ant-prefix}-col-"] > &:only-child {
-    margin-bottom: -@form-item-margin-bottom;
-  }
-
   &-control {
     line-height: @form-component-max-height - 0.0001px; // https://github.com/ant-design/ant-design/issues/8220
     position: relative;
@@ -91,7 +86,8 @@ input[type="checkbox"] {
   }
 
   &-with-help {
-    margin-bottom: @form-item-margin-bottom - @font-size-base * @line-height-base - @form-help-margin-top;
+    margin-bottom: @form-item-margin-bottom - @font-size-base *
+      @line-height-base - @form-help-margin-top;
   }
 
   &-label {
@@ -134,7 +130,7 @@ input[type="checkbox"] {
   // Magic tweak pixel number to float line-height diff in windows
   // Fix https://github.com/ant-design/ant-design/issues/12803
   line-height: @line-height-base + 0.024;
-  transition: color .3s @ease-out; // sync input color transition
+  transition: color 0.3s @ease-out; // sync input color transition
   margin-top: @form-help-margin-top;
   clear: both;
 }
@@ -164,12 +160,18 @@ form {
     // https://github.com/ant-design/ant-design/issues/4431
     > .@{ant-prefix}-select .@{ant-prefix}-select-arrow,
     > .@{ant-prefix}-select .@{ant-prefix}-select-selection__clear,
-    :not(.@{ant-prefix}-input-group-addon) > .@{ant-prefix}-select .@{ant-prefix}-select-arrow,
-    :not(.@{ant-prefix}-input-group-addon) > .@{ant-prefix}-select .@{ant-prefix}-select-selection__clear {
+    :not(.@{ant-prefix}-input-group-addon)
+      > .@{ant-prefix}-select
+      .@{ant-prefix}-select-arrow,
+    :not(.@{ant-prefix}-input-group-addon)
+      > .@{ant-prefix}-select
+      .@{ant-prefix}-select-selection__clear {
       right: 28px;
     }
     > .@{ant-prefix}-select .@{ant-prefix}-select-selection-selected-value,
-    :not(.@{ant-prefix}-input-group-addon) > .@{ant-prefix}-select .@{ant-prefix}-select-selection-selected-value {
+    :not(.@{ant-prefix}-input-group-addon)
+      > .@{ant-prefix}-select
+      .@{ant-prefix}-select-selection-selected-value {
       padding-right: 42px;
     }
 
@@ -201,6 +203,7 @@ form {
 
   textarea.@{ant-prefix}-input {
     height: auto;
+    margin-bottom: 4px;
   }
 
   // input[type=file]
@@ -416,7 +419,7 @@ form {
     margin-top: -10px;
     text-align: center;
     font-size: @form-feedback-icon-size;
-    animation: zoomIn .3s @ease-out-back;
+    animation: zoomIn 0.3s @ease-out-back;
     z-index: 1;
 
     & svg {
@@ -449,6 +452,9 @@ form {
   .@{ant-prefix}-select {
     &-selection {
       border-color: @warning-color;
+      &:hover {
+        border-color: @warning-color;
+      }
     }
     &-open .@{ant-prefix}-select-selection,
     &-focused .@{ant-prefix}-select-selection {
@@ -495,6 +501,9 @@ form {
   .@{ant-prefix}-select {
     &-selection {
       border-color: @error-color;
+      &:hover {
+        border-color: @error-color;
+      }
     }
     &-open .@{ant-prefix}-select-selection,
     &-focused .@{ant-prefix}-select-selection {
@@ -543,7 +552,8 @@ form {
         border-color: @error-color;
       }
     }
-    &.@{ant-prefix}-mention-active:not([disabled]) .@{ant-prefix}-mention-editor,
+    &.@{ant-prefix}-mention-active:not([disabled])
+      .@{ant-prefix}-mention-editor,
     .@{ant-prefix}-mention-editor:not([disabled]):focus {
       .active(@error-color);
     }
@@ -551,6 +561,25 @@ form {
 
   .@{ant-prefix}-cascader-picker:focus .@{ant-prefix}-cascader-input {
     .active(@error-color);
+  }
+
+  // transfer
+  .@{ant-prefix}-transfer {
+    &-list {
+      border-color: @error-color;
+
+      &-search:not([disabled]) {
+        border-color: @input-border-color;
+
+        &:hover {
+          .hover();
+        }
+
+        &:focus {
+          .active();
+        }
+      }
+    }
   }
 }
 
@@ -566,7 +595,8 @@ form {
     margin-bottom: @form-item-margin-bottom;
 
     &-with-help {
-      margin-bottom: @form-item-margin-bottom - @font-size-base * @line-height-base - @form-help-margin-top;
+      margin-bottom: @form-item-margin-bottom - @font-size-base *
+        @line-height-base - @form-help-margin-top;
     }
   }
 }

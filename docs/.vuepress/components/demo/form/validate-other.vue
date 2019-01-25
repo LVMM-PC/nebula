@@ -148,7 +148,7 @@
 <script>
 export default {
   beforeCreate() {
-    window.test = this;
+    // window.test = this;
     this.form = this.$form.createForm(this);
   },
   data: () => ({

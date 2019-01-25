@@ -1,21 +1,21 @@
-import PropTypes from '../_util/vue-types'
-import classNames from 'classnames'
-import Vue from 'vue'
-import isRegExp from 'lodash/isRegExp'
-import warning from '../_util/warning'
-import createDOMForm from '../vc-form/src/createDOMForm'
-import createFormField from '../vc-form/src/createFormField'
-import FormItem from './FormItem'
-import { FIELD_META_PROP, FIELD_DATA_PROP } from './constants'
-import { initDefaultProps } from '../_util/props-util'
+import PropTypes from "../_util/vue-types";
+import classNames from "classnames";
+import Vue from "vue";
+import isRegExp from "lodash/isRegExp";
+import warning from "../_util/warning";
+import createDOMForm from "../vc-form/src/createDOMForm";
+import createFormField from "../vc-form/src/createFormField";
+import FormItem from "./FormItem";
+import { FIELD_META_PROP, FIELD_DATA_PROP } from "./constants";
+import { initDefaultProps } from "../_util/props-util";
 
 export const FormCreateOption = {
   onFieldsChange: PropTypes.func,
   onValuesChange: PropTypes.func,
   mapPropsToFields: PropTypes.func,
   validateMessages: PropTypes.any,
-  withRef: PropTypes.bool,
-}
+  withRef: PropTypes.bool
+};
 
 // function create
 export const WrappedFormUtils = {
@@ -51,18 +51,18 @@ export const WrappedFormUtils = {
   /** 重置一组输入控件的值与状态，如不传入参数，则重置所有组件 */
   resetFields: PropTypes.func,
 
-  getFieldDecorator: PropTypes.func,
-}
+  getFieldDecorator: PropTypes.func
+};
 
 export const FormProps = {
-  layout: PropTypes.oneOf(['horizontal', 'inline', 'vertical']),
+  layout: PropTypes.oneOf(["horizontal", "inline", "vertical"]),
   form: PropTypes.object,
   // onSubmit: React.FormEventHandler<any>;
   prefixCls: PropTypes.string,
   hideRequiredMark: PropTypes.bool,
   autoFormCreate: PropTypes.func,
-  options: PropTypes.object,
-}
+  options: PropTypes.object
+};
 
 export const ValidationRule = {
   /** validation error message */
@@ -86,8 +86,8 @@ export const ValidationRule = {
   /** transform a value before validation */
   transform: PropTypes.func,
   /** custom validate function (Note: callback must be called) */
-  validator: PropTypes.func,
-}
+  validator: PropTypes.func
+};
 
 // export type ValidateCallback = (errors: any, values: any) => void;
 
@@ -112,14 +112,16 @@ export const ValidationRule = {
 //   normalize?: (value: any, prevValue: any, allValues: any) => any;
 //   /** Whether stop validate on first rule of error for this field.  */
 //   validateFirst?: boolean;
+//   /** 是否一直保留子节点的信息 */
+//   preserve?: boolean;
 // };
 
 const Form = {
-  name: 'NebulaForm',
+  name: "NebulaForm",
   props: initDefaultProps(FormProps, {
-    prefixCls: 'nebula-form',
-    layout: 'horizontal',
-    hideRequiredMark: false,
+    prefixCls: "nebula-form",
+    layout: "horizontal",
+    hideRequiredMark: false
   }),
 
   Item: FormItem,
@@ -128,91 +130,118 @@ const Form = {
 
   create: (options = {}) => {
     return createDOMForm({
-      fieldNameProp: 'id',
+      fieldNameProp: "id",
       ...options,
       fieldMetaProp: FIELD_META_PROP,
-      fieldDataProp: FIELD_DATA_PROP,
-    })
+      fieldDataProp: FIELD_DATA_PROP
+    });
   },
-  createForm (context, options = {}) {
-    return new Vue(Form.create({ ...options, templateContext: context })())
+  createForm(context, options = {}) {
+    return new Vue(Form.create({ ...options, templateContext: context })());
   },
-  provide () {
+  provide() {
     return {
-      FormProps: this.$props,
-    }
+      FormProps: this.$props
+    };
   },
   watch: {
-    form () {
-      this.$forceUpdate()
-    },
+    form() {
+      this.$forceUpdate();
+    }
+  },
+  updated() {
+    if (this.form && this.form.cleanUpUselessFields) {
+      this.form.cleanUpUselessFields();
+    }
   },
   methods: {
-    onSubmit (e) {
-      const { $listeners } = this
+    onSubmit(e) {
+      const { $listeners } = this;
       if (!$listeners.submit) {
-        e.preventDefault()
+        e.preventDefault();
       } else {
-        this.$emit('submit', e)
+        this.$emit("submit", e);
       }
-    },
+    }
   },
 
-  render () {
+  render() {
     const {
-      prefixCls, hideRequiredMark, layout, onSubmit, $slots, autoFormCreate, options = {},
-    } = this
+      prefixCls,
+      hideRequiredMark,
+      layout,
+      onSubmit,
+      $slots,
+      autoFormCreate,
+      options = {}
+    } = this;
 
     const formClassName = classNames(prefixCls, {
-      [`${prefixCls}-horizontal`]: layout === 'horizontal',
-      [`${prefixCls}-vertical`]: layout === 'vertical',
-      [`${prefixCls}-inline`]: layout === 'inline',
-      [`${prefixCls}-hide-required-mark`]: hideRequiredMark,
-    })
+      [`${prefixCls}-horizontal`]: layout === "horizontal",
+      [`${prefixCls}-vertical`]: layout === "vertical",
+      [`${prefixCls}-inline`]: layout === "inline",
+      [`${prefixCls}-hide-required-mark`]: hideRequiredMark
+    });
     if (autoFormCreate) {
       warning(
         false,
-        '`autoFormCreate` is deprecated. please use `form` instead.'
-      )
-      const DomForm = this.DomForm || createDOMForm({
-        fieldNameProp: 'id',
-        ...options,
-        fieldMetaProp: FIELD_META_PROP,
-        fieldDataProp: FIELD_DATA_PROP,
-        templateContext: this.$vnode.context,
-      })({
-        provide () {
-          return {
-            decoratorFormProps: this.$props,
+        "`autoFormCreate` is deprecated. please use `form` instead."
+      );
+      const DomForm =
+        this.DomForm ||
+        createDOMForm({
+          fieldNameProp: "id",
+          ...options,
+          fieldMetaProp: FIELD_META_PROP,
+          fieldDataProp: FIELD_DATA_PROP,
+          templateContext: this.$vnode.context
+        })({
+          provide() {
+            return {
+              decoratorFormProps: this.$props
+            };
+          },
+          data() {
+            return {
+              children: $slots.default,
+              formClassName: formClassName,
+              submit: onSubmit
+            };
+          },
+          created() {
+            autoFormCreate(this.form);
+          },
+          render() {
+            const { children, formClassName, submit } = this;
+            return (
+              <form onSubmit={submit} class={formClassName}>
+                {children}
+              </form>
+            );
           }
-        },
-        data () {
-          return {
-            children: $slots.default,
-            formClassName: formClassName,
-            submit: onSubmit,
-          }
-        },
-        created () {
-          autoFormCreate(this.form)
-        },
-        render () {
-          const { children, formClassName, submit } = this
-          return <form onSubmit={submit} class={formClassName}>{children}</form>
-        },
-      })
+        });
       if (this.domForm) {
-        this.domForm.children = $slots.default
-        this.domForm.submit = onSubmit
-        this.domForm.formClassName = formClassName
+        this.domForm.children = $slots.default;
+        this.domForm.submit = onSubmit;
+        this.domForm.formClassName = formClassName;
       }
-      this.DomForm = DomForm
+      this.DomForm = DomForm;
 
-      return <DomForm wrappedComponentRef={(inst) => { this.domForm = inst }}/>
+      return (
+        <DomForm
+          wrappedComponentRef={inst => {
+            this.domForm = inst;
+          }}
+        />
+      );
     }
 
-    return <form onSubmit={onSubmit} class={formClassName}>{$slots.default}</form>
-  },
-}
+    return (
+      <form onSubmit={onSubmit} class={formClassName}>
+        {$slots.default}
+      </form>
+    );
+  }
+};
 
-export default Form
+export default Form;

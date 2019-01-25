@@ -36,7 +36,6 @@
         </nebula-col>
       </nebula-row>
     </nebula-form>
-    <div class='search-result-list'>Search Result List</div>
   </main>
 </template>
 

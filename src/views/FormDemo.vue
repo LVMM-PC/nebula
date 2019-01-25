@@ -1,44 +1,154 @@
 <template>
-  <nebula-form 
-    :form="form" 
-    @submit="handleSubmit">
+  <nebula-form>
     <nebula-form-item
-      :label-col="{ span: 5 }"
-      :wrapper-col="{ span: 12 }"
-      label="Note"
+      :label-col="labelCol"
+      :wrapper-col="wrapperCol"
+      label="Fail"
+      validate-status="error"
+      help="Should be combination of numbers & alphabets"
     >
-      <nebula-input
-        v-decorator="[
-          'note',
-          {rules: [{ required: true, message: 'Please input your note!' }]}
-        ]"
-      />
+      <nebula-input 
+        id="error1" 
+        placeholder="unavailable choice" />
     </nebula-form-item>
+
     <nebula-form-item
-      :label-col="{ span: 5 }"
-      :wrapper-col="{ span: 12 }"
-      label="Gender"
+      :label-col="labelCol"
+      :wrapper-col="wrapperCol"
+      label="Warning"
+      validate-status="warning"
     >
-      <nebula-select
-        v-decorator="[
-          'gender',
-          {rules: [{ required: true, message: 'Please select your gender!' }]}
-        ]"
-        placeholder="Select a option and change input text above"
-        @change="this.handleSelectChange"
-      >
-        <nebula-select-option value="male">male</nebula-select-option>
-        <nebula-select-option value="female">female</nebula-select-option>
+      <nebula-input 
+        id="warning1" 
+        placeholder="Warning" />
+    </nebula-form-item>
+
+    <nebula-form-item
+      :label-col="labelCol"
+      :wrapper-col="wrapperCol"
+      label="Validating"
+      has-feedback
+      validate-status="validating"
+      help="The information is being validated..."
+    >
+      <nebula-input 
+        id="validating" 
+        placeholder="I'm the content is being validated" />
+    </nebula-form-item>
+
+    <nebula-form-item
+      :label-col="labelCol"
+      :wrapper-col="wrapperCol"
+      label="Success"
+      has-feedback
+      validate-status="success"
+    >
+      <nebula-input 
+        id="success" 
+        placeholder="I'm the content" />
+    </nebula-form-item>
+
+    <nebula-form-item
+      :label-col="labelCol"
+      :wrapper-col="wrapperCol"
+      label="Warning"
+      has-feedback
+      validate-status="warning"
+    >
+      <nebula-input 
+        id="warning" 
+        placeholder="Warning" />
+    </nebula-form-item>
+
+    <nebula-form-item
+      :label-col="labelCol"
+      :wrapper-col="wrapperCol"
+      label="Fail"
+      has-feedback
+      validate-status="error"
+      help="Should be combination of numbers & alphabets"
+    >
+      <nebula-input 
+        id="error" 
+        placeholder="unavailable choice" />
+    </nebula-form-item>
+
+    <nebula-form-item
+      :label-col="labelCol"
+      :wrapper-col="wrapperCol"
+      label="Success"
+      has-feedback
+      validate-status="success"
+    >
+      <nebula-input style="width: 100%" />
+    </nebula-form-item>
+
+    <nebula-form-item
+      :label-col="labelCol"
+      :wrapper-col="wrapperCol"
+      label="Warning"
+      has-feedback
+      validate-status="warning"
+    >
+      <nebula-input style="width: 100%" />
+    </nebula-form-item>
+
+    <nebula-form-item
+      :label-col="labelCol"
+      :wrapper-col="wrapperCol"
+      label="Error"
+      has-feedback
+      validate-status="error"
+    >
+      <nebula-select default-value="1">
+        <nebula-select-option value="1">Option 1</nebula-select-option>
+        <nebula-select-option value="2">Option 2</nebula-select-option>
+        <nebula-select-option value="3">Option 3</nebula-select-option>
       </nebula-select>
     </nebula-form-item>
+
     <nebula-form-item
-      :wrapper-col="{ span: 12, offset: 5 }"
+      :label-col="labelCol"
+      :wrapper-col="wrapperCol"
+      label="Validating"
+      has-feedback
+      validate-status="validating"
+      help="The information is being validated..."
     >
-      <nebula-button 
-        type="primary" 
-        html-type="submit">
-        Submit
-      </nebula-button>
+      <nebula-select 
+        :default-value="['1']" 
+        :options="[]" />
+    </nebula-form-item>
+
+    <nebula-form-item
+      :label-col="labelCol"
+      :wrapper-col="wrapperCol"
+      label="inline"
+      style="margin-bottom:0;"
+    >
+      <nebula-form-item
+        :style="{ display: 'inline-block', width: 'calc(50% - 12px)' }"
+        validate-status="error"
+        help="Please select the correct date"
+      >
+        <nebula-input style="width: 100%"/>
+      </nebula-form-item>
+      <span :style="{ display: 'inline-block', width: '24px', textAlign: 'center' }">
+        -
+      </span>
+      <nebula-form-item :style="{ display: 'inline-block', width: 'calc(50% - 12px)' }">
+        <nebula-input style="width: 100%"/>
+      </nebula-form-item>
+    </nebula-form-item>
+
+    <nebula-form-item
+      :label-col="labelCol"
+      :wrapper-col="wrapperCol"
+      label="Success"
+      has-feedback
+      validate-status="success"
+    >
+      <nebula-input-number style="width: 100%" />
     </nebula-form-item>
   </nebula-form>
 </template>
@@ -47,25 +157,15 @@
 export default {
   data() {
     return {
-      formLayout: "horizontal",
-      form: this.$form.createForm(this)
+      labelCol: {
+        xs: { span: 24 },
+        sm: { span: 5 }
+      },
+      wrapperCol: {
+        xs: { span: 24 },
+        sm: { span: 12 }
+      }
     };
-  },
-  methods: {
-    handleSubmit(e) {
-      e.preventDefault();
-      this.form.validateFields((err, values) => {
-        if (!err) {
-          console.log("Received values of form: ", values);
-        }
-      });
-    },
-    handleSelectChange(value) {
-      console.log(value);
-      this.form.setFieldsValue({
-        note: `Hi, ${value === "male" ? "man" : "lady"}!`
-      });
-    }
   }
 };
 </script>
