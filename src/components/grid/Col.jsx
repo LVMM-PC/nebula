@@ -30,7 +30,7 @@ export const ColProps = {
 
 export default {
   props: ColProps,
-  name: 'ACol',
+  name: 'NebulaCol',
   inject: {
     rowContext: {
       default: null,

@@ -12,6 +12,7 @@
         `names[${k}]`,
         {
           validateTrigger: ['change', 'blur'],
+          preserve: true,
           rules: [{
             required: true,
             whitespace: true,
@@ -47,7 +48,7 @@ let id = 0;
 export default {
   beforeCreate() {
     this.form = this.$form.createForm(this);
-    this.form.getFieldDecorator("keys", { initialValue: [] });
+    this.form.getFieldDecorator("keys", { initialValue: [], preserve: true });
   },
   data() {
     return {
@@ -89,6 +90,7 @@ export default {
       const { form } = this;
       // can use data-binding to get
       const keys = form.getFieldValue("keys");
+      console.log(keys)
       const nextKeys = keys.concat(++id);
       // can use data-binding to set
       // important! notify form to detect changes

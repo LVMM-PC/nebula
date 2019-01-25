@@ -1,171 +1,137 @@
 <template>
-  <nebula-form>
+  <nebula-form 
+    :form="form" 
+    @submit="handleSubmit">
     <nebula-form-item
-      :label-col="labelCol"
-      :wrapper-col="wrapperCol"
-      label="Fail"
-      validate-status="error"
-      help="Should be combination of numbers & alphabets"
+      v-for="(k, index) in form.getFieldValue('keys')"
+      v-bind="index === 0 ? formItemLayout : formItemLayoutWithOutLabel"
+      :label="index === 0 ? 'Passengers' : ''"
+      :required="false"
+      :key="k"
     >
-      <nebula-input 
-        id="error1" 
-        placeholder="unavailable choice" />
+      <nebula-input
+        v-decorator="[
+          `names[${k}]`,
+          {
+            validateTrigger: ['change', 'blur'],
+            preserve: true,
+            rules: [{
+              required: true,
+              whitespace: true,
+              message: 'Please input passenger\'s name or delete this field.',
+            }],
+          }
+        ]"
+        placeholder="passenger name"
+        style="width: 60%; margin-right: 8px"
+      />
+      <nebula-icon
+        v-if="form.getFieldValue('keys').length > 1"
+        :disabled="form.getFieldValue('keys').length === 1"
+        class="dynamic-delete-button"
+        type="minus-circle-o"
+        @click="() => remove(k)"
+      />
     </nebula-form-item>
-
-    <nebula-form-item
-      :label-col="labelCol"
-      :wrapper-col="wrapperCol"
-      label="Warning"
-      validate-status="warning"
-    >
-      <nebula-input 
-        id="warning1" 
-        placeholder="Warning" />
+    <nebula-form-item v-bind="formItemLayoutWithOutLabel">
+      <nebula-button 
+        type="dashed" 
+        style="width: 60%" 
+        @click="add">
+        <nebula-icon type="plus"/>
+        Add field
+      </nebula-button>
     </nebula-form-item>
-
-    <nebula-form-item
-      :label-col="labelCol"
-      :wrapper-col="wrapperCol"
-      label="Validating"
-      has-feedback
-      validate-status="validating"
-      help="The information is being validated..."
-    >
-      <nebula-input 
-        id="validating" 
-        placeholder="I'm the content is being validated" />
-    </nebula-form-item>
-
-    <nebula-form-item
-      :label-col="labelCol"
-      :wrapper-col="wrapperCol"
-      label="Success"
-      has-feedback
-      validate-status="success"
-    >
-      <nebula-input 
-        id="success" 
-        placeholder="I'm the content" />
-    </nebula-form-item>
-
-    <nebula-form-item
-      :label-col="labelCol"
-      :wrapper-col="wrapperCol"
-      label="Warning"
-      has-feedback
-      validate-status="warning"
-    >
-      <nebula-input 
-        id="warning" 
-        placeholder="Warning" />
-    </nebula-form-item>
-
-    <nebula-form-item
-      :label-col="labelCol"
-      :wrapper-col="wrapperCol"
-      label="Fail"
-      has-feedback
-      validate-status="error"
-      help="Should be combination of numbers & alphabets"
-    >
-      <nebula-input 
-        id="error" 
-        placeholder="unavailable choice" />
-    </nebula-form-item>
-
-    <nebula-form-item
-      :label-col="labelCol"
-      :wrapper-col="wrapperCol"
-      label="Success"
-      has-feedback
-      validate-status="success"
-    >
-      <nebula-input style="width: 100%" />
-    </nebula-form-item>
-
-    <nebula-form-item
-      :label-col="labelCol"
-      :wrapper-col="wrapperCol"
-      label="Warning"
-      has-feedback
-      validate-status="warning"
-    >
-      <nebula-input style="width: 100%" />
-    </nebula-form-item>
-
-    <nebula-form-item
-      :label-col="labelCol"
-      :wrapper-col="wrapperCol"
-      label="Error"
-      has-feedback
-      validate-status="error"
-    >
-      <nebula-select default-value="1">
-        <nebula-select-option value="1">Option 1</nebula-select-option>
-        <nebula-select-option value="2">Option 2</nebula-select-option>
-        <nebula-select-option value="3">Option 3</nebula-select-option>
-      </nebula-select>
-    </nebula-form-item>
-
-    <nebula-form-item
-      :label-col="labelCol"
-      :wrapper-col="wrapperCol"
-      label="Validating"
-      has-feedback
-      validate-status="validating"
-      help="The information is being validated..."
-    >
-      <nebula-select 
-        :default-value="['1']" 
-        :options="[]" />
-    </nebula-form-item>
-
-    <nebula-form-item
-      :label-col="labelCol"
-      :wrapper-col="wrapperCol"
-      label="inline"
-      style="margin-bottom:0;"
-    >
-      <nebula-form-item
-        :style="{ display: 'inline-block', width: 'calc(50% - 12px)' }"
-        validate-status="error"
-        help="Please select the correct date"
-      >
-        <nebula-input style="width: 100%"/>
-      </nebula-form-item>
-      <span :style="{ display: 'inline-block', width: '24px', textAlign: 'center' }">
-        -
-      </span>
-      <nebula-form-item :style="{ display: 'inline-block', width: 'calc(50% - 12px)' }">
-        <nebula-input style="width: 100%"/>
-      </nebula-form-item>
-    </nebula-form-item>
-
-    <nebula-form-item
-      :label-col="labelCol"
-      :wrapper-col="wrapperCol"
-      label="Success"
-      has-feedback
-      validate-status="success"
-    >
-      <nebula-input-number style="width: 100%" />
+    <nebula-form-item v-bind="formItemLayoutWithOutLabel">
+      <nebula-button 
+        type="primary" 
+        html-type="submit">Submit</nebula-button>
     </nebula-form-item>
   </nebula-form>
 </template>
 
 <script>
+let id = 0;
 export default {
   data() {
     return {
-      labelCol: {
-        xs: { span: 24 },
-        sm: { span: 5 }
+      formItemLayout: {
+        labelCol: {
+          xs: { span: 24 },
+          sm: { span: 4 }
+        },
+        wrapperCol: {
+          xs: { span: 24 },
+          sm: { span: 20 }
+        }
       },
-      wrapperCol: {
-        xs: { span: 24 },
-        sm: { span: 12 }
+      formItemLayoutWithOutLabel: {
+        wrapperCol: {
+          xs: { span: 24, offset: 0 },
+          sm: { span: 20, offset: 4 }
+        }
       }
     };
+  },
+  beforeCreate() {
+    this.form = this.$form.createForm(this);
+    this.form.getFieldDecorator("keys", { initialValue: [], preserve: true });
+  },
+  methods: {
+    remove(k) {
+      const { form } = this;
+      // can use data-binding to get
+      const keys = form.getFieldValue("keys");
+      // We need at least one passenger
+      if (keys.length === 1) {
+        return;
+      }
+
+      // can use data-binding to set
+      form.setFieldsValue({
+        keys: keys.filter(key => key !== k)
+      });
+    },
+
+    add() {
+      const { form } = this;
+      // can use data-binding to get
+      const keys = form.getFieldValue("keys");
+      const nextKeys = keys.concat(++id);
+      // can use data-binding to set
+      // important! notify form to detect changes
+      form.setFieldsValue({
+        keys: nextKeys
+      });
+    },
+
+    handleSubmit(e) {
+      e.preventDefault();
+      this.form.validateFields((err, values) => {
+        if (!err) {
+          console.log("Received values of form: ", values);
+        }
+      });
+    }
   }
 };
 </script>
+<style>
+.dynamic-delete-button {
+  cursor: pointer;
+  position: relative;
+  top: 4px;
+  font-size: 24px;
+  color: #999;
+  transition: all 0.3s;
+}
+
+.dynamic-delete-button:hover {
+  color: #777;
+}
+
+.dynamic-delete-button[disabled] {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+</style>

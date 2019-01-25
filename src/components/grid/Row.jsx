@@ -48,7 +48,7 @@ const responsiveMap = {
 }
 
 export default {
-  name: 'ARow',
+  name: 'NebulaRow',
   mixins: [BaseMixin],
   props: {
     ...RowProps,
