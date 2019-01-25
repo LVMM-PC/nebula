@@ -1,14 +1,15 @@
 <template>
-  <nebula-form @submit="handleSubmit" :form="form">
-    <nebula-form-item
-      v-for="(k, index) in form.getFieldValue('keys')"
-      v-bind="index === 0 ? formItemLayout : formItemLayoutWithOutLabel"
-      :label="index === 0 ? 'Passengers' : ''"
-      :required="false"
-      :key="k"
-    >
-      <nebula-input
-        v-decorator="[
+  <main>
+    <nebula-form @submit="handleSubmit" :form="form">
+      <nebula-form-item
+        v-for="(k, index) in form.getFieldValue('keys')"
+        v-bind="index === 0 ? formItemLayout : formItemLayoutWithOutLabel"
+        :label="index === 0 ? 'Passengers' : ''"
+        :required="false"
+        :key="k"
+      >
+        <nebula-input
+          v-decorator="[
         `names[${k}]`,
         {
           validateTrigger: ['change', 'blur'],
@@ -20,27 +21,28 @@
           }],
         }
       ]"
-        placeholder='passenger name'
-        style="width: 60%; margin-right: 8px"
-      />
-      <nebula-icon
-        v-if="form.getFieldValue('keys').length > 1"
-        class='dynamic-delete-button'
-        type='minus-circle-o'
-        :disabled="form.getFieldValue('keys').length === 1"
-        @click="() => remove(k)"
-      />
-    </nebula-form-item>
-    <nebula-form-item v-bind="formItemLayoutWithOutLabel">
-      <nebula-button type='dashed' @click="add" style="width: 60%">
-        <nebula-icon type='plus'/>
-        Add field
-      </nebula-button>
-    </nebula-form-item>
-    <nebula-form-item v-bind="formItemLayoutWithOutLabel">
-      <nebula-button type='primary' htmlType='submit'>Submit</nebula-button>
-    </nebula-form-item>
-  </nebula-form>
+          placeholder='passenger name'
+          style="width: 60%; margin-right: 8px"
+        />
+        <nebula-icon
+          v-if="form.getFieldValue('keys').length > 1"
+          class='dynamic-delete-button'
+          type='minus-circle-o'
+          :disabled="form.getFieldValue('keys').length === 1"
+          @click="() => remove(k)"
+        />
+      </nebula-form-item>
+      <nebula-form-item v-bind="formItemLayoutWithOutLabel">
+        <nebula-button type='dashed' @click="add" style="width: 60%">
+          <nebula-icon type='plus'/>
+          Add field
+        </nebula-button>
+      </nebula-form-item>
+      <nebula-form-item v-bind="formItemLayoutWithOutLabel">
+        <nebula-button type='primary' htmlType='submit'>Submit</nebula-button>
+      </nebula-form-item>
+    </nebula-form>
+  </main>
 </template>
 
 <script>
@@ -90,7 +92,7 @@ export default {
       const { form } = this;
       // can use data-binding to get
       const keys = form.getFieldValue("keys");
-      console.log(keys)
+      console.log(keys);
       const nextKeys = keys.concat(++id);
       // can use data-binding to set
       // important! notify form to detect changes
