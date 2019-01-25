@@ -4,6 +4,7 @@
       type="primary" 
       @click="showModal">Open Modal with async logic</nebula-button>
     <nebula-modal
+
       :visible="visible"
       :confirm-loading="confirmLoading"
       title="Title"

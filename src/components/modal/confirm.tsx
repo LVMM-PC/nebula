@@ -43,6 +43,7 @@ export default function confirm(config) {
       render() {
         // 先解构，避免报错，原因不详
         const cdProps = { ...this.confirmDialogProps };
+        // @ts-ignore
         return <ConfirmDialog {...cdProps} />;
       }
     });
