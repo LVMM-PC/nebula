@@ -10,7 +10,7 @@ let runtimeLocale = {
   ...defaultLocale.Modal
 };
 
-export function changeConfirmLocale(newLocale) {
+export function changeConfirmLocale(newLocale = null) {
   if (newLocale) {
     runtimeLocale = {
       ...runtimeLocale,

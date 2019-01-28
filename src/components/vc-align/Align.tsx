@@ -4,7 +4,7 @@ import addEventListener from "../_util/Dom/addEventListener";
 import { isWindow, buffer, isSamePoint } from "./util";
 import { cloneElement } from "../_util/vnode.js";
 import clonedeep from "lodash/cloneDeep";
-import { Component, Vue } from "vue-property-decorator";
+import { Component, Prop, Vue } from "vue-property-decorator";
 
 function getElement(func) {
   if (typeof func !== "function" || !func) return null;
@@ -17,18 +17,27 @@ function getPoint(point) {
 }
 
 @Component({
-  props: {
-    childrenProps: PropTypes.object,
-    align: PropTypes.object.isRequired,
-    target: PropTypes.oneOfType([PropTypes.func, PropTypes.object]).def(
-      () => window
-    ),
-    monitorBufferTime: PropTypes.number.def(50),
-    monitorWindowResize: PropTypes.bool.def(false),
-    disabled: PropTypes.bool.def(false)
-  }
+  props: {}
 })
 export default class Align extends Vue {
+  @Prop({ type: Object })
+  childrenProps?: any;
+
+  @Prop({ type: Object })
+  align?: any;
+
+  @Prop({ default: () => window, type: [Function, Object] })
+  target?: any;
+
+  @Prop({ default: 50, type: Number })
+  monitorBufferTime?: number;
+
+  @Prop({ default: false, type: Boolean })
+  monitorWindowResize?: boolean;
+
+  @Prop({ default: false, type: Boolean })
+  disabled?: boolean;
+
   constructor(props) {
     super(props);
   }

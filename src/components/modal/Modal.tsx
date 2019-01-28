@@ -75,7 +75,7 @@ class ModalProps extends Vue {
   cancelText?: string;
 
   /** 点击蒙层是否允许关闭*/
-  @Prop({  })
+  @Prop({})
   maskClosable?: boolean;
 
   @Prop({})
@@ -108,7 +108,7 @@ class ModalProps extends Vue {
   @Prop({ type: Object })
   maskStyle?: any;
 
-  @Prop({ })
+  @Prop({})
   mask?: boolean;
 
   @Prop({ type: Boolean })
@@ -123,6 +123,13 @@ export default class NebulaModal extends mixins(ModalProps) {
   constructor(props) {
     super(props);
   }
+
+  public static info;
+  public static success;
+  public static error;
+  public static warning;
+  public static warn;
+  public static confirm;
 
   @Model("change", { default: false, type: Boolean })
   visible!: boolean;

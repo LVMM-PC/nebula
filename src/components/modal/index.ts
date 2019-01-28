@@ -61,6 +61,7 @@ Modal.warn = warn;
 Modal.confirm = confirm;
 
 /* istanbul ignore next */
+// @ts-ignore
 Modal.install = function(Vue) {
   Vue.component(Modal.name, Modal);
 };
