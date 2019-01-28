@@ -101,7 +101,7 @@ export function getValidateTriggers(validateRules) {
     .reduce((pre, curr) => pre.concat(curr), []);
 }
 
-export function getValueFromEvent(e) {
+export function getValueFromEvent(e = null) {
   // To support custom element
   if (!e || !e.target) {
     return e;

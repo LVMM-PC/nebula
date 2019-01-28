@@ -15,6 +15,9 @@ function internalFlattenFields(fields) {
 }
 
 class FieldsStore {
+  fields;
+  fieldsMeta;
+
   constructor(fields) {
     this.fields = internalFlattenFields(fields);
     this.fieldsMeta = {};

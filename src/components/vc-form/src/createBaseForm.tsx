@@ -23,7 +23,22 @@ import {
 
 const DEFAULT_TRIGGER = "change";
 
-function createBaseForm(option = {}, mixins = []) {
+type optionType = {
+  validateMessages?: any;
+  onFieldsChange?: any;
+  onValuesChange?: any;
+  mapProps?: any;
+  mapPropsToFields?: any;
+  fieldNameProp?: any;
+  fieldMetaProp?: any;
+  fieldDataProp?: any;
+  formPropName?: any;
+  name?: any;
+  props?: any;
+  templateContext?: any;
+};
+
+function createBaseForm(option: optionType = {}, mixins = []) {
   const {
     validateMessages,
     onFieldsChange,
@@ -266,6 +281,12 @@ function createBaseForm(option = {}, mixins = []) {
             valuePropName: "value",
             validate: [],
             ...usersFieldOption
+          } as {
+            rules?: any;
+            trigger?: any;
+            validateTrigger?: any;
+            validate?: any;
+            initialValue?: any;
           };
 
           const {
@@ -496,7 +517,7 @@ function createBaseForm(option = {}, mixins = []) {
 
         validateFieldsInternal(
           fields,
-          { fieldNames, action, options = {} },
+          { fieldNames, action, options = {} as { force } },
           callback
         ) {
           const allRules = {};
