@@ -15,6 +15,11 @@ import NebulaInputSearch from "./components/input/NebulaInputSearch";
 import NebulaInputGroup from "./components/input/NebulaInputGroup";
 import NebulaTextarea from "./components/input/NebulaTextarea";
 import NebulaInputNumber from "./components/input-number";
+import NebulaModal from "./components/modal";
+import NebulaTooltip from "./components/tooltip";
+import NebulaForm from "./components/form";
+import NebulaRow from "./components/grid/Row";
+import NebulaCol from "./components/grid/Col";
 
 export {
   NebulaButton,
@@ -33,5 +38,10 @@ export {
   NebulaInputSearch,
   NebulaInputGroup,
   NebulaTextarea,
-  NebulaInputNumber
+  NebulaInputNumber,
+  NebulaModal,
+  NebulaTooltip,
+  NebulaForm,
+  NebulaRow,
+  NebulaCol
 };

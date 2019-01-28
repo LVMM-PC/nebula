@@ -1,11 +1,11 @@
 import isPlainObject from "lodash/isPlainObject";
 import {
-  getType,
-  isArray,
-  isFunction,
-  isInteger,
   toType,
+  getType,
+  isFunction,
   validateType,
+  isInteger,
+  isArray,
   warn
 } from "./utils";
 

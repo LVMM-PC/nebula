@@ -2,16 +2,21 @@ let sidebar = [
   "/",
   "/installation/",
   "/button/",
-  "/icon/",
   "/checkbox/",
   "/radio/",
   "/switch/",
   "/select/",
   "/input/",
-  "/input-number/"
+  "/input-number/",
+  "/modal/",
+  "/tooltip/",
+  "/form/"
 ];
 
 module.exports = {
+  chainWebpack(config) {
+    config.resolve.alias.set('vue', 'vue/dist/vue.common.js')
+  },
   title: "Nebula UI",
   description: "Determinacy for better user experience of enterprise applications",
   themeConfig: {

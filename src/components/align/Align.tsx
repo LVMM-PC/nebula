@@ -17,23 +17,27 @@ function getPoint(point) {
 
 @Component({})
 export default class Align extends Vue {
+  constructor(props) {
+    super(props);
+  }
+
   @Prop({ type: Object })
-  childrenProps: any;
+  childrenProps?: any;
 
   @Prop({ type: Object, required: true })
-  align: any;
+  align?: any;
 
   @Prop({ default: () => window, type: [Object, Function] })
-  target: any;
+  target?: any;
 
   @Prop({ default: 50, type: Number })
-  monitorBufferTime: number;
+  monitorBufferTime?: number;
 
   @Prop({ default: false, type: Boolean })
-  monitorWindowResize: boolean;
+  monitorWindowResize?: boolean;
 
   @Prop({ default: false, type: Boolean })
-  disabled: boolean;
+  disabled?: boolean;
 
   public prevProps: any;
 

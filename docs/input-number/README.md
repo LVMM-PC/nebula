@@ -20,7 +20,7 @@ Numeric-only input box.
 
 ### Sizes
 
-There are three sizes available to a numeric input box. By default, the size is `32px`. The two additional sizes are `large` and `small` which means `40px` and `24px`, respectively.
+There are three sizes available to a numeric input box. By default, the size is `30px`. The two additional sizes are `large` and `small` which means `40px` and `24px`, respectively.
 
 <demo-input-number-size/>
 

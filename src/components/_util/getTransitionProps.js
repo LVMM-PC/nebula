@@ -1,5 +1,4 @@
 import animate from "./css-animation";
-
 const noop = () => {};
 const getTransitionProps = (transitionName, opt = {}) => {
   const {

@@ -1,4 +1,4 @@
-# InputNumber
+# InputNumber 数字输入框
 
 通过鼠标或键盘，输入范围内的数值。
 
@@ -20,7 +20,7 @@
 
 ### 三种大小
 
-三种大小的数字输入框，当 size 分别为 `large` 和 `small` 时，输入框高度为 `40px` 和 `24px` ，默认高度为 `32px`。
+三种大小的数字输入框，当 size 分别为 `large` 和 `small` 时，输入框高度为 `40px` 和 `24px` ，默认高度为 `30px`。
 
 <demo-input-number-size/>
 

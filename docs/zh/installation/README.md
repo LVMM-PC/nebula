@@ -1,4 +1,4 @@
-# 安装
+# Installation 安装
 
 ## 使用 npm 或 yarn 安装
 

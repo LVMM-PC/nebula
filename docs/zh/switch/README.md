@@ -1,4 +1,4 @@
-# Switch
+# Switch 开关选择器
 
 开关选择器。
 
@@ -65,12 +65,12 @@ Switch 失效状态。
 | ----------------- | ----------------------------------- | ------------------------- | ------- |
 | autoFocus         | 组件自动获取焦点                    | boolean                   | false   |
 | checked           | 指定当前是否选中                    | boolean                   | false   |
-| checkedChildren   | 选中时的内容                        | string\|ReactNode         |         |
+| checkedChildren   | 选中时的内容                        | string\|VueNode           |         |
 | defaultChecked    | 初始是否选中                        | boolean                   | false   |
 | disabled          | 是否禁用                            | boolean                   | false   |
 | loading           | 加载中的开关                        | boolean                   | false   |
 | size              | 开关大小，可选值：`default` `small` | string                    | default |
-| unCheckedChildren | 非选中时的内容                      | string\|ReactNode         |         |
+| unCheckedChildren | 非选中时的内容                      | string\|VueNode           |         |
 | onChange          | 变化时回调函数                      | Function(checked:Boolean) |         |
 
 ## 方法

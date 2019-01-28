@@ -1,7 +1,7 @@
 <template>
-  <section>
+  <main>
     <NebulaCheckbox @change="onChange">Checkbox</NebulaCheckbox>
-  </section>
+  </main>
 </template>
 
 <script>
