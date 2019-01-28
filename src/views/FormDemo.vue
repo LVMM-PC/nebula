@@ -1,137 +1,54 @@
 <template>
-  <nebula-form 
-    :form="form" 
-    @submit="handleSubmit">
-    <nebula-form-item
-      v-for="(k, index) in form.getFieldValue('keys')"
-      v-bind="index === 0 ? formItemLayout : formItemLayoutWithOutLabel"
-      :label="index === 0 ? 'Passengers' : ''"
-      :required="false"
-      :key="k"
-    >
-      <nebula-input
-        v-decorator="[
-          `names[${k}]`,
-          {
-            validateTrigger: ['change', 'blur'],
-            preserve: true,
-            rules: [{
-              required: true,
-              whitespace: true,
-              message: 'Please input passenger\'s name or delete this field.',
-            }],
-          }
-        ]"
-        placeholder="passenger name"
-        style="width: 60%; margin-right: 8px"
-      />
-      <nebula-icon
-        v-if="form.getFieldValue('keys').length > 1"
-        :disabled="form.getFieldValue('keys').length === 1"
-        class="dynamic-delete-button"
-        type="minus-circle-o"
-        @click="() => remove(k)"
-      />
-    </nebula-form-item>
-    <nebula-form-item v-bind="formItemLayoutWithOutLabel">
-      <nebula-button 
-        type="dashed" 
-        style="width: 60%" 
-        @click="add">
-        <nebula-icon type="plus"/>
-        Add field
-      </nebula-button>
-    </nebula-form-item>
-    <nebula-form-item v-bind="formItemLayoutWithOutLabel">
-      <nebula-button 
-        type="primary" 
-        html-type="submit">Submit</nebula-button>
-    </nebula-form-item>
-  </nebula-form>
+  <div>
+    <AdvancedSearch/>
+    <Coordinated/>
+    <CustomizedFormControls/>
+    <DynamicFormItem/>
+    <DynamicRule/>
+    <FormInModal/>
+    <GlobalState/>
+    <HorizontalLogin/>
+    <Layout/>
+    <NormalLogin/>
+    <Register/>
+    <ValidateOther/>
+    <ValidateStatic/>
+    <WithoutFormCreate/>
+  </div>
 </template>
 
 <script>
-let id = 0;
+import AdvancedSearch from "./form/advanced-search.vue";
+import Coordinated from "./form/coordinated.vue";
+import CustomizedFormControls from "./form/customized-form-controls.vue";
+import DynamicFormItem from "./form/dynamic-form-item.vue";
+import DynamicRule from "./form/dynamic-rule.vue";
+import FormInModal from "./form/form-in-modal.vue";
+import GlobalState from "./form/global-state.vue";
+import HorizontalLogin from "./form/horizontal-login.vue";
+import Layout from "./form/layout.vue";
+import NormalLogin from "./form/normal-login.vue";
+import Register from "./form/register.vue";
+import ValidateOther from "./form/validate-other.vue";
+import ValidateStatic from "./form/validate-static.vue";
+import WithoutFormCreate from "./form/without-form-create.vue";
+
 export default {
-  data() {
-    return {
-      formItemLayout: {
-        labelCol: {
-          xs: { span: 24 },
-          sm: { span: 4 }
-        },
-        wrapperCol: {
-          xs: { span: 24 },
-          sm: { span: 20 }
-        }
-      },
-      formItemLayoutWithOutLabel: {
-        wrapperCol: {
-          xs: { span: 24, offset: 0 },
-          sm: { span: 20, offset: 4 }
-        }
-      }
-    };
-  },
-  beforeCreate() {
-    this.form = this.$form.createForm(this);
-    this.form.getFieldDecorator("keys", { initialValue: [], preserve: true });
-  },
-  methods: {
-    remove(k) {
-      const { form } = this;
-      // can use data-binding to get
-      const keys = form.getFieldValue("keys");
-      // We need at least one passenger
-      if (keys.length === 1) {
-        return;
-      }
-
-      // can use data-binding to set
-      form.setFieldsValue({
-        keys: keys.filter(key => key !== k)
-      });
-    },
-
-    add() {
-      const { form } = this;
-      // can use data-binding to get
-      const keys = form.getFieldValue("keys");
-      const nextKeys = keys.concat(++id);
-      // can use data-binding to set
-      // important! notify form to detect changes
-      form.setFieldsValue({
-        keys: nextKeys
-      });
-    },
-
-    handleSubmit(e) {
-      e.preventDefault();
-      this.form.validateFields((err, values) => {
-        if (!err) {
-          console.log("Received values of form: ", values);
-        }
-      });
-    }
+  components: {
+    AdvancedSearch,
+    Coordinated,
+    CustomizedFormControls,
+    DynamicFormItem,
+    DynamicRule,
+    FormInModal,
+    GlobalState,
+    HorizontalLogin,
+    Layout,
+    NormalLogin,
+    Register,
+    ValidateOther,
+    ValidateStatic,
+    WithoutFormCreate
   }
 };
 </script>
-<style>
-.dynamic-delete-button {
-  cursor: pointer;
-  position: relative;
-  top: 4px;
-  font-size: 24px;
-  color: #999;
-  transition: all 0.3s;
-}
-
-.dynamic-delete-button:hover {
-  color: #777;
-}
-
-.dynamic-delete-button[disabled] {
-  cursor: not-allowed;
-  opacity: 0.5;
-}
-</style>

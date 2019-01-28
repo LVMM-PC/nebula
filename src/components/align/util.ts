@@ -13,6 +13,7 @@ export function buffer(fn, ms) {
     timer = setTimeout(fn, ms);
   }
 
+  // @ts-ignore
   bufferFn.clear = clear;
 
   return bufferFn;
