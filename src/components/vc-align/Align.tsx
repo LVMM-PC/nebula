@@ -23,7 +23,7 @@ export default class Align extends Vue {
   @Prop({ type: Object })
   childrenProps?: any;
 
-  @Prop({ type: Object })
+  @Prop({ type: Object, required: true })
   align?: any;
 
   @Prop({ default: () => window, type: [Function, Object] })

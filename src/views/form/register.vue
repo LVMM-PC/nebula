@@ -31,7 +31,7 @@
               rules: [{
                 required: true, message: 'Please input your password!',
               }, {
-                validator: this.validateToNextPassword,
+                validator: validateToNextPassword,
               }],
             }
           ]"

@@ -26,7 +26,7 @@
             {rules: [{ required: true, message: 'Please select your gender!' }]}
           ]"
           placeholder="Select a option and change input text above"
-          @change="this.handleSelectChange"
+          @change="handleSelectChange"
         >
           <nebula-select-option value="male">male</nebula-select-option>
           <nebula-select-option value="female">female</nebula-select-option>

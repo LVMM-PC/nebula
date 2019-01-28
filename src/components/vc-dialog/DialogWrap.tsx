@@ -102,22 +102,10 @@ export default class DialogWrap extends Vue {
   @Prop({ type: Function })
   getContainer: any;
 
-  @Prop({
-    default: () => {
-      {
-      }
-    },
-    type: Object
-  })
+  @Prop({ default: () => {}, type: Object })
   dialogStyle: any;
 
-  @Prop({
-    default: () => {
-      {
-      }
-    },
-    type: Object
-  })
+  @Prop({ default: () => {}, type: Object })
   dialogClass: any;
 
   @Prop({})

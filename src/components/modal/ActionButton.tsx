@@ -10,7 +10,6 @@ import { Component, Prop, Vue, Watch } from "vue-property-decorator";
 export default class ActionButton extends Vue {
   constructor(props) {
     super(props);
-
   }
 
   @Prop()
